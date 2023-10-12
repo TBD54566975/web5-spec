@@ -1,0 +1,7 @@
+name: Web5 Spec Conformance Test
+description: test that this web5 component conforms to the expected spec
+runs:
+  using: composite
+  steps:
+    - run: ${{ github.action_path }}/github-action.sh
+      shell: bash

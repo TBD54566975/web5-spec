@@ -1,0 +1,51 @@
+name: build
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build-binary:
+    strategy:
+      matrix:
+        GOARCH: ["amd64", "arm64"]
+        GOOS: ["linux", "darwin"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.21
+          cache: true
+      - run: go build ./cmd/web5-spec
+        env:
+          GOARCH: ${{ matrix.GOARCH }}
+          GOOS: ${{ matrix.GOOS }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: web5-spec-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
+          path: web5-spec
+  create-release:
+    needs: [build-binary]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+      - name: move artifacts around
+        id: artifact-rename
+        run: |
+          set -ex
+          echo "artifacts<<EOF" >> $GITHUB_OUTPUT
+          for artifact in web5-spec-*; do
+            mv "${artifact}" "artifact-${artifact}"
+            mv "artifact-${artifact}/web5-spec" "${artifact}"
+            echo "${artifact}" >> $GITHUB_OUTPUT
+          done
+          echo EOF >> $GITHUB_OUTPUT
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ steps.artifact-rename.outputs.artifacts }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
