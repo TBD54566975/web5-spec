@@ -1,14 +1,30 @@
 package main
 
 import (
+	"embed"
+	"html/template"
+	"os"
 	"strings"
 
 	"github.com/TBD54566975/web5-spec/openapi"
 )
 
+//go:embed report-template.md
+var reportTemplate embed.FS
+
 type Report struct {
 	TestServerID openapi.TestServerID
 	Results      map[string]error
+}
+
+func (r Report) IsPassing() bool {
+	for _, err := range r.Results {
+		if err != nil {
+			return false
+		}
+	}
+
+	return true
 }
 
 func (r Report) Text() string {
@@ -36,12 +52,19 @@ func (r Report) Text() string {
 	return b.String()
 }
 
-func (r Report) Pass() bool {
-	for _, err := range r.Results {
-		if err != nil {
-			return false
-		}
+var mdTemplate = template.Must(template.New("").ParseFS(reportTemplate, "*.md"))
+
+func (r Report) WriteMarkdown(filename string) error {
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	err = mdTemplate.Execute(f, r)
+	if err != nil {
+		return err
 	}
 
-	return true
+	return nil
 }

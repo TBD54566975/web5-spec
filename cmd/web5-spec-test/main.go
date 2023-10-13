@@ -100,7 +100,14 @@ func main() {
 	fmt.Println(report.Text())
 	fmt.Println()
 
-	if !report.Pass() {
+	stepSummaryFile := os.Getenv("GITHUB_STEP_SUMMARY")
+	if stepSummaryFile != "" {
+		if err := report.WriteMarkdown(stepSummaryFile); err != nil {
+			slog.Error("error writing github step summary", "file", stepSummaryFile, "error", err)
+		}
+	}
+
+	if !report.IsPassing() {
 		os.Exit(1)
 	}
 }

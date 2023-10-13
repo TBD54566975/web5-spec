@@ -3,5 +3,10 @@ description: test that this web5 component conforms to the expected spec
 runs:
   using: composite
   steps:
-    - run: ${{ github.action_path }}/github-action.sh
+    - run: |
+        spec_test_version="$(basename "${GITHUB_ACTION_PATH}")"
+        bin: "${GITHUB_ACTION_PATH}/web5-spec-test"
+        wget -O "${bin}" "https://github.com/TBD54566975/web5-spec/releases/download/${spec_test_version}/web5-spec-test-linux-amd64"
+        chmod +x "${bin}"
+        "${bin}"
       shell: bash

@@ -19,14 +19,14 @@ jobs:
         with:
           go-version: 1.21
           cache: true
-      - run: go build ./cmd/web5-spec
+      - run: go build ./cmd/web5-spec-test
         env:
           GOARCH: ${{ matrix.GOARCH }}
           GOOS: ${{ matrix.GOOS }}
       - uses: actions/upload-artifact@v3
         with:
-          name: web5-spec-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
-          path: web5-spec
+          name: web5-spec-test-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
+          path: web5-spec-test
   create-release:
     needs: [build-binary]
     runs-on: ubuntu-latest
@@ -37,9 +37,9 @@ jobs:
         run: |
           set -ex
           echo "artifacts<<EOF" >> $GITHUB_OUTPUT
-          for artifact in web5-spec-*; do
+          for artifact in web5-spec-test-*; do
             mv "${artifact}" "artifact-${artifact}"
-            mv "artifact-${artifact}/web5-spec" "${artifact}"
+            mv "artifact-${artifact}/web5-spec-test" "${artifact}"
             echo "${artifact}" >> $GITHUB_OUTPUT
           done
           echo EOF >> $GITHUB_OUTPUT
