@@ -5,7 +5,7 @@ runs:
   steps:
     - run: |
         spec_test_version="$(basename "${GITHUB_ACTION_PATH}")"
-        bin: "${GITHUB_ACTION_PATH}/web5-spec-test"
+        bin="${GITHUB_ACTION_PATH}/web5-spec-test"
         wget -O "${bin}" "https://github.com/TBD54566975/web5-spec/releases/download/${spec_test_version}/web5-spec-test-linux-amd64"
         chmod +x "${bin}"
         "${bin}"
