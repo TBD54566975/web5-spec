@@ -97,7 +97,11 @@ func main() {
 	}
 
 	fmt.Println()
-	fmt.Println(report.Text())
+	if txt, err := report.Text(); err != nil {
+		slog.Error("error generating text report", "error", err)
+	} else {
+		fmt.Println(txt)
+	}
 	fmt.Println()
 
 	stepSummaryFile := os.Getenv("GITHUB_STEP_SUMMARY")

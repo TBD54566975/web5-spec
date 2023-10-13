@@ -1,0 +1,4 @@
+web5 spec conformance report for {{ .TestServerID.Name }} ({{ .TestServerID.Url }})
+
+{{ range $test, $result := .Results }}
+{{ $test }}: {{ if $result }}fail: {{ $result }}{{ else }}pass{{ end }}{{ end }}

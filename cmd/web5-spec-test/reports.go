@@ -1,16 +1,18 @@
 package main
 
 import (
+	"bytes"
 	"embed"
-	"html/template"
 	"os"
-	"strings"
+	"text/template"
 
 	"github.com/TBD54566975/web5-spec/openapi"
 )
 
-//go:embed report-template.md
-var reportTemplate embed.FS
+//go:embed report-template.*
+var reportTemplateFS embed.FS
+
+var templates = template.Must(template.New("").ParseFS(reportTemplateFS, "report-template.*"))
 
 type Report struct {
 	TestServerID openapi.TestServerID
@@ -27,32 +29,15 @@ func (r Report) IsPassing() bool {
 	return true
 }
 
-func (r Report) Text() string {
-	var b strings.Builder
+func (r Report) Text() (string, error) {
+	var buffer bytes.Buffer
 
-	b.WriteString("web5 spec conformance report for ")
-	b.WriteString(r.TestServerID.Name)
-	b.WriteString(" (")
-	b.WriteString(r.TestServerID.Url)
-	b.WriteRune(')')
-	b.WriteRune('\n')
-	b.WriteRune('\n')
-	for name, err := range r.Results {
-		b.WriteString(name)
-		b.WriteString(": ")
-		if err != nil {
-			b.WriteString("fail (")
-			b.WriteString(err.Error())
-			b.WriteRune(')')
-		} else {
-			b.WriteString("pass")
-		}
+	if err := templates.ExecuteTemplate(&buffer, "report-template.txt", r); err != nil {
+		return "", err
 	}
 
-	return b.String()
+	return buffer.String(), nil
 }
-
-var mdTemplate = template.Must(template.New("").ParseFS(reportTemplate, "report-template.md"))
 
 func (r Report) WriteMarkdown(filename string) error {
 	f, err := os.Create(filename)
@@ -61,7 +46,7 @@ func (r Report) WriteMarkdown(filename string) error {
 	}
 	defer f.Close()
 
-	err = mdTemplate.ExecuteTemplate(f, "report-template.md", r)
+	err = templates.ExecuteTemplate(f, "report-template.md", r)
 	if err != nil {
 		return err
 	}
