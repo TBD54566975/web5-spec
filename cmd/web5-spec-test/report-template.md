@@ -4,4 +4,4 @@ SDK: [{{ .TestServerID.Name }}]({{ .TestServerID.Url }}) ({{ .TestServerID.Langu
 
 | Test | Pass | Details |
 | ---- | ---- | ------- |{{ range $test, $result := .Results }}
-| `{{ $test }}` | {{ if $result }}:heavy_check_mark: | {{ else }}:x: | -```{{ $result }}{{ end }} |{{ end }}
+| `{{ $test }}` | {{ if $result }}:x: | ```{{ $result }}```{{ else }}:heavy_check_mark: |{{ end }} |{{ end }}
