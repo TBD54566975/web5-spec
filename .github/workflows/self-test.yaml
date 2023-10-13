@@ -1,0 +1,14 @@
+name: build
+
+on: [push]
+
+jobs:
+  self-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+      - name: clone test target
+        run: git clone -b web5-component-tests https://github.com/TBD54566975/web5-js.git web5-js
+      - name: self test
+        run: go run ./cmd/web5-spec-test web5-js/

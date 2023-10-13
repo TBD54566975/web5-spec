@@ -52,7 +52,7 @@ func (r Report) Text() string {
 	return b.String()
 }
 
-var mdTemplate = template.Must(template.New("").ParseFS(reportTemplate, "*.md"))
+var mdTemplate = template.Must(template.New("").ParseFS(reportTemplate, "report-template.md"))
 
 func (r Report) WriteMarkdown(filename string) error {
 	f, err := os.Create(filename)
@@ -61,7 +61,7 @@ func (r Report) WriteMarkdown(filename string) error {
 	}
 	defer f.Close()
 
-	err = mdTemplate.Execute(f, r)
+	err = mdTemplate.ExecuteTemplate(f, "report-template.md", r)
 	if err != nil {
 		return err
 	}
