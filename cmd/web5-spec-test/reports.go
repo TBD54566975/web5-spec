@@ -16,12 +16,12 @@ var templates = template.Must(template.New("").ParseFS(reportTemplateFS, "report
 
 type Report struct {
 	TestServerID openapi.TestServerID
-	Results      map[string]error
+	Results      map[string]map[string][]error
 }
 
 func (r Report) IsPassing() bool {
-	for _, err := range r.Results {
-		if err != nil {
+	for _, errs := range r.Results {
+		if len(errs) > 0 {
 			return false
 		}
 	}
