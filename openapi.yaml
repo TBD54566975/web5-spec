@@ -1,8 +1,41 @@
 openapi: 3.0.0
 info:
   title: web5 SDK test server
-  version: 0.1.0
+  version: 0.2.0
 paths:
+  /did-ion/create:
+    post:
+      operationId: did_ion_create
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DIDIonCreateResponse"
+  /did-ion/update:
+    post:
+      operationId: did_ion_update
+  /did-ion/recover:
+    post:
+      operationId: did_ion_recover
+  /did-ion/deactivate:
+    post:
+      operationId: did_ion_deactivate
+  /did-ion/resolve:
+    post:
+      operationId: did_ion_resolve
+  /did-ion/anchor:
+    post:
+      operationId: did_ion_anchor
+  /did-key/create:
+    post:
+      operationId: did_key_create
+  /did-key/resolve:
+    post:
+      operationId: did_key_resolve
+  /credentials/presentation-exchange:
+    post:
+      operationId: credential_presentation_exchange
   /credentials/issue:
     post:
       operationId: credential_issue
@@ -19,6 +52,167 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CredentialIssuanceResponse"
+  /crypto/generate-key/secp256k1:
+    post:
+      operationId: crypto_generate_key_secp256k1
+  /crypto/generate-key/ed25519:
+    post:
+      operationId: crypto_generate_key_ed25519
+  /crypto/generate-key/secp256r1:
+    post:
+      operationId: crypto_generate_key_secp256r1
+  /crypto/verify/secp256k1:
+    post:
+      operationId: crypto_verify_secp256k1
+  /crypto/verify/ed25519:
+    post:
+      operationId: crypto_verify_ed25519
+  /crypto/verify/secp256r1:
+    post:
+      operationId: crypto_verify_secp256r1
+  /crypto/jose/jws-create:
+    post:
+      operationId: crypto_jose_jws_create
+  /crypto/jose/jws-verify:
+    post:
+      operationId: crypto_jose_jws_verify
+  /crypto/jose/jwk-encode:
+    post:
+      operationId: crypto_jose_jwk_encode
+  /crypto/jose/jwk-decode:
+    post:
+      operationId: crypto_jose_jwk_decode
+  /crypto/jose/jwt-create:
+    post:
+      operationId: crypto_jose_jwt_create
+  /crypto/jose/jwt-verify:
+    post:
+      operationId: crypto_jose_jwt_verify
+  /crypto/key-manager/generate-key:
+    post:
+      operationId: crypto_key_manager_generate_key
+  /crypto/key-manager/import-key:
+    post:
+      operationId: crypto_key_manager_import_key
+  /crypto/key-manager/sign:
+    post:
+      operationId: crypto_key_manager_sign
+  /crypto/key-manager/verify:
+    post:
+      operationId: crypto_key_manager_verify
+  /encoders/base64/encode:
+    post:
+      operationId: encoders_base64_encode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StringEncodedData"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StringEncodedData"
+  /encoders/base64/decode:
+    post:
+      operationId: encoders_base64_decode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StringEncodedData"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StringEncodedData"
+  /encoders/base58/encode:
+    post:
+      operationId: encoders_base58_encode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StringEncodedData"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StringEncodedData"
+  /encoders/base58/decode:
+    post:
+      operationId: encoders_base58_decode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StringEncodedData"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StringEncodedData"
+  /encoders/sha256/encode:
+    post:
+      operationId: encoders_sha256_encode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StringEncodedData"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StringEncodedData"
+  /encoders/cbor/encode:
+    post:
+      operationId: encoders_cbor_encode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StringEncodedData"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StringEncodedData"
+  /encoders/cbor/decode:
+    post:
+      operationId: encoders_cbor_decode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StringEncodedData"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StringEncodedData"
+
   /ready:
     get:
       operationId: server_ready
@@ -197,4 +391,18 @@ components:
         language:
           type: string
         url:
+          type: string
+    DIDIonCreateResponse:
+      type: object
+      required:
+        - did
+      properties:
+        did:
+          type: string
+    StringEncodedData:
+      type: object
+      required:
+        - data
+      properties:
+        data:
           type: string

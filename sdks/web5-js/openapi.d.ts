@@ -5,6 +5,9 @@
 
 
 export interface paths {
+  "/did-ion/create": {
+    post: operations["did_ion_create"];
+  };
   "/credentials/issue": {
     post: operations["credential_issue"];
   };
@@ -80,6 +83,9 @@ export interface components {
       language: string;
       url: string;
     };
+    DIDIonCreateResponse: {
+      did: string;
+    };
   };
   responses: never;
   parameters: never;
@@ -94,6 +100,15 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  did_ion_create: {
+    responses: {
+      200: {
+        content: {
+          "application/json": components["schemas"]["DIDIonCreateResponse"];
+        };
+      };
+    };
+  };
   credential_issue: {
     requestBody: {
       content: {

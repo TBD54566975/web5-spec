@@ -2,13 +2,21 @@ package tests
 
 import (
 	"context"
-	"errors"
-	"fmt"
 
 	"github.com/TBD54566975/web5-spec/openapi"
 )
 
-func CredentialIssuanceTest(ctx context.Context, serverURL string) error {
+func init() {
+	tests["Credentials SDK"] = map[string]testfn{
+		"VC Create": vcCreate,
+		// "VC Verify": vcVerify,
+		// "VP Create": vpCreate,
+		// "VP Verify": vpVerify,
+		// "StatusList Lookup": statusListLookup,
+	}
+}
+
+func vcCreate(ctx context.Context, serverURL string) []error {
 	expectedContext := []string{"https://www.w3.org/2018/credentials/v1"}
 	expectedType := []string{"VerifiableCredential"}
 	expectedID := "id-123"
@@ -20,7 +28,7 @@ func CredentialIssuanceTest(ctx context.Context, serverURL string) error {
 
 	client, err := openapi.NewClientWithResponses(serverURL)
 	if err != nil {
-		return err
+		return []error{err}
 	}
 
 	response, err := client.CredentialIssueWithResponse(ctx, openapi.CredentialIssuanceRequest{
@@ -35,11 +43,11 @@ func CredentialIssuanceTest(ctx context.Context, serverURL string) error {
 		},
 	})
 	if err != nil {
-		return err
+		return []error{err}
 	}
 
 	if response.JSON200 == nil {
-		return fmt.Errorf("%s: %s", response.Status(), string(response.Body))
+		return unexpectedResponseCode(response.HTTPResponse, response.Body)
 	}
 
 	vc := response.JSON200.VerifiableCredential
@@ -70,9 +78,5 @@ func CredentialIssuanceTest(ctx context.Context, serverURL string) error {
 		errs = append(errs, err)
 	}
 
-	if len(errs) > 0 {
-		return errors.Join(errs...)
-	}
-
-	return nil
+	return errs
 }

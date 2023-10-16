@@ -3,29 +3,30 @@ package tests
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"strings"
 	"time"
 
 	"golang.org/x/exp/slog"
 )
 
-type test struct {
-	Name string
-	Fn   func(ctx context.Context, serverURL string) error
-}
+type testfn func(ctx context.Context, serverURL string) []error
 
-var tests = []test{
-	{Name: "CredentialIssuance", Fn: CredentialIssuanceTest},
-}
+var tests = map[string]map[string]testfn{}
 
-func RunTests(serverURL string) map[string]error {
-	results := map[string]error{}
-	for _, t := range tests {
-		slog.Info("running", "test", t.Name)
-		ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-		defer cancel()
-		results[t.Name] = t.Fn(ctx, serverURL)
-		if results[t.Name] != nil {
-			slog.Error("error", "test", t.Name, "error", results[t.Name])
+func RunTests(serverURL string) map[string]map[string][]error {
+	results := map[string]map[string][]error{}
+	for group, ts := range tests {
+		slog.Info("starting test group", "group", group)
+		results[group] = map[string][]error{}
+		for t, fn := range ts {
+			slog.Info("running", "test", t)
+			ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+			defer cancel()
+			results[group][t] = fn(ctx, serverURL)
+			if results[t] != nil {
+				slog.Error("error", "test", t, "error", results[t])
+			}
 		}
 	}
 
@@ -60,4 +61,13 @@ func compareStrings(actual string, expected string, field string) error {
 		return fmt.Errorf("incorrect value for %s: expected %v, got %v", field, expected, actual)
 	}
 	return nil
+}
+
+func unexpectedResponseCode(r *http.Response, body []byte) []error {
+	sanatizedBody := strings.ReplaceAll(string(body), "\n", "\\n")
+	return []error{fmt.Errorf("%s: %s", r.Status, sanatizedBody)}
+}
+
+func generateRandomString(len int) string {
+	return "TODO: MAKE THIS RANDOM"
 }
