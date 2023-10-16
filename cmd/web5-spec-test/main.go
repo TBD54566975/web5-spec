@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"time"
 
 	"github.com/TBD54566975/web5-spec/openapi"
@@ -17,6 +18,12 @@ var (
 	nostart = flag.Bool("no-start", false, "when set, the server is not built and is expected to be already running")
 	nostop  = flag.Bool("no-stop", false, "when set, the server is not asked to shut down")
 	server  = flag.String("server", "http://localhost:8080", "url of the server to connect to")
+
+	dockerfiles = []string{
+		".web5-component/test.Dockerfile",
+		".web5-component/Dockerfile",
+		"web5-spec.Dockerfile",
+	}
 )
 
 func main() {
@@ -31,7 +38,20 @@ func main() {
 	slog.SetDefault(slog.New(logger))
 
 	if !*nostart {
-		cmd := run(dir, "docker", "build", "-t", "web5-component:latest", "-f", ".web5-component/test.Dockerfile", ".")
+		var dockerfile string
+		for _, d := range dockerfiles {
+			candidate := filepath.Join(dir, d)
+			if _, err := os.Stat(candidate); !os.IsNotExist(err) {
+				dockerfile = d
+			}
+		}
+
+		if dockerfile == "" {
+			slog.Error("no dockerfile found", "paths", dockerfiles)
+			os.Exit(1)
+		}
+
+		cmd := run(dir, "docker", "build", "-t", "web5-component:latest", "-f", dockerfile, ".")
 		if err := cmd.Run(); err != nil {
 			slog.Error("error building server", "error", err)
 			os.Exit(1)
