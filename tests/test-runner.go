@@ -64,8 +64,7 @@ func compareStrings(actual string, expected string, field string) error {
 }
 
 func unexpectedResponseCode(r *http.Response, body []byte) []error {
-	sanatizedBody := strings.ReplaceAll(string(body), "<", "&lt;")
-	sanatizedBody = strings.ReplaceAll(sanatizedBody, ">", "&gt;")
+	sanatizedBody := strings.ReplaceAll(string(body), "\n", "\\n")
 	return []error{fmt.Errorf("%s: %s", r.Status, sanatizedBody)}
 }
 
