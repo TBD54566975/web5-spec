@@ -1,6 +1,7 @@
 import express from "express";
 import { credentialIssue } from "./credentials.js";
 import { didIonCreate } from "./did-ion.js";
+import { encoderBase58Decode, encoderBase58Encode, encoderBase64Decode, encoderBase64Encode } from "./encoders.js"
 import type * as http from "http";
 import type { Request, Response } from "express";
 import { paths } from "./openapi.js"; // generated with npx openapi-typescript .web5-component/openapi.yaml -o .web5-component/openapi.d.ts
@@ -13,6 +14,11 @@ app.use(bodyparser.json());
 app.post("/did-ion/create", didIonCreate);
 
 app.post("/credentials/issue", credentialIssue);
+
+app.post("/encoders/base64/encode", encoderBase64Encode);
+app.post("/encoders/base64/decode", encoderBase64Decode);
+app.post("/encoders/base58/encode", encoderBase58Encode);
+app.post("/encoders/base58/decode", encoderBase58Decode);
 
 const serverID: paths["/"]["get"]["responses"]["200"]["content"]["application/json"] =
   {
@@ -30,7 +36,7 @@ app.get("/shutdown", (req: Request, res: Response) => {
   console.log("shutting down server");
   server.close((e) => {
     if (e) {
-      console.error(e);
+      console.error("error shutting down server:", e.stack || e);
     }
   });
 });
