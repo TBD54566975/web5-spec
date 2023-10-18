@@ -1,0 +1,53 @@
+import { paths } from "./openapi.js";
+import { Request, Response } from "express";
+import { Convert } from '@web5/common';
+import { sha256 } from '@noble/hashes/sha256';
+
+
+export function encoderBase64Encode(req: Request, res: Response) {
+  const requestBody: paths["/encoders/base64/encode"]["post"]["requestBody"]["content"]["application/json"] =
+    req.body;
+
+  const resp: paths["/encoders/base64/encode"]["post"]["responses"]["200"]["content"]["application/json"] =
+    {
+      data: Convert.string(requestBody.data).toBase64Url()
+    };
+
+  res.json(resp);
+}
+
+export function encoderBase64Decode(req: Request, res: Response) {
+  const requestBody: paths["/encoders/base64/encode"]["post"]["requestBody"]["content"]["application/json"] =
+    req.body;
+
+  const resp: paths["/encoders/base64/encode"]["post"]["responses"]["200"]["content"]["application/json"] =
+    {
+      data: Convert.base64Url(requestBody.data).toString()
+    };
+
+  res.json(resp);
+}
+
+export function encoderBase58Encode(req: Request, res: Response) {
+  const requestBody: paths["/encoders/base58/encode"]["post"]["requestBody"]["content"]["application/json"] =
+    req.body;
+
+  const resp: paths["/encoders/base58/encode"]["post"]["responses"]["200"]["content"]["application/json"] =
+    {
+      data: Convert.string(requestBody.data).toBase58Btc()
+    };
+
+  res.json(resp);
+}
+
+export function encoderBase58Decode(req: Request, res: Response) {
+  const requestBody: paths["/encoders/base58/encode"]["post"]["requestBody"]["content"]["application/json"] =
+    req.body;
+
+  const resp: paths["/encoders/base58/encode"]["post"]["responses"]["200"]["content"]["application/json"] =
+    {
+      data: Convert.base58Btc(requestBody.data).toString()
+    };
+
+  res.json(resp);
+}

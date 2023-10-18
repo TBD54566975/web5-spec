@@ -8,8 +8,101 @@ export interface paths {
   "/did-ion/create": {
     post: operations["did_ion_create"];
   };
+  "/did-ion/update": {
+    post: operations["did_ion_update"];
+  };
+  "/did-ion/recover": {
+    post: operations["did_ion_recover"];
+  };
+  "/did-ion/deactivate": {
+    post: operations["did_ion_deactivate"];
+  };
+  "/did-ion/resolve": {
+    post: operations["did_ion_resolve"];
+  };
+  "/did-ion/anchor": {
+    post: operations["did_ion_anchor"];
+  };
+  "/did-key/create": {
+    post: operations["did_key_create"];
+  };
+  "/did-key/resolve": {
+    post: operations["did_key_resolve"];
+  };
+  "/credentials/presentation-exchange": {
+    post: operations["credential_presentation_exchange"];
+  };
   "/credentials/issue": {
     post: operations["credential_issue"];
+  };
+  "/crypto/generate-key/secp256k1": {
+    post: operations["crypto_generate_key_secp256k1"];
+  };
+  "/crypto/generate-key/ed25519": {
+    post: operations["crypto_generate_key_ed25519"];
+  };
+  "/crypto/generate-key/secp256r1": {
+    post: operations["crypto_generate_key_secp256r1"];
+  };
+  "/crypto/verify/secp256k1": {
+    post: operations["crypto_verify_secp256k1"];
+  };
+  "/crypto/verify/ed25519": {
+    post: operations["crypto_verify_ed25519"];
+  };
+  "/crypto/verify/secp256r1": {
+    post: operations["crypto_verify_secp256r1"];
+  };
+  "/crypto/jose/jws-create": {
+    post: operations["crypto_jose_jws_create"];
+  };
+  "/crypto/jose/jws-verify": {
+    post: operations["crypto_jose_jws_verify"];
+  };
+  "/crypto/jose/jwk-encode": {
+    post: operations["crypto_jose_jwk_encode"];
+  };
+  "/crypto/jose/jwk-decode": {
+    post: operations["crypto_jose_jwk_decode"];
+  };
+  "/crypto/jose/jwt-create": {
+    post: operations["crypto_jose_jwt_create"];
+  };
+  "/crypto/jose/jwt-verify": {
+    post: operations["crypto_jose_jwt_verify"];
+  };
+  "/crypto/key-manager/generate-key": {
+    post: operations["crypto_key_manager_generate_key"];
+  };
+  "/crypto/key-manager/import-key": {
+    post: operations["crypto_key_manager_import_key"];
+  };
+  "/crypto/key-manager/sign": {
+    post: operations["crypto_key_manager_sign"];
+  };
+  "/crypto/key-manager/verify": {
+    post: operations["crypto_key_manager_verify"];
+  };
+  "/encoders/base64/encode": {
+    post: operations["encoders_base64_encode"];
+  };
+  "/encoders/base64/decode": {
+    post: operations["encoders_base64_decode"];
+  };
+  "/encoders/base58/encode": {
+    post: operations["encoders_base58_encode"];
+  };
+  "/encoders/base58/decode": {
+    post: operations["encoders_base58_decode"];
+  };
+  "/encoders/sha256/encode": {
+    post: operations["encoders_sha256_encode"];
+  };
+  "/encoders/cbor/encode": {
+    post: operations["encoders_cbor_encode"];
+  };
+  "/encoders/cbor/decode": {
+    post: operations["encoders_cbor_decode"];
   };
   "/ready": {
     get: operations["server_ready"];
@@ -86,6 +179,9 @@ export interface components {
     DIDIonCreateResponse: {
       did: string;
     };
+    StringEncodedData: {
+      data: string;
+    };
   };
   responses: never;
   parameters: never;
@@ -109,6 +205,22 @@ export interface operations {
       };
     };
   };
+  did_ion_update: {
+  };
+  did_ion_recover: {
+  };
+  did_ion_deactivate: {
+  };
+  did_ion_resolve: {
+  };
+  did_ion_anchor: {
+  };
+  did_key_create: {
+  };
+  did_key_resolve: {
+  };
+  credential_presentation_exchange: {
+  };
   credential_issue: {
     requestBody: {
       content: {
@@ -120,6 +232,143 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["CredentialIssuanceResponse"];
+        };
+      };
+    };
+  };
+  crypto_generate_key_secp256k1: {
+  };
+  crypto_generate_key_ed25519: {
+  };
+  crypto_generate_key_secp256r1: {
+  };
+  crypto_verify_secp256k1: {
+  };
+  crypto_verify_ed25519: {
+  };
+  crypto_verify_secp256r1: {
+  };
+  crypto_jose_jws_create: {
+  };
+  crypto_jose_jws_verify: {
+  };
+  crypto_jose_jwk_encode: {
+  };
+  crypto_jose_jwk_decode: {
+  };
+  crypto_jose_jwt_create: {
+  };
+  crypto_jose_jwt_verify: {
+  };
+  crypto_key_manager_generate_key: {
+  };
+  crypto_key_manager_import_key: {
+  };
+  crypto_key_manager_sign: {
+  };
+  crypto_key_manager_verify: {
+  };
+  encoders_base64_encode: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StringEncodedData"];
+      };
+    };
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEncodedData"];
+        };
+      };
+    };
+  };
+  encoders_base64_decode: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StringEncodedData"];
+      };
+    };
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEncodedData"];
+        };
+      };
+    };
+  };
+  encoders_base58_encode: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StringEncodedData"];
+      };
+    };
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEncodedData"];
+        };
+      };
+    };
+  };
+  encoders_base58_decode: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StringEncodedData"];
+      };
+    };
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEncodedData"];
+        };
+      };
+    };
+  };
+  encoders_sha256_encode: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StringEncodedData"];
+      };
+    };
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEncodedData"];
+        };
+      };
+    };
+  };
+  encoders_cbor_encode: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StringEncodedData"];
+      };
+    };
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEncodedData"];
+        };
+      };
+    };
+  };
+  encoders_cbor_decode: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StringEncodedData"];
+      };
+    };
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEncodedData"];
         };
       };
     };
