@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"golang.org/x/exp/slog"
@@ -58,6 +59,13 @@ func compareMaps(actual, expected map[string]interface{}, field string) error {
 func compareStrings(actual string, expected string, field string) error {
 	if actual != expected {
 		return fmt.Errorf("incorrect value for %s: expected %v, got %v", field, expected, actual)
+	}
+	return nil
+}
+
+func compareStringsContains(actual string, expected string, field string) error {
+	if !strings.Contains(actual, expected) {
+		return fmt.Errorf("does not contain text for %s: expected %v, got %v", field, expected, actual)
 	}
 	return nil
 }
