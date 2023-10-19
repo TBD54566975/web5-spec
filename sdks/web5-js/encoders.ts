@@ -57,7 +57,7 @@ export function encoderSha256Encode(req: Request, res: Response) {
 
   const resp: paths["/encoders/sha256/encode"]["post"]["responses"]["200"]["content"]["application/json"] =
     {
-      data: Convert.arrayBuffer(sha256(requestBody.data)).toString()
+      data: Convert.arrayBuffer(sha256(requestBody.data)).toHex()
     };
 
   res.json(resp);
