@@ -17,8 +17,8 @@ app.post("/credentials/issue", credentialIssue);
 
 app.post("/encoders/base64/encode", encoderBase64Encode);
 app.post("/encoders/base64/decode", encoderBase64Decode);
-app.post("/encoders/base58/encode", encoderBase58Encode);
-app.post("/encoders/base58/decode", encoderBase58Decode);
+// app.post("/encoders/base58/encode", encoderBase58Encode);
+// app.post("/encoders/base58/decode", encoderBase58Decode);
 app.post("/encoders/sha256/encode", encoderSha256Encode);
 
 const serverID: paths["/"]["get"]["responses"]["200"]["content"]["application/json"] =

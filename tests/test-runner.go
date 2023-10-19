@@ -2,7 +2,9 @@ package tests
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"math/rand"
 	"net/http"
 	"strings"
 	"time"
@@ -13,6 +15,8 @@ import (
 type testfn func(ctx context.Context, serverURL string) []error
 
 var tests = map[string]map[string]testfn{}
+
+var ErrNotSupported = errors.New("test not supported by this SDK")
 
 func RunTests(serverURL string) map[string]map[string][]error {
 	results := map[string]map[string][]error{}
@@ -71,9 +75,19 @@ func compareStringsContains(actual string, expected string, field string) error 
 }
 
 func unexpectedResponseCode(r *http.Response, body []byte) []error {
+	if r.StatusCode == http.StatusNotFound {
+		return []error{ErrNotSupported}
+	}
+
 	return []error{fmt.Errorf("%s: %s", r.Status, string(body))}
 }
 
-func generateRandomString(len int) string {
-	return "TODO: MAKE THIS RANDOM"
+const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=~`"
+
+func generateRandomString(size int) string {
+	var result strings.Builder
+	for result.Cap() < size {
+		result.WriteByte(alphabet[rand.Intn(len(alphabet))])
+	}
+	return result.String()
 }

@@ -12,12 +12,12 @@ import (
 
 func init() {
 	tests["encoders"] = map[string]testfn{
-		"Base64 Encode": encoderBase64Encode,
-		"Base64 Decode": encoderBase64Decode,
-		"Base58 Encode": encoderBase58Encode,
-		"Base58 Decode": encoderBase58Decode,
-		// "CBOR Encode":   encoderCBOREncode,
-		// "CBOR Decode":   encoderCBORDecode,
+		"base64 encode": encoderBase64Encode,
+		"base64 decode": encoderBase64Decode,
+		"base58 encode": encoderBase58Encode,
+		"base58 decode": encoderBase58Decode,
+		// "CBOR encode":   encoderCBOREncode,
+		// "CBOR decode":   encoderCBORDecode,
 		"sha256 encode": encoderSha256Encode,
 	}
 }
@@ -29,8 +29,7 @@ func encoderBase64Decode(ctx context.Context, serverURL string) []error {
 	}
 
 	expected := generateRandomString(128)
-
-	b64 := base64.RawStdEncoding.EncodeToString([]byte(expected))
+	b64 := base64.RawURLEncoding.EncodeToString([]byte(expected))
 
 	resp, err := client.EncodersBase64DecodeWithResponse(ctx, openapi.StringEncodedData{Data: b64})
 	if err != nil {
@@ -109,7 +108,7 @@ func encoderBase64Encode(ctx context.Context, serverURL string) []error {
 	}
 
 	input := generateRandomString(128)
-	expected := base64.RawStdEncoding.EncodeToString([]byte(input))
+	expected := base64.RawURLEncoding.EncodeToString([]byte(input))
 
 	resp, err := client.EncodersBase64EncodeWithResponse(ctx, openapi.StringEncodedData{Data: input})
 	if err != nil {

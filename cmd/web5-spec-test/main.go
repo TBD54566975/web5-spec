@@ -19,6 +19,8 @@ var (
 	nostop  = flag.Bool("no-stop", false, "when set, the server is not asked to shut down")
 	server  = flag.String("server", "http://localhost:8080", "url of the server to connect to")
 
+	dir string
+
 	dockerfiles = []string{
 		".web5-component/test.Dockerfile",
 		".web5-component/Dockerfile",
@@ -33,7 +35,7 @@ func main() {
 func runTests() int {
 	flag.Parse()
 
-	dir, _ := os.Getwd()
+	dir, _ = os.Getwd()
 	if len(flag.Args()) > 0 {
 		dir = flag.Arg(0)
 	}
@@ -52,27 +54,26 @@ func runTests() int {
 
 		if dockerfile == "" {
 			slog.Error("no dockerfile found", "paths", dockerfiles)
-			os.Exit(1)
+			return 1
 		}
 
-		cmd := run(dir, "docker", "build", "-t", "web5-spec:latest", "-f", dockerfile, ".")
+		cmd := docker("build", "-t", "web5-spec:latest", "-f", dockerfile, ".")
 		if err := cmd.Run(); err != nil {
 			slog.Error("error building server", "error", err)
-			os.Exit(1)
+			return 1
 		}
 
-		cmd = run(dir, "docker", "run", "-p", "8080:8080", "--name", "web5-spec", "--rm", "web5-spec:latest")
+		cmd = docker("run", "-p", "8080:8080", "--name", "web5-spec", "--rm", "web5-spec:latest")
 		if err := cmd.Start(); err != nil {
 			slog.Error("error running server", "error", err)
-			os.Exit(1)
+			return 1
 		}
 
 		if !*nostop {
 			defer func() {
-				cmd := run(dir, "docker", "stop", "web5-spec")
+				cmd := docker("stop", "web5-spec")
 				if err := cmd.Run(); err != nil {
-					slog.Error("error building server", "error", err)
-					os.Exit(1)
+					slog.Error("error stopping server container", "error", err)
 				}
 			}()
 		}
@@ -89,13 +90,13 @@ func runTests() int {
 	for {
 		serverIDResponse, err := client.IdentifySelfWithResponse(ctx)
 		if err != nil {
-			slog.Debug("waiting for server to be ready", "err", err)
+			slog.Debug("server ID check failed, retrying in 1 second", "err", err)
 			time.Sleep(time.Second)
 			continue
 		}
 
 		if serverIDResponse.JSON200 == nil {
-			slog.Debug("server ID check failed", "status", serverIDResponse.Status(), "body", string(serverIDResponse.Body))
+			slog.Debug("server ID check failed, retrying in 1 second", "status", serverIDResponse.Status(), "body", string(serverIDResponse.Body))
 			time.Sleep(time.Second)
 			continue
 		}
@@ -111,7 +112,7 @@ func runTests() int {
 		}
 	}()
 
-	slog.Debug("running tests")
+	slog.Debug("server running", "sdk", serverID.Name, "url", serverID.Url)
 
 	report := Report{
 		TestServerID: serverID,
@@ -140,12 +141,12 @@ func runTests() int {
 	return 0
 }
 
-func run(dir, command string, args ...string) *exec.Cmd {
-	cmd := exec.Command(command, args...)
+func docker(args ...string) *exec.Cmd {
+	cmd := exec.Command("docker", args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Dir = dir
-	slog.Info("executing", "cmd", command, "args", args)
+	slog.Info("executing docker", "args", args)
 
 	return cmd
 }
