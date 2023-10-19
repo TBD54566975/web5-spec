@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"embed"
 	"os"
+	"strings"
 	"text/template"
 
 	"github.com/TBD54566975/web5-spec/openapi"
@@ -12,7 +13,14 @@ import (
 //go:embed report-template.*
 var reportTemplateFS embed.FS
 
-var templates = template.Must(template.New("").ParseFS(reportTemplateFS, "report-template.*"))
+var templates = template.New("")
+
+func init() {
+	templates.Funcs(template.FuncMap{
+		"sanatizeHTML": sanatizeHTML,
+	})
+	templates.ParseFS(reportTemplateFS, "report-template.*")
+}
 
 type Report struct {
 	TestServerID openapi.TestServerID
@@ -52,4 +60,12 @@ func (r Report) WriteMarkdown(filename string) error {
 	}
 
 	return nil
+}
+
+func sanatizeHTML(dirty error) string {
+	clean := strings.ReplaceAll(dirty.Error(), "<", "&lt;")
+	clean = strings.ReplaceAll(clean, ">", "&gt;")
+	clean = strings.ReplaceAll(clean, "\n", "\\\\n")
+
+	return clean
 }

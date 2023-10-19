@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"strings"
 	"time"
 
 	"golang.org/x/exp/slog"
@@ -64,8 +63,7 @@ func compareStrings(actual string, expected string, field string) error {
 }
 
 func unexpectedResponseCode(r *http.Response, body []byte) []error {
-	sanatizedBody := strings.ReplaceAll(string(body), "\n", "\\n")
-	return []error{fmt.Errorf("%s: %s", r.Status, sanatizedBody)}
+	return []error{fmt.Errorf("%s: %s", r.Status, string(body))}
 }
 
 func generateRandomString(len int) string {

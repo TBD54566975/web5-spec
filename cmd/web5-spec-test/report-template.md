@@ -8,6 +8,6 @@ SDK: [{{ .TestServerID.Name }}]({{ .TestServerID.Url }}) ({{ .TestServerID.Langu
 
 | Feature | Result |
 | ------- | ------ |{{ range $test, $result := $results }}
-| {{ $test }} | {{ if $result }}:x: <ul>{{ range $result }}<li><pre>{{ . }}</pre></li>{{ end }}</ul>{{ else }}:heavy_check_mark:{{ end }} |{{ end }}
+| {{ $test }} | {{ if $result }}:x: <ul>{{ range $result }}<li><pre>{{ . | sanatizeHTML }}</pre></li>{{ end }}</ul>{{ else }}:heavy_check_mark:{{ end }} |{{ end }}
 
 {{ end }}
