@@ -67,6 +67,13 @@ func compareStrings(actual string, expected string, field string) error {
 	return nil
 }
 
+func compareStringsContains(actual string, expected string, field string) error {
+	if !strings.Contains(actual, expected) {
+		return fmt.Errorf("does not contain text for %s: expected %v, got %v", field, expected, actual)
+	}
+	return nil
+}
+
 func unexpectedResponseCode(r *http.Response, body []byte) []error {
 	if r.StatusCode == http.StatusNotFound {
 		return []error{ErrNotSupported}

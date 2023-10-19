@@ -315,7 +315,7 @@ components:
         - verifiableCredential
       properties:
         verifiableCredential:
-          $ref: "#/components/schemas/VerifiableCredential"
+          $ref: "#/components/schemas/StringEncodedData"
     VerifiableCredential:
       type: object
       required:

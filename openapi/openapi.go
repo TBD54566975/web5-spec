@@ -41,25 +41,12 @@ type CredentialIssuanceRequestOptions struct {
 
 // CredentialIssuanceResponse defines model for CredentialIssuanceResponse.
 type CredentialIssuanceResponse struct {
-	VerifiableCredential VerifiableCredential `json:"verifiableCredential"`
+	VerifiableCredential StringEncodedData `json:"verifiableCredential"`
 }
 
 // CredentialIssuer defines model for CredentialIssuer.
 type CredentialIssuer struct {
 	Id string `json:"id"`
-}
-
-// CredentialProof defines model for CredentialProof.
-type CredentialProof struct {
-	Challenge          string `json:"challenge"`
-	Created            string `json:"created"`
-	Domain             string `json:"domain"`
-	Jws                string `json:"jws"`
-	Nonce              string `json:"nonce"`
-	ProofPurpose       string `json:"proofPurpose"`
-	ProofValue         string `json:"proofValue"`
-	Type               string `json:"type"`
-	VerificationMethod string `json:"verificationMethod"`
 }
 
 // CredentialStatus defines model for CredentialStatus.
@@ -85,18 +72,6 @@ type TestServerID struct {
 	Language string `json:"language"`
 	Name     string `json:"name"`
 	Url      string `json:"url"`
-}
-
-// VerifiableCredential defines model for VerifiableCredential.
-type VerifiableCredential struct {
-	Context           []string          `json:"@context"`
-	CredentialSubject CredentialSubject `json:"credentialSubject"`
-	ExpirationDate    string            `json:"expirationDate"`
-	Id                string            `json:"id"`
-	IssuanceDate      string            `json:"issuanceDate"`
-	Issuer            CredentialIssuer  `json:"issuer"`
-	Proof             CredentialProof   `json:"proof"`
-	Type              []string          `json:"type"`
 }
 
 // CredentialIssueJSONRequestBody defines body for CredentialIssue for application/json ContentType.

@@ -2,8 +2,11 @@ package tests
 
 import (
 	"context"
+	"encoding/json"
+	"log"
 
 	"github.com/TBD54566975/web5-spec/openapi"
+	"gopkg.in/square/go-jose.v2"
 )
 
 func init() {
@@ -16,13 +19,21 @@ func init() {
 	}
 }
 
+type Payload struct {
+	Iss string                                      `json:"iss"`
+	Sub string                                      `json:"sub"`
+	Vc  openapi.CredentialIssuanceRequestCredential `json:"vc"`
+}
+
 func vcCreate(ctx context.Context, serverURL string) []error {
 	expectedContext := []string{"https://www.w3.org/2018/credentials/v1"}
 	expectedType := []string{"VerifiableCredential"}
 	expectedID := "id-123"
 	expectedIssuer := "did:example:123"
+
+	expectedCredentialSubjectId := "did:example:123"
 	expectedCredentialSubject := map[string]interface{}{
-		"id":        "did:example:123",
+		"id":        expectedCredentialSubjectId,
 		"firstName": "bob",
 	}
 
@@ -42,6 +53,7 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 			Type:   expectedType,
 		},
 	})
+
 	if err != nil {
 		return []error{err}
 	}
@@ -50,31 +62,50 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 		return unexpectedResponseCode(response.HTTPResponse, response.Body)
 	}
 
-	vc := response.JSON200.VerifiableCredential
+	vcJwt := response.JSON200.VerifiableCredential.Data
+
+	token, err := jose.ParseSigned(vcJwt)
+	payloadBytes := token.UnsafePayloadWithoutVerification()
+
+	var payload Payload
+	if err := json.Unmarshal(payloadBytes, &payload); err != nil {
+		log.Fatalf("Failed to unmarshal payload into struct: %v", err)
+	}
+
+	errs := []error{}
+
+	// Check iss
+	if err := compareStringsContains(payload.Iss, "did:", "iss"); err != nil {
+		errs = append(errs, err)
+	}
+
+	// Check sub
+	if err := compareStrings(payload.Sub, expectedCredentialSubjectId, "sub"); err != nil {
+		errs = append(errs, err)
+	}
 
 	// Check @context
-	errs := []error{}
-	if err := compareStringSlices(vc.Context, expectedContext, "@context"); err != nil {
+	if err := compareStringSlices(payload.Vc.Context, expectedContext, "@context"); err != nil {
 		errs = append(errs, err)
 	}
 
 	// Check credentialSubject
-	if err := compareMaps(vc.CredentialSubject, expectedCredentialSubject, "credentialSubject"); err != nil {
+	if err := compareMaps(payload.Vc.CredentialSubject, expectedCredentialSubject, "credentialSubject"); err != nil {
 		errs = append(errs, err)
 	}
 
 	// Check id
-	if err := compareStrings(vc.Id, expectedID, "id"); err != nil {
+	if err := compareStrings(payload.Vc.Id, expectedID, "id"); err != nil {
 		errs = append(errs, err)
 	}
 
 	// Check type
-	if err := compareStringSlices(vc.Type, expectedType, "type"); err != nil {
+	if err := compareStringSlices(payload.Vc.Type, expectedType, "type"); err != nil {
 		errs = append(errs, err)
 	}
 
 	// Check issuer
-	if err := compareStrings(vc.Issuer.Id, expectedIssuer, "issuer.id"); err != nil {
+	if err := compareStrings(payload.Vc.Issuer.Id, expectedIssuer, "issuer.id"); err != nil {
 		errs = append(errs, err)
 	}
 

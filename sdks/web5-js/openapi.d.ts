@@ -148,7 +148,7 @@ export interface components {
       type: string;
     };
     CredentialIssuanceResponse: {
-      verifiableCredential: components["schemas"]["VerifiableCredential"];
+      verifiableCredential: components["schemas"]["StringEncodedData"];
     };
     VerifiableCredential: {
       "@context": string[];
