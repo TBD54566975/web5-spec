@@ -29,8 +29,7 @@ func encoderBase64Decode(ctx context.Context, serverURL string) []error {
 	}
 
 	expected := generateRandomString(128)
-
-	b64 := base64.RawStdEncoding.EncodeToString([]byte(expected))
+	b64 := base64.RawURLEncoding.EncodeToString([]byte(expected))
 
 	resp, err := client.EncodersBase64DecodeWithResponse(ctx, openapi.StringEncodedData{Data: b64})
 	if err != nil {
