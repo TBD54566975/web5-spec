@@ -8,6 +8,7 @@ import (
 	"text/template"
 
 	"github.com/TBD54566975/web5-spec/openapi"
+	"github.com/TBD54566975/web5-spec/tests"
 )
 
 //go:embed report-template.*
@@ -18,6 +19,7 @@ var templates = template.New("")
 func init() {
 	templates.Funcs(template.FuncMap{
 		"sanatizeHTML": sanatizeHTML,
+		"getEmoji":     getEmoji,
 	})
 	templates.ParseFS(reportTemplateFS, "report-template.*")
 }
@@ -28,10 +30,17 @@ type Report struct {
 }
 
 func (r Report) IsPassing() bool {
-	for _, errs := range r.Results {
-		if len(errs) > 0 {
-			return false
+	for _, results := range r.Results {
+		for _, errs := range results {
+			if len(errs) == 1 && errs[0] == tests.ErrNotSupported {
+				continue
+			}
+
+			if len(errs) > 0 {
+				return false
+			}
 		}
+
 	}
 
 	return true
@@ -68,4 +77,16 @@ func sanatizeHTML(dirty error) string {
 	clean = strings.ReplaceAll(clean, "\n", "\\\\n")
 
 	return clean
+}
+
+func getEmoji(errs []error) string {
+	if len(errs) == 0 {
+		return "✅"
+	}
+
+	if len(errs) == 1 && errs[0] == tests.ErrNotSupported {
+		return "🚧"
+	}
+
+	return "❌"
 }
