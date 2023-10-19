@@ -27,6 +27,10 @@ var (
 )
 
 func main() {
+	os.Exit(runTests()) // without this weird wrapper thing, the defers wont get called
+}
+
+func runTests() int {
 	flag.Parse()
 
 	dir, _ := os.Getwd()
@@ -51,13 +55,13 @@ func main() {
 			os.Exit(1)
 		}
 
-		cmd := run(dir, "docker", "build", "-t", "web5-component:latest", "-f", dockerfile, ".")
+		cmd := run(dir, "docker", "build", "-t", "web5-spec:latest", "-f", dockerfile, ".")
 		if err := cmd.Run(); err != nil {
 			slog.Error("error building server", "error", err)
 			os.Exit(1)
 		}
 
-		cmd = run(dir, "docker", "run", "-p", "8080:8080", "--rm", "web5-component:latest")
+		cmd = run(dir, "docker", "run", "-p", "8080:8080", "--name", "web5-spec", "--rm", "web5-spec:latest")
 		if err := cmd.Start(); err != nil {
 			slog.Error("error running server", "error", err)
 			os.Exit(1)
@@ -65,12 +69,10 @@ func main() {
 
 		if !*nostop {
 			defer func() {
-				slog.Debug("shutting down server")
-				if err := cmd.Process.Signal(os.Kill); err != nil {
-					slog.Error("error shutting down server", "error", err)
-				}
-				if err := cmd.Wait(); err != nil {
-					slog.Error("error shutting down server", "error", err)
+				cmd := run(dir, "docker", "stop", "web5-spec")
+				if err := cmd.Run(); err != nil {
+					slog.Error("error building server", "error", err)
+					os.Exit(1)
 				}
 			}()
 		}
@@ -132,8 +134,10 @@ func main() {
 	}
 
 	if !report.IsPassing() {
-		os.Exit(1)
+		return 1
 	}
+
+	return 0
 }
 
 func run(dir, command string, args ...string) *exec.Cmd {
