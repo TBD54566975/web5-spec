@@ -94,6 +94,12 @@ type DIDIonCreateResponse struct {
 	Did string `json:"did"`
 }
 
+// GenerateKeyResponse defines model for GenerateKeyResponse.
+type GenerateKeyResponse struct {
+	Private string `json:"private"`
+	Public  string `json:"public"`
+}
+
 // PresentationDefinition defines model for PresentationDefinition.
 type PresentationDefinition struct {
 	Id                     *string                                        `json:"id,omitempty"`
@@ -2318,6 +2324,7 @@ func (r CredentialPresentationExchangeResponse) StatusCode() int {
 type CryptoGenerateKeyEd25519Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *GenerateKeyResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -2339,6 +2346,7 @@ func (r CryptoGenerateKeyEd25519Response) StatusCode() int {
 type CryptoGenerateKeySecp256k1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *GenerateKeyResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -2360,6 +2368,7 @@ func (r CryptoGenerateKeySecp256k1Response) StatusCode() int {
 type CryptoGenerateKeySecp256r1Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *GenerateKeyResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -3503,6 +3512,16 @@ func ParseCryptoGenerateKeyEd25519Response(rsp *http.Response) (*CryptoGenerateK
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GenerateKeyResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -3519,6 +3538,16 @@ func ParseCryptoGenerateKeySecp256k1Response(rsp *http.Response) (*CryptoGenerat
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GenerateKeyResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -3533,6 +3562,16 @@ func ParseCryptoGenerateKeySecp256r1Response(rsp *http.Response) (*CryptoGenerat
 	response := &CryptoGenerateKeySecp256r1Response{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GenerateKeyResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil

@@ -265,6 +265,10 @@ export interface components {
       /** @enum {string} */
       directive?: "required" | "allowed" | "disallowed";
     };
+    GenerateKeyResponse: {
+      private: string;
+      public: string;
+    };
   };
   responses: never;
   parameters: never;
@@ -333,10 +337,31 @@ export interface operations {
     };
   };
   crypto_generate_key_secp256k1: {
+    responses: {
+      200: {
+        content: {
+          "application/json": components["schemas"]["GenerateKeyResponse"];
+        };
+      };
+    };
   };
   crypto_generate_key_ed25519: {
+    responses: {
+      200: {
+        content: {
+          "application/json": components["schemas"]["GenerateKeyResponse"];
+        };
+      };
+    };
   };
   crypto_generate_key_secp256r1: {
+    responses: {
+      200: {
+        content: {
+          "application/json": components["schemas"]["GenerateKeyResponse"];
+        };
+      };
+    };
   };
   crypto_verify_secp256k1: {
   };

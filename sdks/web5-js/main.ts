@@ -1,7 +1,14 @@
 import express from "express";
 import { credentialIssue } from "./credentials.js";
 import { didIonCreate } from "./did-ion.js";
-import { encoderBase58Decode, encoderBase58Encode, encoderBase64Decode, encoderBase64Encode, encoderSha256Encode } from "./encoders.js"
+import {
+  encoderBase58Decode,
+  encoderBase58Encode,
+  encoderBase64Decode,
+  encoderBase64Encode,
+  encoderSha256Encode,
+} from "./encoders.js";
+import { cryptoSecp256k1Generate, cryptoEd25519Generate } from "./crypto.js";
 import type * as http from "http";
 import type { Request, Response } from "express";
 import { paths } from "./openapi.js"; // generated with npx openapi-typescript .web5-component/openapi.yaml -o .web5-component/openapi.d.ts
@@ -14,6 +21,9 @@ app.use(bodyparser.json());
 app.post("/did-ion/create", didIonCreate);
 
 app.post("/credentials/issue", credentialIssue);
+
+app.post("/crypto/generate-key/secp256k1", cryptoSecp256k1Generate);
+app.post("/crypto/generate-key/ed25519", cryptoEd25519Generate);
 
 app.post("/encoders/base64/encode", encoderBase64Encode);
 app.post("/encoders/base64/decode", encoderBase64Decode);

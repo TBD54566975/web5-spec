@@ -3,7 +3,7 @@ package tests
 import (
 	"context"
 	"encoding/json"
-	"log"
+	"fmt"
 
 	"github.com/TBD54566975/web5-spec/openapi"
 	"gopkg.in/square/go-jose.v2"
@@ -65,11 +65,14 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 	vcJwt := response.JSON200.VerifiableCredential.Data
 
 	token, err := jose.ParseSigned(vcJwt)
+	if err != nil {
+		return []error{err}
+	}
 	payloadBytes := token.UnsafePayloadWithoutVerification()
 
 	var payload Payload
 	if err := json.Unmarshal(payloadBytes, &payload); err != nil {
-		log.Fatalf("Failed to unmarshal payload into struct: %v", err)
+		return []error{fmt.Errorf("failed to unmarshal payload into struct: %v", err)}
 	}
 
 	errs := []error{}

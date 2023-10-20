@@ -68,12 +68,30 @@ paths:
   /crypto/generate-key/secp256k1:
     post:
       operationId: crypto_generate_key_secp256k1
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateKeyResponse"
   /crypto/generate-key/ed25519:
     post:
       operationId: crypto_generate_key_ed25519
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateKeyResponse"
   /crypto/generate-key/secp256r1:
     post:
       operationId: crypto_generate_key_secp256r1
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateKeyResponse"
   /crypto/verify/secp256k1:
     post:
       operationId: crypto_verify_secp256k1
@@ -601,3 +619,13 @@ components:
         directive:
           type: string
           enum: [required, allowed, disallowed]
+    GenerateKeyResponse:
+      type: object
+      required:
+        - private
+        - public
+      properties:
+        private:
+          type: string
+        public:
+          type: string
