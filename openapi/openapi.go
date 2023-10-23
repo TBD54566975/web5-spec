@@ -14,6 +14,43 @@ import (
 	"strings"
 )
 
+// Defines values for PresentationDefinitionConstraintsLimitDisclosure.
+const (
+	PresentationDefinitionConstraintsLimitDisclosurePreferred PresentationDefinitionConstraintsLimitDisclosure = "preferred"
+	PresentationDefinitionConstraintsLimitDisclosureRequired  PresentationDefinitionConstraintsLimitDisclosure = "required"
+)
+
+// Defines values for PresentationDefinitionConstraintsSubjectIsIssuer.
+const (
+	PresentationDefinitionConstraintsSubjectIsIssuerPreferred PresentationDefinitionConstraintsSubjectIsIssuer = "preferred"
+	PresentationDefinitionConstraintsSubjectIsIssuerRequired  PresentationDefinitionConstraintsSubjectIsIssuer = "required"
+)
+
+// Defines values for PresentationDefinitionFieldPredicate.
+const (
+	PresentationDefinitionFieldPredicatePreferred PresentationDefinitionFieldPredicate = "preferred"
+	PresentationDefinitionFieldPredicateRequired  PresentationDefinitionFieldPredicate = "required"
+)
+
+// Defines values for PresentationDefinitionHolderSubjectDirective.
+const (
+	PresentationDefinitionHolderSubjectDirectivePreferred PresentationDefinitionHolderSubjectDirective = "preferred"
+	PresentationDefinitionHolderSubjectDirectiveRequired  PresentationDefinitionHolderSubjectDirective = "required"
+)
+
+// Defines values for PresentationDefinitionStatusDirective.
+const (
+	Allowed    PresentationDefinitionStatusDirective = "allowed"
+	Disallowed PresentationDefinitionStatusDirective = "disallowed"
+	Required   PresentationDefinitionStatusDirective = "required"
+)
+
+// Defines values for PresentationDefinitionSubmissionRequirementRule.
+const (
+	All  PresentationDefinitionSubmissionRequirementRule = "all"
+	Pick PresentationDefinitionSubmissionRequirementRule = "pick"
+)
+
 // CredentialIssuanceRequest defines model for CredentialIssuanceRequest.
 type CredentialIssuanceRequest struct {
 	Credential CredentialIssuanceRequestCredential `json:"credential"`
@@ -62,6 +99,123 @@ type DIDIonCreateResponse struct {
 	Did string `json:"did"`
 }
 
+// PresentationDefinition defines model for PresentationDefinition.
+type PresentationDefinition struct {
+	Id                     *string                                        `json:"id,omitempty"`
+	InputDescriptors       []PresentationDefinitionInputDescriptor        `json:"inputDescriptors"`
+	Name                   string                                         `json:"name"`
+	Purpose                *string                                        `json:"purpose,omitempty"`
+	SubmissionRequirements *[]PresentationDefinitionSubmissionRequirement `json:"submissionRequirements,omitempty"`
+}
+
+// PresentationDefinitionConstraints defines model for PresentationDefinitionConstraints.
+type PresentationDefinitionConstraints struct {
+	Fields          *[]PresentationDefinitionField                    `json:"fields,omitempty"`
+	IsHolder        *[]PresentationDefinitionHolderSubject            `json:"isHolder,omitempty"`
+	LimitDisclosure *PresentationDefinitionConstraintsLimitDisclosure `json:"limitDisclosure,omitempty"`
+	SameSubject     *[]PresentationDefinitionHolderSubject            `json:"sameSubject,omitempty"`
+	Statuses        *PresentationDefinitionStatuses                   `json:"statuses,omitempty"`
+	SubjectIsIssuer *PresentationDefinitionConstraintsSubjectIsIssuer `json:"subjectIsIssuer,omitempty"`
+}
+
+// PresentationDefinitionConstraintsLimitDisclosure defines model for PresentationDefinitionConstraints.LimitDisclosure.
+type PresentationDefinitionConstraintsLimitDisclosure string
+
+// PresentationDefinitionConstraintsSubjectIsIssuer defines model for PresentationDefinitionConstraints.SubjectIsIssuer.
+type PresentationDefinitionConstraintsSubjectIsIssuer string
+
+// PresentationDefinitionField defines model for PresentationDefinitionField.
+type PresentationDefinitionField struct {
+	Filter    *PresentationDefinitionFilter         `json:"filter,omitempty"`
+	Id        *string                               `json:"id,omitempty"`
+	Name      *string                               `json:"name,omitempty"`
+	Path      *[]string                             `json:"path,omitempty"`
+	Predicate *PresentationDefinitionFieldPredicate `json:"predicate,omitempty"`
+	Purpose   *string                               `json:"purpose,omitempty"`
+}
+
+// PresentationDefinitionFieldPredicate defines model for PresentationDefinitionField.Predicate.
+type PresentationDefinitionFieldPredicate string
+
+// PresentationDefinitionFilter defines model for PresentationDefinitionFilter.
+type PresentationDefinitionFilter struct {
+	Const                  *string   `json:"const,omitempty"`
+	Enum                   *[]string `json:"enum,omitempty"`
+	ExclusiveMaximum       *string   `json:"exclusiveMaximum,omitempty"`
+	ExclusiveMinimum       *string   `json:"exclusiveMinimum,omitempty"`
+	Format                 *string   `json:"format,omitempty"`
+	FormatExclusiveMaximum *string   `json:"formatExclusiveMaximum,omitempty"`
+	FormatExclusiveMinimum *string   `json:"formatExclusiveMinimum,omitempty"`
+	FormatMaximum          *string   `json:"formatMaximum,omitempty"`
+	FormatMinimum          *string   `json:"formatMinimum,omitempty"`
+	MaxLength              *float32  `json:"maxLength,omitempty"`
+	Maximum                *string   `json:"maximum,omitempty"`
+	MinLength              *float32  `json:"minLength,omitempty"`
+	Minimum                *string   `json:"minimum,omitempty"`
+	Pattern                *string   `json:"pattern,omitempty"`
+	Type                   *string   `json:"type,omitempty"`
+}
+
+// PresentationDefinitionHolderSubject defines model for PresentationDefinitionHolderSubject.
+type PresentationDefinitionHolderSubject struct {
+	Directive *PresentationDefinitionHolderSubjectDirective `json:"directive,omitempty"`
+	FieldId   *[]string                                     `json:"fieldId,omitempty"`
+}
+
+// PresentationDefinitionHolderSubjectDirective defines model for PresentationDefinitionHolderSubject.Directive.
+type PresentationDefinitionHolderSubjectDirective string
+
+// PresentationDefinitionInputDescriptor defines model for PresentationDefinitionInputDescriptor.
+type PresentationDefinitionInputDescriptor struct {
+	Constraints *PresentationDefinitionConstraints `json:"constraints,omitempty"`
+	Group       *[]string                          `json:"group,omitempty"`
+	Id          string                             `json:"id"`
+	Issuance    *[]PresentationDefinitionIssuance  `json:"issuance,omitempty"`
+	Name        *string                            `json:"name,omitempty"`
+	Purpose     *string                            `json:"purpose,omitempty"`
+}
+
+// PresentationDefinitionIssuance defines model for PresentationDefinitionIssuance.
+type PresentationDefinitionIssuance struct {
+	Manifest *string `json:"manifest,omitempty"`
+}
+
+// PresentationDefinitionStatus defines model for PresentationDefinitionStatus.
+type PresentationDefinitionStatus struct {
+	Directive *PresentationDefinitionStatusDirective `json:"directive,omitempty"`
+}
+
+// PresentationDefinitionStatusDirective defines model for PresentationDefinitionStatus.Directive.
+type PresentationDefinitionStatusDirective string
+
+// PresentationDefinitionStatuses defines model for PresentationDefinitionStatuses.
+type PresentationDefinitionStatuses struct {
+	Active    *PresentationDefinitionStatus `json:"active,omitempty"`
+	Revoked   *PresentationDefinitionStatus `json:"revoked,omitempty"`
+	Suspended *PresentationDefinitionStatus `json:"suspended,omitempty"`
+}
+
+// PresentationDefinitionSubmissionRequirement defines model for PresentationDefinitionSubmissionRequirement.
+type PresentationDefinitionSubmissionRequirement struct {
+	Count      *float32                                        `json:"count,omitempty"`
+	From       *string                                         `json:"from,omitempty"`
+	FromNested *[]PresentationDefinitionSubmissionRequirement  `json:"fromNested,omitempty"`
+	Max        *float32                                        `json:"max,omitempty"`
+	Min        *float32                                        `json:"min,omitempty"`
+	Name       *string                                         `json:"name,omitempty"`
+	Purpose    *string                                         `json:"purpose,omitempty"`
+	Rule       PresentationDefinitionSubmissionRequirementRule `json:"rule"`
+}
+
+// PresentationDefinitionSubmissionRequirementRule defines model for PresentationDefinitionSubmissionRequirement.Rule.
+type PresentationDefinitionSubmissionRequirementRule string
+
+// PresentationExchangeRequest defines model for PresentationExchangeRequest.
+type PresentationExchangeRequest struct {
+	PresentationDefinition *PresentationDefinition `json:"presentationDefinition,omitempty"`
+	VcJwts                 *[]string               `json:"vcJwts,omitempty"`
+}
+
 // StringEncodedData defines model for StringEncodedData.
 type StringEncodedData struct {
 	Data string `json:"data"`
@@ -76,6 +230,9 @@ type TestServerID struct {
 
 // CredentialIssueJSONRequestBody defines body for CredentialIssue for application/json ContentType.
 type CredentialIssueJSONRequestBody = CredentialIssuanceRequest
+
+// CredentialPresentationExchangeJSONRequestBody defines body for CredentialPresentationExchange for application/json ContentType.
+type CredentialPresentationExchangeJSONRequestBody = PresentationExchangeRequest
 
 // EncodersBase58DecodeJSONRequestBody defines body for EncodersBase58Decode for application/json ContentType.
 type EncodersBase58DecodeJSONRequestBody = StringEncodedData
@@ -179,8 +336,10 @@ type ClientInterface interface {
 
 	CredentialIssue(ctx context.Context, body CredentialIssueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// CredentialPresentationExchange request
-	CredentialPresentationExchange(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CredentialPresentationExchangeWithBody request with any body
+	CredentialPresentationExchangeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CredentialPresentationExchange(ctx context.Context, body CredentialPresentationExchangeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CryptoGenerateKeyEd25519 request
 	CryptoGenerateKeyEd25519(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -332,8 +491,20 @@ func (c *Client) CredentialIssue(ctx context.Context, body CredentialIssueJSONRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) CredentialPresentationExchange(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCredentialPresentationExchangeRequest(c.Server)
+func (c *Client) CredentialPresentationExchangeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCredentialPresentationExchangeRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CredentialPresentationExchange(ctx context.Context, body CredentialPresentationExchangeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCredentialPresentationExchangeRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -891,8 +1062,19 @@ func NewCredentialIssueRequestWithBody(server string, contentType string, body i
 	return req, nil
 }
 
-// NewCredentialPresentationExchangeRequest generates requests for CredentialPresentationExchange
-func NewCredentialPresentationExchangeRequest(server string) (*http.Request, error) {
+// NewCredentialPresentationExchangeRequest calls the generic CredentialPresentationExchange builder with application/json body
+func NewCredentialPresentationExchangeRequest(server string, body CredentialPresentationExchangeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCredentialPresentationExchangeRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCredentialPresentationExchangeRequestWithBody generates requests for CredentialPresentationExchange with any type of body
+func NewCredentialPresentationExchangeRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -910,10 +1092,12 @@ func NewCredentialPresentationExchangeRequest(server string) (*http.Request, err
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -1951,8 +2135,10 @@ type ClientWithResponsesInterface interface {
 
 	CredentialIssueWithResponse(ctx context.Context, body CredentialIssueJSONRequestBody, reqEditors ...RequestEditorFn) (*CredentialIssueResponse, error)
 
-	// CredentialPresentationExchangeWithResponse request
-	CredentialPresentationExchangeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CredentialPresentationExchangeResponse, error)
+	// CredentialPresentationExchangeWithBodyWithResponse request with any body
+	CredentialPresentationExchangeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CredentialPresentationExchangeResponse, error)
+
+	CredentialPresentationExchangeWithResponse(ctx context.Context, body CredentialPresentationExchangeJSONRequestBody, reqEditors ...RequestEditorFn) (*CredentialPresentationExchangeResponse, error)
 
 	// CryptoGenerateKeyEd25519WithResponse request
 	CryptoGenerateKeyEd25519WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CryptoGenerateKeyEd25519Response, error)
@@ -2115,6 +2301,7 @@ func (r CredentialIssueResponse) StatusCode() int {
 type CredentialPresentationExchangeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *StringEncodedData
 }
 
 // Status returns HTTPResponse.Status
@@ -2860,9 +3047,17 @@ func (c *ClientWithResponses) CredentialIssueWithResponse(ctx context.Context, b
 	return ParseCredentialIssueResponse(rsp)
 }
 
-// CredentialPresentationExchangeWithResponse request returning *CredentialPresentationExchangeResponse
-func (c *ClientWithResponses) CredentialPresentationExchangeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CredentialPresentationExchangeResponse, error) {
-	rsp, err := c.CredentialPresentationExchange(ctx, reqEditors...)
+// CredentialPresentationExchangeWithBodyWithResponse request with arbitrary body returning *CredentialPresentationExchangeResponse
+func (c *ClientWithResponses) CredentialPresentationExchangeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CredentialPresentationExchangeResponse, error) {
+	rsp, err := c.CredentialPresentationExchangeWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCredentialPresentationExchangeResponse(rsp)
+}
+
+func (c *ClientWithResponses) CredentialPresentationExchangeWithResponse(ctx context.Context, body CredentialPresentationExchangeJSONRequestBody, reqEditors ...RequestEditorFn) (*CredentialPresentationExchangeResponse, error) {
+	rsp, err := c.CredentialPresentationExchange(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -3285,6 +3480,16 @@ func ParseCredentialPresentationExchangeResponse(rsp *http.Response) (*Credentia
 	response := &CredentialPresentationExchangeResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest StringEncodedData
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil

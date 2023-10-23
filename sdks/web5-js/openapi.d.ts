@@ -182,6 +182,89 @@ export interface components {
     StringEncodedData: {
       data: string;
     };
+    PresentationExchangeRequest: {
+      presentationDefinition?: components["schemas"]["PresentationDefinition"];
+      vcJwts?: string[];
+    };
+    PresentationDefinition: {
+      id?: string;
+      name: string;
+      purpose?: string;
+      submissionRequirements?: components["schemas"]["PresentationDefinitionSubmissionRequirement"][];
+      inputDescriptors: components["schemas"]["PresentationDefinitionInputDescriptor"][];
+    };
+    PresentationDefinitionSubmissionRequirement: {
+      name?: string;
+      purpose?: string;
+      /** @enum {string} */
+      rule: "all" | "pick";
+      count?: number;
+      min?: number;
+      max?: number;
+      from?: string;
+      fromNested?: components["schemas"]["PresentationDefinitionSubmissionRequirement"][];
+    };
+    PresentationDefinitionInputDescriptor: {
+      id: string;
+      name?: string;
+      purpose?: string;
+      group?: string[];
+      issuance?: components["schemas"]["PresentationDefinitionIssuance"][];
+      constraints?: components["schemas"]["PresentationDefinitionConstraints"];
+    };
+    PresentationDefinitionIssuance: {
+      manifest?: string;
+    };
+    PresentationDefinitionConstraints: {
+      /** @enum {string} */
+      limitDisclosure?: "required" | "preferred";
+      statuses?: components["schemas"]["PresentationDefinitionStatuses"];
+      fields?: components["schemas"]["PresentationDefinitionField"][];
+      /** @enum {string} */
+      subjectIsIssuer?: "required" | "preferred";
+      isHolder?: components["schemas"]["PresentationDefinitionHolderSubject"][];
+      sameSubject?: components["schemas"]["PresentationDefinitionHolderSubject"][];
+    };
+    PresentationDefinitionHolderSubject: {
+      fieldId?: string[];
+      /** @enum {string} */
+      directive?: "required" | "preferred";
+    };
+    PresentationDefinitionField: {
+      id?: string;
+      path?: string[];
+      purpose?: string;
+      filter?: components["schemas"]["PresentationDefinitionFilter"];
+      /** @enum {string} */
+      predicate?: "required" | "preferred";
+      name?: string;
+    };
+    PresentationDefinitionFilter: {
+      const?: string;
+      enum?: string[];
+      exclusiveMinimum?: string;
+      exclusiveMaximum?: string;
+      format?: string;
+      formatMaximum?: string;
+      formatMinimum?: string;
+      formatExclusiveMaximum?: string;
+      formatExclusiveMinimum?: string;
+      minLength?: number;
+      maxLength?: number;
+      minimum?: string;
+      maximum?: string;
+      pattern?: string;
+      type?: string;
+    };
+    PresentationDefinitionStatuses: {
+      active?: components["schemas"]["PresentationDefinitionStatus"];
+      suspended?: components["schemas"]["PresentationDefinitionStatus"];
+      revoked?: components["schemas"]["PresentationDefinitionStatus"];
+    };
+    PresentationDefinitionStatus: {
+      /** @enum {string} */
+      directive?: "required" | "allowed" | "disallowed";
+    };
   };
   responses: never;
   parameters: never;
@@ -220,6 +303,19 @@ export interface operations {
   did_key_resolve: {
   };
   credential_presentation_exchange: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PresentationExchangeRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful operation */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEncodedData"];
+        };
+      };
+    };
   };
   credential_issue: {
     requestBody: {

@@ -36,6 +36,19 @@ paths:
   /credentials/presentation-exchange:
     post:
       operationId: credential_presentation_exchange
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PresentationExchangeRequest"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StringEncodedData"
   /credentials/issue:
     post:
       operationId: credential_issue
@@ -406,3 +419,185 @@ components:
       properties:
         data:
           type: string
+    PresentationExchangeRequest:
+      type: object
+      properties:
+        presentationDefinition:
+          $ref: "#/components/schemas/PresentationDefinition"
+        vcJwts:
+          type: array
+          items:
+            type: string
+    PresentationDefinition:
+      type: object
+      required:
+        - name
+        - inputDescriptors
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        purpose:
+          type: string
+        submissionRequirements:
+          type: array
+          items:
+            $ref: "#/components/schemas/PresentationDefinitionSubmissionRequirement"
+        inputDescriptors:
+          type: array
+          items:
+            $ref: "#/components/schemas/PresentationDefinitionInputDescriptor"
+    PresentationDefinitionSubmissionRequirement:
+      type: object
+      required:
+        - rule
+      properties:
+        name:
+          type: string
+        purpose:
+          type: string
+        rule:
+          type: string
+          enum: [all, pick]
+        count:
+          type: number
+        min:
+          type: number
+        max:
+          type: number
+        from:
+          type: string
+        fromNested:
+          type: array
+          items:
+            $ref: "#/components/schemas/PresentationDefinitionSubmissionRequirement"
+    PresentationDefinitionInputDescriptor:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        purpose:
+          type: string
+        group:
+          type: array
+          items:
+            type: string
+        issuance:
+          type: array
+          items:
+            $ref: "#/components/schemas/PresentationDefinitionIssuance"
+        constraints:
+          $ref: "#/components/schemas/PresentationDefinitionConstraints"
+    PresentationDefinitionIssuance:
+      type: object
+      properties:
+        manifest:
+          type: string
+    PresentationDefinitionConstraints:
+      type: object
+      properties:
+        limitDisclosure:
+          type: string
+          enum: [required, preferred]
+        statuses:
+          $ref: "#/components/schemas/PresentationDefinitionStatuses"
+        fields:
+          type: array
+          items:
+            $ref: "#/components/schemas/PresentationDefinitionField"
+        subjectIsIssuer:
+          type: string
+          enum: [required, preferred]
+        isHolder:
+          type: array
+          items:
+            $ref: "#/components/schemas/PresentationDefinitionHolderSubject"
+        sameSubject:
+          type: array
+          items:
+            $ref: "#/components/schemas/PresentationDefinitionHolderSubject"
+    PresentationDefinitionHolderSubject:
+      type: object
+      properties:
+        fieldId:
+          type: array
+          items:
+            type: string
+        directive:
+          type: string
+          enum: [required, preferred]
+    PresentationDefinitionField:
+      type: object
+      properties:
+        id:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        purpose:
+          type: string
+        filter:
+          $ref: "#/components/schemas/PresentationDefinitionFilter"
+        predicate:
+          type: string
+          enum: [required, preferred]
+        name:
+          type: string
+    PresentationDefinitionFilter:
+      type: object
+      properties:
+        const:
+          type: string
+        enum:
+          type: array
+          items:
+            type: string
+        exclusiveMinimum:
+          type: string
+        exclusiveMaximum:
+          type: string
+        format:
+          type: string
+        formatMaximum:
+          type: string
+        formatMinimum:
+          type: string
+        formatExclusiveMaximum:
+          type: string
+        formatExclusiveMinimum:
+          type: string
+        minLength:
+          type: number
+        maxLength:
+          type: number
+        minimum:
+          type: string
+        maximum:
+          type: string
+        # not:
+        #   type: object # can't do arbitrary key value pairs easily in openapi
+        pattern:
+          type: string
+        type:
+          type: string
+    PresentationDefinitionStatuses:
+      type: object
+      properties:
+        active:
+          $ref: "#/components/schemas/PresentationDefinitionStatus"
+        suspended:
+          $ref: "#/components/schemas/PresentationDefinitionStatus"
+        revoked:
+          $ref: "#/components/schemas/PresentationDefinitionStatus"
+    PresentationDefinitionStatus:
+      type: object
+      properties:
+        directive:
+          type: string
+          enum: [required, allowed, disallowed]

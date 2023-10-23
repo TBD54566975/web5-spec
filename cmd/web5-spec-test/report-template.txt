@@ -3,5 +3,5 @@ web5 spec conformance report for {{ .TestServerID.Name }} ({{ .TestServerID.Url 
 {{ range $groupName, $results := .Results }}
 {{ $groupName }}
 ======================{{ range $test, $result := $results }}
-{{ $test }}: {{ if $result }}❌ fail: {{ $result }}{{ else }}✅ pass{{ end }}{{ end }}
+{{ $test }}: {{ $result | getEmoji }} {{ if $result }}fail: {{ $result }}{{ else }}pass{{ end }}{{ end }}
 {{ end }}
