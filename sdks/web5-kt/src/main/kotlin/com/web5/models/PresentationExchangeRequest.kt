@@ -11,16 +11,13 @@
 */
 package com.web5.models
 
-
 /**
  * 
- * @param name 
- * @param language 
- * @param url 
+ * @param presentationDefinition 
+ * @param vcJwts 
  */
-data class TestServerID(
-    val name: kotlin.String,
-    val language: kotlin.String,
-    val url: kotlin.String
+data class PresentationExchangeRequest(
+    val presentationDefinition: PresentationDefinition? = null,
+    val vcJwts: kotlin.collections.List<kotlin.String>? = null
 ) 
 

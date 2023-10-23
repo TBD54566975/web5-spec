@@ -15,12 +15,16 @@ package com.web5.models
 /**
  * 
  * @param name 
- * @param language 
- * @param url 
+ * @param inputDescriptors 
+ * @param id 
+ * @param purpose 
+ * @param submissionRequirements 
  */
-data class TestServerID(
+data class PresentationDefinition(
     val name: kotlin.String,
-    val language: kotlin.String,
-    val url: kotlin.String
+    val inputDescriptors: kotlin.collections.List<PresentationDefinitionInputDescriptor>,
+    val id: kotlin.String? = null,
+    val purpose: kotlin.String? = null,
+    val submissionRequirements: kotlin.collections.List<PresentationDefinitionSubmissionRequirement>? = null
 ) 
 

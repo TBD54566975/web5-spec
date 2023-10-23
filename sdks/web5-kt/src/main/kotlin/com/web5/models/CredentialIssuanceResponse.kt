@@ -9,7 +9,8 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package models
+package com.web5.models
+
 
 /**
  * 

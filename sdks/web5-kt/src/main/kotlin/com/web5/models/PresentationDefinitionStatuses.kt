@@ -11,16 +11,15 @@
 */
 package com.web5.models
 
-
 /**
  * 
- * @param name 
- * @param language 
- * @param url 
+ * @param active 
+ * @param suspended 
+ * @param revoked 
  */
-data class TestServerID(
-    val name: kotlin.String,
-    val language: kotlin.String,
-    val url: kotlin.String
+data class PresentationDefinitionStatuses(
+    val active: PresentationDefinitionStatus? = null,
+    val suspended: PresentationDefinitionStatus? = null,
+    val revoked: PresentationDefinitionStatus? = null
 ) 
 

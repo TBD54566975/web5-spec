@@ -9,11 +9,14 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package models
+package com.web5.models
+
+import com.fasterxml.jackson.annotation.JsonProperty
+
 
 /**
  * 
- * @param atContext 
+ * @param @Context
  * @param id 
  * @param type 
  * @param issuer 
@@ -23,7 +26,8 @@ package models
  * @param proof 
  */
 data class VerifiableCredential(
-    val atContext: kotlin.collections.List<kotlin.String>,
+    @JsonProperty("@context")
+    val `@context`: List<String>,
     val id: kotlin.String,
     val type: kotlin.collections.List<kotlin.String>,
     val issuer: CredentialIssuer,

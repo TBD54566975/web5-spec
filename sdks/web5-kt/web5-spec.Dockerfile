@@ -1,5 +1,4 @@
 # Use an ARM64 compatible OpenJDK image
-#FROM arm64v8/adoptopenjdk
 FROM openjdk:17-jdk
 
 # Set the working directory to /app

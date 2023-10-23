@@ -14,13 +14,9 @@ package com.web5.models
 
 /**
  * 
- * @param name 
- * @param language 
- * @param url 
+ * @param manifest 
  */
-data class TestServerID(
-    val name: kotlin.String,
-    val language: kotlin.String,
-    val url: kotlin.String
+data class PresentationDefinitionIssuance(
+    val manifest: kotlin.String? = null
 ) 
 

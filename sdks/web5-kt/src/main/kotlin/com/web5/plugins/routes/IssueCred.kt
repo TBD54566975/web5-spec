@@ -1,33 +1,43 @@
 package com.web5.plugins.routes
 
+import com.danubetech.verifiablecredentials.CredentialSubject
+import com.web5.models.CredentialIssuanceRequest
+import com.web5.models.CredentialIssuanceResponse
+import com.web5.models.StringEncodedData
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
-import models.CredentialIssuanceRequestCredential
-import models.CredentialIssuanceResponse
-import models.StringEncodedData
+import web5.sdk.credentials.VcDataModel
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.DidKey
+import java.net.URI
+import java.util.*
 
 suspend fun ApplicationCall.credentialIssue() {
-    val payload = receive<CredentialIssuanceRequestCredential>()
+    val payload = receive<CredentialIssuanceRequest>()
+    val reqVc = payload.credential
 
     val keyManager = InMemoryKeyManager()
     val issuerDid = DidKey.create(keyManager)
 
-    val vc = VerifiableCredential.create(
-        type = payload.type[1],
-        issuer = payload.issuer.id,
-        subject = payload.credentialSubject.get("id").toString(),
-        data = payload.credentialSubject
-    )
+    val credentialSubject = CredentialSubject.builder()
+        .id(URI.create(reqVc.credentialSubject.get("id").toString()))
+        .claims(reqVc.credentialSubject)
+        .build()
 
-    println(vc)
+    val vcDataModel = VcDataModel.builder()
+        .id(URI.create(reqVc.id))
+        .issuer(URI.create(reqVc.issuer.id))
+        .issuanceDate(Date())
+        .credentialSubject(credentialSubject)
+        .build()
+
+    val vc = VerifiableCredential(vcDataModel)
 
     val vcJwt = vc.sign(issuerDid)
-    val res = CredentialIssuanceResponse(verifiableCredential = StringEncodedData(vcJwt))
+    val res = CredentialIssuanceResponse(verifiableCredential = StringEncodedData(data = vcJwt))
 
     respond(HttpStatusCode.OK, res)
 }

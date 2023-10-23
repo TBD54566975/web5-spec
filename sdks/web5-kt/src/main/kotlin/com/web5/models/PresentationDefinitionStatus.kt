@@ -9,19 +9,25 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
+
 package com.web5.models
 
 /**
  * 
- * @param created 
- * @param challenge 
- * @param domain 
- * @param credentialStatus 
+ * @param directive 
  */
-data class CredentialIssuanceRequestOptions(
-    val created: kotlin.String,
-    val challenge: kotlin.String,
-    val domain: kotlin.String,
-    val credentialStatus: CredentialStatus
+data class PresentationDefinitionStatus(
+    val directive: PresentationDefinitionStatus.Directive? = null
 ) 
+{
+    /**
+    * 
+    * Values: required,allowed,disallowed
+    */
+    enum class Directive(val value: kotlin.String){
+        required("required"),
+        allowed("allowed"),
+        disallowed("disallowed");
+    }
+}
 
