@@ -64,7 +64,7 @@ type CredentialIssuanceRequestCredential struct {
 	ExpirationDate    string            `json:"expirationDate"`
 	Id                string            `json:"id"`
 	IssuanceDate      string            `json:"issuanceDate"`
-	Issuer            interface{}       `json:"issuer"`
+	Issuer            CredentialIssuer  `json:"issuer"`
 	Type              []string          `json:"type"`
 }
 
