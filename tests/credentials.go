@@ -105,11 +105,6 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 		errs = append(errs, err)
 	}
 
-	// Check issuer
-	//if err := compareStrings(payload.Vc.Issuer.Id, expectedIssuer, "issuer.id"); err != nil {
-	//	errs = append(errs, err)
-	//}
-
 	switch issuer := payload.Vc.Issuer.(type) {
 	case string:
 		if err := compareStrings(issuer, expectedIssuer, "issuer"); err != nil {
