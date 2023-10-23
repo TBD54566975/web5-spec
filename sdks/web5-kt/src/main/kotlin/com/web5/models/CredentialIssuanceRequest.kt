@@ -11,9 +11,6 @@
 */
 package models
 
-//import org.openapitools.server.models.CredentialIssuanceRequestCredential
-//import org.openapitools.server.models.CredentialIssuanceRequestOptions
-
 /**
  * 
  * @param credential 

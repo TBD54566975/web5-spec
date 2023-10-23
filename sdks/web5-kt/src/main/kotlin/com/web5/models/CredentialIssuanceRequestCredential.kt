@@ -11,8 +11,6 @@
 */
 package models
 
-//import org.openapitools.server.models.CredentialIssuer
-
 /**
  * 
  * @param atContext 

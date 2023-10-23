@@ -11,9 +11,6 @@
 */
 package models
 
-import models.CredentialIssuer
-import models.CredentialProof
-
 /**
  * 
  * @param atContext 
