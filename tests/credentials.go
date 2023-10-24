@@ -49,7 +49,7 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 			// ExpirationDate: ,
 			Id: expectedID,
 			// IssuanceDate: ,
-			Issuer: openapi.CredentialIssuer{Id: expectedIssuer},
+			Issuer: expectedIssuer,
 			Type:   expectedType,
 		},
 	})
@@ -101,6 +101,10 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 
 	// Check type
 	if err := compareStringSlices(payload.Vc.Type, expectedType, "type"); err != nil {
+		errs = append(errs, err)
+	}
+
+	if err := compareStrings(payload.Vc.Issuer, expectedIssuer, "issuer"); err != nil {
 		errs = append(errs, err)
 	}
 

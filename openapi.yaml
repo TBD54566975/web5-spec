@@ -282,7 +282,7 @@ components:
           items:
             type: string
         issuer:
-          $ref: "#/components/schemas/CredentialIssuer"
+          type: string
         issuanceDate:
           type: string
         expirationDate:

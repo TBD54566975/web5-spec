@@ -30,7 +30,7 @@ data class VerifiableCredential(
     val `@context`: List<String>,
     val id: kotlin.String,
     val type: kotlin.collections.List<kotlin.String>,
-    val issuer: CredentialIssuer,
+    val issuer: kotlin.String,
     val issuanceDate: kotlin.String,
     val expirationDate: kotlin.String,
     val credentialSubject: kotlin.collections.Map<kotlin.String, kotlin.Any>,

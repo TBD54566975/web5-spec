@@ -127,7 +127,7 @@ export interface components {
       "@context": string[];
       id: string;
       type: string[];
-      issuer: components["schemas"]["CredentialIssuer"];
+      issuer: string;
       issuanceDate: string;
       expirationDate: string;
       credentialSubject: components["schemas"]["CredentialSubject"];

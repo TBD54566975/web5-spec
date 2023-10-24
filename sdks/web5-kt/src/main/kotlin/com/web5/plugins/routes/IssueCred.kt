@@ -29,7 +29,7 @@ suspend fun ApplicationCall.credentialIssue() {
 
     val vcDataModel = VcDataModel.builder()
         .id(URI.create(reqVc.id))
-        .issuer(URI.create(reqVc.issuer.id))
+        .issuer(URI.create(reqVc.issuer))
         .issuanceDate(Date())
         .credentialSubject(credentialSubject)
         .build()
