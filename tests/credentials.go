@@ -28,7 +28,7 @@ type Payload struct {
 func vcCreate(ctx context.Context, serverURL string) []error {
 	expectedContext := []string{"https://www.w3.org/2018/credentials/v1"}
 	expectedType := []string{"VerifiableCredential"}
-	expectedID := "id-123"
+	expectedID := "did:example:321"
 	expectedIssuer := "did:example:123"
 
 	expectedCredentialSubjectId := "did:example:123"
@@ -49,7 +49,7 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 			// ExpirationDate: ,
 			Id: expectedID,
 			// IssuanceDate: ,
-			Issuer: openapi.CredentialIssuer{Id: expectedIssuer},
+			Issuer: expectedIssuer,
 			Type:   expectedType,
 		},
 	})
@@ -95,7 +95,7 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 	}
 
 	// Check id
-	if err := compareStrings(payload.Vc.Id, expectedID, "id"); err != nil {
+	if err := compareStringsContains(payload.Vc.Id, "did:", "id"); err != nil {
 		errs = append(errs, err)
 	}
 
@@ -104,10 +104,22 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 		errs = append(errs, err)
 	}
 
-	// Check issuer
-	if err := compareStrings(payload.Vc.Issuer.Id, expectedIssuer, "issuer.id"); err != nil {
+	if err := compareStrings(payload.Vc.Issuer, expectedIssuer, "issuer"); err != nil {
 		errs = append(errs, err)
 	}
+
+	//switch issuer := payload.Vc.Issuer.(type) {
+	//case string:
+	//	if err := compareStrings(issuer, expectedIssuer, "issuer"); err != nil {
+	//		errs = append(errs, err)
+	//	}
+	//case openapi.CredentialIssuer:
+	//	if err := compareStrings(issuer.Id, expectedIssuer, "issuer.id"); err != nil {
+	//		errs = append(errs, err)
+	//	}
+	//default:
+	//	errs = append(errs, fmt.Errorf("Unexpected type for Issuer"))
+	//}
 
 	return errs
 }

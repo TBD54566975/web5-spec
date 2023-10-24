@@ -64,7 +64,7 @@ type CredentialIssuanceRequestCredential struct {
 	ExpirationDate    string            `json:"expirationDate"`
 	Id                string            `json:"id"`
 	IssuanceDate      string            `json:"issuanceDate"`
-	Issuer            CredentialIssuer  `json:"issuer"`
+	Issuer            string            `json:"issuer"`
 	Type              []string          `json:"type"`
 }
 
@@ -79,11 +79,6 @@ type CredentialIssuanceRequestOptions struct {
 // CredentialIssuanceResponse defines model for CredentialIssuanceResponse.
 type CredentialIssuanceResponse struct {
 	VerifiableCredential StringEncodedData `json:"verifiableCredential"`
-}
-
-// CredentialIssuer defines model for CredentialIssuer.
-type CredentialIssuer struct {
-	Id string `json:"id"`
 }
 
 // CredentialStatus defines model for CredentialStatus.

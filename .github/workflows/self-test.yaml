@@ -9,7 +9,7 @@ jobs:
       matrix:
         SDK:
           - web5-js
-          # - web5-kt
+          - web5-kt
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
