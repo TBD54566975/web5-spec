@@ -1,25 +1,17 @@
 package main
 
 import (
-	"context"
-	"flag"
-	"fmt"
 	"os"
 	"os/exec"
-	"path/filepath"
-	"time"
 
-	"github.com/TBD54566975/web5-spec/openapi"
-	"github.com/TBD54566975/web5-spec/tests"
+	"github.com/spf13/cobra"
 	"golang.org/x/exp/slog"
 )
 
 var (
-	nostart = flag.Bool("no-start", false, "when set, the server is not built and is expected to be already running")
-	nostop  = flag.Bool("no-stop", false, "when set, the server is not asked to shut down")
-	server  = flag.String("server", "http://localhost:8080", "url of the server to connect to")
-
-	dir string
+	root = cobra.Command{
+		Use: "web5-spec",
+	}
 
 	dockerfiles = []string{
 		".web5-component/test.Dockerfile",
@@ -29,119 +21,10 @@ var (
 )
 
 func main() {
-	os.Exit(runTests()) // without this weird wrapper thing, the defers wont get called
+	root.Execute()
 }
 
-func runTests() int {
-	flag.Parse()
-
-	dir, _ = os.Getwd()
-	if len(flag.Args()) > 0 {
-		dir = flag.Arg(0)
-	}
-
-	logger := slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug})
-	slog.SetDefault(slog.New(logger))
-
-	if !*nostart {
-		var dockerfile string
-		for _, d := range dockerfiles {
-			candidate := filepath.Join(dir, d)
-			if _, err := os.Stat(candidate); !os.IsNotExist(err) {
-				dockerfile = d
-			}
-		}
-
-		if dockerfile == "" {
-			slog.Error("no dockerfile found", "paths", dockerfiles)
-			return 1
-		}
-
-		cmd := docker("build", "-t", "web5-spec:latest", "-f", dockerfile, ".")
-		if err := cmd.Run(); err != nil {
-			slog.Error("error building server", "error", err)
-			return 1
-		}
-
-		cmd = docker("run", "-p", "8080:8080", "--name", "web5-spec", "--rm", "web5-spec:latest")
-		if err := cmd.Start(); err != nil {
-			slog.Error("error running server", "error", err)
-			return 1
-		}
-
-		if !*nostop {
-			defer func() {
-				cmd := docker("stop", "web5-spec")
-				if err := cmd.Run(); err != nil {
-					slog.Error("error stopping server container", "error", err)
-				}
-			}()
-		}
-	}
-
-	ctx := context.Background()
-
-	client, err := openapi.NewClientWithResponses(*server)
-	if err != nil {
-		panic(err)
-	}
-
-	var serverID openapi.TestServerID
-	for {
-		serverIDResponse, err := client.IdentifySelfWithResponse(ctx)
-		if err != nil {
-			slog.Debug("server ID check failed, retrying in 1 second", "err", err)
-			time.Sleep(time.Second)
-			continue
-		}
-
-		if serverIDResponse.JSON200 == nil {
-			slog.Debug("server ID check failed, retrying in 1 second", "status", serverIDResponse.Status(), "body", string(serverIDResponse.Body))
-			time.Sleep(time.Second)
-			continue
-		}
-
-		serverID = *serverIDResponse.JSON200
-		break
-	}
-
-	defer func() {
-		_, err := client.ServerShutdown(context.Background())
-		if err != nil {
-			slog.Error("error shutting down server", "error", err)
-		}
-	}()
-
-	slog.Debug("server running", "sdk", serverID.Name, "url", serverID.Url)
-
-	report := Report{
-		TestServerID: serverID,
-		Results:      tests.RunTests(*server),
-	}
-
-	fmt.Println()
-	if txt, err := report.Text(); err != nil {
-		slog.Error("error generating text report", "error", err)
-	} else {
-		fmt.Println(txt)
-	}
-	fmt.Println()
-
-	stepSummaryFile := os.Getenv("GITHUB_STEP_SUMMARY")
-	if stepSummaryFile != "" {
-		if err := report.WriteMarkdown(stepSummaryFile); err != nil {
-			slog.Error("error writing github step summary", "file", stepSummaryFile, "error", err)
-		}
-	}
-
-	if !report.IsPassing() {
-		return 1
-	}
-
-	return 0
-}
-
-func docker(args ...string) *exec.Cmd {
+func docker(dir string, args ...string) *exec.Cmd {
 	cmd := exec.Command("docker", args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
