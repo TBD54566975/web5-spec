@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title>web5 spec compliance report</title>
+        <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+        <style type="text/css">
+            * {
+                font-family: sans-serif;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            th {
+                border-bottom: solid black 1px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>web5 spec compliance report</h1>
+
+        {{ range $category, $tests := .Tests }}
+        <h2>{{ $category }}</h2>
+        <table>
+            <tr><th>test</th>{{ range $.Reports }}<th><a href="{{ .TestServerID.Url }}">{{ .TestServerID.Name }}</a></th>{{ end }}</tr>
+            {{ range $_, $test := $tests }}
+            <tr>
+                <td>{{ . }}</td>
+                {{ range $.Reports }}
+                <td>
+                    {{ if not (index (index .Results $category) $test) }}
+                    {{ index (index .Results $category) $test | getEmoji }}
+                    {{ else }}
+                    <details>
+                    <summary>{{ index (index .Results $category) $test | getEmoji }}</summary>
+                    <ul>
+                        {{ range index (index .Results $category) $test }}<li>{{ . }}</li>{{ end }}
+                    </ul>
+                    {{ end }}
+                </td>{{ end }}
+            </tr>
+            {{ end }}
+        </table>
+        {{ end }}
+    </body>
+</html>

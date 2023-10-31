@@ -1,0 +1,17 @@
+on:
+  push:
+    branches: [main]
+jobs:
+  pages:
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+      - name: run for all SDKs
+        run: go run ./cmd/web5-spec-test many sdks/*
+      - uses: actions/upload-pages-artifact@v2
+      - name: deploy GitHub Pages
+        uses: actions/deploy-pages@v2

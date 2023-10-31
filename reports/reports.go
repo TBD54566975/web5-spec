@@ -1,18 +1,21 @@
-package main
+package reports
 
 import (
 	"bytes"
 	"embed"
+	"fmt"
+	"html/template"
 	"os"
 	"strings"
-	"text/template"
+
+	"golang.org/x/exp/slog"
 
 	"github.com/TBD54566975/web5-spec/openapi"
 	"github.com/TBD54566975/web5-spec/tests"
 )
 
-//go:embed report-template.*
-var reportTemplateFS embed.FS
+//go:embed *
+var templatesFS embed.FS
 
 var templates = template.New("")
 
@@ -21,7 +24,10 @@ func init() {
 		"sanatizeHTML": sanatizeHTML,
 		"getEmoji":     getEmoji,
 	})
-	templates.ParseFS(reportTemplateFS, "report-template.*")
+	_, err := templates.ParseFS(templatesFS, "report-template.*")
+	if err != nil {
+		panic(err)
+	}
 }
 
 type Report struct {
@@ -56,14 +62,14 @@ func (r Report) Text() (string, error) {
 	return buffer.String(), nil
 }
 
-func (r Report) WriteMarkdown(filename string) error {
+func WriteMarkdown(report Report, filename string) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
 
-	err = templates.ExecuteTemplate(f, "report-template.md", r)
+	err = templates.ExecuteTemplate(f, "report-template.md", report)
 	if err != nil {
 		return err
 	}
@@ -89,4 +95,47 @@ func getEmoji(errs []error) string {
 	}
 
 	return "❌"
+}
+
+type htmlTemplateInput struct {
+	Reports []Report
+	Tests   map[string][]string
+}
+
+func WriteHTML(reports []Report, filename string) error {
+	slog.Info("writing html report")
+
+	testmap := map[string]map[string]bool{}
+	for _, report := range reports {
+		for category, tests := range report.Results {
+			if _, ok := tests[category]; !ok {
+				testmap[category] = map[string]bool{}
+			}
+
+			for test := range tests {
+				testmap[category][test] = true
+			}
+		}
+	}
+
+	templateInput := htmlTemplateInput{Reports: reports, Tests: map[string][]string{}}
+
+	for category, tests := range testmap {
+		templateInput.Tests[category] = []string{}
+		for test := range tests {
+			templateInput.Tests[category] = append(templateInput.Tests[category], test)
+		}
+	}
+
+	f, err := os.Create(filename)
+	if err != nil {
+		return fmt.Errorf("error opening %s: %v", filename, err)
+	}
+	defer f.Close()
+
+	if err := templates.ExecuteTemplate(f, "report-template.html", templateInput); err != nil {
+		return err
+	}
+
+	return nil
 }
