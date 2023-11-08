@@ -1,5 +1,8 @@
 # SDK Development <!-- omit in toc -->
 
+> [!WARNING]
+> This Document is not yet complete. Namely, the feature tables do not yet accurately reflect what has been implemented
+
 - [Known Unknowns](#known-unknowns)
 - [Requirements](#requirements)
   - [Feature Tracking](#feature-tracking)
