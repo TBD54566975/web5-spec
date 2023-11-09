@@ -14,8 +14,7 @@ var (
 	}
 
 	dockerfiles = []string{
-		".web5-component/test.Dockerfile",
-		".web5-component/Dockerfile",
+		".web5-spec/Dockerfile",
 		"web5-spec.Dockerfile",
 	}
 )
