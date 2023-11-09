@@ -211,6 +211,7 @@ Each SDK will **publish** example usage for _each_ implemented feature. This can
 | Algorithm       | Typescript | Kotlin | Rust | Swift |
 | --------------- | ---------- | ------ | ---- | ----- |
 | `ES256K`        | ✅          | ✅      | ❌    | ❌     |
+| `ES256`         | ❌          | ❌      | ❌    | ❌     |
 | `EdDSA:Ed25519` | ✅          | ✅      | ❌    | ❌     |
 
 
