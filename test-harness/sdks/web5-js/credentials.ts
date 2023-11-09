@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-// import { VcJwt, VerifiableCredential, SignOptions, VerifiableCredentialTypeV1, CreateVcOptions } from '@web5/credentials';
 import { VerifiableCredential, SignOptions } from '@web5/credentials';
 import { DidKeyMethod, PortableDid } from '@web5/dids';
 import { Ed25519, Jose } from '@web5/crypto';
