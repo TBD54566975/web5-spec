@@ -152,8 +152,8 @@ Each SDK will use Github Actions for CI/CD
 | Feature                       | Typescript | Kotlin | Rust | Swift |
 | ----------------------------- | ---------- | ------ | ---- | ----- |
 | OSS License Check             | ❌          | ❌      | ❌    | ❌     |
-| Running Unit Tests            | ❌          | ❌      | ❌    | ❌     |
-| Publishing Artifacts          | ❌          | ❌      | ❌    | ❌     |
+| Running Unit Tests            | ✅          | ✅      | ❌    | ❌     |
+| Publishing Artifacts          | ✅          | ❌      | ❌    | ❌     |
 | Publishing API Reference Docs | ❌          | ❌      | ❌    | ❌     |
 | Example Feature Usage         | ❌          | ❌      | ❌    | ❌     |
 
