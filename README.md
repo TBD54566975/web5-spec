@@ -175,6 +175,7 @@ Each SDK will use Github Actions for CI/CD and other automations
 | Publishing API Reference Docs | ❌          | ✅      | ❌    | ❌     |
 | Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
 
+* GitHub Actions should run in secured runners
 * Ideally the above table should be represented by a "Software Catalog" with all of our SDK statuses in real time.
   * The dashboard would be consuming the data sources (GitHub, CodeCov, Snyk, Npm and other registries etc.)
   * Tools like Grafana, Backstage, or even Jenkins (weather flag) could aggregate them
@@ -185,10 +186,10 @@ Each SDK will be published to the most widely adopted registry/repository for th
 
 | SDK        | Repository    |
 | ---------- | ------------- |
-| Typescript | npm           |
-| Kotlin     | maven central |
-| Rust       | ?             |
-| Swift      | ?             |
+| Typescript | npm                 |
+| Kotlin     | maven central       |
+| Rust       | crates              |
+| Swift      | swift package index |
 
 
 ## Publishing API Reference Documentation
