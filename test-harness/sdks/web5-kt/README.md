@@ -9,6 +9,7 @@ go run ./cmd/web5-spec-test sdks/web5-kt
 ```
 
 ## Generating Model Files
+
 To generate the model files, use the openapi-generator with the following command:
 
 ```bash
