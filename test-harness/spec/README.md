@@ -33,7 +33,7 @@
 | Sign Message              | :x:        | :x:    | :x:   |
 | Verify Message Integrity  | :x:        | :x:    | :x:   |
 | Validate Message          | :x:        | :x:    | :x:   |
-| Hash Private fields       | :x:        | :x:    | :x:   | 
+| Hash Private fields       | :x:        | :x:    | :x:   |
 
 
 ## References
@@ -50,14 +50,14 @@ SDK used to create and resolve DIDs
 ## DID ION
 
 ### Features
-| Feature                                                                      | Typescript         | Kotlin | Swift |
-| ---------------------------------------------------------------------------- | ------------------ | ------ | ----- |
-| [`CreateRequest`](https://identity.foundation/sidetree/spec/#create)         | :heavy_check_mark: | :x:    | :x:   |
+| Feature                                                                      | Typescript     | Kotlin | Swift |
+| ---------------------------------------------------------------------------- | -------------- | ------ | ----- |
+| [`CreateRequest`](https://identity.foundation/sidetree/spec/#create)         | ✅              | :x:    | :x:   |
 | [`UpdateRequest`](https://identity.foundation/sidetree/spec/#update)         | :construction: | :x:    | :x:   |
-| [`RecoverRequest`](https://identity.foundation/sidetree/spec/#recover)       | :construction:     | :x:    | :x:   |
-| [`DeactivateRequest`](https://identity.foundation/sidetree/spec/#deactivate) | :construction:     | :x:    | :x:   |
-| Resolution                                                                   | :heavy_check_mark: | :x:    | :x:   |
-| Anchoring                                                                    | :heavy_check_mark: | :x:    | :x:   |
+| [`RecoverRequest`](https://identity.foundation/sidetree/spec/#recover)       | :construction: | :x:    | :x:   |
+| [`DeactivateRequest`](https://identity.foundation/sidetree/spec/#deactivate) | :construction: | :x:    | :x:   |
+| Resolution                                                                   | ✅              | :x:    | :x:   |
+| Anchoring                                                                    | ✅              | :x:    | :x:   |
 
 * `CreateRequest` - used to create an ION DID
 * `UpdateRequest` - used to update an ION DID
@@ -70,10 +70,10 @@ SDK used to create and resolve DIDs
 ## DID Key
 
 ### Features
-| Feature    | Typescript         | Kotlin | Swift |
-| ---------- | ------------------ | ------ | ----- |
-| Creation   | :heavy_check_mark: | :x:    | :x:   |
-| Resolution | :heavy_check_mark: | :x:    | :x:   |
+| Feature    | Typescript | Kotlin | Swift |
+| ---------- | ---------- | ------ | ----- |
+| Creation   | ✅          | :x:    | :x:   |
+| Resolution | ✅          | :x:    | :x:   |
 
 
 ## References
@@ -90,14 +90,14 @@ SDK used to create, verify and construct data structures needed to exchange Veri
 * [DIDs SDK](#DIDs-SDK) 
 
 ## Features
-| Feature               | Typescript     | Kotlin | Swift |
-| --------------------- | -------------- | ------ | ----- |
-| Presentation Exchange | :heavy_check_mark: | :construction:    | :x:   |
-| VC Creation           | :heavy_check_mark: | :construction:    | :x:   |
-| VC Verification       | :heavy_check_mark: | :construction:    | :x:   |
-| VP Creation           | :heavy_check_mark: | :construction:    | :x:   |
-| VP Verification       | :heavy_check_mark: | :construction:    | :x:   |
-| StatusList lookup     | :x:            | :x:    | :x:   |
+| Feature               | Typescript | Kotlin         | Swift |
+| --------------------- | ---------- | -------------- | ----- |
+| Presentation Exchange | ✅          | :construction: | :x:   |
+| VC Creation           | ✅          | :construction: | :x:   |
+| VC Verification       | ✅          | :construction: | :x:   |
+| VP Creation           | ✅          | :construction: | :x:   |
+| VP Verification       | ✅          | :construction: | :x:   |
+| StatusList lookup     | :x:        | :x:            | :x:   |
 
 
 * [Presentation Exchange](https://identity.foundation/presentation-exchange/)
@@ -128,43 +128,43 @@ SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX m
 ## Key Generation
 
 ### Features
-| Feature     | Typescript         | Kotlin | Swift |
-| ----------- | ------------------ | ------ | ----- |
-| `secp256k1` | :heavy_check_mark: | :x:    | :x:   |
-| `Ed25519`   | :heavy_check_mark: | :x:    | :x:   |
-| `secp256r1` | :x:                | :x:    | :x:   |
+| Feature     | Typescript | Kotlin | Swift |
+| ----------- | ---------- | ------ | ----- |
+| `secp256k1` | ✅          | :x:    | :x:   |
+| `Ed25519`   | ✅          | :x:    | :x:   |
+| `secp256r1` | :x:        | :x:    | :x:   |
 
 > :information_source: `secp256r1` is a FIPS compliant algorithm needed to support government use-cases. **Stretch Goal**
 
 ## Signing
 
 ### Features
-| Feature     | Typescript         | Kotlin | Swift |
-| ----------- | ------------------ | ------ | ----- |
-| `secp256k1` | :heavy_check_mark: | :x:    | :x:   |
-| `Ed25519`   | :heavy_check_mark: | :x:    | :x:   |
-| `secp256r1` | :x:                | :x:    | :x:   |
+| Feature     | Typescript | Kotlin | Swift |
+| ----------- | ---------- | ------ | ----- |
+| `secp256k1` | ✅          | :x:    | :x:   |
+| `Ed25519`   | ✅          | :x:    | :x:   |
+| `secp256r1` | :x:        | :x:    | :x:   |
 
 ## Verification
 
 ### Features
-| Feature     | Typescript         | Kotlin | Swift |
-| ----------- | ------------------ | ------ | ----- |
-| `secp256k1` | :heavy_check_mark: | :x:    | :x:   |
-| `Ed25519`   | :heavy_check_mark: | :x:    | :x:   |
-| `secp256r1` | :x:                | :x:    | :x:   |
+| Feature     | Typescript | Kotlin | Swift |
+| ----------- | ---------- | ------ | ----- |
+| `secp256k1` | ✅          | :x:    | :x:   |
+| `Ed25519`   | ✅          | :x:    | :x:   |
+| `secp256r1` | :x:        | :x:    | :x:   |
 
 ## JOSE
 
 ### Features
-| Feature      | Typescript         | Kotlin | Swift |
-| ------------ | ------------------ | ------ | ----- |
+| Feature      | Typescript     | Kotlin | Swift |
+| ------------ | -------------- | ------ | ----- |
 | `JWS create` | :construction: | :x:    | :x:   |
 | `JWS verify` | :construction: | :x:    | :x:   |
-| `JWK encode` | :heavy_check_mark: | :x:    | :x:   |
-| `JWK decode` | :heavy_check_mark: | :x:    | :x:   |
+| `JWK encode` | ✅              | :x:    | :x:   |
+| `JWK decode` | ✅              | :x:    | :x:   |
 | `JWT create` | :construction: | :x:    | :x:   |
-| `JWT verify` | :construction: | :x:    | :x:   | 
+| `JWT verify` | :construction: | :x:    | :x:   |
 
 > :information_source: prefer Compact JWS. Can work with General JWS
 
@@ -172,12 +172,12 @@ SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX m
 ## Key Manager
 
 ### Features
-| Feature        | Typescript         | Kotlin | Swift |
-| -------------- | ------------------ | ------ | ----- |
-| `Generate Key` | :heavy_check_mark: | :x:    | :x:   |
-| `Import Key`   | :heavy_check_mark: | :x:    | :x:   |
-| `Sign`         | :heavy_check_mark: | :x:    | :x:   |
-| `Verify`       | :heavy_check_mark: | :x:    | :x:   |
+| Feature        | Typescript | Kotlin | Swift |
+| -------------- | ---------- | ------ | ----- |
+| `Generate Key` | ✅          | :x:    | :x:   |
+| `Import Key`   | ✅          | :x:    | :x:   |
+| `Sign`         | ✅          | :x:    | :x:   |
+| `Verify`       | ✅          | :x:    | :x:   |
 
 
 ## References
@@ -190,15 +190,15 @@ SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX m
 SDK that contains encode/decode utility functions needed for DIDs, VCs, and tbDEX
 
 ## Features
-| Feature         | Typescript         | Kotlin | Swift |
-| --------------- | ------------------ | ------ | ----- |
-| `base64 encode` | :heavy_check_mark: | :x:    | :x:   |
-| `base64 decode` | :heavy_check_mark: | :x:    | :x:   |
-| `base58 encode` | :heavy_check_mark: | :x:    | :x:   |
-| `base58 decode` | :heavy_check_mark: | :x:    | :x:   |
-| `sha256 encode` | :heavy_check_mark: | :x:    | :x:   |
-| `cbor encode`   | :x:                | :x:    | :x:   |
-| `cbor decode`   | :x:                | :x:    | :x:   | 
+| Feature         | Typescript | Kotlin | Swift |
+| --------------- | ---------- | ------ | ----- |
+| `base64 encode` | ✅          | :x:    | :x:   |
+| `base64 decode` | ✅          | :x:    | :x:   |
+| `base58 encode` | ✅          | :x:    | :x:   |
+| `base58 decode` | ✅          | :x:    | :x:   |
+| `sha256 encode` | ✅          | :x:    | :x:   |
+| `cbor encode`   | :x:        | :x:    | :x:   |
+| `cbor decode`   | :x:        | :x:    | :x:   |
 
 
 ## References
