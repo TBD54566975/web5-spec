@@ -176,6 +176,9 @@ Each SDK will use Github Actions for CI/CD and other automations
 | Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
 
 * GitHub Actions should run in secured runners
+  * A secure, authoritative build environment ensures software is compiled and packaged in a controlled, tamper-resistant setting.
+  * This mitigates the risk of introducing vulnerabilities or malicious code during the build process, whether through external attacks or compromised internal components.
+  * These runners are going to be TBD-owned and self hosted
 * Ideally the above table should be represented by a "Software Catalog" with all of our SDK statuses in real time.
   * The dashboard would be consuming the data sources (GitHub, CodeCov, Snyk, Npm and other registries etc.)
   * Tools like Grafana, Backstage, or even Jenkins (weather flag) could aggregate them
