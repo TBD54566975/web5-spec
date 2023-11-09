@@ -226,8 +226,8 @@ Each SDK will implement a consistent and extensible _public interface_ for key m
 | Key Manager Interface | ❌          | ✅      | ❌    | ❌     |
 | In-Memory Key Manager | ❌          | ✅      | ❌    | ❌     |
 | AWS KMS               | ❌          | ✅      | N/A  | N/A   |
-| Device Enclave        | N/A        | N/A    | N/A  | ❌     |
-| Keychain              | N/A        | N/A    | N/A  | ❌     |
+| Device Enclave        | N/A        | ❌    | N/A  | ❌     |
+| Keychain              | N/A        | ❌    | N/A  | ❌     |
 
 Further, the key manager interface **must** be passed as an argument to _all_ public API methods that require key material. e.g.
 * DID Creation
