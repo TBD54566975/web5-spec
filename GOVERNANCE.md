@@ -27,7 +27,7 @@ Maintainers have write access to GitHub repositories and act as project administ
 * Commit access to their project's repositories
 * Write access to continuous integration (CI) jobs
 
-Both maintainers and non-maintainers may propose changes to 
+Both maintainers and non-maintainers may propose changes to
 source code. The mechanism to propose such a change is a GitHub pull request. Maintainers review and merge (_land_) pull requests.
 
 If a maintainer opposes a proposed change, then the change cannot land. The exception is if the Governance Committee (GC) votes to approve the change despite the opposition. Usually, involving the GC is unnecessary.
