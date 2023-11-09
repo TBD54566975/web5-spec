@@ -8,5 +8,5 @@ runs:
         bin="${GITHUB_ACTION_PATH}/web5-test-harness"
         wget --quiet -O "${bin}" "https://github.com/TBD54566975/sdk-development/releases/download/${spec_test_version}/web5-test-harness-linux-amd64"
         chmod +x "${bin}"
-        "${bin}" one .web5-spec
+        "${bin}" one
       shell: bash
