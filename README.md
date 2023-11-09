@@ -168,9 +168,9 @@ Each SDK will use Github Actions for CI/CD
 | ----------------------------- | ---------- | ------ | ---- | ----- |
 | OSS License Check             | ❌          | ❌      | ❌    | ❌     |
 | Running Unit Tests            | ✅          | ✅      | ❌    | ❌     |
-| Publishing Artifacts          | ✅          | ❌      | ❌    | ❌     |
-| Publishing API Reference Docs | ❌          | ❌      | ❌    | ❌     |
-| Example Feature Usage         | ❌          | ❌      | ❌    | ❌     |
+| Publishing Artifacts          | ❓          | ❌      | ❌    | ❌     |
+| Publishing API Reference Docs | ❌          | ✅      | ❌    | ❌     |
+| Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
 
 ## Publishing Artifacts
 Each SDK will be published to the most widely adopted registry/repository for the respective language
@@ -242,10 +242,13 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 > [!IMPORTANT]
 > Consumers of our SDKs should be able to provide their own `KeyManager` implementations if desired
 
+> [!NOTE]
+> ⚠️ = implemented but no test vectors present
+
 ## `did:web`
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Resolution` | ✅          | ✅      | ❌    | ❌     |
+| `Resolution` | ❌          | ❌      | ❌    | ❌     |
 
 ## `did:jwk`
 | Feature      | Typescript | Kotlin | Rust | Swift |
@@ -257,15 +260,15 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 ## `did:dht`
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ❌          | ❌      | ❌    | ❌     |
-| `Resolution` | ❌          | ❌      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
 
 
 ## `did:key`
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ❌          | ❌      | ❌    | ❌     |
-| `Resolution` | ❌          | ❌      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
 
 > [!IMPORTANT]
 > `did:key` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
@@ -274,8 +277,8 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 ## `did:ion`
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ❌          | ❌      | ❌    | ❌     |
-| `Resolution` | ❌          | ❌      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
 
 > [!IMPORTANT]
 > `did:ion` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
@@ -323,78 +326,78 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| Validation   | ❌          | ❌      | ❌    | ❌     |
-| Signing      | ❌          | ❌      | ❌    | ❌     |
-| Verification | ❌          | ❌      | ❌    | ❌     |
-| Parsing      | ❌          | ❌      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
 
 
 ## tbDEX Resource
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| Validation   | ❌          | ❌      | ❌    | ❌     |
-| Signing      | ❌          | ❌      | ❌    | ❌     |
-| Verification | ❌          | ❌      | ❌    | ❌     |
-| Parsing      | ❌          | ❌      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
 
 
 ## tbDEX Offering Resource
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ❌          | ❌      | ❌    | ❌     |
-| Validation   | ❌          | ❌      | ❌    | ❌     |
-| Signing      | ❌          | ❌      | ❌    | ❌     |
-| Verification | ❌          | ❌      | ❌    | ❌     |
-| Parsing      | ❌          | ❌      | ❌    | ❌     |
+| Creation     | ✅          | ✅      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
 
 ## tbDEX RFQ Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ❌          | ❌      | ❌    | ❌     |
-| Validation   | ❌          | ❌      | ❌    | ❌     |
-| Signing      | ❌          | ❌      | ❌    | ❌     |
-| Verification | ❌          | ❌      | ❌    | ❌     |
-| Parsing      | ❌          | ❌      | ❌    | ❌     |
+| Creation     | ✅          | ✅      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
 
 ## tbDEX Quote Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ❌          | ❌      | ❌    | ❌     |
-| Validation   | ❌          | ❌      | ❌    | ❌     |
-| Signing      | ❌          | ❌      | ❌    | ❌     |
-| Verification | ❌          | ❌      | ❌    | ❌     |
-| Parsing      | ❌          | ❌      | ❌    | ❌     |
+| Creation     | ✅          | ✅      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
 
 ## tbDEX Order Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ❌          | ❌      | ❌    | ❌     |
-| Validation   | ❌          | ❌      | ❌    | ❌     |
-| Signing      | ❌          | ❌      | ❌    | ❌     |
-| Verification | ❌          | ❌      | ❌    | ❌     |
-| Parsing      | ❌          | ❌      | ❌    | ❌     |
+| Creation     | ✅          | ✅      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
 
 ## tbDEX Order-Status Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ❌          | ❌      | ❌    | ❌     |
-| Validation   | ❌          | ❌      | ❌    | ❌     |
-| Signing      | ❌          | ❌      | ❌    | ❌     |
-| Verification | ❌          | ❌      | ❌    | ❌     |
-| Parsing      | ❌          | ❌      | ❌    | ❌     |
+| Creation     | ✅          | ✅      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
 
 ## tbDEX Close Message
 
-| Feature      | Test vectors | Typescript | Kotlin | Rust | Swift |
-| ------------ | ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ❌            | ❌          | ❌      | ❌    | ❌     |
-| Validation   | ❌            | ❌          | ❌      | ❌    | ❌     |
-| Signing      | ❌            | ❌          | ❌      | ❌    | ❌     |
-| Verification | ❌            | ❌          | ❌      | ❌    | ❌     |
-| Parsing      | ❌            | ❌          | ❌      | ❌    | ❌     |
+| Feature      | Typescript | Kotlin | Rust | Swift |
+| ------------ | ---------- | ------ | ---- | ----- |
+| Creation     | ✅          | ✅      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
