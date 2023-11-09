@@ -1,4 +1,4 @@
-# web5 conformance report
+# web5 conformance report <!-- markdownlint-disable -->
 
 SDK: [{{ .TestServerID.Name }}]({{ .TestServerID.Url }}) ({{ .TestServerID.Language }})
 

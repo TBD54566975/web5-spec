@@ -5,7 +5,6 @@ TBD builds infrastructure for the next wave of innovation in financial services 
 
 The code of conduct below reflects the expectations for ourselves and for our community.
 
-
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our
@@ -90,7 +89,7 @@ actions.
 interaction with the people involved, including unsolicited interaction with
 those enforcing the Code of Conduct, for a specified period of time. This
 includes avoiding interactions in community spaces as well as external channels
-like social media and forums. 
+like social media and forums.
 
 Although this list cannot be exhaustive, we explicitly honor diversity in age, culture, ethnicity, gender identity or expression, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability. We will not tolerate discrimination based on any of the protected characteristics above, including participants with disabilities.
 

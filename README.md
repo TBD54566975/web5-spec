@@ -37,27 +37,29 @@
   - [tbDEX Order-Status Message](#tbdex-order-status-message)
   - [tbDEX Close Message](#tbdex-close-message)
 
-
-# Purpose
+## Purpose
 
 This repo sets forth the development process, requirements, and desired feature set for the following SDKs:
-* [tbdex-js](https://github.com/TBD54566975/tbdex-js)
-* [tbdex-kt](https://github.com/TBD54566975/tbdex-kt)
-* [tbdex-rs](https://github.com/TBD54566975/tbdex-rs)
-* [web5-js](https://github.com/TBD54566975/web5-js)
-* [web5-kt](https://github.com/TBD54566975/web5-kt)
-* [web5-rs](https://github.com/TBD54566975/web5-rs)
 
+- [tbdex-js](https://github.com/TBD54566975/tbdex-js)
+- [tbdex-kt](https://github.com/TBD54566975/tbdex-kt)
+- [tbdex-rs](https://github.com/TBD54566975/tbdex-rs)
+- [web5-js](https://github.com/TBD54566975/web5-js)
+- [web5-kt](https://github.com/TBD54566975/web5-kt)
+- [web5-rs](https://github.com/TBD54566975/web5-rs)
 
 Github Issues and PRs created in this repo address topics that impact / span all SDKs we have in development. See section on [Feature Acceptance](#feature-acceptance) for information on submitting proposals for new features across all of our SDKs (e.g. implement Presentation Exchange v9)
 
-# Known Unknowns
-* We don't yet have a cemented path for supporting Android. It could either be through our pre-existing Kotlin SDK or bindings exposed via Rust
-* We're not yet in a place where we can confidently state that a rust core can support a broad surface area of target languages. We're confident in pursuing rust development for the purposes of surfacing swift bindings.
+## Known Unknowns
 
-# Requirements
+- We don't yet have a cemented path for supporting Android. It could either be through our pre-existing Kotlin SDK or bindings exposed via Rust
 
-## Feature Tracking
+- We're not yet in a place where we can confidently state that a rust core can support a broad surface area of target languages. We're confident in pursuing rust development for the purposes of surfacing swift bindings.
+
+## Requirements
+
+### Feature Tracking
+
 Feature tracking will take place entirely on GitHub through Github Issues and the [SDK development Github project](https://github.com/orgs/TBD54566975/projects/29).
 
 ---
@@ -77,7 +79,7 @@ Work item progress is tracked using the `Status` attribute on a GH issue. This s
 
 ---
 
-### Labels
+#### Labels
 
 > [!IMPORTANT]
 > A label should be created for each feature, in each respective repo.
@@ -107,14 +109,13 @@ The following labels should exist in all relevant repos
 | `tbdex-orderstatus`  | `#D68910` | tbDEX Order-Status Message                 |
 | `tbdex-close`        | `#34495E` | tbDEX Close Message                        |
 
-
-
 > [!NOTE]
 > This list will change over time as features are added or removed
 
 ---
 
-### Milestones
+#### Milestones
+
 Github Repo Milestones will be used to track work for specific codenamed projects (e.g. Eagle, Pigeon, Black Swan, etc.).
 
 The following milestones should exist in all relevant repos
@@ -127,38 +128,44 @@ The following milestones should exist in all relevant repos
 > [!NOTE]
 > This list will change over time as projects are added
 
-## Feature Acceptance
+### Feature Acceptance
+
 Proposing new features that impact all SDKs will occur by creating a Github Issue in this repo. The Issue should include motivation or rationale in addition to any relevant reading material. New features will be discussed and decided upon during weekly syncs
 
 > [!IMPORTANT]
 > Language agnostic test vectors **must** be produced _prior_ to commencing implementation beyond the first SDK
 
+### Work Prioritization
 
-## Work Prioritization
 Prioritization of features or specific work items will be reflected during weekly sync meetings.
 
-## Implementation Criteria
+### Implementation Criteria
+
 An individual SDK will consider a feature implemented once the following requirements have been met:
-* Produce/update API reference documentation for any/all methods added to the _public_ API surface. documenting private API methods is optional
-* Produce/update relevant example usage
-* Test coverage must be provided for _all_ public API methods.
-* Tests that consume shared test vectors must all be passing
 
+- Produce/update API reference documentation for any/all methods added to the _public_ API surface. documenting private API methods is optional
+- Produce/update relevant example usage
+- Test coverage must be provided for _all_ public API methods.
+- Tests that consume shared test vectors must all be passing
 
-## Review Criteria
-* Propose API surface design _prior_ to implementation. This can be done by creating a draft PR for a respective feature and providing prototypal code or proposing the design in the comments
-* Approval Required from a minimum of 2 people
+### Review Criteria
+
+- Propose API surface design _prior_ to implementation. This can be done by creating a draft PR for a respective feature and providing prototypal code or proposing the design in the comments
+
+- Approval Required from a minimum of 2 people
 
 > [!NOTE]
 > requiring two reviewers will likely slow things down at the benefit of ensuring there's a sufficient amount of visibility on the changes being made. It also prevents bottlenecks from forming. Many people on our team should be able to speak to the features landing in our SDKs
 
+### Release Criteria
 
-## Release Criteria
-* Each Release will have an accompanying Github Release
-* Each Github Release will have an accompanying git tag that matches the version being published
-* For the forseeable future, each SDK is free to publish releases at a frequency that the SDK's respective DRI sees fit
+- Each Release will have an accompanying Github Release
 
-## CI / CD
+- Each Github Release will have an accompanying git tag that matches the version being published
+- For the forseeable future, each SDK is free to publish releases at a frequency that the SDK's respective DRI sees fit
+
+### CI / CD
+
 Each SDK will use Github Actions for CI/CD and other automations
 
 | Feature                       | Typescript | Kotlin | Rust | Swift |
@@ -175,17 +182,17 @@ Each SDK will use Github Actions for CI/CD and other automations
 | Publishing API Reference Docs | ❌          | ✅      | ❌    | ❌     |
 | Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
 
-* GitHub Actions should run in secured runners
-  * A secure, authoritative build environment ensures software is compiled and packaged in a controlled, tamper-resistant setting.
-  * This mitigates the risk of introducing vulnerabilities or malicious code during the build process, whether through external attacks or compromised internal components.
-  * These runners are going to be TBD-owned and self hosted
-* Ideally the above table should be represented by a "Software Catalog" with all of our SDK statuses in real time.
-  * The dashboard would be consuming the data sources (GitHub, CodeCov, Snyk, Npm and other registries etc.)
-  * Tools like Grafana, Backstage, or even Jenkins (weather flag) could aggregate them
+- GitHub Actions should run in secured runners
+  - A secure, authoritative build environment ensures software is compiled and packaged in a controlled, tamper-resistant setting.
+  - This mitigates the risk of introducing vulnerabilities or malicious code during the build process, whether through external attacks or compromised internal components.
+  - These runners are going to be TBD-owned and self hosted
+- Ideally the above table should be represented by a "Software Catalog" with all of our SDK statuses in real time.
+  - The dashboard would be consuming the data sources (GitHub, CodeCov, Snyk, Npm and other registries etc.)
+  - Tools like Grafana, Backstage, or even Jenkins (weather flag) could aggregate them
 
-## Publishing Artifacts
+### Publishing Artifacts
+
 Each SDK will be published to the most widely adopted registry/repository for the respective language
-
 
 | SDK        | Repository    |
 | ---------- | ------------- |
@@ -194,9 +201,9 @@ Each SDK will be published to the most widely adopted registry/repository for th
 | Rust       | crates              |
 | Swift      | swift package index |
 
+### Publishing API Reference Documentation
 
-## Publishing API Reference Documentation
-Each SDK will auto generate API reference documentation using the respective language's commenting convention and doc gen tooling 
+Each SDK will auto generate API reference documentation using the respective language's commenting convention and doc gen tooling
 
 ---
 
@@ -212,27 +219,27 @@ Each SDK will auto generate API reference documentation using the respective lan
 | Rust       | ?                  | ?              |
 | Swift      | ?                  | ?              |
 
-
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > Producing API reference documentation is the responsibility of an _implementer_
 
-## Example Feature Usage
+### Example Feature Usage
+
 Each SDK will **publish** example usage for _each_ implemented feature. This can either be included as a part of API reference documentation _or_ published separately
 
-# Features
+## Features
 
-## Cryptographic Digital Signature Algorithms (DSA)
+### Cryptographic Digital Signature Algorithms (DSA)
+
 | Algorithm       | Typescript | Kotlin | Rust | Swift |
 | --------------- | ---------- | ------ | ---- | ----- |
 | `ES256K`        | ✅          | ✅      | ❌    | ❌     |
 | `EdDSA:Ed25519` | ✅          | ✅      | ❌    | ❌     |
 
-
 > [!IMPORTANT]
-> In-memory signing using Secp256k1 **MUST** produce k-deterministic low-s signatures. Verification **must not require** low-s signatures 
+> In-memory signing using Secp256k1 **MUST** produce k-deterministic low-s signatures. Verification **must not require** low-s signatures
 
+### Key Management
 
-## Key Management
 Each SDK will implement a consistent and extensible _public interface_ for key management minimally providing concrete implementations of:
 
 | Feature               | Typescript | Kotlin | Rust | Swift |
@@ -244,38 +251,43 @@ Each SDK will implement a consistent and extensible _public interface_ for key m
 | Keychain              | N/A        | ❌    | N/A  | ❌     |
 
 Further, the key manager interface **must** be passed as an argument to _all_ public API methods that require key material. e.g.
-* DID Creation
-* Data Signing
+
+- DID Creation
+- Data Signing
 
 > [!IMPORTANT]
 > AWS KMS does **not** support `Ed25519`. At some point in the future, we can consider introducing support for key wrapping
+<!-- markdownlint-disable-next-line -->
 
 > [!IMPORTANT]
 > Consumers of our SDKs should be able to provide their own `KeyManager` implementations if desired
+<!-- markdownlint-disable-next-line -->
 
 > [!NOTE]
 > ⚠️ = implemented but no test vectors present
 
-## `did:web`
+### `did:web`
+
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Resolution` | ❌          | ❌      | ❌    | ❌     |
 
-## `did:jwk`
+### `did:jwk`
+
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Creation`   | ❌          | ❌      | ❌    | ❌     |
 | `Resolution` | ❌          | ❌      | ❌    | ❌     |
 
+### `did:dht`
 
-## `did:dht`
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
 | `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
 
+### `did:key`
 
-## `did:key`
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
@@ -284,8 +296,8 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 > [!IMPORTANT]
 > `did:key` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
 
+### `did:ion`
 
-## `did:ion`
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
@@ -294,15 +306,15 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 > [!IMPORTANT]
 > `did:ion` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
 
+### DID Document & Resolution Validation
 
-## DID Document & Resolution Validation
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | JSON Schema  | ❌          | ❌      | ❌    | ❌     |
 | Common Error | ❌          | ❌      | ❌    | ❌     |
 
+### W3C Verifiable Credential Data Model 1.1
 
-## W3C Verifiable Credential Data Model 1.1
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
 | Creation            | ❌          | ❌      | ❌    | ❌     |
@@ -310,7 +322,8 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification        | ❌          | ❌      | ❌    | ❌     |
 | Validation          | ❌          | ❌      | ❌    | ❌     |
 
-## W3C Verifiable Credential Data Model 2.0
+### W3C Verifiable Credential Data Model 2.0
+
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
 | Creation            | ❌          | ❌      | ❌    | ❌     |
@@ -318,7 +331,8 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification        | ❌          | ❌      | ❌    | ❌     |
 | Validation          | ❌          | ❌      | ❌    | ❌     |
 
-## SD-JWT / SD-JWT-VC
+### SD-JWT / SD-JWT-VC
+
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
 | Creation            | ❌          | ❌      | ❌    | ❌     |
@@ -326,14 +340,15 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification        | ❌          | ❌      | ❌    | ❌     |
 | Validation          | ❌          | ❌      | ❌    | ❌     |
 
-## Presentation Definition V2
+### Presentation Definition V2
+
 | Feature               | Typescript | Kotlin | Rust | Swift |
 | --------------------- | ---------- | ------ | ---- | ----- |
 | Concrete Type         | ❌          | ❌      | ❌    | ❌     |
 | Validation            | ❌          | ❌      | ❌    | ❌     |
 | Credential Evaluation | ❌          | ❌      | ❌    | ❌     |
 
-## tbDEX Message
+### tbDEX Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
@@ -342,8 +357,7 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification | ✅          | ✅      | ❌    | ❌     |
 | Parsing      | ✅          | ✅      | ❌    | ❌     |
 
-
-## tbDEX Resource
+### tbDEX Resource
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
@@ -352,18 +366,7 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification | ✅          | ✅      | ❌    | ❌     |
 | Parsing      | ✅          | ✅      | ❌    | ❌     |
 
-
-## tbDEX Offering Resource
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-## tbDEX RFQ Message
+### tbDEX Offering Resource
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
@@ -373,7 +376,7 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification | ✅          | ✅      | ❌    | ❌     |
 | Parsing      | ✅          | ✅      | ❌    | ❌     |
 
-## tbDEX Quote Message
+### tbDEX RFQ Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
@@ -383,7 +386,7 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification | ✅          | ✅      | ❌    | ❌     |
 | Parsing      | ✅          | ✅      | ❌    | ❌     |
 
-## tbDEX Order Message
+### tbDEX Quote Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
@@ -393,7 +396,7 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification | ✅          | ✅      | ❌    | ❌     |
 | Parsing      | ✅          | ✅      | ❌    | ❌     |
 
-## tbDEX Order-Status Message
+### tbDEX Order Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
@@ -403,7 +406,17 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Verification | ✅          | ✅      | ❌    | ❌     |
 | Parsing      | ✅          | ✅      | ❌    | ❌     |
 
-## tbDEX Close Message
+### tbDEX Order-Status Message
+
+| Feature      | Typescript | Kotlin | Rust | Swift |
+| ------------ | ---------- | ------ | ---- | ----- |
+| Creation     | ✅          | ✅      | ❌    | ❌     |
+| Validation   | ✅          | ✅      | ❌    | ❌     |
+| Signing      | ✅          | ✅      | ❌    | ❌     |
+| Verification | ✅          | ✅      | ❌    | ❌     |
+| Parsing      | ✅          | ✅      | ❌    | ❌     |
+
+### tbDEX Close Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |

@@ -1,15 +1,19 @@
+# Test Harness
+<!-- markdownlint-disable -->
+
 ## Dependencies
-* [Encoders SDK](#Encoders-SDK)
+
+* [Encoders SDK](#encoders-sdk)
   * CBOR
   * SHA256
   * Base64
-* [Crypto SDK](#Crypto-SDK)
+* [Crypto SDK](#crypto-sdk)
   * Key Manager
   * JWS Signatures
   * JWS Verification
-* [DIDs SDK](#DIDs-SDK)
+* [DIDs SDK](#dids-sdk)
   * DID Resolution
-* [Credentials SDK](#Credentials-SDK)
+* [Credentials SDK](#credentials-sdk)
   * Concrete Presentation Definition Types
   * Concrete Presentation Submission Types
   * Presentation Exchange Eval - Evaluate Presentation Submission against Presentation Definition
@@ -19,6 +23,7 @@
   * VP Verification
 
 ## Features
+
 | Feature                   | Typescript | Kotlin | Swift |
 | ------------------------- | ---------- | ------ | ----- |
 | Create Offering           | :x:        | :x:    | :x:   |
@@ -35,21 +40,21 @@
 | Validate Message          | :x:        | :x:    | :x:   |
 | Hash Private fields       | :x:        | :x:    | :x:   |
 
+References:
 
-## References
 * [tbDEX Protocol Spec](https://github.com/TBD54566975/tbdex-protocol/blob/rest-api-spec/README.md)
 
+## DIDs SDK
 
-# DIDs SDK
 SDK used to create and resolve DIDs
 
-## Dependencies
-* [Encoders SDK](#Encoders-SDK)
-* [Crypto SDK](#Crypto-SDK)
+Dependencies:
+
+* [Encoders SDK](#encoders-sdk)
+* [Crypto SDK](#crypto-sdk)
 
 ## DID ION
 
-### Features
 | Feature                                                                      | Typescript     | Kotlin | Swift |
 | ---------------------------------------------------------------------------- | -------------- | ------ | ----- |
 | [`CreateRequest`](https://identity.foundation/sidetree/spec/#create)         | ✅              | :x:    | :x:   |
@@ -63,33 +68,35 @@ SDK used to create and resolve DIDs
 * `UpdateRequest` - used to update an ION DID
 * `RecoverRequest` - used to recover an ION DID
 * `DeactivateRequest` - used to decomission an ION DID
-* Resolution - used to resolve an ION DID. 
+* Resolution - used to resolve an ION DID.
   * Needed for decentralized discovery
   * Needed for signature verification
 
 ## DID Key
 
-### Features
 | Feature    | Typescript | Kotlin | Swift |
 | ---------- | ---------- | ------ | ----- |
 | Creation   | ✅          | :x:    | :x:   |
 | Resolution | ✅          | :x:    | :x:   |
 
+References:
 
-## References
 * [DID Spec](https://www.w3.org/TR/did-core/)
 * [DID ION aka Sidetree Spec](https://identity.foundation/sidetree/spec/)
 * [Typescript DIDs Package](https://github.com/TBD54566975/web5-js/tree/main/packages/dids)
 
 # Credentials SDK
+
 SDK used to create, verify and construct data structures needed to exchange Verifiable Credentials
 
 ## Dependencies
-* [Encoders SDK](#Encoders-SDK)
-* [Crypto SDK](#Crypto-SDK)
-* [DIDs SDK](#DIDs-SDK) 
+
+* [Encoders SDK](#encoders-sdk)
+* [Crypto SDK](#crypto-sdk)
+* [DIDs SDK](#dids-sdk)
 
 ## Features
+
 | Feature               | Typescript | Kotlin         | Swift |
 | --------------------- | ---------- | -------------- | ----- |
 | Presentation Exchange | ✅          | :construction: | :x:   |
@@ -98,7 +105,6 @@ SDK used to create, verify and construct data structures needed to exchange Veri
 | VP Creation           | ✅          | :construction: | :x:   |
 | VP Verification       | ✅          | :construction: | :x:   |
 | StatusList lookup     | :x:        | :x:            | :x:   |
-
 
 * [Presentation Exchange](https://identity.foundation/presentation-exchange/)
   * Presentation Definition - Data Structure used by PFIs to express their VC requirements
@@ -111,8 +117,8 @@ SDK used to create, verify and construct data structures needed to exchange Veri
 * VP Verification - Used by PFI to perform integrity check on Presentation Submission provided by Alice
 * [StatusList](https://www.w3.org/TR/vc-status-list/) Lookup - Used by PFI as part of privacy preserving integrity check
 
+References:
 
-## References
 * [VC Spec](https://www.w3.org/TR/vc-data-model/)
 * [Presentation Exchange Spec](https://identity.foundation/presentation-exchange/)
 * [StatusList 2021 Spec](https://www.w3.org/TR/vc-status-list/)
@@ -121,13 +127,12 @@ SDK used to create, verify and construct data structures needed to exchange Veri
     * [PEX](https://github.com/TBD54566975/web5-js/pull/164)
     * [VC Creation](https://github.com/TBD54566975/web5-js/pull/148)
 
-
 # Crypto SDK
+
 SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX messages
 
 ## Key Generation
 
-### Features
 | Feature     | Typescript | Kotlin | Swift |
 | ----------- | ---------- | ------ | ----- |
 | `secp256k1` | ✅          | :x:    | :x:   |
@@ -138,7 +143,6 @@ SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX m
 
 ## Signing
 
-### Features
 | Feature     | Typescript | Kotlin | Swift |
 | ----------- | ---------- | ------ | ----- |
 | `secp256k1` | ✅          | :x:    | :x:   |
@@ -147,7 +151,6 @@ SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX m
 
 ## Verification
 
-### Features
 | Feature     | Typescript | Kotlin | Swift |
 | ----------- | ---------- | ------ | ----- |
 | `secp256k1` | ✅          | :x:    | :x:   |
@@ -156,7 +159,6 @@ SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX m
 
 ## JOSE
 
-### Features
 | Feature      | Typescript     | Kotlin | Swift |
 | ------------ | -------------- | ------ | ----- |
 | `JWS create` | :construction: | :x:    | :x:   |
@@ -168,10 +170,8 @@ SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX m
 
 > :information_source: prefer Compact JWS. Can work with General JWS
 
-
 ## Key Manager
 
-### Features
 | Feature        | Typescript | Kotlin | Swift |
 | -------------- | ---------- | ------ | ----- |
 | `Generate Key` | ✅          | :x:    | :x:   |
@@ -179,17 +179,17 @@ SDK that contains the cryptographic foundation needed for DIDs, VCs, and tbDEX m
 | `Sign`         | ✅          | :x:    | :x:   |
 | `Verify`       | ✅          | :x:    | :x:   |
 
+References:
 
-## References
 * [JWS Spec](https://datatracker.ietf.org/doc/html/rfc7515)
 * [JWK Spec](https://datatracker.ietf.org/doc/html/rfc7517)
 * [JWT Spec](https://datatracker.ietf.org/doc/html/rfc7519)
 * [Typescript Crypto Package](https://github.com/TBD54566975/web5-js/tree/main/packages/crypto)
 
 # Encoders SDK
+
 SDK that contains encode/decode utility functions needed for DIDs, VCs, and tbDEX
 
-## Features
 | Feature         | Typescript | Kotlin | Swift |
 | --------------- | ---------- | ------ | ----- |
 | `base64 encode` | ✅          | :x:    | :x:   |
@@ -200,6 +200,6 @@ SDK that contains encode/decode utility functions needed for DIDs, VCs, and tbDE
 | `cbor encode`   | :x:        | :x:    | :x:   |
 | `cbor decode`   | :x:        | :x:    | :x:   |
 
+References:
 
-## References
 * [Typescript Encoders Package](https://github.com/TBD54566975/web5-js/tree/main/packages/common)
