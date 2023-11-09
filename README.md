@@ -159,15 +159,25 @@ An individual SDK will consider a feature implemented once the following require
 * For the forseeable future, each SDK is free to publish releases at a frequency that the SDK's respective DRI sees fit
 
 ## CI / CD
-Each SDK will use Github Actions for CI/CD
+Each SDK will use Github Actions for CI/CD and other automations
 
 | Feature                       | Typescript | Kotlin | Rust | Swift |
 | ----------------------------- | ---------- | ------ | ---- | ----- |
 | OSS License Check             | ❌          | ❌      | ❌    | ❌     |
+| Security Scanning             | ❌          | ❌      | ❌    | ❌     |
+| Static Analysis Linting/Style | ❌          | ❌      | ❌    | ❌     |
 | Running Unit Tests            | ✅          | ✅      | ❌    | ❌     |
+| Publishing Tests Reports      | ❌          | ❌      | ❌    | ❌     |
+| Code Coverage (CodeCov)       | ❌          | ❌      | ❌    | ❌     |
 | Publishing Artifacts          | ❓          | ❌      | ❌    | ❌     |
+| Release Template Checklist    | ❌          | ❌      | ❌    | ❌     |
+| Automated GH Release Tag      | ❌          | ❌      | ❌    | ❌     |
 | Publishing API Reference Docs | ❌          | ✅      | ❌    | ❌     |
 | Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
+
+* Ideally the above table should be represented by a "Software Catalog" with all of our SDK statuses in real time.
+  * The dashboard would be consuming the data sources (GitHub, CodeCov, Snyk, Npm and other registries etc.)
+  * Tools like Grafana, Backstage, or even Jenkins (weather flag) could aggregate them
 
 ## Publishing Artifacts
 Each SDK will be published to the most widely adopted registry/repository for the respective language
