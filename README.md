@@ -317,10 +317,10 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ❌          | ❌      | ❌    | ❌     |
-| Signing as `vc-jwt` | ❌          | ❌      | ❌    | ❌     |
-| Verification        | ❌          | ❌      | ❌    | ❌     |
-| Validation          | ❌          | ❌      | ❌    | ❌     |
+| Creation            | ✅          | ✅      | ❌    | ❌     |
+| Signing as `vc-jwt` | ✅          | ✅      | ❌    | ❌     |
+| Verification        | ✅          | ✅      | ❌    | ❌     |
+| Validation          | ✅          | ✅      | ❌    | ❌     |
 
 ### W3C Verifiable Credential Data Model 2.0
 
@@ -344,9 +344,9 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature               | Typescript | Kotlin | Rust | Swift |
 | --------------------- | ---------- | ------ | ---- | ----- |
-| Concrete Type         | ❌          | ❌      | ❌    | ❌     |
-| Validation            | ❌          | ❌      | ❌    | ❌     |
-| Credential Evaluation | ❌          | ❌      | ❌    | ❌     |
+| Concrete Type         | ✅          | ✅      | ❌    | ❌     |
+| Validation            | ✅          | ⚠️      | ❌    | ❌     |
+| Credential Evaluation | ✅          | ⚠️      | ❌    | ❌     |
 
 ### tbDEX Message
 
