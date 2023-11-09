@@ -3,6 +3,7 @@
 > [!WARNING]
 > This Document is not yet complete. Namely, the feature tables do not yet accurately reflect what has been implemented
 
+- [Purpose](#purpose)
 - [Known Unknowns](#known-unknowns)
 - [Requirements](#requirements)
   - [Feature Tracking](#feature-tracking)
@@ -39,6 +40,19 @@
   - [tbDEX Order-Status Message](#tbdex-order-status-message)
   - [tbDEX Close Message](#tbdex-close-message)
 
+
+# Purpose
+
+This repo sets forth the development process, requirements, and desired feature set for the following SDKs:
+* [tbdex-js](https://github.com/TBD54566975/tbdex-js)
+* [tbdex-kt](https://github.com/TBD54566975/tbdex-kt)
+* tbdex-rs
+* tbdex-swift
+* [web5-js](https://github.com/TBD54566975/web5-js)
+* [web5-kt](https://github.com/TBD54566975/web5-kt)
+
+
+Github Issues and PRs created in this repo address topics that impact / span all SDKs we have in development. See section on [Feature Acceptance](#feature-acceptance) for information on submitting proposals for new features across all of our SDKs (e.g. implement Presentation Exchange v9)
 
 # Known Unknowns
 * We don't yet have a cemented path for supporting Android. It could either be through our pre-existing Kotlin SDK or bindings exposed via Rust
@@ -111,6 +125,7 @@ The following milestones should exist in all relevant repos
 | Milestone |
 | --------- |
 | `Eagle`   |
+| `ABC`     |
 
 > [!NOTE]
 > This list will change over time as projects are added
@@ -161,12 +176,12 @@ Each SDK will use Github Actions for CI/CD
 Each SDK will be published to the most widely adopted registry/repository for the respective language
 
 
-| SDK        | Repository    | Published (y/n) |
-| ---------- | ------------- | --------------- |
-| Typescript | npm           | ❌               |
-| Kotlin     | maven central | ❌               |
-| Rust       | ?             | ❌               |
-| Swift      | ?             | ❌               |
+| SDK        | Repository    |
+| ---------- | ------------- |
+| Typescript | npm           |
+| Kotlin     | maven central |
+| Rust       | ?             |
+| Swift      | ?             |
 
 
 ## Publishing API Reference Documentation
@@ -174,16 +189,17 @@ Each SDK will auto generate API reference documentation using the respective lan
 
 ---
 
-At a _minimum_, API reference documentation will be published to the respective sdk repository's Github Pages. e.g. `https://tbd54566975.github.io/tbdex-kt/`
+> [!IMPORTANT]
+> At a _minimum_, API reference documentation will be published to the respective sdk repository's Github Pages. e.g. `https://tbd54566975.github.io/tbdex-kt/`
 
 ---
 
-| Language   | Comment Convention | Docs Generator | Published (y/n) |
-| ---------- | ------------------ | -------------- | --------------- |
-| Typescript | TSDoc              | API Extractor  | ✅               |
-| Kotlin     | KDoc               | Dokka          | ✅               |
-| Rust       | ?                  | ?              | ❌               |
-| Swift      | ?                  | ?              | ❌               |
+| Language   | Comment Convention | Docs Generator |
+| ---------- | ------------------ | -------------- |
+| Typescript | TSDoc              | API Extractor  |
+| Kotlin     | KDoc               | Dokka          |
+| Rust       | ?                  | ?              |
+| Swift      | ?                  | ?              |
 
 
 > [!IMPORTANT] 
