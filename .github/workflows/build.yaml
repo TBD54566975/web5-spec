@@ -38,9 +38,9 @@ jobs:
         run: |
           set -ex
           echo "artifacts<<EOF" >> $GITHUB_OUTPUT
-          for artifact in web5-spec-test-*; do
+          for artifact in web5-test-harness-*; do
             mv "${artifact}" "artifact-${artifact}"
-            mv "artifact-${artifact}/web5-spec-test" "${artifact}"
+            mv "artifact-${artifact}/web5-test-harness" "${artifact}"
             echo "${artifact}" >> $GITHUB_OUTPUT
           done
           echo EOF >> $GITHUB_OUTPUT
