@@ -1,12 +1,12 @@
 # GitHub Repository Scripts
 
-This directory contains scripts that help with individual SDK repo management
+This directory contains scripts that help with individual SDK repo management.
 
 ## Scripts Description
 
 | Script Name                 | Description                                                                   |
 | --------------------------- | ----------------------------------------------------------------------------- |
-| `npm run create labels`     | Creates GitHub labels from a predefined list if they don't already exist.     |
+| `npm run create-labels`     | Creates GitHub labels from a predefined list if they don't already exist.     |
 | `npm run create-milestones` | Creates GitHub milestones from a predefined list if they don't already exist. |
 
 ## Installation and Usage
