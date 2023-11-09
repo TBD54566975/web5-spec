@@ -43,10 +43,10 @@
 This repo sets forth the development process, requirements, and desired feature set for the following SDKs:
 * [tbdex-js](https://github.com/TBD54566975/tbdex-js)
 * [tbdex-kt](https://github.com/TBD54566975/tbdex-kt)
-* tbdex-rs
-* tbdex-swift
+* [tbdex-rs](https://github.com/TBD54566975/tbdex-rs)
 * [web5-js](https://github.com/TBD54566975/web5-js)
 * [web5-kt](https://github.com/TBD54566975/web5-kt)
+* [web5-rs](https://github.com/TBD54566975/web5-rs)
 
 
 Github Issues and PRs created in this repo address topics that impact / span all SDKs we have in development. See section on [Feature Acceptance](#feature-acceptance) for information on submitting proposals for new features across all of our SDKs (e.g. implement Presentation Exchange v9)
