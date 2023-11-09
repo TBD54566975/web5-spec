@@ -159,15 +159,29 @@ An individual SDK will consider a feature implemented once the following require
 * For the forseeable future, each SDK is free to publish releases at a frequency that the SDK's respective DRI sees fit
 
 ## CI / CD
-Each SDK will use Github Actions for CI/CD
+Each SDK will use Github Actions for CI/CD and other automations
 
 | Feature                       | Typescript | Kotlin | Rust | Swift |
 | ----------------------------- | ---------- | ------ | ---- | ----- |
 | OSS License Check             | ❌          | ❌      | ❌    | ❌     |
+| Security Scanning             | ❌          | ❌      | ❌    | ❌     |
+| Static Analysis Linting/Style | ❌          | ❌      | ❌    | ❌     |
 | Running Unit Tests            | ✅          | ✅      | ❌    | ❌     |
+| Publishing Tests Reports      | ❌          | ❌      | ❌    | ❌     |
+| Code Coverage (CodeCov)       | ❌          | ❌      | ❌    | ❌     |
 | Publishing Artifacts          | ❓          | ❌      | ❌    | ❌     |
+| Release Template Checklist    | ❌          | ❌      | ❌    | ❌     |
+| Automated GH Release Tag      | ❌          | ❌      | ❌    | ❌     |
 | Publishing API Reference Docs | ❌          | ✅      | ❌    | ❌     |
 | Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
+
+* GitHub Actions should run in secured runners
+  * A secure, authoritative build environment ensures software is compiled and packaged in a controlled, tamper-resistant setting.
+  * This mitigates the risk of introducing vulnerabilities or malicious code during the build process, whether through external attacks or compromised internal components.
+  * These runners are going to be TBD-owned and self hosted
+* Ideally the above table should be represented by a "Software Catalog" with all of our SDK statuses in real time.
+  * The dashboard would be consuming the data sources (GitHub, CodeCov, Snyk, Npm and other registries etc.)
+  * Tools like Grafana, Backstage, or even Jenkins (weather flag) could aggregate them
 
 ## Publishing Artifacts
 Each SDK will be published to the most widely adopted registry/repository for the respective language
@@ -175,10 +189,10 @@ Each SDK will be published to the most widely adopted registry/repository for th
 
 | SDK        | Repository    |
 | ---------- | ------------- |
-| Typescript | npm           |
-| Kotlin     | maven central |
-| Rust       | ?             |
-| Swift      | ?             |
+| Typescript | npm                 |
+| Kotlin     | maven central       |
+| Rust       | crates              |
+| Swift      | swift package index |
 
 
 ## Publishing API Reference Documentation
