@@ -291,10 +291,10 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 ## W3C Verifiable Credential Data Model 1.1
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ❌          | ❌      | ❌    | ❌     |
-| Signing as `vc-jwt` | ❌          | ❌      | ❌    | ❌     |
-| Verification        | ❌          | ❌      | ❌    | ❌     |
-| Validation          | ❌          | ❌      | ❌    | ❌     |
+| Creation            | ✅          | ✅      | ❌    | ❌     |
+| Signing as `vc-jwt` | ✅          | ✅      | ❌    | ❌     |
+| Verification        | ✅          | ✅      | ❌    | ❌     |
+| Validation          | ✅          | ✅      | ❌    | ❌     |
 
 ## W3C Verifiable Credential Data Model 2.0
 | Feature             | Typescript | Kotlin | Rust | Swift |
@@ -315,9 +315,9 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 ## Presentation Definition V2
 | Feature               | Typescript | Kotlin | Rust | Swift |
 | --------------------- | ---------- | ------ | ---- | ----- |
-| Concrete Type         | ❌          | ❌      | ❌    | ❌     |
-| Validation            | ❌          | ❌      | ❌    | ❌     |
-| Credential Evaluation | ❌          | ❌      | ❌    | ❌     |
+| Concrete Type         | ✅          | ✅      | ❌    | ❌     |
+| Validation            | ✅          | ⚠️      | ❌    | ❌     |
+| Credential Evaluation | ✅          | ⚠️      | ❌    | ❌     |
 
 ## tbDEX Message
 
