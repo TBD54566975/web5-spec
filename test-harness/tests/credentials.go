@@ -27,8 +27,8 @@ type Payload struct {
 
 func vcCreate(ctx context.Context, serverURL string) []error {
 	expectedContext := []string{"https://www.w3.org/2018/credentials/v1"}
-	expectedType := []string{"VerifiableCredential"}
-	expectedID := "did:example:321"
+	expectedType := []string{"VerifiableCredential", "ExampleKycCredential"}
+	expectedID := "urn:uuid:321"
 	expectedIssuer := "did:example:123"
 
 	expectedCredentialSubjectId := "did:example:123"
@@ -95,7 +95,7 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 	}
 
 	// Check id
-	if err := compareStringsContains(payload.Vc.Id, "did:", "id"); err != nil {
+	if err := compareStringsContains(payload.Vc.Id, "urn:uuid", "id"); err != nil {
 		errs = append(errs, err)
 	}
 
