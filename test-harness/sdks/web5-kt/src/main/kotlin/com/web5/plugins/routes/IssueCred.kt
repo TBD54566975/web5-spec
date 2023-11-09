@@ -11,7 +11,7 @@ import io.ktor.server.response.*
 import web5.sdk.credentials.VcDataModel
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.DidKey
+import web5.sdk.dids.methods.key.DidKey
 import java.net.URI
 import java.util.*
 
@@ -22,19 +22,7 @@ suspend fun ApplicationCall.credentialIssue() {
     val keyManager = InMemoryKeyManager()
     val issuerDid = DidKey.create(keyManager)
 
-    val credentialSubject = CredentialSubject.builder()
-        .id(URI.create(reqVc.credentialSubject.get("id").toString()))
-        .claims(reqVc.credentialSubject)
-        .build()
-
-    val vcDataModel = VcDataModel.builder()
-        .id(URI.create(reqVc.id))
-        .issuer(URI.create(reqVc.issuer))
-        .issuanceDate(Date())
-        .credentialSubject(credentialSubject)
-        .build()
-
-    val vc = VerifiableCredential(vcDataModel)
+    val vc = VerifiableCredential.create(reqVc.type[reqVc.type.size - 1], reqVc.issuer, reqVc.credentialSubject.get("id") as String, reqVc.credentialSubject)
 
     val vcJwt = vc.sign(issuerDid)
     val res = CredentialIssuanceResponse(verifiableCredential = StringEncodedData(data = vcJwt))

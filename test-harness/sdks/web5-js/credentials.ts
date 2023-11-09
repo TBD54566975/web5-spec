@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { VcJwt, VerifiableCredential, SignOptions, VerifiableCredentialTypeV1, CreateVcOptions } from '@web5/credentials';
+import { VerifiableCredential, SignOptions } from '@web5/credentials';
 import { DidKeyMethod, PortableDid } from '@web5/dids';
 import { Ed25519, Jose } from '@web5/crypto';
 import { paths } from './openapi.js';
@@ -34,8 +34,8 @@ export async function credentialIssue(req: Request, res: Response) {
         signer     : signer
     };
 
-  const vc:VerifiableCredentialTypeV1 = body.credential;
-  const vcJwt: VcJwt = await VerifiableCredential.create(signOptions, undefined, vc)
+  const vc: VerifiableCredential = VerifiableCredential.create(body.credential.type[body.credential.type.length - 1], body.credential.issuer, subjectIssuerDid, body.credential.credentialSubject);
+  const vcJwt: string = await vc.sign(signOptions);
 
   const resp: paths["/credentials/issue"]["post"]["responses"]["200"]["content"]["application/json"] =
       {
