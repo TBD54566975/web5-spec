@@ -17,6 +17,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
+          cache-dependency-path: test-harness/go.sum
           go-version: 1.21
           cache: true
       - run: cd test-harness && go build ./cmd/web5-test-harness
