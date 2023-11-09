@@ -19,14 +19,14 @@ jobs:
         with:
           go-version: 1.21
           cache: true
-      - run: go build ./cmd/web5-spec-test
+      - run: cd test-harness && go build ./cmd/web5-test-harness
         env:
           GOARCH: ${{ matrix.GOARCH }}
           GOOS: ${{ matrix.GOOS }}
       - uses: actions/upload-artifact@v3
         with:
-          name: web5-spec-test-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
-          path: web5-spec-test
+          name: web5-test-harness-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
+          path: test-harness/web5-test-harness
   create-release:
     needs: [build-binary]
     runs-on: ubuntu-latest
