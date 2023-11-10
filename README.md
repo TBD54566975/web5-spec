@@ -75,6 +75,10 @@ Work items that are specific to an individual SDK should be created as an issue 
 
 ---
 
+all relevant Github Issues will be tracked in the [SDK Development](https://github.com/orgs/TBD54566975/projects/29) Project. Issues can be associated to the project through the sidebar on an individual issue page
+
+---
+
 Work item progress is tracked using the `Status` attribute on a GH issue. This should automatically be reflected on the kanban view on the GH project
 
 ---
