@@ -36,6 +36,8 @@
   - [tbDEX Order Message](#tbdex-order-message)
   - [tbDEX Order-Status Message](#tbdex-order-status-message)
   - [tbDEX Close Message](#tbdex-close-message)
+  - [tbDEX Client](#tbdex-client)
+  - [tbDEX Server](#tbdex-server)
 
 ## Purpose
 
@@ -200,8 +202,8 @@ Each SDK will use Github Actions for CI/CD and other automations
 
 Each SDK will be published to the most widely adopted registry/repository for the respective language
 
-| SDK        | Repository    |
-| ---------- | ------------- |
+| SDK        | Repository          |
+| ---------- | ------------------- |
 | Typescript | npm                 |
 | Kotlin     | maven central       |
 | Rust       | crates              |
@@ -253,8 +255,8 @@ Each SDK will implement a consistent and extensible _public interface_ for key m
 | Key Manager Interface | ❌          | ✅      | ❌    | ❌     |
 | In-Memory Key Manager | ❌          | ✅      | ❌    | ❌     |
 | AWS KMS               | ❌          | ✅      | N/A  | N/A   |
-| Device Enclave        | N/A        | ❌    | N/A  | ❌     |
-| Keychain              | N/A        | ❌    | N/A  | ❌     |
+| Device Enclave        | N/A        | ❌      | N/A  | ❌     |
+| Keychain              | N/A        | ❌      | N/A  | ❌     |
 
 Further, the key manager interface **must** be passed as an argument to _all_ public API methods that require key material. e.g.
 
@@ -436,18 +438,18 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature       | Typescript | Kotlin | Rust | Swift |
 | ------------- | ---------- | ------ | ---- | ----- |
-| Send Message  | ✅         | ✅     | ❌   | ❌    |
-| Get Exchange  | ✅         | ✅     | ❌   | ❌    |
-| Get Exchanges | ✅         | ✅     | ❌   | ❌    |
-| Get Offerings | ✅         | ✅     | ❌   | ❌    |
+| Send Message  | ✅          | ✅      | ❌    | ❌     |
+| Get Exchange  | ✅          | ✅      | ❌    | ❌     |
+| Get Exchanges | ✅          | ✅      | ❌    | ❌     |
+| Get Offerings | ✅          | ✅      | ❌    | ❌     |
 
 ### tbDEX Server
 
 | Feature               | Typescript | Kotlin | Rust | Swift |
-| --------------------- | ---------- |------| ---- | ----- |
-| Get Exchange Handler  | ✅         |   ❌   | ❌   | ❌    |
-| Get Exchanges Handler | ✅         |   ❌   | ❌   | ❌    |
-| Get Offerings Handler | ✅         |   ❌   | ❌   | ❌    |
-| Submit RFQ Handler    | ✅         |   ❌   | ❌   | ❌    |
-| Submit Order Handler  | ✅         |   ❌   | ❌   | ❌    |
-| Submit Close Handler  | ✅         |   ❌   | ❌   | ❌    |
+| --------------------- | ---------- | ------ | ---- | ----- |
+| Get Exchange Handler  | ✅          | ❌      | ❌    | ❌     |
+| Get Exchanges Handler | ✅          | ❌      | ❌    | ❌     |
+| Get Offerings Handler | ✅          | ❌      | ❌    | ❌     |
+| Submit RFQ Handler    | ✅          | ❌      | ❌    | ❌     |
+| Submit Order Handler  | ✅          | ❌      | ❌    | ❌     |
+| Submit Close Handler  | ✅          | ❌      | ❌    | ❌     |
