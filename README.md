@@ -108,6 +108,8 @@ The following labels should exist in all relevant repos
 | `tbdex-order`        | `#28B463` | tbDEX Order Message                        |
 | `tbdex-orderstatus`  | `#D68910` | tbDEX Order-Status Message                 |
 | `tbdex-close`        | `#34495E` | tbDEX Close Message                        |
+| `tbdex-server`       | `#3498DB` | HTTP server for tbDEX PFIs                 |
+| `tbdex-client`       | `#E74C3C` | HTTP client for tbDEX wallets              |
 
 > [!NOTE]
 > This list will change over time as features are added or removed
@@ -425,3 +427,23 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Signing      | ✅          | ✅      | ❌    | ❌     |
 | Verification | ✅          | ✅      | ❌    | ❌     |
 | Parsing      | ✅          | ✅      | ❌    | ❌     |
+
+### tbDEX Client
+
+| Feature       | Typescript | Kotlin | Rust | Swift |
+| ------------- | ---------- | ------ | ---- | ----- |
+| Send Message  | ✅         | ✅     | ❌   | ❌    |
+| Get Exchange  | ✅         | ✅     | ❌   | ❌    |
+| Get Exchanges | ✅         | ✅     | ❌   | ❌    |
+| Get Offerings | ✅         | ✅     | ❌   | ❌    |
+
+### tbDEX Server
+
+| Feature               | Typescript | Kotlin | Rust | Swift |
+| --------------------- | ---------- |------| ---- | ----- |
+| Get Exchange Handler  | ✅         |   ❌   | ❌   | ❌    |
+| Get Exchanges Handler | ✅         |   ❌   | ❌   | ❌    |
+| Get Offerings Handler | ✅         |   ❌   | ❌   | ❌    |
+| Submit RFQ Handler    | ✅         |   ❌   | ❌   | ❌    |
+| Submit Order Handler  | ✅         |   ❌   | ❌   | ❌    |
+| Submit Close Handler  | ✅         |   ❌   | ❌   | ❌    |
