@@ -440,7 +440,7 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 ### tbDEX Server
 
 | Feature               | Typescript | Kotlin | Rust | Swift |
-| --------------------- | ---------- |:------:| ---- | ----- |
+| --------------------- | ---------- |------| ---- | ----- |
 | Get Exchange Handler  | ✅         |   ❌   | ❌   | ❌    |
 | Get Exchanges Handler | ✅         |   ❌   | ❌   | ❌    |
 | Get Offerings Handler | ✅         |   ❌   | ❌   | ❌    |
