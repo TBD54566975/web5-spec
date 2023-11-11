@@ -77,11 +77,11 @@ Work items that are specific to an individual SDK should be created as an issue 
 
 ---
 
-all relevant Github Issues will be tracked in the [SDK Development](https://github.com/orgs/TBD54566975/projects/29) Project. Issues can be associated to the project through the sidebar on an individual issue page
+All relevant Github Issues will be tracked in the [SDK Development](https://github.com/orgs/TBD54566975/projects/29) Project. Issues can be associated to the project through the sidebar on an individual issue page. If a new issue is created in any of the SDK repos with one of the below feature labels, it will _automatically_ be added to the project board via GH project workflows. _New_ features lables should be added to the [workflows](https://github.com/orgs/TBD54566975/projects/29/workflows).
 
 ---
 
-Work item progress is tracked using the `Status` attribute on a GH issue. This should automatically be reflected on the kanban view on the GH project
+Work item progress is tracked using the `Status` attribute on a GH issue. This should automatically be reflected on the kanban view on the GH project. PRs should be linked to their respective issue via the PR description.
 
 ---
 
