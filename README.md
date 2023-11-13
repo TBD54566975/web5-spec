@@ -27,6 +27,7 @@
   - [W3C Verifiable Credential Data Model 1.1](#w3c-verifiable-credential-data-model-11)
   - [W3C Verifiable Credential Data Model 2.0](#w3c-verifiable-credential-data-model-20)
   - [SD-JWT / SD-JWT-VC](#sd-jwt--sd-jwt-vc)
+  - [Bitstring Status List](#bitstring-status-list)
   - [VC JSON Schema](#vc-json-schema)
   - [Presentation Exchange V2](#presentation-exchange-v2)
   - [tbDEX Message](#tbdex-message)
@@ -348,6 +349,13 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Signing             | ❌         | ❌     | ❌   | ❌    |
 | Verification        | ❌         | ❌     | ❌   | ❌    |
 | Validation          | ❌         | ❌     | ❌   | ❌    |
+
+### [Bitstring Status List](https://w3c.github.io/vc-bitstring-status-list/)
+
+| Feature                           | Typescript | Kotlin | Rust | Swift |
+| --------------------------------- | ---------- | ------ | ---- | ----- |
+| Creation using `vc-jwt`           | ❌         | ❌     | ❌   | ❌   |
+| Validation using `vc-jwt`         | ❌         | ❌     | ❌   | ❌   |
 
 ### [VC JSON Schema](https://www.w3.org/TR/vc-json-schema/)
 
