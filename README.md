@@ -107,7 +107,7 @@ The following labels should exist in all relevant repos
 | `w3c-vc-dm-2.0`      | `#01FF70` | W3C Verifiable Credential Data Model 2.0   |
 | `sd-jwt`             | `#85144B` | SD-JWT / SD-JWT-VC                         |
 | `pd-v2`              | `#F9A602` | Presentation Definition V2                 |
-| `sd-jwt`             | `#C86F42` | VC JSON Schema                             |
+| `vc-json-schema`             | `#C86F42` | VC JSON Schema                             |
 | `tbdex-message`      | `#70DB93` | tbDEX Message                              |
 | `tbdex-resource`     | `#5B2C6F` | tbDEX Resource                             |
 | `tbdex-offering`     | `#E59866` | tbDEX Offering Resource                    |
