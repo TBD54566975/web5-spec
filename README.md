@@ -320,7 +320,6 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| JSON Schema  | ❌         | ❌     | ❌    | ❌   |
 | Common Error | ❌         | ❌     | ❌    | ❌   |
 
 ### [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model)
