@@ -27,7 +27,9 @@
   - [W3C Verifiable Credential Data Model 1.1](#w3c-verifiable-credential-data-model-11)
   - [W3C Verifiable Credential Data Model 2.0](#w3c-verifiable-credential-data-model-20)
   - [SD-JWT / SD-JWT-VC](#sd-jwt--sd-jwt-vc)
-  - [Presentation Definition V2](#presentation-definition-v2)
+  - [Bitstring Status List](#bitstring-status-list)
+  - [VC JSON Schema](#vc-json-schema)
+  - [Presentation Exchange V2](#presentation-exchange-v2)
   - [tbDEX Message](#tbdex-message)
   - [tbDEX Resource](#tbdex-resource)
   - [tbDEX Offering Resource](#tbdex-offering-resource)
@@ -106,6 +108,7 @@ The following labels should exist in all relevant repos
 | `w3c-vc-dm-2.0`      | `#01FF70` | W3C Verifiable Credential Data Model 2.0   |
 | `sd-jwt`             | `#85144B` | SD-JWT / SD-JWT-VC                         |
 | `pd-v2`              | `#F9A602` | Presentation Definition V2                 |
+| `vc-json-schema`     | `#C86F42` | VC JSON Schema                             |
 | `tbdex-message`      | `#70DB93` | tbDEX Message                              |
 | `tbdex-resource`     | `#5B2C6F` | tbDEX Resource                             |
 | `tbdex-offering`     | `#E59866` | tbDEX Offering Resource                    |
@@ -274,96 +277,111 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 > [!NOTE]
 > ⚠️ = implemented but no test vectors present
 
-### `did:web`
+### [`did:web`](https://w3c-ccg.github.io/did-method-web/)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Resolution` | ❌          | ❌      | ❌    | ❌     |
 
-### `did:jwk`
+### [`did:jwk`](https://github.com/quartzjer/did-jwk/blob/main/spec.md)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Creation`   | ❌          | ❌      | ❌    | ❌     |
 | `Resolution` | ❌          | ❌      | ❌    | ❌     |
 
-### `did:dht`
+### [`did:dht`](https://tbd54566975.github.io/did-dht-method/)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
 
-### `did:key`
+### [`did:key`](https://w3c-ccg.github.io/did-method-key/)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
 
 > [!IMPORTANT]
 > `did:key` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
 
-### `did:ion`
+### [`did:ion`](https://identity.foundation/sidetree/spec)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
 
 > [!IMPORTANT]
 > `did:ion` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
 
-### DID Document & Resolution Validation
+### [DID Document](https://www.w3.org/TR/did-core/) & [Resolution Validation](https://w3c-ccg.github.io/did-resolution/)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| JSON Schema  | ❌          | ❌      | ❌    | ❌     |
-| Common Error | ❌          | ❌      | ❌    | ❌     |
+| Common Error | ❌         | ❌     | ❌    | ❌   |
 
-### W3C Verifiable Credential Data Model 1.1
-
-| Feature             | Typescript | Kotlin | Rust | Swift |
-| ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ✅          | ✅      | ❌    | ❌     |
-| Signing as `vc-jwt` | ✅          | ✅      | ❌    | ❌     |
-| Verification        | ✅          | ✅      | ❌    | ❌     |
-| Validation          | ✅          | ✅      | ❌    | ❌     |
-
-### W3C Verifiable Credential Data Model 2.0
+### [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model)
 
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ❌          | ❌      | ❌    | ❌     |
-| Signing as `vc-jwt` | ❌          | ❌      | ❌    | ❌     |
-| Verification        | ❌          | ❌      | ❌    | ❌     |
-| Validation          | ❌          | ❌      | ❌    | ❌     |
+| Creation            | ✅         | ✅     | ❌   | ❌    |
+| Signing as `vc-jwt` | ✅         | ✅     | ❌   | ❌    |
+| Verification        | ✅         | ✅     | ❌   | ❌    |
+| Validation          | ✅         | ✅     | ❌   | ❌    |
 
-### SD-JWT / SD-JWT-VC
+### [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/)
+
+| Feature                   | Typescript | Kotlin | Rust | Swift |
+| ------------------------- | ---------- | ------ | ---- | ----- |
+| Creation                  | ❌         | ❌     | ❌   | ❌    |
+| Signing as `vc-jose-cose` | ❌         | ❌     | ❌   | ❌    |
+| Verification              | ❌         | ❌     | ❌   | ❌    |
+| Validation                | ❌         | ❌     | ❌   | ❌    |
+
+### [SD-JWT](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) / [SD-JWT-VC](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/)
 
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ❌          | ❌      | ❌    | ❌     |
-| Signing as `vc-jwt` | ❌          | ❌      | ❌    | ❌     |
-| Verification        | ❌          | ❌      | ❌    | ❌     |
-| Validation          | ❌          | ❌      | ❌    | ❌     |
+| Creation            | ❌         | ❌     | ❌   | ❌    |
+| Signing             | ❌         | ❌     | ❌   | ❌    |
+| Verification        | ❌         | ❌     | ❌   | ❌    |
+| Validation          | ❌         | ❌     | ❌   | ❌    |
 
-### Presentation Definition V2
+### [Bitstring Status List](https://w3c.github.io/vc-bitstring-status-list/)
+
+| Feature                           | Typescript | Kotlin | Rust | Swift |
+| --------------------------------- | ---------- | ------ | ---- | ----- |
+| Creation using `vc-jwt`           | ❌         | ❌     | ❌   | ❌   |
+| Validation using `vc-jwt`         | ❌         | ❌     | ❌   | ❌   |
+
+### [VC JSON Schema](https://www.w3.org/TR/vc-json-schema/)
+
+| Feature                           | Typescript | Kotlin | Rust | Swift |
+| --------------------------------- | ---------- | ------ | ---- | ----- |
+| Creation `JsonSchema`             | ❌         | ❌     | ❌   | ❌   |
+| Creation `JsonSchemaCredential`   | ❌         | ❌     | ❌   | ❌   |
+| Validation `JsonSchema`           | ❌         | ❌     | ❌   | ❌   |
+| Validation `JsonSchemaCredential` | ❌         | ❌     | ❌   | ❌   |
+
+### [Presentation Exchange V2](https://identity.foundation/presentation-exchange/spec/v2.0.0/)
 
 | Feature               | Typescript | Kotlin | Rust | Swift |
 | --------------------- | ---------- | ------ | ---- | ----- |
-| Concrete Type         | ✅          | ✅      | ❌    | ❌     |
-| Validation            | ✅          | ⚠️      | ❌    | ❌     |
-| Credential Evaluation | ✅          | ⚠️      | ❌    | ❌     |
+| Concrete Type         | ✅         | ✅     | ❌   | ❌    |
+| Validation            | ✅         | ⚠️      | ❌   | ❌    |
+| Credential Evaluation | ✅         | ⚠️      | ❌   | ❌    |
 
 ### tbDEX Message
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
+| Validation   | ✅         | ✅     | ❌   | ❌    |
+| Signing      | ✅         | ✅     | ❌   | ❌    |
+| Verification | ✅         | ✅     | ❌   | ❌    |
+| Parsing      | ✅         | ✅     | ❌   | ❌    |
 
 ### tbDEX Resource
 
