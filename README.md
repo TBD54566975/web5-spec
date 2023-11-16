@@ -31,7 +31,6 @@
   - [VC JSON Schema](#vc-json-schema)
   - [Presentation Exchange V2](#presentation-exchange-v2)
 
-
 ## Purpose
 
 This repo sets forth the development process and requirements for the following SDKs:
@@ -44,6 +43,7 @@ This repo sets forth the development process and requirements for the following 
 - [web5-rs](https://github.com/TBD54566975/web5-rs)
 
 It contains the desired feature set for:
+
 - [web5-js](https://github.com/TBD54566975/web5-js)
 - [web5-kt](https://github.com/TBD54566975/web5-kt)
 - [web5-rs](https://github.com/TBD54566975/web5-rs)
