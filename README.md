@@ -15,7 +15,7 @@
   - [Publishing Artifacts](#publishing-artifacts)
   - [Publishing API Reference Documentation](#publishing-api-reference-documentation)
   - [Example Feature Usage](#example-feature-usage)
-- [Features](#features)
+- [Web5 SDK Features](#web5-sdk-features)
   - [Cryptographic Digital Signature Algorithms (DSA)](#cryptographic-digital-signature-algorithms-dsa)
   - [Key Management](#key-management)
   - [`did:web`](#didweb)
@@ -30,24 +30,20 @@
   - [Bitstring Status List](#bitstring-status-list)
   - [VC JSON Schema](#vc-json-schema)
   - [Presentation Exchange V2](#presentation-exchange-v2)
-  - [tbDEX Message](#tbdex-message)
-  - [tbDEX Resource](#tbdex-resource)
-  - [tbDEX Offering Resource](#tbdex-offering-resource)
-  - [tbDEX RFQ Message](#tbdex-rfq-message)
-  - [tbDEX Quote Message](#tbdex-quote-message)
-  - [tbDEX Order Message](#tbdex-order-message)
-  - [tbDEX Order-Status Message](#tbdex-order-status-message)
-  - [tbDEX Close Message](#tbdex-close-message)
-  - [tbDEX Client](#tbdex-client)
-  - [tbDEX Server](#tbdex-server)
 
 ## Purpose
 
-This repo sets forth the development process, requirements, and desired feature set for the following SDKs:
+This repo sets forth the development process and requirements for the following SDKs:
 
 - [tbdex-js](https://github.com/TBD54566975/tbdex-js)
 - [tbdex-kt](https://github.com/TBD54566975/tbdex-kt)
 - [tbdex-rs](https://github.com/TBD54566975/tbdex-rs)
+- [web5-js](https://github.com/TBD54566975/web5-js)
+- [web5-kt](https://github.com/TBD54566975/web5-kt)
+- [web5-rs](https://github.com/TBD54566975/web5-rs)
+
+It contains the desired feature set for:
+
 - [web5-js](https://github.com/TBD54566975/web5-js)
 - [web5-kt](https://github.com/TBD54566975/web5-kt)
 - [web5-rs](https://github.com/TBD54566975/web5-rs)
@@ -237,7 +233,7 @@ Each SDK will auto generate API reference documentation using the respective lan
 
 Each SDK will **publish** example usage for _each_ implemented feature. This can either be included as a part of API reference documentation _or_ published separately
 
-## Features
+## Web5 SDK Features
 
 ### Cryptographic Digital Signature Algorithms (DSA)
 
@@ -373,101 +369,3 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | Concrete Type         | ✅         | ✅     | ❌   | ❌    |
 | Validation            | ✅         | ⚠️      | ❌   | ❌    |
 | Credential Evaluation | ✅         | ⚠️      | ❌   | ❌    |
-
-### tbDEX Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Validation   | ✅         | ✅     | ❌   | ❌    |
-| Signing      | ✅         | ✅     | ❌   | ❌    |
-| Verification | ✅         | ✅     | ❌   | ❌    |
-| Parsing      | ✅         | ✅     | ❌   | ❌    |
-
-### tbDEX Resource
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Offering Resource
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX RFQ Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Quote Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Order Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Order-Status Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Close Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Client
-
-| Feature       | Typescript | Kotlin | Rust | Swift |
-| ------------- | ---------- | ------ | ---- | ----- |
-| Send Message  | ✅          | ✅      | ❌    | ❌     |
-| Get Exchange  | ✅          | ✅      | ❌    | ❌     |
-| Get Exchanges | ✅          | ✅      | ❌    | ❌     |
-| Get Offerings | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Server
-
-| Feature               | Typescript | Kotlin | Rust | Swift |
-| --------------------- | ---------- | ------ | ---- | ----- |
-| Get Exchange Handler  | ✅          | ❌      | ❌    | ❌     |
-| Get Exchanges Handler | ✅          | ❌      | ❌    | ❌     |
-| Get Offerings Handler | ✅          | ❌      | ❌    | ❌     |
-| Submit RFQ Handler    | ✅          | ❌      | ❌    | ❌     |
-| Submit Order Handler  | ✅          | ❌      | ❌    | ❌     |
-| Submit Close Handler  | ✅          | ❌      | ❌    | ❌     |
