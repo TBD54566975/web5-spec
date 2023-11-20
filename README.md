@@ -250,6 +250,7 @@ The `tbdex` repo houses tbdex feature related vectors. They are available in the
 SDK implementers should import vectors in order to test their implementation. The recommended pathway to consume them is as follows:
 
 Fetch the vector and read it into a data model representing the vector structure or a JSON object like so:
+
 ```kt
 // for web5 vectors
 val stream = URL("https://{INSERT DOMAIN URL}/web5-test-vectors/did-jwk/resolve.json").openStream()
