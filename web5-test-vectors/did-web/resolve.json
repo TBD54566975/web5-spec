@@ -12,6 +12,7 @@
         }
       },
       "output": {
+        "didResolutionMetadata": {},
         "didDocument": {
           "id": "did:web:example.com"
         }
@@ -29,6 +30,7 @@
         }
       },
       "output": {
+        "didResolutionMetadata": {},
         "didDocument": {
           "id": "did:web:w3c-ccg.github.io:user:alice"
         }
@@ -46,6 +48,7 @@
         }
       },
       "output": {
+        "didResolutionMetadata": {},
         "didDocument": {
           "id": "did:web:example.com%3A3000:user:alice"
         }
