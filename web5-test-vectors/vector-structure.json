@@ -1,0 +1,20 @@
+{
+    "description": "Describe the feature under test",
+    "numberOfTests": 2,
+    "vectors": [
+        {
+            "testId": 1,
+            "description": "describe this test case",
+            "input": {},
+            "output": {},
+            "result": "valid"
+        },
+        {
+            "testId": 2,
+            "description": "describe the next test case",
+            "input": {},
+            "output": {},
+            "result": "invalid"
+        }
+    ]
+}
