@@ -1,0 +1,56 @@
+{
+  "description": "did:web resolution",
+  "vectors": [
+    {
+      "description": "resolves to a well known URL",
+      "input": {
+        "didUri": "did:web:example.com",
+        "mockServer": {
+          "https://example.com/.well-known/did.json": {
+            "id": "did:web:example.com"
+          }
+        }
+      },
+      "output": {
+        "didDocument": {
+          "id": "did:web:example.com"
+        }
+      },
+      "result": "valid"
+    },
+    {
+      "description": "resolves to a URL with a path",
+      "input": {
+        "didUri": "did:web:w3c-ccg.github.io:user:alice",
+        "mockServer": {
+          "https://w3c-ccg.github.io/user/alice/did.json": {
+            "id": "did:web:w3c-ccg.github.io:user:alice"
+          }
+        }
+      },
+      "output": {
+        "didDocument": {
+          "id": "did:web:w3c-ccg.github.io:user:alice"
+        }
+      },
+      "result": "valid"
+    },
+    {
+      "description": "resolves to a URL with a path and a port",
+      "input": {
+        "didUri": "did:web:example.com%3A3000:user:alice",
+        "mockServer": {
+          "https://example.com:3000/user/alice/did.json": {
+            "id": "did:web:example.com%3A3000:user:alice"
+          }
+        }
+      },
+      "output": {
+        "didDocument": {
+          "id": "did:web:example.com%3A3000:user:alice"
+        }
+      },
+      "result": "valid"
+    }
+  ]
+}
