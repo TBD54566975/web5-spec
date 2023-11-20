@@ -236,6 +236,7 @@ Each SDK will auto generate API reference documentation using the respective lan
 Each SDK will **publish** example usage for _each_ implemented feature. This can either be included as a part of API reference documentation _or_ published separately
 
 ## Test Vectors
+
 Test vectors ensure interoporability of features across SDKs and language implementations by providing common test cases with an input and expected output pair. They include both success and failure cases that can be vectorized.
 
 This repo serves as the home for all web5 feature related vectors. They are available in the [web5-test-vectors](./web5-test-vectors/) directory.
@@ -245,6 +246,7 @@ The `tbdex` repo houses tbdex feature related vectors. They are available in the
 ### Usage
 
 #### Local Dev
+
 SDK implementers should import vectors in order to test their implementation. The recommended pathway to consume them is as follows:
 
 Fetch the vector and read it into a data model representing the vector structure or a JSON object like so:
@@ -260,15 +262,17 @@ val vectorsJson = BufferedReader(InputStreamReader(stream)).readText()
 return Json.jsonMapper.readTree(vectorsJson)
 ```
 
-The data model or JSON object can then be used in the implementer's unit testing framework of choice. 
+The data model or JSON object can then be used in the implementer's unit testing framework of choice.
 
 #### Adding/Updating Vectors
+
 New test vectors should follow the standard [vector structure](/web5-test-vectors/vector-structure.json).
 
-Create a PR in this repo for web5 vectors, or in [`tbdex`](https://github.com/TBD54566975/tbdex) for tbdex vectors with the proposed changes or additions. 
+Create a PR in this repo for web5 vectors, or in [`tbdex`](https://github.com/TBD54566975/tbdex) for tbdex vectors with the proposed changes or additions.
 
 #### Feature Completeness By SDK
-Test vectors are also used to determine feature completeness via our [test harness](./test-harness/README.md). Results of test harness runs can be found [here](https://tbd54566975.github.io/sdk-development/). 
+
+Test vectors are also used to determine feature completeness via our [test harness](./test-harness/README.md). Results of test harness runs can be found [here](https://tbd54566975.github.io/sdk-development/).
 
 ## Web5 SDK Features
 
