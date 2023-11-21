@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main]
+    branches: ["main", "plew.host-web5-vectors"]
 jobs:
   pages:
     permissions:

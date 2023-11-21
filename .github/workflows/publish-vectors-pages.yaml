@@ -4,7 +4,7 @@ name: Publish Test Vectors
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ["main", "plew.host-web5-vectors"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,7 +26,6 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      # TODO - need to set up a custom domain to host the web5 vectors. cannot reuse tbdex.dev in multiple repos
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
