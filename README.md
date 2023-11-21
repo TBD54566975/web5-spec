@@ -243,8 +243,6 @@ This repo serves as the home for all web5 feature related vectors. They are avai
 
 The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory and hosted on [Github Pages](https://tbdex.dev/).
 
-
-
 ### Usage
 
 #### Local Dev
