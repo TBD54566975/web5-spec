@@ -18,6 +18,18 @@ const validate = ajv.compile(vectorsSchema)
 function validateTestVectors() {
   const entries = fs.readdirSync(vectorsDir, { withFileTypes: true })
 
+  function validateDescriptions(testData) {
+    // accumulate duplicates inside a map
+    const descriptions = new Set()
+    for (const vector of testData.vectors) {
+      if (descriptions.has(vector.description)) {
+        console.log("Duplicate description found: \"" + vector.description + "\". Descriptions are meant to be unique.")
+        process.exit(1)
+      }
+      descriptions.add(vector.description)
+    }
+  }
+
   for (const entry of entries) {
     if (!entry.isDirectory()) {
       continue
@@ -35,9 +47,9 @@ function validateTestVectors() {
         if (!validate(testData)) {
           console.log(`Validation failed for ${filePath}:`, validate.errors)
           process.exit(1)
-        } else {
-          console.log(`Validation passed for ${filePath}`)
         }
+        validateDescriptions(testData)
+        console.log(`Validation passed for ${filePath}`)
       }
     }
   }

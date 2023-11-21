@@ -16,8 +16,7 @@
         "didDocument": {
           "id": "did:web:example.com"
         }
-      },
-      "result": "valid"
+      }
     },
     {
       "description": "resolves to a URL with a path",
@@ -34,8 +33,7 @@
         "didDocument": {
           "id": "did:web:w3c-ccg.github.io:user:alice"
         }
-      },
-      "result": "valid"
+      }
     },
     {
       "description": "resolves to a URL with a path and a port",
@@ -52,8 +50,7 @@
         "didDocument": {
           "id": "did:web:example.com%3A3000:user:alice"
         }
-      },
-      "result": "valid"
+      }
     }
   ]
 }
