@@ -15,6 +15,11 @@
   - [Publishing Artifacts](#publishing-artifacts)
   - [Publishing API Reference Documentation](#publishing-api-reference-documentation)
   - [Example Feature Usage](#example-feature-usage)
+- [Test Vectors](#test-vectors)
+  - [Usage](#usage)
+    - [Local Dev](#local-dev)
+    - [Adding/Updating Vectors](#addingupdating-vectors)
+    - [Feature Completeness By SDK](#feature-completeness-by-sdk)
 - [Web5 SDK Features](#web5-sdk-features)
   - [Cryptographic Digital Signature Algorithms (DSA)](#cryptographic-digital-signature-algorithms-dsa)
   - [Key Management](#key-management)
@@ -232,6 +237,46 @@ Each SDK will auto generate API reference documentation using the respective lan
 ### Example Feature Usage
 
 Each SDK will **publish** example usage for _each_ implemented feature. This can either be included as a part of API reference documentation _or_ published separately
+
+## Test Vectors
+
+Test vectors ensure interoporability of features across SDKs and language implementations by providing common test cases with an input and expected output pair. They include both success and failure cases that can be vectorized.
+
+This repo serves as the home for all web5 feature related vectors. They are available in the [web5-test-vectors](./web5-test-vectors/) directory and hosted on [Github Pages](https://tbd54566975.github.io/sdk-development/web5-test-vectors).
+
+The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory and hosted on [Github Pages](https://tbdex.dev/).
+
+### Usage
+
+#### Local Dev
+
+SDK implementers should import vectors in order to test their implementation. The recommended pathway to consume them is as follows:
+
+Fetch the vector and read it into a data model representing the vector structure or a JSON object like so:
+
+```kt
+// for web5 vectors
+val stream = URL("https://tbd54566975.github.io/sdk-development/web5-test-vectors/did-jwk/resolve.json").openStream()
+val vectorsJson = BufferedReader(InputStreamReader(stream)).readText()
+return Json.jsonMapper.readTree(vectorsJson)
+
+// for tbdex vectors
+val stream = URL("https://tbdex.dev/test-vectors/resources/marshal.json").openStream()
+val vectorsJson = BufferedReader(InputStreamReader(stream)).readText()
+return Json.jsonMapper.readTree(vectorsJson)
+```
+
+The data model or JSON object can then be used in the implementer's unit testing framework of choice.
+
+#### Adding/Updating Vectors
+
+New test vectors should follow the standard [vector structure](./web5-test-vectors/vectors.schema.json). Vectors are automatically validated against the JSON schema via CI.
+
+Create a PR in this repo for web5 vectors, or in [`tbdex`](https://github.com/TBD54566975/tbdex) for tbdex vectors with the proposed changes or additions.
+
+#### Feature Completeness By SDK
+
+Test vectors are also used to determine feature completeness via our [test harness](./test-harness/README.md). Results of test harness runs can be found [here](https://tbd54566975.github.io/sdk-development/).
 
 ## Web5 SDK Features
 

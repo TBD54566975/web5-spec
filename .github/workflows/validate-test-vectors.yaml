@@ -1,0 +1,30 @@
+name: Validate Test Vectors
+
+on:
+  push:
+    paths:
+      - 'web5-test-vectors/**'
+      - 'scripts/test-vector-validation/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies for test vector validation script
+        run: |
+          cd scripts/test-vector-validation
+          npm install
+
+      - name: Validate test vectors
+        run: |
+          cd scripts/test-vector-validation
+          node main.js
