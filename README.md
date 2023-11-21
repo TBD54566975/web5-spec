@@ -239,9 +239,11 @@ Each SDK will **publish** example usage for _each_ implemented feature. This can
 
 Test vectors ensure interoporability of features across SDKs and language implementations by providing common test cases with an input and expected output pair. They include both success and failure cases that can be vectorized.
 
-This repo serves as the home for all web5 feature related vectors. They are available in the [web5-test-vectors](./web5-test-vectors/) directory.
+This repo serves as the home for all web5 feature related vectors. They are available in the [web5-test-vectors](./web5-test-vectors/) directory and hosted on [Github Pages](https://tbd54566975.github.io/sdk-development/web5-test-vectors).
 
-The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory.
+The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory and hosted on [Github Pages](https://tbdex.dev/).
+
+
 
 ### Usage
 
@@ -253,7 +255,7 @@ Fetch the vector and read it into a data model representing the vector structure
 
 ```kt
 // for web5 vectors
-val stream = URL("https://{INSERT DOMAIN URL}/web5-test-vectors/did-jwk/resolve.json").openStream()
+val stream = URL("https://tbd54566975.github.io/sdk-development/web5-test-vectors/did-jwk/resolve.json").openStream()
 val vectorsJson = BufferedReader(InputStreamReader(stream)).readText()
 return Json.jsonMapper.readTree(vectorsJson)
 
@@ -267,7 +269,7 @@ The data model or JSON object can then be used in the implementer's unit testing
 
 #### Adding/Updating Vectors
 
-New test vectors should follow the standard [vector structure](/web5-test-vectors/vector-structure.json).
+New test vectors should follow the standard [vector structure](/web5-test-vectors/vector-structure.json.schema). Vectors are automatically validated against the JSON schema via CI.
 
 Create a PR in this repo for web5 vectors, or in [`tbdex`](https://github.com/TBD54566975/tbdex) for tbdex vectors with the proposed changes or additions.
 

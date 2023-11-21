@@ -1,9 +1,8 @@
 {
   "description": "did:jwk resolution test vectors",
-  "numberOfTests": 2,
   "vectors": [
     {
-      "testId": 1,
+      "description": "resolves did:jwk 1",
       "input": "did:jwk:eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6ImFjYklRaXVNczNpOF91c3pFakoydHBUdFJNNEVVM3l6OTFQSDZDZEgyVjAiLCJ5IjoiX0tjeUxqOXZXTXB0bm1LdG00NkdxRHo4d2Y3NEk1TEtncmwyR3pIM25TRSJ9",
       "output": {
         "@context": "https://w3id.org/did-resolution/v1",
@@ -43,10 +42,10 @@
           ]
         }
       },
-      "result": "valid"
+      "errors": false
     },
     {
-      "testId": 2,
+      "description": "resolves did:jwk 2",
       "input": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJYMjU1MTkiLCJ1c2UiOiJlbmMiLCJ4IjoiM3A3YmZYdDl3YlRUVzJIQzdPUTFOei1EUThoYmVHZE5yZngtRkctSUswOCJ9",
       "output": {
         "@context": "https://w3id.org/did-resolution/v1",
@@ -74,7 +73,7 @@
           ]
         }
       },
-      "result": "valid"
+      "errors": false
     }
   ]
 }
