@@ -15,22 +15,34 @@ web5-test-vectors
 
 ## Test Vector Files
 
-Test vector files should adhere to [`vectors.schema.json`]('./vectors.schema.json'). This repo contains a [`test-vector-validation`]('../scripts/test-vector-validation') script that validates all vectors files in this directory. It can be run manually by following the directions in the script directory's README.
+Test vector files should adhere to [`vectors.schema.json`]('./vectors.schema.json'). This repo contains a [`test-vector-validation`]('../scripts/test-vector-validation') script that validates all vectors files in this directory. It can be run manually by following the instructions [here](../scripts/test-vector-validation/README.md).
 
 > [!NOTE]
-> Vector Validation runs automatically anytime a change is made in this directory or to the script itself.
+> Test Vector Validation runs automatically anytime a change is made in this directory or to the script itself.
 
-Each test vector is a structured collection of test vectors, where each vector is designed to validate specific features or behaviors. The schema ensures that the file includes a general description of the collection and an array of test vectors. Each test vector within the array provides a detailed account of what is being tested, including the input data, expected output data, and whether an error is anticipated.
-
-Below is a table that outlines the expected fields in the JSON file:
+Each test vector file is a structured collection of test vector objects, where each vector asserts a specific outcome for a given input. Below is a table that outlines the expected fields in a test vector file:
 
 | Field                   | Type    | Description                                                                                          | Required |
 | ----------------------- | ------- | ---------------------------------------------------------------------------------------------------- | :------: |
 | `description`           | string  | A general description of the test vectors collection.                                                |   Yes    |
-| `vectors`               | array   | An array of test vectors for testing different features.                                             |   Yes    |
-| `vectors[].description` | string  | A description of what this test vector is validating.                                                |   Yes    |
+| `vectors`               | array   | An array of test vector objects.                                                                     |   Yes    |
+| `vectors[].description` | string  | A description of what this test vector is testing.                                                   |   Yes    |
 | `vectors[].input`       | any     | The input for the test vector, which can be of any type.                                             |   Yes    |
 | `vectors[].output`      | any     | The expected output for the test vector, which can be of any type.                                   |    No    |
 | `vectors[].errors`      | boolean | Indicates whether the test vector is expected to produce an error. Defaults to false if not present. |    No    |
 
-Each `vectors[]` element represents a single test scenario, complete with its own description, inputs, and expected results, which are used to validate the corresponding feature or functionality.
+### Rationale for Test Vector Structure
+
+The structure of a `vector` object is designed to fulfill two conditions:
+
+* the function works and returns something that should match `output`
+* the function throws an error (in whatever way the consuming language represents errors)
+  * _optionally_, the error's _output_ should match `output`
+
+`errors: true` is an instruction to anticipate an error in the implementation language. For example:
+
+* In languages like Kotlin or Javascript, the presence of `errors: true` would imply that `assertThrows` be used.
+* In Go, the expectation would be for the err variable to be non-nil.
+* In Rust, the error handling would pivot on matching `Result.Err` rather than `Result.Ok`.
+
+Should `errors` be set to `true`, the `output` field may optionally be used to include expected error messages.
