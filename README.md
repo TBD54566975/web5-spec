@@ -15,7 +15,12 @@
   - [Publishing Artifacts](#publishing-artifacts)
   - [Publishing API Reference Documentation](#publishing-api-reference-documentation)
   - [Example Feature Usage](#example-feature-usage)
-- [Features](#features)
+- [Test Vectors](#test-vectors)
+  - [Usage](#usage)
+    - [Local Dev](#local-dev)
+    - [Adding/Updating Vectors](#addingupdating-vectors)
+    - [Feature Completeness By SDK](#feature-completeness-by-sdk)
+- [Web5 SDK Features](#web5-sdk-features)
   - [Cryptographic Digital Signature Algorithms (DSA)](#cryptographic-digital-signature-algorithms-dsa)
   - [Key Management](#key-management)
   - [`did:web`](#didweb)
@@ -27,25 +32,23 @@
   - [W3C Verifiable Credential Data Model 1.1](#w3c-verifiable-credential-data-model-11)
   - [W3C Verifiable Credential Data Model 2.0](#w3c-verifiable-credential-data-model-20)
   - [SD-JWT / SD-JWT-VC](#sd-jwt--sd-jwt-vc)
-  - [Presentation Definition V2](#presentation-definition-v2)
-  - [tbDEX Message](#tbdex-message)
-  - [tbDEX Resource](#tbdex-resource)
-  - [tbDEX Offering Resource](#tbdex-offering-resource)
-  - [tbDEX RFQ Message](#tbdex-rfq-message)
-  - [tbDEX Quote Message](#tbdex-quote-message)
-  - [tbDEX Order Message](#tbdex-order-message)
-  - [tbDEX Order-Status Message](#tbdex-order-status-message)
-  - [tbDEX Close Message](#tbdex-close-message)
-  - [tbDEX Client](#tbdex-client)
-  - [tbDEX Server](#tbdex-server)
+  - [Bitstring Status List](#bitstring-status-list)
+  - [VC JSON Schema](#vc-json-schema)
+  - [Presentation Exchange V2](#presentation-exchange-v2)
 
 ## Purpose
 
-This repo sets forth the development process, requirements, and desired feature set for the following SDKs:
+This repo sets forth the development process and requirements for the following SDKs:
 
 - [tbdex-js](https://github.com/TBD54566975/tbdex-js)
 - [tbdex-kt](https://github.com/TBD54566975/tbdex-kt)
 - [tbdex-rs](https://github.com/TBD54566975/tbdex-rs)
+- [web5-js](https://github.com/TBD54566975/web5-js)
+- [web5-kt](https://github.com/TBD54566975/web5-kt)
+- [web5-rs](https://github.com/TBD54566975/web5-rs)
+
+It contains the desired feature set for:
+
 - [web5-js](https://github.com/TBD54566975/web5-js)
 - [web5-kt](https://github.com/TBD54566975/web5-kt)
 - [web5-rs](https://github.com/TBD54566975/web5-rs)
@@ -106,6 +109,7 @@ The following labels should exist in all relevant repos
 | `w3c-vc-dm-2.0`      | `#01FF70` | W3C Verifiable Credential Data Model 2.0   |
 | `sd-jwt`             | `#85144B` | SD-JWT / SD-JWT-VC                         |
 | `pd-v2`              | `#F9A602` | Presentation Definition V2                 |
+| `vc-json-schema`     | `#C86F42` | VC JSON Schema                             |
 | `tbdex-message`      | `#70DB93` | tbDEX Message                              |
 | `tbdex-resource`     | `#5B2C6F` | tbDEX Resource                             |
 | `tbdex-offering`     | `#E59866` | tbDEX Offering Resource                    |
@@ -234,7 +238,47 @@ Each SDK will auto generate API reference documentation using the respective lan
 
 Each SDK will **publish** example usage for _each_ implemented feature. This can either be included as a part of API reference documentation _or_ published separately
 
-## Features
+## Test Vectors
+
+Test vectors ensure interoporability of features across SDKs and language implementations by providing common test cases with an input and expected output pair. They include both success and failure cases that can be vectorized.
+
+This repo serves as the home for all web5 feature related vectors. They are available in the [web5-test-vectors](./web5-test-vectors/) directory and hosted on [Github Pages](https://tbd54566975.github.io/sdk-development/web5-test-vectors).
+
+The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory and hosted on [Github Pages](https://tbdex.dev/).
+
+### Usage
+
+#### Local Dev
+
+SDK implementers should import vectors in order to test their implementation. The recommended pathway to consume them is as follows:
+
+Fetch the vector and read it into a data model representing the vector structure or a JSON object like so:
+
+```kt
+// for web5 vectors
+val stream = URL("https://tbd54566975.github.io/sdk-development/web5-test-vectors/did-jwk/resolve.json").openStream()
+val vectorsJson = BufferedReader(InputStreamReader(stream)).readText()
+return Json.jsonMapper.readTree(vectorsJson)
+
+// for tbdex vectors
+val stream = URL("https://tbdex.dev/test-vectors/resources/marshal.json").openStream()
+val vectorsJson = BufferedReader(InputStreamReader(stream)).readText()
+return Json.jsonMapper.readTree(vectorsJson)
+```
+
+The data model or JSON object can then be used in the implementer's unit testing framework of choice.
+
+#### Adding/Updating Vectors
+
+New test vectors should follow the standard [vector structure](./web5-test-vectors/vectors.schema.json). Vectors are automatically validated against the JSON schema via CI.
+
+Create a PR in this repo for web5 vectors, or in [`tbdex`](https://github.com/TBD54566975/tbdex) for tbdex vectors with the proposed changes or additions.
+
+#### Feature Completeness By SDK
+
+Test vectors are also used to determine feature completeness via our [test harness](./test-harness/README.md). Results of test harness runs can be found [here](https://tbd54566975.github.io/sdk-development/).
+
+## Web5 SDK Features
 
 ### Cryptographic Digital Signature Algorithms (DSA)
 
@@ -274,182 +318,99 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 > [!NOTE]
 > ⚠️ = implemented but no test vectors present
 
-### `did:web`
+### [`did:web`](https://w3c-ccg.github.io/did-method-web/)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Resolution` | ❌          | ❌      | ❌    | ❌     |
 
-### `did:jwk`
+### [`did:jwk`](https://github.com/quartzjer/did-jwk/blob/main/spec.md)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
 | `Creation`   | ❌          | ❌      | ❌    | ❌     |
 | `Resolution` | ❌          | ❌      | ❌    | ❌     |
 
-### `did:dht`
+### [`did:dht`](https://tbd54566975.github.io/did-dht-method/)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
 
-### `did:key`
+### [`did:key`](https://w3c-ccg.github.io/did-method-key/)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
 
 > [!IMPORTANT]
 > `did:key` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
 
-### `did:ion`
+### [`did:ion`](https://identity.foundation/sidetree/spec)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌     |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌     |
+| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
+| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
 
 > [!IMPORTANT]
 > `did:ion` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
 
-### DID Document & Resolution Validation
+### [DID Document](https://www.w3.org/TR/did-core/) & [Resolution Validation](https://w3c-ccg.github.io/did-resolution/)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| JSON Schema  | ❌          | ❌      | ❌    | ❌     |
-| Common Error | ❌          | ❌      | ❌    | ❌     |
+| Common Error | ❌         | ❌     | ❌    | ❌   |
 
-### W3C Verifiable Credential Data Model 1.1
-
-| Feature             | Typescript | Kotlin | Rust | Swift |
-| ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ✅          | ✅      | ❌    | ❌     |
-| Signing as `vc-jwt` | ✅          | ✅      | ❌    | ❌     |
-| Verification        | ✅          | ✅      | ❌    | ❌     |
-| Validation          | ✅          | ✅      | ❌    | ❌     |
-
-### W3C Verifiable Credential Data Model 2.0
+### [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model)
 
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ❌          | ❌      | ❌    | ❌     |
-| Signing as `vc-jwt` | ❌          | ❌      | ❌    | ❌     |
-| Verification        | ❌          | ❌      | ❌    | ❌     |
-| Validation          | ❌          | ❌      | ❌    | ❌     |
+| Creation            | ✅         | ✅     | ❌   | ❌    |
+| Signing as `vc-jwt` | ✅         | ✅     | ❌   | ❌    |
+| Verification        | ✅         | ✅     | ❌   | ❌    |
+| Validation          | ✅         | ✅     | ❌   | ❌    |
 
-### SD-JWT / SD-JWT-VC
+### [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/)
+
+| Feature                   | Typescript | Kotlin | Rust | Swift |
+| ------------------------- | ---------- | ------ | ---- | ----- |
+| Creation                  | ❌         | ❌     | ❌   | ❌    |
+| Signing as `vc-jose-cose` | ❌         | ❌     | ❌   | ❌    |
+| Verification              | ❌         | ❌     | ❌   | ❌    |
+| Validation                | ❌         | ❌     | ❌   | ❌    |
+
+### [SD-JWT](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) / [SD-JWT-VC](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/)
 
 | Feature             | Typescript | Kotlin | Rust | Swift |
 | ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ❌          | ❌      | ❌    | ❌     |
-| Signing as `vc-jwt` | ❌          | ❌      | ❌    | ❌     |
-| Verification        | ❌          | ❌      | ❌    | ❌     |
-| Validation          | ❌          | ❌      | ❌    | ❌     |
+| Creation            | ❌         | ❌     | ❌   | ❌    |
+| Signing             | ❌         | ❌     | ❌   | ❌    |
+| Verification        | ❌         | ❌     | ❌   | ❌    |
+| Validation          | ❌         | ❌     | ❌   | ❌    |
 
-### Presentation Definition V2
+### [Bitstring Status List](https://w3c.github.io/vc-bitstring-status-list/)
+
+| Feature                           | Typescript | Kotlin | Rust | Swift |
+| --------------------------------- | ---------- | ------ | ---- | ----- |
+| Creation using `vc-jwt`           | ❌         | ❌     | ❌   | ❌   |
+| Validation using `vc-jwt`         | ❌         | ❌     | ❌   | ❌   |
+
+### [VC JSON Schema](https://www.w3.org/TR/vc-json-schema/)
+
+| Feature                           | Typescript | Kotlin | Rust | Swift |
+| --------------------------------- | ---------- | ------ | ---- | ----- |
+| Creation `JsonSchema`             | ❌         | ❌     | ❌   | ❌   |
+| Creation `JsonSchemaCredential`   | ❌         | ❌     | ❌   | ❌   |
+| Validation `JsonSchema`           | ❌         | ❌     | ❌   | ❌   |
+| Validation `JsonSchemaCredential` | ❌         | ❌     | ❌   | ❌   |
+
+### [Presentation Exchange V2](https://identity.foundation/presentation-exchange/spec/v2.0.0/)
 
 | Feature               | Typescript | Kotlin | Rust | Swift |
 | --------------------- | ---------- | ------ | ---- | ----- |
-| Concrete Type         | ✅          | ✅      | ❌    | ❌     |
-| Validation            | ✅          | ⚠️      | ❌    | ❌     |
-| Credential Evaluation | ✅          | ⚠️      | ❌    | ❌     |
-
-### tbDEX Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Resource
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Offering Resource
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX RFQ Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Quote Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Order Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Order-Status Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Close Message
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Creation     | ✅          | ✅      | ❌    | ❌     |
-| Validation   | ✅          | ✅      | ❌    | ❌     |
-| Signing      | ✅          | ✅      | ❌    | ❌     |
-| Verification | ✅          | ✅      | ❌    | ❌     |
-| Parsing      | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Client
-
-| Feature       | Typescript | Kotlin | Rust | Swift |
-| ------------- | ---------- | ------ | ---- | ----- |
-| Send Message  | ✅          | ✅      | ❌    | ❌     |
-| Get Exchange  | ✅          | ✅      | ❌    | ❌     |
-| Get Exchanges | ✅          | ✅      | ❌    | ❌     |
-| Get Offerings | ✅          | ✅      | ❌    | ❌     |
-
-### tbDEX Server
-
-| Feature               | Typescript | Kotlin | Rust | Swift |
-| --------------------- | ---------- | ------ | ---- | ----- |
-| Get Exchange Handler  | ✅          | ❌      | ❌    | ❌     |
-| Get Exchanges Handler | ✅          | ❌      | ❌    | ❌     |
-| Get Offerings Handler | ✅          | ❌      | ❌    | ❌     |
-| Submit RFQ Handler    | ✅          | ❌      | ❌    | ❌     |
-| Submit Order Handler  | ✅          | ❌      | ❌    | ❌     |
-| Submit Close Handler  | ✅          | ❌      | ❌    | ❌     |
+| Concrete Type         | ✅         | ✅     | ❌   | ❌    |
+| Validation            | ✅         | ⚠️      | ❌   | ❌    |
+| Credential Evaluation | ✅         | ⚠️      | ❌   | ❌    |
