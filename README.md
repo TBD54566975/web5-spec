@@ -17,6 +17,9 @@
   - [Example Feature Usage](#example-feature-usage)
 - [Test Vectors](#test-vectors)
   - [Usage](#usage)
+    - [Local Dev](#local-dev)
+    - [Adding/Updating Vectors](#addingupdating-vectors)
+    - [Feature Completeness By SDK](#feature-completeness-by-sdk)
 - [Web5 SDK Features](#web5-sdk-features)
   - [Cryptographic Digital Signature Algorithms (DSA)](#cryptographic-digital-signature-algorithms-dsa)
   - [Key Management](#key-management)
@@ -267,7 +270,7 @@ The data model or JSON object can then be used in the implementer's unit testing
 
 #### Adding/Updating Vectors
 
-New test vectors should follow the standard [vector structure](/web5-test-vectors/vector-structure.json.schema). Vectors are automatically validated against the JSON schema via CI.
+New test vectors should follow the standard [vector structure](./web5-test-vectors/vectors.schema.json). Vectors are automatically validated against the JSON schema via CI.
 
 Create a PR in this repo for web5 vectors, or in [`tbdex`](https://github.com/TBD54566975/tbdex) for tbdex vectors with the proposed changes or additions.
 
