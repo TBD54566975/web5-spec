@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main]
+    branches: ["main"]
 jobs:
   pages:
     permissions:
@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-go@v4
       - name: run for all SDKs
         run: cd test-harness && go run ./cmd/web5-test-harness many sdks/* && mv _site ../_site
+      - name: Copy test-vectors
+        run: cp -r ./web5-test-vectors _site/
       - uses: actions/upload-pages-artifact@v2
       - name: deploy GitHub Pages
         uses: actions/deploy-pages@v2
