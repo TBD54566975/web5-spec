@@ -78,6 +78,21 @@
         }
       },
       "errors": false
+    },
+    {
+      "description": "resolution for invalid did",
+      "input": "did:jwk:hehe",
+      "output": {
+        "didResolutionResult": {
+          "@context": "https://w3id.org/did-resolution/v1",
+          "didDocument": null,
+          "didResolutionMetadata": {
+            "error": "invalidDid"
+          },
+          "didDocumentMetadata": {}
+        }
+      },
+      "errors": false
     }
   ]
 }
