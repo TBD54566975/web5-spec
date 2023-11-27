@@ -2,13 +2,13 @@ package tests
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"math/rand"
 	"net/http"
 	"strings"
 	"time"
 
+	"github.com/TBD54566975/sdk-development/reports"
 	"golang.org/x/exp/slog"
 )
 
@@ -16,20 +16,20 @@ type testfn func(ctx context.Context, serverURL string) []error
 
 var tests = map[string]map[string]testfn{}
 
-var ErrNotSupported = errors.New("test not supported by this SDK")
-
-func RunTests(serverURL string) map[string]map[string][]error {
-	results := map[string]map[string][]error{}
+func RunTests(serverURL string) map[string]map[string]reports.Result {
+	results := map[string]map[string]reports.Result{}
 	for group, ts := range tests {
 		slog.Info("starting test group", "group", group)
-		results[group] = map[string][]error{}
+		results[group] = map[string]reports.Result{}
 		for t, fn := range ts {
 			slog.Info("running", "test", t)
 			ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 			defer cancel()
-			results[group][t] = fn(ctx, serverURL)
-			if results[t] != nil {
-				slog.Error("error", "test", t, "error", results[t])
+			start := time.Now()
+			errs := fn(ctx, serverURL)
+			results[group][t] = reports.Result{
+				Errors: errs,
+				Time:   time.Since(start),
 			}
 		}
 	}
@@ -76,7 +76,7 @@ func compareStringsContains(actual string, expected string, field string) error 
 
 func unexpectedResponseCode(r *http.Response, body []byte) []error {
 	if r.StatusCode == http.StatusNotFound {
-		return []error{ErrNotSupported}
+		return []error{reports.ErrNotSupported}
 	}
 
 	return []error{fmt.Errorf("%s: %s", r.Status, string(body))}

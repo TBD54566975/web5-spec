@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/TBD54566975/web5-spec/openapi"
+	"github.com/TBD54566975/sdk-development/openapi"
 )
 
 func init() {

@@ -11,7 +11,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
       - name: run for all SDKs
-        run: cd test-harness && go run ./cmd/web5-test-harness many sdks/* && mv _site ../_site
+        run: |
+          git clone https://github.com/TBD54566975/web5-js.git
+          git clone https://github.com/TBD54566975/web5-kt.git
+          cd test-harness
+          go run ./cmd/web5-test-harness many ../web5-* && mv _site ../_site
       - name: Copy test-vectors
         run: cp -r ./web5-test-vectors _site/
       - uses: actions/upload-pages-artifact@v2

@@ -28,12 +28,12 @@
                 {{ range $.Reports }}
                 <td>
                     {{ if not (index (index .Results $category) $test) }}
-                    {{ index (index .Results $category) $test | getEmoji }}
+                    {{ (index (index .Results $category) $test).GetEmoji }}
                     {{ else }}
                     <details>
-                    <summary>{{ index (index .Results $category) $test | getEmoji }}</summary>
+                    <summary>{{ (index (index .Results $category) $test).GetEmoji }}</summary>
                     <ul>
-                        {{ range index (index .Results $category) $test }}<li>{{ . }}</li>{{ end }}
+                        {{ range (index (index .Results $category) $test).Errors }}<li>{{ . }}</li>{{ end }}
                     </ul>
                     {{ end }}
                 </td>{{ end }}

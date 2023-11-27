@@ -1,4 +1,4 @@
-module github.com/TBD54566975/web5-spec
+module github.com/TBD54566975/sdk-development
 
 go 1.20
 
