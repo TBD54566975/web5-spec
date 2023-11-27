@@ -31,7 +31,8 @@
               "default": false,
               "description": "Indicates whether the test vector is expected to produce an error. Defaults to false if not present."
             }
-          }
+          },
+          "additionalProperties": false
         }
       }
     }

@@ -22,6 +22,7 @@ repositories {
     mavenCentral()
     maven(url = "https://jitpack.io")
     maven(url = "https://repo.danubetech.com/repository/maven-public/")
+    maven(url = "https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/")
 }
 
 dependencies {
