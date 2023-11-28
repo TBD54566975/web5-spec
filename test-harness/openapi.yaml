@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: web5 SDK test server
-  version: 0.2.0
+  version: 0.3.0
 paths:
   /did-ion/create:
     post:
@@ -24,6 +24,18 @@ paths:
   /did-ion/resolve:
     post:
       operationId: did_ion_resolve
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DidResolutionRequest"
+      responses:
+        "200":
+          description: the DID resolution result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DidResolutionResult"
   /did-ion/anchor:
     post:
       operationId: did_ion_anchor
@@ -33,6 +45,18 @@ paths:
   /did-key/resolve:
     post:
       operationId: did_key_resolve
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DidResolutionRequest"
+      responses:
+        "200":
+          description: the DID resolution result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DidResolutionResult"
   /credentials/presentation-exchange:
     post:
       operationId: credential_presentation_exchange
@@ -601,3 +625,167 @@ components:
         directive:
           type: string
           enum: [required, allowed, disallowed]
+    DidResolutionRequest:
+      type: object
+      externalDocs:
+        url: https://www.w3.org/TR/did-core/#did-resolution
+      required:
+        - did
+        - resolutionOptions
+      properties:
+        did:
+          type: string
+          externalDocs:
+            url: https://www.w3.org/TR/did-core/#did-syntax
+        resolutionOptions:
+          $ref: "#/components/schemas/DidResolutionOptions"
+    DidResolutionOptions:
+      type: object
+      externalDocs:
+        url: https://www.w3.org/TR/did-core/#did-resolution-options
+      properties:
+        accept:
+          type: string
+    DidResolutionResult:
+      type: object
+      externalDocs:
+        url: https://www.w3.org/TR/did-core/#did-resolution
+      properties:
+        didResolutionMetadata:
+          $ref: "#/components/schemas/DidResolutionMetadata"
+        didDocument:
+          $ref: "#/components/schemas/DidDocument"
+        didDocumentStream:
+          type: string
+        didDocumentMetadata:
+          $ref: "#/components/schemas/DidDocumentMetadata"
+    DidResolutionMetadata:
+      type: object
+      externalDocs:
+        url: https://www.w3.org/TR/did-core/#did-resolution-metadata
+      properties:
+        contentType:
+          type: string
+        error:
+          type: string
+    DidDocument:
+      type: object
+      externalDocs:
+        url: https://www.w3.org/TR/did-core/#did-document-properties
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        alsoKnownAs:
+          type: array
+          items:
+            type: string
+        controller:
+          oneOf:
+            - type: array
+              items:
+                type: string
+        verificationMethod:
+          type: array
+          items:
+            $ref: "#/components/schemas/DidDocumentVerificationMethod"
+        authentication:
+          type: array
+          items:
+            $ref: "#/components/schemas/DidDocumentVerificationMethod"
+        assertionMethod:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/DidDocumentVerificationMethod"
+              - type: string
+        keyAgreement:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/DidDocumentVerificationMethod"
+              - type: string
+        capabilityInvocation:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/DidDocumentVerificationMethod"
+              - type: string
+        capabilityDelegation:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/DidDocumentVerificationMethod"
+              - type: string
+        service:
+          $ref: "#/components/schemas/DidDocumentService"
+    DidDocumentVerificationMethod:
+      type: object
+      externalDocs:
+        url: https://www.w3.org/TR/did-core/#verification-method-properties
+      required:
+        - id
+        - controller
+        - type
+      properties:
+        id:
+          type: string
+        controller:
+          type: string
+        type:
+          type: string
+        publicKeyJwk:
+          $ref: "#/components/schemas/JSONWebKey"
+        publicKeyMultibase:
+          type: string
+    JSONWebKey:
+      type: object
+      externalDocs:
+        url: https://www.rfc-editor.org/rfc/rfc7517
+      additionalProperties: true
+      properties:
+        kty:
+          type: string
+          description: key type
+          externalDocs:
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.1
+        use:
+          type: string
+          description: public key use
+          externalDocs:
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.2
+        key_ops:
+          type: array
+          items:
+            type: string
+          description: key operations
+          externalDocs:
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.3
+        alg:
+          type: string
+          description: algorithm
+          externalDocs:
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.4
+        kid:
+          type: string
+          description: key ID
+          externalDocs:
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.5
+    DidDocumentService:
+      type: object
+      externalDocs:
+        url: https://www.w3.org/TR/did-core/#service-properties
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        serviceEndpoint:
+          description: spec has some alternative formats listed as well that we should support
+          type: string
+    DidDocumentMetadata:
+      type: object
+      externalDocs:
+        url: https://www.w3.org/TR/did-core/#metadata-structure
+      additionalProperties: true

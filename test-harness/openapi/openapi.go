@@ -12,6 +12,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/oapi-codegen/runtime"
 )
 
 // Defines values for PresentationDefinitionConstraintsLimitDisclosure.
@@ -92,6 +94,125 @@ type CredentialSubject map[string]interface{}
 // DIDIonCreateResponse defines model for DIDIonCreateResponse.
 type DIDIonCreateResponse struct {
 	Did string `json:"did"`
+}
+
+// DidDocument defines model for DidDocument.
+type DidDocument struct {
+	AlsoKnownAs          *[]string                                `json:"alsoKnownAs,omitempty"`
+	AssertionMethod      *[]DidDocument_AssertionMethod_Item      `json:"assertionMethod,omitempty"`
+	Authentication       *[]DidDocumentVerificationMethod         `json:"authentication,omitempty"`
+	CapabilityDelegation *[]DidDocument_CapabilityDelegation_Item `json:"capabilityDelegation,omitempty"`
+	CapabilityInvocation *[]DidDocument_CapabilityInvocation_Item `json:"capabilityInvocation,omitempty"`
+	Controller           *DidDocument_Controller                  `json:"controller,omitempty"`
+	Id                   string                                   `json:"id"`
+	KeyAgreement         *[]DidDocument_KeyAgreement_Item         `json:"keyAgreement,omitempty"`
+	Service              *DidDocumentService                      `json:"service,omitempty"`
+	VerificationMethod   *[]DidDocumentVerificationMethod         `json:"verificationMethod,omitempty"`
+}
+
+// DidDocumentAssertionMethod1 defines model for .
+type DidDocumentAssertionMethod1 = string
+
+// DidDocument_AssertionMethod_Item defines model for DidDocument.assertionMethod.Item.
+type DidDocument_AssertionMethod_Item struct {
+	union json.RawMessage
+}
+
+// DidDocumentCapabilityDelegation1 defines model for .
+type DidDocumentCapabilityDelegation1 = string
+
+// DidDocument_CapabilityDelegation_Item defines model for DidDocument.capabilityDelegation.Item.
+type DidDocument_CapabilityDelegation_Item struct {
+	union json.RawMessage
+}
+
+// DidDocumentCapabilityInvocation1 defines model for .
+type DidDocumentCapabilityInvocation1 = string
+
+// DidDocument_CapabilityInvocation_Item defines model for DidDocument.capabilityInvocation.Item.
+type DidDocument_CapabilityInvocation_Item struct {
+	union json.RawMessage
+}
+
+// DidDocumentController0 defines model for .
+type DidDocumentController0 = []string
+
+// DidDocument_Controller defines model for DidDocument.Controller.
+type DidDocument_Controller struct {
+	union json.RawMessage
+}
+
+// DidDocumentKeyAgreement1 defines model for .
+type DidDocumentKeyAgreement1 = string
+
+// DidDocument_KeyAgreement_Item defines model for DidDocument.keyAgreement.Item.
+type DidDocument_KeyAgreement_Item struct {
+	union json.RawMessage
+}
+
+// DidDocumentMetadata defines model for DidDocumentMetadata.
+type DidDocumentMetadata map[string]interface{}
+
+// DidDocumentService defines model for DidDocumentService.
+type DidDocumentService struct {
+	Id *string `json:"id,omitempty"`
+
+	// ServiceEndpoint spec has some alternative formats listed as well that we should support
+	ServiceEndpoint *string `json:"serviceEndpoint,omitempty"`
+	Type            *string `json:"type,omitempty"`
+}
+
+// DidDocumentVerificationMethod defines model for DidDocumentVerificationMethod.
+type DidDocumentVerificationMethod struct {
+	Controller         string      `json:"controller"`
+	Id                 string      `json:"id"`
+	PublicKeyJwk       *JSONWebKey `json:"publicKeyJwk,omitempty"`
+	PublicKeyMultibase *string     `json:"publicKeyMultibase,omitempty"`
+	Type               string      `json:"type"`
+}
+
+// DidResolutionMetadata defines model for DidResolutionMetadata.
+type DidResolutionMetadata struct {
+	ContentType *string `json:"contentType,omitempty"`
+	Error       *string `json:"error,omitempty"`
+}
+
+// DidResolutionOptions defines model for DidResolutionOptions.
+type DidResolutionOptions struct {
+	Accept *string `json:"accept,omitempty"`
+}
+
+// DidResolutionRequest defines model for DidResolutionRequest.
+type DidResolutionRequest struct {
+	Did               string               `json:"did"`
+	ResolutionOptions DidResolutionOptions `json:"resolutionOptions"`
+}
+
+// DidResolutionResult defines model for DidResolutionResult.
+type DidResolutionResult struct {
+	DidDocument           *DidDocument           `json:"didDocument,omitempty"`
+	DidDocumentMetadata   *DidDocumentMetadata   `json:"didDocumentMetadata,omitempty"`
+	DidDocumentStream     *string                `json:"didDocumentStream,omitempty"`
+	DidResolutionMetadata *DidResolutionMetadata `json:"didResolutionMetadata,omitempty"`
+}
+
+// JSONWebKey defines model for JSONWebKey.
+type JSONWebKey struct {
+	// Alg algorithm
+	Alg *string `json:"alg,omitempty"`
+
+	// KeyOps key operations
+	KeyOps *[]string `json:"key_ops,omitempty"`
+
+	// Kid key ID
+	Kid *string `json:"kid,omitempty"`
+
+	// Kty key type
+	Kty *string `json:"kty,omitempty"`
+
+	// Use public key use
+	Use                  *string                `json:"use,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // PresentationDefinition defines model for PresentationDefinition.
@@ -229,6 +350,12 @@ type CredentialIssueJSONRequestBody = CredentialIssuanceRequest
 // CredentialPresentationExchangeJSONRequestBody defines body for CredentialPresentationExchange for application/json ContentType.
 type CredentialPresentationExchangeJSONRequestBody = PresentationExchangeRequest
 
+// DidIonResolveJSONRequestBody defines body for DidIonResolve for application/json ContentType.
+type DidIonResolveJSONRequestBody = DidResolutionRequest
+
+// DidKeyResolveJSONRequestBody defines body for DidKeyResolve for application/json ContentType.
+type DidKeyResolveJSONRequestBody = DidResolutionRequest
+
 // EncodersBase58DecodeJSONRequestBody defines body for EncodersBase58Decode for application/json ContentType.
 type EncodersBase58DecodeJSONRequestBody = StringEncodedData
 
@@ -249,6 +376,418 @@ type EncodersCborEncodeJSONRequestBody = StringEncodedData
 
 // EncodersSha256EncodeJSONRequestBody defines body for EncodersSha256Encode for application/json ContentType.
 type EncodersSha256EncodeJSONRequestBody = StringEncodedData
+
+// Getter for additional properties for JSONWebKey. Returns the specified
+// element and whether it was found
+func (a JSONWebKey) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for JSONWebKey
+func (a *JSONWebKey) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for JSONWebKey to handle AdditionalProperties
+func (a *JSONWebKey) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["alg"]; found {
+		err = json.Unmarshal(raw, &a.Alg)
+		if err != nil {
+			return fmt.Errorf("error reading 'alg': %w", err)
+		}
+		delete(object, "alg")
+	}
+
+	if raw, found := object["key_ops"]; found {
+		err = json.Unmarshal(raw, &a.KeyOps)
+		if err != nil {
+			return fmt.Errorf("error reading 'key_ops': %w", err)
+		}
+		delete(object, "key_ops")
+	}
+
+	if raw, found := object["kid"]; found {
+		err = json.Unmarshal(raw, &a.Kid)
+		if err != nil {
+			return fmt.Errorf("error reading 'kid': %w", err)
+		}
+		delete(object, "kid")
+	}
+
+	if raw, found := object["kty"]; found {
+		err = json.Unmarshal(raw, &a.Kty)
+		if err != nil {
+			return fmt.Errorf("error reading 'kty': %w", err)
+		}
+		delete(object, "kty")
+	}
+
+	if raw, found := object["use"]; found {
+		err = json.Unmarshal(raw, &a.Use)
+		if err != nil {
+			return fmt.Errorf("error reading 'use': %w", err)
+		}
+		delete(object, "use")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for JSONWebKey to handle AdditionalProperties
+func (a JSONWebKey) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Alg != nil {
+		object["alg"], err = json.Marshal(a.Alg)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'alg': %w", err)
+		}
+	}
+
+	if a.KeyOps != nil {
+		object["key_ops"], err = json.Marshal(a.KeyOps)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'key_ops': %w", err)
+		}
+	}
+
+	if a.Kid != nil {
+		object["kid"], err = json.Marshal(a.Kid)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'kid': %w", err)
+		}
+	}
+
+	if a.Kty != nil {
+		object["kty"], err = json.Marshal(a.Kty)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'kty': %w", err)
+		}
+	}
+
+	if a.Use != nil {
+		object["use"], err = json.Marshal(a.Use)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'use': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// AsDidDocumentVerificationMethod returns the union data inside the DidDocument_AssertionMethod_Item as a DidDocumentVerificationMethod
+func (t DidDocument_AssertionMethod_Item) AsDidDocumentVerificationMethod() (DidDocumentVerificationMethod, error) {
+	var body DidDocumentVerificationMethod
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentVerificationMethod overwrites any union data inside the DidDocument_AssertionMethod_Item as the provided DidDocumentVerificationMethod
+func (t *DidDocument_AssertionMethod_Item) FromDidDocumentVerificationMethod(v DidDocumentVerificationMethod) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentVerificationMethod performs a merge with any union data inside the DidDocument_AssertionMethod_Item, using the provided DidDocumentVerificationMethod
+func (t *DidDocument_AssertionMethod_Item) MergeDidDocumentVerificationMethod(v DidDocumentVerificationMethod) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDidDocumentAssertionMethod1 returns the union data inside the DidDocument_AssertionMethod_Item as a DidDocumentAssertionMethod1
+func (t DidDocument_AssertionMethod_Item) AsDidDocumentAssertionMethod1() (DidDocumentAssertionMethod1, error) {
+	var body DidDocumentAssertionMethod1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentAssertionMethod1 overwrites any union data inside the DidDocument_AssertionMethod_Item as the provided DidDocumentAssertionMethod1
+func (t *DidDocument_AssertionMethod_Item) FromDidDocumentAssertionMethod1(v DidDocumentAssertionMethod1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentAssertionMethod1 performs a merge with any union data inside the DidDocument_AssertionMethod_Item, using the provided DidDocumentAssertionMethod1
+func (t *DidDocument_AssertionMethod_Item) MergeDidDocumentAssertionMethod1(v DidDocumentAssertionMethod1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t DidDocument_AssertionMethod_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *DidDocument_AssertionMethod_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsDidDocumentVerificationMethod returns the union data inside the DidDocument_CapabilityDelegation_Item as a DidDocumentVerificationMethod
+func (t DidDocument_CapabilityDelegation_Item) AsDidDocumentVerificationMethod() (DidDocumentVerificationMethod, error) {
+	var body DidDocumentVerificationMethod
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentVerificationMethod overwrites any union data inside the DidDocument_CapabilityDelegation_Item as the provided DidDocumentVerificationMethod
+func (t *DidDocument_CapabilityDelegation_Item) FromDidDocumentVerificationMethod(v DidDocumentVerificationMethod) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentVerificationMethod performs a merge with any union data inside the DidDocument_CapabilityDelegation_Item, using the provided DidDocumentVerificationMethod
+func (t *DidDocument_CapabilityDelegation_Item) MergeDidDocumentVerificationMethod(v DidDocumentVerificationMethod) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDidDocumentCapabilityDelegation1 returns the union data inside the DidDocument_CapabilityDelegation_Item as a DidDocumentCapabilityDelegation1
+func (t DidDocument_CapabilityDelegation_Item) AsDidDocumentCapabilityDelegation1() (DidDocumentCapabilityDelegation1, error) {
+	var body DidDocumentCapabilityDelegation1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentCapabilityDelegation1 overwrites any union data inside the DidDocument_CapabilityDelegation_Item as the provided DidDocumentCapabilityDelegation1
+func (t *DidDocument_CapabilityDelegation_Item) FromDidDocumentCapabilityDelegation1(v DidDocumentCapabilityDelegation1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentCapabilityDelegation1 performs a merge with any union data inside the DidDocument_CapabilityDelegation_Item, using the provided DidDocumentCapabilityDelegation1
+func (t *DidDocument_CapabilityDelegation_Item) MergeDidDocumentCapabilityDelegation1(v DidDocumentCapabilityDelegation1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t DidDocument_CapabilityDelegation_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *DidDocument_CapabilityDelegation_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsDidDocumentVerificationMethod returns the union data inside the DidDocument_CapabilityInvocation_Item as a DidDocumentVerificationMethod
+func (t DidDocument_CapabilityInvocation_Item) AsDidDocumentVerificationMethod() (DidDocumentVerificationMethod, error) {
+	var body DidDocumentVerificationMethod
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentVerificationMethod overwrites any union data inside the DidDocument_CapabilityInvocation_Item as the provided DidDocumentVerificationMethod
+func (t *DidDocument_CapabilityInvocation_Item) FromDidDocumentVerificationMethod(v DidDocumentVerificationMethod) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentVerificationMethod performs a merge with any union data inside the DidDocument_CapabilityInvocation_Item, using the provided DidDocumentVerificationMethod
+func (t *DidDocument_CapabilityInvocation_Item) MergeDidDocumentVerificationMethod(v DidDocumentVerificationMethod) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDidDocumentCapabilityInvocation1 returns the union data inside the DidDocument_CapabilityInvocation_Item as a DidDocumentCapabilityInvocation1
+func (t DidDocument_CapabilityInvocation_Item) AsDidDocumentCapabilityInvocation1() (DidDocumentCapabilityInvocation1, error) {
+	var body DidDocumentCapabilityInvocation1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentCapabilityInvocation1 overwrites any union data inside the DidDocument_CapabilityInvocation_Item as the provided DidDocumentCapabilityInvocation1
+func (t *DidDocument_CapabilityInvocation_Item) FromDidDocumentCapabilityInvocation1(v DidDocumentCapabilityInvocation1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentCapabilityInvocation1 performs a merge with any union data inside the DidDocument_CapabilityInvocation_Item, using the provided DidDocumentCapabilityInvocation1
+func (t *DidDocument_CapabilityInvocation_Item) MergeDidDocumentCapabilityInvocation1(v DidDocumentCapabilityInvocation1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t DidDocument_CapabilityInvocation_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *DidDocument_CapabilityInvocation_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsDidDocumentController0 returns the union data inside the DidDocument_Controller as a DidDocumentController0
+func (t DidDocument_Controller) AsDidDocumentController0() (DidDocumentController0, error) {
+	var body DidDocumentController0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentController0 overwrites any union data inside the DidDocument_Controller as the provided DidDocumentController0
+func (t *DidDocument_Controller) FromDidDocumentController0(v DidDocumentController0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentController0 performs a merge with any union data inside the DidDocument_Controller, using the provided DidDocumentController0
+func (t *DidDocument_Controller) MergeDidDocumentController0(v DidDocumentController0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t DidDocument_Controller) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *DidDocument_Controller) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsDidDocumentVerificationMethod returns the union data inside the DidDocument_KeyAgreement_Item as a DidDocumentVerificationMethod
+func (t DidDocument_KeyAgreement_Item) AsDidDocumentVerificationMethod() (DidDocumentVerificationMethod, error) {
+	var body DidDocumentVerificationMethod
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentVerificationMethod overwrites any union data inside the DidDocument_KeyAgreement_Item as the provided DidDocumentVerificationMethod
+func (t *DidDocument_KeyAgreement_Item) FromDidDocumentVerificationMethod(v DidDocumentVerificationMethod) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentVerificationMethod performs a merge with any union data inside the DidDocument_KeyAgreement_Item, using the provided DidDocumentVerificationMethod
+func (t *DidDocument_KeyAgreement_Item) MergeDidDocumentVerificationMethod(v DidDocumentVerificationMethod) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDidDocumentKeyAgreement1 returns the union data inside the DidDocument_KeyAgreement_Item as a DidDocumentKeyAgreement1
+func (t DidDocument_KeyAgreement_Item) AsDidDocumentKeyAgreement1() (DidDocumentKeyAgreement1, error) {
+	var body DidDocumentKeyAgreement1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDidDocumentKeyAgreement1 overwrites any union data inside the DidDocument_KeyAgreement_Item as the provided DidDocumentKeyAgreement1
+func (t *DidDocument_KeyAgreement_Item) FromDidDocumentKeyAgreement1(v DidDocumentKeyAgreement1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDidDocumentKeyAgreement1 performs a merge with any union data inside the DidDocument_KeyAgreement_Item, using the provided DidDocumentKeyAgreement1
+func (t *DidDocument_KeyAgreement_Item) MergeDidDocumentKeyAgreement1(v DidDocumentKeyAgreement1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JsonMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t DidDocument_KeyAgreement_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *DidDocument_KeyAgreement_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -396,8 +935,10 @@ type ClientInterface interface {
 	// DidIonRecover request
 	DidIonRecover(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// DidIonResolve request
-	DidIonResolve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DidIonResolveWithBody request with any body
+	DidIonResolveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DidIonResolve(ctx context.Context, body DidIonResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DidIonUpdate request
 	DidIonUpdate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -405,8 +946,10 @@ type ClientInterface interface {
 	// DidKeyCreate request
 	DidKeyCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// DidKeyResolve request
-	DidKeyResolve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DidKeyResolveWithBody request with any body
+	DidKeyResolveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DidKeyResolve(ctx context.Context, body DidKeyResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EncodersBase58DecodeWithBody request with any body
 	EncodersBase58DecodeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -750,8 +1293,20 @@ func (c *Client) DidIonRecover(ctx context.Context, reqEditors ...RequestEditorF
 	return c.Client.Do(req)
 }
 
-func (c *Client) DidIonResolve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDidIonResolveRequest(c.Server)
+func (c *Client) DidIonResolveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDidIonResolveRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DidIonResolve(ctx context.Context, body DidIonResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDidIonResolveRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -786,8 +1341,20 @@ func (c *Client) DidKeyCreate(ctx context.Context, reqEditors ...RequestEditorFn
 	return c.Client.Do(req)
 }
 
-func (c *Client) DidKeyResolve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDidKeyResolveRequest(c.Server)
+func (c *Client) DidKeyResolveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDidKeyResolveRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DidKeyResolve(ctx context.Context, body DidKeyResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDidKeyResolveRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -1637,8 +2204,19 @@ func NewDidIonRecoverRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewDidIonResolveRequest generates requests for DidIonResolve
-func NewDidIonResolveRequest(server string) (*http.Request, error) {
+// NewDidIonResolveRequest calls the generic DidIonResolve builder with application/json body
+func NewDidIonResolveRequest(server string, body DidIonResolveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDidIonResolveRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewDidIonResolveRequestWithBody generates requests for DidIonResolve with any type of body
+func NewDidIonResolveRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -1656,10 +2234,12 @@ func NewDidIonResolveRequest(server string) (*http.Request, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -1718,8 +2298,19 @@ func NewDidKeyCreateRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewDidKeyResolveRequest generates requests for DidKeyResolve
-func NewDidKeyResolveRequest(server string) (*http.Request, error) {
+// NewDidKeyResolveRequest calls the generic DidKeyResolve builder with application/json body
+func NewDidKeyResolveRequest(server string, body DidKeyResolveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDidKeyResolveRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewDidKeyResolveRequestWithBody generates requests for DidKeyResolve with any type of body
+func NewDidKeyResolveRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -1737,10 +2328,12 @@ func NewDidKeyResolveRequest(server string) (*http.Request, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -2195,8 +2788,10 @@ type ClientWithResponsesInterface interface {
 	// DidIonRecoverWithResponse request
 	DidIonRecoverWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidIonRecoverResponse, error)
 
-	// DidIonResolveWithResponse request
-	DidIonResolveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidIonResolveResponse, error)
+	// DidIonResolveWithBodyWithResponse request with any body
+	DidIonResolveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DidIonResolveResponse, error)
+
+	DidIonResolveWithResponse(ctx context.Context, body DidIonResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*DidIonResolveResponse, error)
 
 	// DidIonUpdateWithResponse request
 	DidIonUpdateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidIonUpdateResponse, error)
@@ -2204,8 +2799,10 @@ type ClientWithResponsesInterface interface {
 	// DidKeyCreateWithResponse request
 	DidKeyCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidKeyCreateResponse, error)
 
-	// DidKeyResolveWithResponse request
-	DidKeyResolveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidKeyResolveResponse, error)
+	// DidKeyResolveWithBodyWithResponse request with any body
+	DidKeyResolveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DidKeyResolveResponse, error)
+
+	DidKeyResolveWithResponse(ctx context.Context, body DidKeyResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*DidKeyResolveResponse, error)
 
 	// EncodersBase58DecodeWithBodyWithResponse request with any body
 	EncodersBase58DecodeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EncodersBase58DecodeResponse, error)
@@ -2739,6 +3336,7 @@ func (r DidIonRecoverResponse) StatusCode() int {
 type DidIonResolveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *DidResolutionResult
 }
 
 // Status returns HTTPResponse.Status
@@ -2802,6 +3400,7 @@ func (r DidKeyCreateResponse) StatusCode() int {
 type DidKeyResolveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *DidResolutionResult
 }
 
 // Status returns HTTPResponse.Status
@@ -3239,9 +3838,17 @@ func (c *ClientWithResponses) DidIonRecoverWithResponse(ctx context.Context, req
 	return ParseDidIonRecoverResponse(rsp)
 }
 
-// DidIonResolveWithResponse request returning *DidIonResolveResponse
-func (c *ClientWithResponses) DidIonResolveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidIonResolveResponse, error) {
-	rsp, err := c.DidIonResolve(ctx, reqEditors...)
+// DidIonResolveWithBodyWithResponse request with arbitrary body returning *DidIonResolveResponse
+func (c *ClientWithResponses) DidIonResolveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DidIonResolveResponse, error) {
+	rsp, err := c.DidIonResolveWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDidIonResolveResponse(rsp)
+}
+
+func (c *ClientWithResponses) DidIonResolveWithResponse(ctx context.Context, body DidIonResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*DidIonResolveResponse, error) {
+	rsp, err := c.DidIonResolve(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -3266,9 +3873,17 @@ func (c *ClientWithResponses) DidKeyCreateWithResponse(ctx context.Context, reqE
 	return ParseDidKeyCreateResponse(rsp)
 }
 
-// DidKeyResolveWithResponse request returning *DidKeyResolveResponse
-func (c *ClientWithResponses) DidKeyResolveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidKeyResolveResponse, error) {
-	rsp, err := c.DidKeyResolve(ctx, reqEditors...)
+// DidKeyResolveWithBodyWithResponse request with arbitrary body returning *DidKeyResolveResponse
+func (c *ClientWithResponses) DidKeyResolveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DidKeyResolveResponse, error) {
+	rsp, err := c.DidKeyResolveWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDidKeyResolveResponse(rsp)
+}
+
+func (c *ClientWithResponses) DidKeyResolveWithResponse(ctx context.Context, body DidKeyResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*DidKeyResolveResponse, error) {
+	rsp, err := c.DidKeyResolve(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -3833,6 +4448,16 @@ func ParseDidIonResolveResponse(rsp *http.Response) (*DidIonResolveResponse, err
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DidResolutionResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -3879,6 +4504,16 @@ func ParseDidKeyResolveResponse(rsp *http.Response) (*DidKeyResolveResponse, err
 	response := &DidKeyResolveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DidResolutionResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
