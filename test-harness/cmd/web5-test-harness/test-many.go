@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/TBD54566975/web5-spec/reports"
+	"github.com/TBD54566975/sdk-development/reports"
 	"github.com/spf13/cobra"
 	"golang.org/x/exp/slog"
 )

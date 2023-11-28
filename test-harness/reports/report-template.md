@@ -8,6 +8,6 @@ SDK: [{{ .TestServerID.Name }}]({{ .TestServerID.Url }}) ({{ .TestServerID.Langu
 
 | Feature | Result |
 | ------- | ------ |{{ range $test, $result := $results }}
-| {{ $test }} | {{ $result | getEmoji}}{{ if $result }} <ul>{{ range $result }}<li><pre>{{ . | sanatizeHTML }}</pre></li>{{ end }}</ul>{{ end }} |{{ end }}
+| {{ $test }} | {{ $result.GetEmoji }}{{ if $result.Errors }} <ul>{{ range $result.Errors }}<li><pre>{{ . | sanatizeHTML }}</pre></li>{{ end }}</ul>{{ end }} |{{ end }}
 
 {{ end }}

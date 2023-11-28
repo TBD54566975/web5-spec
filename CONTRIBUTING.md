@@ -5,7 +5,7 @@ There are many ways to be an open source contributor, and we're here to help you
 
 * Propose ideas in our
   [discord](https://discord.gg/tbd)
-* Raise an issue or feature request in our [issue tracker](https://github.com/TBD54566975/web5-spec/issues)
+* Raise an issue or feature request in our [issue tracker](https://github.com/TBD54566975/sdk-development/issues)
 * Help another contributor with one of their questions, or a code review
 * Suggest improvements to our Getting Started documentation by supplying a Pull Request
 * Evangelize our work together in conferences, podcasts, and social media spaces.
@@ -171,7 +171,7 @@ $> ./gradlew clean build test
 ### Issues
 
 Anyone from the community is welcome (and encouraged!) to raise issues via
-[GitHub Issues](https://github.com/TBD54566975/web5-spec/issues).
+[GitHub Issues](https://github.com/TBD54566975/sdk-development/issues).
 
 ### Discussions
 
@@ -181,7 +181,7 @@ We advocate an asynchronous, written debate model - so write up your thoughts an
 
 ### Continuous Integration
 
-Build and Test cycles are run on every commit to every branch on [GitHub Actions](https://github.com/TBD54566975/web5-spec/actions).
+Build and Test cycles are run on every commit to every branch on [GitHub Actions](https://github.com/TBD54566975/sdk-development/actions).
 
 ## Contribution
 

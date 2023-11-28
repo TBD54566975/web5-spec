@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/TBD54566975/web5-spec/openapi"
+	"github.com/TBD54566975/sdk-development/openapi"
 	"gopkg.in/square/go-jose.v2"
 )
 
@@ -65,6 +65,9 @@ func vcCreate(ctx context.Context, serverURL string) []error {
 	vcJwt := response.JSON200.VerifiableCredential.Data
 
 	token, err := jose.ParseSigned(vcJwt)
+	if err != nil {
+		return []error{err}
+	}
 	payloadBytes := token.UnsafePayloadWithoutVerification()
 
 	var payload Payload

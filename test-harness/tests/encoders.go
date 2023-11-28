@@ -6,7 +6,7 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"github.com/TBD54566975/web5-spec/openapi"
+	"github.com/TBD54566975/sdk-development/openapi"
 	"github.com/mr-tron/base58"
 )
 
