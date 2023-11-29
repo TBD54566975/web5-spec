@@ -284,8 +284,8 @@ Test vectors are also used to determine feature completeness via our [test harne
 
 | Algorithm       | Typescript | Kotlin | Rust | Swift |
 | --------------- | ---------- | ------ | ---- | ----- |
-| `ES256K`        | ✅          | ✅      | ❌    | ❌     |
-| `EdDSA:Ed25519` | ✅          | ✅      | ❌    | ❌     |
+| `ES256K`        | ✅          | ✅      | ✅    | ❌     |
+| `EdDSA:Ed25519` | ✅          | ✅      | ✅    | ❌     |
 
 > [!IMPORTANT]
 > In-memory signing using Secp256k1 **MUST** produce k-deterministic low-s signatures. Verification **must not require** low-s signatures
@@ -296,8 +296,8 @@ Each SDK will implement a consistent and extensible _public interface_ for key m
 
 | Feature               | Typescript | Kotlin | Rust | Swift |
 | --------------------- | ---------- | ------ | ---- | ----- |
-| Key Manager Interface | ❌          | ✅      | ❌    | ❌     |
-| In-Memory Key Manager | ❌          | ✅      | ❌    | ❌     |
+| Key Manager Interface | ❌          | ✅      | ✅    | ❌     |
+| In-Memory Key Manager | ❌          | ✅      | ✅    | ❌     |
 | AWS KMS               | ❌          | ✅      | N/A  | N/A   |
 | Device Enclave        | N/A        | ❌      | N/A  | ❌     |
 | Keychain              | N/A        | ❌      | N/A  | ❌     |
