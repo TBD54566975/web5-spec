@@ -57,6 +57,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DidResolutionResult"
+  /did-jwk/resolve:
+    post:
+      operationId: did_jwk_resolve
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DidResolutionRequest"
+      responses:
+        "200":
+          description: the DID resolution result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DidResolutionResult"
   /credentials/presentation-exchange:
     post:
       operationId: credential_presentation_exchange

@@ -353,6 +353,9 @@ type CredentialPresentationExchangeJSONRequestBody = PresentationExchangeRequest
 // DidIonResolveJSONRequestBody defines body for DidIonResolve for application/json ContentType.
 type DidIonResolveJSONRequestBody = DidResolutionRequest
 
+// DidJwkResolveJSONRequestBody defines body for DidJwkResolve for application/json ContentType.
+type DidJwkResolveJSONRequestBody = DidResolutionRequest
+
 // DidKeyResolveJSONRequestBody defines body for DidKeyResolve for application/json ContentType.
 type DidKeyResolveJSONRequestBody = DidResolutionRequest
 
@@ -943,6 +946,11 @@ type ClientInterface interface {
 	// DidIonUpdate request
 	DidIonUpdate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DidJwkResolveWithBody request with any body
+	DidJwkResolveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DidJwkResolve(ctx context.Context, body DidJwkResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DidKeyCreate request
 	DidKeyCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -1319,6 +1327,30 @@ func (c *Client) DidIonResolve(ctx context.Context, body DidIonResolveJSONReques
 
 func (c *Client) DidIonUpdate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDidIonUpdateRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DidJwkResolveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDidJwkResolveRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DidJwkResolve(ctx context.Context, body DidJwkResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDidJwkResolveRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -2271,6 +2303,46 @@ func NewDidIonUpdateRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewDidJwkResolveRequest calls the generic DidJwkResolve builder with application/json body
+func NewDidJwkResolveRequest(server string, body DidJwkResolveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDidJwkResolveRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewDidJwkResolveRequestWithBody generates requests for DidJwkResolve with any type of body
+func NewDidJwkResolveRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/did-jwk/resolve")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewDidKeyCreateRequest generates requests for DidKeyCreate
 func NewDidKeyCreateRequest(server string) (*http.Request, error) {
 	var err error
@@ -2795,6 +2867,11 @@ type ClientWithResponsesInterface interface {
 
 	// DidIonUpdateWithResponse request
 	DidIonUpdateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidIonUpdateResponse, error)
+
+	// DidJwkResolveWithBodyWithResponse request with any body
+	DidJwkResolveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DidJwkResolveResponse, error)
+
+	DidJwkResolveWithResponse(ctx context.Context, body DidJwkResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*DidJwkResolveResponse, error)
 
 	// DidKeyCreateWithResponse request
 	DidKeyCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DidKeyCreateResponse, error)
@@ -3376,6 +3453,28 @@ func (r DidIonUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type DidJwkResolveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DidResolutionResult
+}
+
+// Status returns HTTPResponse.Status
+func (r DidJwkResolveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DidJwkResolveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type DidKeyCreateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -3862,6 +3961,23 @@ func (c *ClientWithResponses) DidIonUpdateWithResponse(ctx context.Context, reqE
 		return nil, err
 	}
 	return ParseDidIonUpdateResponse(rsp)
+}
+
+// DidJwkResolveWithBodyWithResponse request with arbitrary body returning *DidJwkResolveResponse
+func (c *ClientWithResponses) DidJwkResolveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DidJwkResolveResponse, error) {
+	rsp, err := c.DidJwkResolveWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDidJwkResolveResponse(rsp)
+}
+
+func (c *ClientWithResponses) DidJwkResolveWithResponse(ctx context.Context, body DidJwkResolveJSONRequestBody, reqEditors ...RequestEditorFn) (*DidJwkResolveResponse, error) {
+	rsp, err := c.DidJwkResolve(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDidJwkResolveResponse(rsp)
 }
 
 // DidKeyCreateWithResponse request returning *DidKeyCreateResponse
@@ -4472,6 +4588,32 @@ func ParseDidIonUpdateResponse(rsp *http.Response) (*DidIonUpdateResponse, error
 	response := &DidIonUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseDidJwkResolveResponse parses an HTTP response from a DidJwkResolveWithResponse call
+func ParseDidJwkResolveResponse(rsp *http.Response) (*DidJwkResolveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DidJwkResolveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DidResolutionResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
