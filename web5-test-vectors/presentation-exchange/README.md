@@ -6,7 +6,7 @@ Input and output for a full presentation exchange test vectors are available [he
 
 ### Input
 
-the value of `input` is a an object with `presentationDefinition` and the corresponding `credentialJwt` 
+the value of `input` is a an object with `presentationDefinition` and the corresponding `credentialJwt`
 
 | Property                | Description                                                                                                                                                                                |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
