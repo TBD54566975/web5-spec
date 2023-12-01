@@ -2,7 +2,7 @@
 
 ## CreatePresentationFromCredentials
 
-Input and output for a full presentation exchange test vectors are available [here](./wa-license.json)
+Input and output for a full presentation exchange test vectors are available [here](./wa-license.json) The reference implementation can be found [here](https://github.com/TBD54566975/web5-js/blob/main/packages/credentials/src/presentation-exchange.ts#L80)
 
 ### Input
 
