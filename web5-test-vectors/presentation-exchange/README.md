@@ -11,7 +11,7 @@ the value of `input` is a an object with `presentationDefinition` and the corres
 | Property                | Description                                                                                                                                                                                |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `presentationDefinition`           | the input [presentationDefinition](https://identity.foundation/presentation-exchange/#presentation-definition)  showing the requirements used for this getting an example WA license               |
-| `credentialJwt`   | the input [credentialJwt](https://www.w3.org/TR/vc-data-model/) that corresponds to the presentationDefinition to fulfill it and do a full presentation exchange
+| `credentialJwt`   | the input [verifiable credential secured as a JWT](https://www.w3.org/TR/vc-data-model/#json-web-token) that corresponds to the presentationDefinition to fulfill it and do a full presentation exchange
 
 ### Output
 
