@@ -185,7 +185,7 @@ Each SDK will use Github Actions for CI/CD and other automations
 | OSS License Check             | ❌          | ❌      | ❌    | ❌     |
 | Security Scanning             | ❌          | ❌      | ❌    | ❌     |
 | Static Analysis Linting/Style | ❌          | ❌      | ❌    | ❌     |
-| Running Unit Tests            | ✅          | ✅      | ❌    | ❌     |
+| Running Unit Tests            | ✅          | ✅      | ✅    | ❌     |
 | Publishing Tests Reports      | ❌          | ❌      | ❌    | ❌     |
 | Code Coverage (CodeCov)       | ❌          | ❌      | ❌    | ❌     |
 | Publishing Artifacts          | ❓          | ❌      | ❌    | ❌     |
@@ -210,7 +210,7 @@ Each SDK will be published to the most widely adopted registry/repository for th
 | ---------- | ------------------- |
 | Typescript | npm                 |
 | Kotlin     | maven central       |
-| Rust       | crates              |
+| Rust       | crates.io           |
 | Swift      | swift package index |
 
 ### Publishing API Reference Documentation
@@ -224,12 +224,12 @@ Each SDK will auto generate API reference documentation using the respective lan
 
 ---
 
-| Language   | Comment Convention | Docs Generator |
-| ---------- | ------------------ | -------------- |
-| Typescript | TSDoc              | API Extractor  |
-| Kotlin     | KDoc               | Dokka          |
-| Rust       | ?                  | ?              |
-| Swift      | ?                  | ?              |
+| Language   | Comment Convention     | Docs Generator |
+| ---------- | ---------------------- | -------------- |
+| Typescript | TSDoc                  | API Extractor  |
+| Kotlin     | KDoc                   | Dokka          |
+| Rust       | Documentation comments | rustdoc        |
+| Swift      | Swift Markup           | DocC           |
 
 > [!IMPORTANT]
 > Producing API reference documentation is the responsibility of an _implementer_
@@ -322,14 +322,14 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Resolution` | ❌          | ❌      | ❌    | ❌     |
+| `Resolution` | ❌          | ❌      | ⚠️    | ❌     |
 
 ### [`did:jwk`](https://github.com/quartzjer/did-jwk/blob/main/spec.md)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ❌          | ❌      | ❌    | ❌     |
-| `Resolution` | ❌          | ❌      | ❌    | ❌     |
+| `Creation`   | ❌          | ❌      | ⚠️    | ❌     |
+| `Resolution` | ❌          | ❌      | ⚠️    | ❌     |
 
 ### [`did:dht`](https://tbd54566975.github.io/did-dht-method/)
 
@@ -342,8 +342,8 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
+| `Creation`   | ⚠️          | ⚠️      | ⚠️    | ❌   |
+| `Resolution` | ⚠️          | ⚠️      | ⚠️    | ❌   |
 
 > [!IMPORTANT]
 > `did:key` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
