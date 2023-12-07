@@ -182,9 +182,9 @@ Each SDK will use Github Actions for CI/CD and other automations
 
 | Feature                       | Typescript | Kotlin | Rust | Swift |
 | ----------------------------- | ---------- | ------ | ---- | ----- |
-| OSS License Check             | ❌          | ❌      | ❌    | ❌     |
-| Security Scanning             | ❌          | ❌      | ❌    | ❌     |
-| Static Analysis Linting/Style | ❌          | ❌      | ❌    | ❌     |
+| OSS License Check             | ❌          | ❌      | ✅    | ❌     |
+| Security Scanning             | ❌          | ❌      | ⛔️    | ❌     |
+| Static Analysis Linting/Style | ❌          | ❌      | ✅    | ❌     |
 | Running Unit Tests            | ✅          | ✅      | ✅    | ❌     |
 | Publishing Tests Reports      | ❌          | ❌      | ❌    | ❌     |
 | Code Coverage (CodeCov)       | ❌          | ❌      | ❌    | ❌     |
@@ -193,6 +193,9 @@ Each SDK will use Github Actions for CI/CD and other automations
 | Automated GH Release Tag      | ❌          | ❌      | ❌    | ❌     |
 | Publishing API Reference Docs | ❌          | ✅      | ❌    | ❌     |
 | Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
+
+> [!CAUTION]
+> Security scanning via Snyk is currently not supported in Rust
 
 - GitHub Actions should run in secured runners
   - A secure, authoritative build environment ensures software is compiled and packaged in a controlled, tamper-resistant setting.
