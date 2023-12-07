@@ -182,10 +182,10 @@ Each SDK will use Github Actions for CI/CD and other automations
 
 | Feature                       | Typescript | Kotlin | Rust | Swift |
 | ----------------------------- | ---------- | ------ | ---- | ----- |
-| OSS License Check             | ❌          | ❌      | ❌    | ❌     |
-| Security Scanning             | ❌          | ❌      | ❌    | ❌     |
-| Static Analysis Linting/Style | ❌          | ❌      | ❌    | ❌     |
-| Running Unit Tests            | ✅          | ✅      | ❌    | ❌     |
+| OSS License Check             | ❌          | ❌      | ✅    | ❌     |
+| Security Scanning             | ❌          | ❌      | ⛔️    | ❌     |
+| Static Analysis Linting/Style | ❌          | ❌      | ✅    | ❌     |
+| Running Unit Tests            | ✅          | ✅      | ✅    | ❌     |
 | Publishing Tests Reports      | ❌          | ❌      | ❌    | ❌     |
 | Code Coverage (CodeCov)       | ❌          | ❌      | ❌    | ❌     |
 | Publishing Artifacts          | ❓          | ❌      | ❌    | ❌     |
@@ -193,6 +193,9 @@ Each SDK will use Github Actions for CI/CD and other automations
 | Automated GH Release Tag      | ❌          | ❌      | ❌    | ❌     |
 | Publishing API Reference Docs | ❌          | ✅      | ❌    | ❌     |
 | Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
+
+> [!CAUTION]
+> Security scanning via Snyk is currently not supported in Rust
 
 - GitHub Actions should run in secured runners
   - A secure, authoritative build environment ensures software is compiled and packaged in a controlled, tamper-resistant setting.
@@ -210,7 +213,7 @@ Each SDK will be published to the most widely adopted registry/repository for th
 | ---------- | ------------------- |
 | Typescript | npm                 |
 | Kotlin     | maven central       |
-| Rust       | crates              |
+| Rust       | crates.io           |
 | Swift      | swift package index |
 
 ### Publishing API Reference Documentation
@@ -224,12 +227,12 @@ Each SDK will auto generate API reference documentation using the respective lan
 
 ---
 
-| Language   | Comment Convention | Docs Generator |
-| ---------- | ------------------ | -------------- |
-| Typescript | TSDoc              | API Extractor  |
-| Kotlin     | KDoc               | Dokka          |
-| Rust       | ?                  | ?              |
-| Swift      | ?                  | ?              |
+| Language   | Comment Convention     | Docs Generator |
+| ---------- | ---------------------- | -------------- |
+| Typescript | TSDoc                  | API Extractor  |
+| Kotlin     | KDoc                   | Dokka          |
+| Rust       | Documentation comments | rustdoc        |
+| Swift      | Swift Markup           | DocC           |
 
 > [!IMPORTANT]
 > Producing API reference documentation is the responsibility of an _implementer_
@@ -284,8 +287,8 @@ Test vectors are also used to determine feature completeness via our [test harne
 
 | Algorithm       | Typescript | Kotlin | Rust | Swift |
 | --------------- | ---------- | ------ | ---- | ----- |
-| `ES256K`        | ✅          | ✅      | ❌    | ❌     |
-| `EdDSA:Ed25519` | ✅          | ✅      | ❌    | ❌     |
+| `ES256K`        | ✅          | ✅      | ✅    | ❌     |
+| `EdDSA:Ed25519` | ✅          | ✅      | ✅    | ❌     |
 
 > [!IMPORTANT]
 > In-memory signing using Secp256k1 **MUST** produce k-deterministic low-s signatures. Verification **must not require** low-s signatures
@@ -296,8 +299,8 @@ Each SDK will implement a consistent and extensible _public interface_ for key m
 
 | Feature               | Typescript | Kotlin | Rust | Swift |
 | --------------------- | ---------- | ------ | ---- | ----- |
-| Key Manager Interface | ❌          | ✅      | ❌    | ❌     |
-| In-Memory Key Manager | ❌          | ✅      | ❌    | ❌     |
+| Key Manager Interface | ❌          | ✅      | ✅    | ❌     |
+| In-Memory Key Manager | ❌          | ✅      | ✅    | ❌     |
 | AWS KMS               | ❌          | ✅      | N/A  | N/A   |
 | Device Enclave        | N/A        | ❌      | N/A  | ❌     |
 | Keychain              | N/A        | ❌      | N/A  | ❌     |
@@ -322,14 +325,14 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Resolution` | ❌          | ❌      | ❌    | ❌     |
+| `Resolution` | ❌          | ❌      | ⚠️    | ❌     |
 
 ### [`did:jwk`](https://github.com/quartzjer/did-jwk/blob/main/spec.md)
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ❌          | ❌      | ❌    | ❌     |
-| `Resolution` | ❌          | ❌      | ❌    | ❌     |
+| `Creation`   | ❌          | ❌      | ⚠️    | ❌     |
+| `Resolution` | ❌          | ❌      | ⚠️    | ❌     |
 
 ### [`did:dht`](https://tbd54566975.github.io/did-dht-method/)
 
@@ -342,8 +345,8 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 | Feature      | Typescript | Kotlin | Rust | Swift |
 | ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
+| `Creation`   | ⚠️          | ⚠️      | ⚠️    | ❌   |
+| `Resolution` | ⚠️          | ⚠️      | ⚠️    | ❌   |
 
 > [!IMPORTANT]
 > `did:key` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
