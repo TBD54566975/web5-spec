@@ -1,2 +1,3 @@
 config:
   line-length: false
+  siblings_only: true
