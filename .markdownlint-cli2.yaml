@@ -1,3 +1,4 @@
 config:
   line-length: false
-  siblings_only: true
+  no-duplicate-heading:
+    siblings_only: true
