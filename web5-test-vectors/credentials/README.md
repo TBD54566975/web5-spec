@@ -27,8 +27,11 @@ the `signerPrivateJwk` private key.
 ### Reference implementations
 
 The reference implementations for:
-* `create_success` can be found [here](https://github.com/TBD54566975/web5-kt/blob/466e8d8ca9771ae3a98767e5a4a79ac7b1e7a5d8/credentials/src/test/kotlin/web5/sdk/credentials/VerifiableCredentialTest.kt#L244).
-* `create_failure` can be found [here](https://github.com/TBD54566975/web5-kt/blob/466e8d8ca9771ae3a98767e5a4a79ac7b1e7a5d8/credentials/src/test/kotlin/web5/sdk/credentials/VerifiableCredentialTest.kt#L285).
+
+* `create_success` can be
+  found [here](https://github.com/TBD54566975/web5-kt/blob/466e8d8ca9771ae3a98767e5a4a79ac7b1e7a5d8/credentials/src/test/kotlin/web5/sdk/credentials/VerifiableCredentialTest.kt#L244).
+* `create_failure` can be
+  found [here](https://github.com/TBD54566975/web5-kt/blob/466e8d8ca9771ae3a98767e5a4a79ac7b1e7a5d8/credentials/src/test/kotlin/web5/sdk/credentials/VerifiableCredentialTest.kt#L285).
 
 ## `verify`
 
@@ -47,5 +50,8 @@ Output is empty, signalling that no exception nor errors should be thrown for su
 ### Reference implementations
 
 The reference implementations for:
-* `verify_success` can be found [here](https://github.com/TBD54566975/web5-kt/blob/466e8d8ca9771ae3a98767e5a4a79ac7b1e7a5d8/credentials/src/test/kotlin/web5/sdk/credentials/VerifiableCredentialTest.kt#L261).
-* `verify_failure` can be found [here](https://github.com/TBD54566975/web5-kt/blob/466e8d8ca9771ae3a98767e5a4a79ac7b1e7a5d8/credentials/src/test/kotlin/web5/sdk/credentials/VerifiableCredentialTest.kt#L273).
+
+* `verify_success` can be
+  found [here](https://github.com/TBD54566975/web5-kt/blob/466e8d8ca9771ae3a98767e5a4a79ac7b1e7a5d8/credentials/src/test/kotlin/web5/sdk/credentials/VerifiableCredentialTest.kt#L261).
+* `verify_failure` can be
+  found [here](https://github.com/TBD54566975/web5-kt/blob/466e8d8ca9771ae3a98767e5a4a79ac7b1e7a5d8/credentials/src/test/kotlin/web5/sdk/credentials/VerifiableCredentialTest.kt#L273).
