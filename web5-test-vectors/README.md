@@ -46,3 +46,84 @@ The structure of a `vector` object is designed to fulfill two conditions:
 * In Rust, the error handling would pivot on matching `Result.Err` rather than `Result.Ok`.
 
 Should `errors` be set to `true`, the `output` field may optionally be used to include expected error messages.
+
+## Creating New Test Vector
+
+### Step 1: Create New Test Vector
+1. Navigate to the GitHub repository: https://github.com/TBD54566975/sdk-development/tree/main/web5-test-vectors
+
+2. Create a new folder and JSON file with the structure example_feature/hello_world.json.
+
+3. Populate the JSON file as follows:
+
+```json
+{
+  "description": "vector example",
+  "vectors": [
+    {
+      "description": "this is an example",
+      "input": "hello world",
+      "output": "hello world"
+    }
+  ]
+}
+```
+
+### Step 2: Copy JSON to Local Test-Vectors Directory
+1. Copy the hello_world.json file from example_feature directory.
+
+2. Place the copied file into the top level test-vectors directory of both web5-kt and web5-js projects.
+
+
+### Step 3: Create Unit Test in web5-kt
+1. In the web5-kt project, create a new unit test class.
+
+2. Name the class following the given pattern:
+  * Prefix: Web5TestVectors
+  * Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
+  * Suffix: Test
+
+Combined: Web5TestVectorsExampleFeatureTest
+
+3. Implement the class and test method as follows:
+
+```kt
+class Web5TestVectorsExampleFeatureTest {
+  @Test
+  fun hello_world() {
+    val testVectors = mapper.readValue(File("../test-vectors/example_feature/hello_world.json"), typeRef)
+    assertEquals(testVectors.vectors[0].input, testVectors.vectors[0].output)
+  }
+}
+```
+
+### Step 4: Create Unit Test in web5-js
+1. In the web5-js project, create a new unit test class.
+
+2. Name the class following the given pattern:
+  * Prefix: Web5TestVectors
+  * Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
+  * Suffix: Spec
+
+Combined: Web5TestVectorsExampleFeatureSpec
+
+3. Implement the class and test method as follows:
+
+```javascript
+  import ExampleFeatureHelloWorldSpecJson from '../../../test-vectors/example_feature/hello_world.json' assert { type: 'json' };
+
+  describe('Web5TestVectorsExampleFeatureSpec', () => {
+    it('hello_world', async () => {
+      const vectors = ExampleFeatureHelloWorldSpecJson.vectors;
+      expect(vectors[0].input).to.equal(vectors[0].output)
+    });
+  });
+```
+
+
+### Step 5: Completion
+
+* Once the above steps are completed, the sdk-development repository will automatically detect the new test vectors.
+* The system will indicate whether the test passes or fails with a checkmark or an 'x'.
+
+Your new test vector system is now set up and ready for use!
