@@ -21,14 +21,14 @@ var (
 			Name:         "web5-js",
 			Repo:         "TBD54566975/web5-js",
 			ArtifactName: "junit-results",
-			FeatureRegex: regexp.MustCompile(`Web5TestVectors(\w+)Spec`),
+			FeatureRegex: regexp.MustCompile(`Web5TestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`\w+ \w+ (\w+)`),
 		},
 		{
 			Name:         "web5-kt",
 			Repo:         "TBD54566975/web5-kt",
 			ArtifactName: "test-results",
-			FeatureRegex: regexp.MustCompile(`web5\.sdk\.\w+.Web5TestVectors(\w+)Test`),
+			FeatureRegex: regexp.MustCompile(`web5\.sdk\.\w+.Web5TestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`(\w+)\(\)`),
 		},
 	}
