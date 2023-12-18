@@ -50,7 +50,8 @@ Should `errors` be set to `true`, the `output` field may optionally be used to i
 ## Creating New Test Vector Full Walkthrough
 
 ### Step 1: Create New Test Vector
-1. Navigate to the GitHub repository: https://github.com/TBD54566975/sdk-development/tree/main/web5-test-vectors
+
+1. Navigate to the GitHub repository: sdk-development[https://github.com/TBD54566975/sdk-development/tree/main/web5-test-vectors]
 
 2. Create a new folder and JSON file with the structure example_feature/hello_world.json.
 
@@ -71,21 +72,24 @@ Should `errors` be set to `true`, the `output` field may optionally be used to i
 ```
 
 ### Step 2: Copy JSON to Local Test-Vectors Directory
+
 1. Copy the hello_world.json file from example_feature directory.
 
-2. Place the copied file into the top level test-vectors directory of both web5-kt and web5-js projects.
-
+1. Place the copied file into the top level test-vectors directory of both web5-kt and web5-js projects.
 
 ### Step 3: Create Unit Test in web5-kt
+
 1. In the web5-kt project, create a new unit test class.
 
-2. Name the class following the given pattern:
-  * Prefix: Web5TestVectors
-  * Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
+1. Name the class following the given pattern:
 
-Combined: `Web5TestVectorsExampleFeature`
+* Prefix: Web5TestVectors
 
-3. Implement the class and test method as follows:
+* Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
+
+* Combined Output: `Web5TestVectorsExampleFeature`
+
+1. Implement the class and test method as follows:
 
 ```kt
 class Web5TestVectorsExampleFeature {
@@ -98,15 +102,18 @@ class Web5TestVectorsExampleFeature {
 ```
 
 ### Step 4: Create Unit Test in web5-js
+
 1. In the web5-js project, create a new unit test class.
 
-2. Name the class following the given pattern:
-  * Prefix: Web5TestVectors
-  * Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
+1. Name the class following the given pattern:
 
-Combined: `Web5TestVectorsExampleFeature`
+* Prefix: Web5TestVectors
 
-3. Implement the class and test method as follows:
+* Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
+
+* Combined Output: `Web5TestVectorsExampleFeature`
+
+1. Implement the class and test method as follows:
 
 ```javascript
   import ExampleFeatureHelloWorldSpecJson from '../../../test-vectors/example_feature/hello_world.json' assert { type: 'json' };
@@ -118,7 +125,6 @@ Combined: `Web5TestVectorsExampleFeature`
     });
   });
 ```
-
 
 ### Step 5: Completion
 
