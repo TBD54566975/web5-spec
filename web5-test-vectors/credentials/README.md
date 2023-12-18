@@ -6,7 +6,7 @@ the implementations are following the [Verifiable Credential 1.1 specification](
 
 ## `create`
 
-Create test vectors are available for [success](./create_success.json) and [failure](./create_failure.json) test cases.
+Create test vectors are available in the [json file](./create.json), which contains success and failure test cases.
 
 ### Input
 
@@ -35,7 +35,7 @@ The reference implementations for:
 
 ## `verify`
 
-Verify test vectors are available for [success](./verify_success.json) and [failure](./verify_failure.json) test cases.
+Verify test vectors are available in the [json file](./verify.json), which contains success and failure test cases.
 
 ### Input
 
