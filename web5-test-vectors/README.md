@@ -83,7 +83,7 @@ Should `errors` be set to `true`, the `output` field may optionally be used to i
 
 1. Name the class following the given pattern:
 
-* Prefix: Web5TestVectors
+* Prefix: `Web5TestVectors`
 
 * Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
 
