@@ -109,7 +109,7 @@ class Web5TestVectorsExampleFeature {
 
 * Prefix: `Web5TestVectors`
 
-* Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
+* Middle: Convert `example_feature` to `ExampleFeature` (capitalize words and remove underscores)
 
 * Combined Output: `Web5TestVectorsExampleFeature`
 
