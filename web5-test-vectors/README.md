@@ -55,7 +55,7 @@ Should `errors` be set to `true`, the `output` field may optionally be used to i
 
 2. Create a new folder and JSON file with the structure example_feature/hello_world.json.
 
-3. Populate the JSON file as follows:
+3. Populate the JSON file as follows. Note that adherence to the [json schema](./vectors.schema.json) is enforced by CI.
 
 ```json
 {
