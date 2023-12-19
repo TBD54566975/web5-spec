@@ -85,7 +85,7 @@ Should `errors` be set to `true`, the `output` field may optionally be used to i
 
 * Prefix: `Web5TestVectors`
 
-* Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
+* Middle: Convert `example_feature` to `ExampleFeature` (capitalize words and remove underscores)
 
 * Combined Output: `Web5TestVectorsExampleFeature`
 
