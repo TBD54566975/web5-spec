@@ -103,7 +103,7 @@ class Web5TestVectorsExampleFeature {
 
 ### Step 4: Create Unit Test in web5-js
 
-1. In the web5-js project, create a new unit test class.
+1. In the `web5-js` project, create a new unit test class.
 
 1. Name the class following the given pattern:
 
