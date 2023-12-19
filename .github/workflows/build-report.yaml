@@ -1,0 +1,27 @@
+name: build html report
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-report:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      pages: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+      - name: build html
+        run: |
+          cd reports
+          go run ./cmd/build-html
+          mv _site ../
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-pages-artifact@v2
+      - name: deploy GitHub Pages
+        uses: actions/deploy-pages@v3
+        if: github.ref == 'refs/heads/main'
