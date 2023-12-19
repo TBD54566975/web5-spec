@@ -107,7 +107,7 @@ class Web5TestVectorsExampleFeature {
 
 1. Name the class following the given pattern:
 
-* Prefix: Web5TestVectors
+* Prefix: `Web5TestVectors`
 
 * Middle: Convert example_feature to ExampleFeature (capitalize words and remove underscores)
 
