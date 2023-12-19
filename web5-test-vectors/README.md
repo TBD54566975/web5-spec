@@ -79,7 +79,7 @@ Should `errors` be set to `true`, the `output` field may optionally be used to i
 
 ### Step 3: Create Unit Test in web5-kt
 
-1. In the web5-kt project, create a new unit test class.
+1. In the `web5-kt` project, create a new unit test class.
 
 1. Name the class following the given pattern:
 
