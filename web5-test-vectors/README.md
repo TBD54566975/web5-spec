@@ -73,7 +73,7 @@ Should `errors` be set to `true`, the `output` field may optionally be used to i
 
 ### Step 2: Copy JSON to Local Test-Vectors Directory
 
-1. Copy the hello_world.json file from example_feature directory.
+1. Copy the `hello_world.json` file from `example_feature` directory.
 
 1. Place the copied file into the top level test-vectors directory of both web5-kt and web5-js projects.
 
