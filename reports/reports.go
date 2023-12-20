@@ -14,7 +14,7 @@ import (
 var (
 	ErrNotSupported = errors.New("test not supported by this SDK")
 
-	//go:embed *
+	//go:embed report-template.html
 	templatesFS embed.FS
 
 	htmlTemplates = htmltemplate.New("")
@@ -84,6 +84,14 @@ func (r Result) GetEmoji() string {
 
 func (s SDKMeta) buildReport(suites []junit.Suite) (Report, error) {
 	results := make(map[string]map[string]Result)
+
+	for feature, vectors := range knownVectors {
+		results[feature] = make(map[string]Result)
+		for vector := range vectors {
+			results[feature][vector] = Result{}
+		}
+	}
+
 	for _, suite := range suites {
 		suiteName := suite.Name
 		if s.FeatureRegex != nil {
