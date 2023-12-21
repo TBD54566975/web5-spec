@@ -83,6 +83,18 @@ func (r Result) GetEmoji() string {
 	return "❌"
 }
 
+func (r Result) GetEmojiAriaLabel() string {
+	if !r.Exists {
+		return "In progress"
+	}
+
+	if len(r.Errors) == 0 {
+		return "Success"
+	}
+
+	return "Failed"
+}
+
 func (s SDKMeta) buildReport(suites []junit.Suite) (Report, error) {
 	results := make(map[string]map[string]Result)
 
