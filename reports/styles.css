@@ -186,6 +186,7 @@ details:not(:has(li)) summary::after {
 ul {
   padding-inline-start: 1rem;
   word-break: break-word;
+  list-style: square;
 }
 
 li {
