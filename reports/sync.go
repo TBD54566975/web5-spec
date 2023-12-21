@@ -23,8 +23,8 @@ const (
 
 // these should be consts but the library expects a pointer to a string, which cannot be done with a const
 var (
-	vectorUpdatePRTitle      = "update test vectors"
-	vectorUpdatePRBody       = "some test vectors were changed or added to the sdk-development repo, so they need to be updated in this repo"
+	vectorUpdatePRTitle      = "Update Test Vectors - Out of Sync"
+	vectorUpdatePRBody       = "Some test vectors were changed or added to the sdk-development repo, so they need to be updated in this repo. This is an automated PR that keeps the test vectors in sync from the [main test-vectors location](https://github.com/TBD54566975/sdk-development/tree/main/web5-test-vectors)"
 	vectorUpdatePRBaseBranch = "main"
 )
 
