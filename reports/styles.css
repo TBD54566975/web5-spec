@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Public+Sans:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P");
 
 /* Variables */
 :root {
   /* Fonts */
-  --font-primary: "Public Sans", Arial, Helvetica, sans-serif;
+  --font-primary: monospace;
   --font-decorative: "Press Start 2P", var(--font-primary);
 
   /* Colors */
