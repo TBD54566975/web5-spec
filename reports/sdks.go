@@ -33,9 +33,9 @@ var (
 )
 
 func GetAllReports() ([]Report, error) {
-	ctx := context.TODO()
+	ctx := context.Background()
 
-	reports := []Report{}
+	var reports []Report
 	for _, sdk := range SDKs {
 		artifact, err := downloadArtifact(ctx, sdk)
 		if err != nil {

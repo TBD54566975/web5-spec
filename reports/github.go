@@ -13,21 +13,25 @@ import (
 )
 
 var (
-	gh              *github.Client
-	ghTransport     *ghinstallation.Transport
-	ghAppName       = os.Getenv("CICD_ROBOT_GITHUB_APP_NAME")
-	ghUserName      = fmt.Sprintf("%s[bot]", ghAppName)
-	ghAppPrivateKey = os.Getenv("CICD_ROBOT_GITHUB_APP_PRIVATE_KEY")
+	ghAppName                 = os.Getenv("CICD_ROBOT_GITHUB_APP_NAME")
+	ghAppPrivateKey           = os.Getenv("CICD_ROBOT_GITHUB_APP_PRIVATE_KEY")
+	ghAppIDString             = os.Getenv("CICD_ROBOT_GITHUB_APP_ID")
+	ghAppInstallationIDString = os.Getenv("CICD_ROBOT_GITHUB_APP_INSTALLATION_ID")
+
+	gh          *github.Client
+	ghTransport *ghinstallation.Transport
+
+	ghUserName = fmt.Sprintf("%s[bot]", ghAppName)
 )
 
 func init() {
-	ghAppID, err := strconv.ParseInt(os.Getenv("CICD_ROBOT_GITHUB_APP_ID"), 10, 32)
+	ghAppID, err := strconv.ParseInt(ghAppIDString, 10, 32)
 	if err != nil {
 		slog.Error("invalid or unset app ID. Please set environment variable CICD_ROBOT_GITHUB_APP_ID to a valid integer")
 		panic(err)
 	}
 
-	ghInstallationID, err := strconv.ParseInt(os.Getenv("CICD_ROBOT_GITHUB_APP_INSTALLATION_ID"), 10, 32)
+	ghInstallationID, err := strconv.ParseInt(ghAppInstallationIDString, 10, 32)
 	if err != nil {
 		slog.Error("invalid or unset installation ID. Please set environment variable CICD_ROBOT_GITHUB_APP_INSTALLATION_ID to a valid integer")
 		panic(err)

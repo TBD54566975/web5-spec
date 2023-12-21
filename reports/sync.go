@@ -30,7 +30,7 @@ var (
 
 var gitCredentialStoreFile string
 
-var gitConfig = map[string]string{}
+var gitConfig = make(map[string]string)
 
 func SyncSDK(sdk SDKMeta) error {
 	slog.Info("syncing vectors", "repo", sdk.Repo)
@@ -59,7 +59,7 @@ func SyncSDK(sdk SDKMeta) error {
 	// check if git says the repo has changed - return if it hasn't
 	err = git("-C", tmpdir, "diff-index", "--quiet", "HEAD")
 	if err != nil {
-		exitError := &exec.ExitError{}
+		exitError := new(exec.ExitError)
 		if !errors.As(err, &exitError) {
 			return fmt.Errorf("error checking if repo changed: %v", err)
 		}
@@ -200,7 +200,7 @@ func ConfigureGitAuth() error {
 	}
 	gitCredentialStoreFile = f.Name()
 
-	authToken, err := ghTransport.Token(context.TODO())
+	authToken, err := ghTransport.Token(context.Background())
 	if err != nil {
 		slog.Error("error getting github auth token")
 		return err
@@ -224,7 +224,7 @@ func CleanupGitAuth() error {
 }
 
 func openPRIfNeeded(repo string) error {
-	ctx := context.TODO()
+	ctx := context.Background()
 	owner, repo, _ := strings.Cut(repo, "/")
 	head := fmt.Sprintf("%s:%s", owner, vectorUpdateBranch)
 	existing, _, err := gh.PullRequests.List(ctx, owner, repo, &github.PullRequestListOptions{
