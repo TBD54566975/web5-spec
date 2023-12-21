@@ -5,24 +5,21 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"regexp"
 	"strings"
 
-	"github.com/google/go-github/v57/github"
 	"golang.org/x/exp/slog"
 )
 
 var (
-	ghToken = os.Getenv("GITHUB_TOKEN")
-	gh      = github.NewClient(nil).WithAuthToken(ghToken)
-	SDKs    = []SDKMeta{
+	SDKs = []SDKMeta{
 		{
 			Name:         "web5-js",
 			Repo:         "TBD54566975/web5-js",
 			ArtifactName: "junit-results",
 			FeatureRegex: regexp.MustCompile(`Web5TestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`\w+ \w+ (\w+)`),
+			VectorPath:   "test-vectors",
 		},
 		{
 			Name:         "web5-kt",
@@ -30,34 +27,29 @@ var (
 			ArtifactName: "test-results",
 			FeatureRegex: regexp.MustCompile(`web5\.sdk\.\w+.Web5TestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`(\w+)\(\)`),
+			VectorPath:   "test-vectors",
 		},
 	}
 )
 
-func init() {
-	if ghToken == "" {
-		panic("please set environment variable GITHUB_TOKEN to a valid github token (generate one at https://github.com/settings/tokens?type=beta)")
-	}
-}
-
 func GetAllReports() ([]Report, error) {
-	ctx := context.TODO()
+	ctx := context.Background()
 
-	reports := []Report{}
+	var reports []Report
 	for _, sdk := range SDKs {
 		artifact, err := downloadArtifact(ctx, sdk)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("error downloading artifact from %s: %v", sdk.Repo, err)
 		}
 
 		suites, err := readArtifactZip(artifact)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("error parsing artifact from %s: %v", sdk.Repo, err)
 		}
 
 		report, err := sdk.buildReport(suites)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("error processing data from %s: %v", sdk.Repo, err)
 		}
 
 		reports = append(reports, report)
@@ -90,16 +82,20 @@ func downloadArtifact(ctx context.Context, sdk SDKMeta) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", ghToken))
+	bearer, err := ghTransport.Token(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("error getting github token: %v", err)
+	}
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", bearer))
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error making http request to %s: %v", artifactURL, err)
 	}
 	defer resp.Body.Close()
 
 	artifact, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error reading response body: %v", err)
 	}
 
 	slog.Info("downloaded artifact", "sdk", sdk.Repo, "size", len(artifact))

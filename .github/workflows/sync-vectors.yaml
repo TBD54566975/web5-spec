@@ -1,0 +1,23 @@
+name: sync vectors
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web5-test-vectors/**/*.json'
+  workflow_dispatch:
+
+jobs:
+  build-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+      - name: sync vectors
+        run: cd reports && go run ./cmd/sync-vectors
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CICD_ROBOT_GITHUB_APP_NAME: ${{ secrets.CICD_ROBOT_GITHUB_APP_NAME }}
+          CICD_ROBOT_GITHUB_APP_PRIVATE_KEY: ${{ secrets.CICD_ROBOT_GITHUB_APP_PRIVATE_KEY }}
+          CICD_ROBOT_GITHUB_APP_ID: ${{ secrets.CICD_ROBOT_GITHUB_APP_ID }}
+          CICD_ROBOT_GITHUB_APP_INSTALLATION_ID: ${{ secrets.CICD_ROBOT_GITHUB_APP_INSTALLATION_ID }}
