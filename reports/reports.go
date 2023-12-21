@@ -109,8 +109,6 @@ func (s SDKMeta) buildReport(suites []junit.Suite) (Report, error) {
 			continue
 		}
 
-		results[suiteName] = make(map[string]Result)
-
 		for _, test := range suite.Tests {
 			testName := test.Name
 			if s.VectorRegex != nil {
