@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P");
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("PressStart2P-Regular.ttf");
+}
 
 /* Variables */
 :root {
