@@ -18,7 +18,7 @@ jobs:
         run: |
           cd reports
           go run ./cmd/build-html
-          cp -r ./static _site
+          cp -r ./static/* _site
           mv _site ../
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
