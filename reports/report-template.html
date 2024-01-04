@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-        <title>web5 spec compliance report</title>
-        <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
-        <style type="text/css">
-            * {
-                font-family: sans-serif;
-            }
-            table {
-                border-collapse: collapse;
-            }
-            th {
-                border-bottom: solid black 1px;
-            }
-            td, th {
-                padding-right: 1em;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>web5 spec compliance report</h1>
+    <title>web5 spec compliance report</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.svg" />
+  </head>
+  <body>
+    <main>
+      <h1>web5 spec compliance report</h1>
 
-        {{ range $category, $tests := .Tests }}
-        <h2>{{ $category }}</h2>
-        <table>
-            <tr><th>test</th>{{ range $.Reports }}<th><a href="https://github.com/{{ .SDK.Repo }}">{{ .SDK.Name }}</a></th>{{ end }}</tr>
-            {{ range $i, $test := $tests }}
-            <tr>
-                <td>{{ $test }}</td>
-                {{ range $_, $report := $.Reports }}
-                <td>
-                    <details>
-                    <summary>{{ (index (index .Results $category) $test).GetEmoji }}</summary>
-                    <ul>
-                        {{ range (index (index .Results $category) $test).Errors }}<li>{{ . }}</li>{{ end }}
-                    </ul>
-                </td>
-                {{ end }}
-            </tr>
+      {{ range $category, $tests := .Tests }}
+      <h2 id="{{ $category }}_table-caption">{{ $category }}</h2>
+      <table aria-labelledby="{{ $category }}_table-caption">
+        <colgroup>
+          <col span="1" />
+          <col span="2" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">test vector</th>
+            {{ range $.Reports }}
+            <th scope="col">
+              <a target="_blank" href="https://github.com/{{ .SDK.Repo }}"
+                >{{ .SDK.Name }}</a
+              >
+            </th>
             {{ end }}
-        </table>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $i, $test := $tests }}
+          <tr>
+            <th scope="row">{{ $test }}</th>
+            {{ range $_, $report := $.Reports }}
+            <td>
+              <details{{ if eq (len (index (index .Results $category) $test).Errors) 0 }} tabindex="-1"{{ end }}>
+                <summary{{ if eq (len (index (index .Results $category) $test).Errors) 0 }} role="paragraph"{{ end }}>
+                  <span aria-label="{{ (index (index .Results $category) $test).GetEmojiAriaLabel }}">{{ (index (index .Results $category) $test).GetEmoji }}</span>
+                </summary>
+                <ul>
+                  {{ range (index (index .Results $category) $test).Errors }}
+                  <li>{{ . }}</li>
+                  {{ end }}
+                </ul>
+              </details>
+            </td>
+            {{ end }}
+          </tr>
+        </tbody>
         {{ end }}
-    </body>
+      </table>
+      {{ end }}
+    </main>
+  </body>
 </html>
