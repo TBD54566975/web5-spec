@@ -1,7 +1,0 @@
-web5 spec conformance report for {{ .TestServerID.Name }} ({{ .TestServerID.Url }})
-
-{{ range $groupName, $results := .Results }}
-{{ $groupName }}
-======================{{ range $test, $result := $results }}
-{{ $test }}: {{ $result.GetEmoji }} {{ if $result.Errors }}fail: {{ $result.Errors }}{{ else }}pass{{ end }}{{ end }}
-{{ end }}
