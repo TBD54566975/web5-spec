@@ -15,7 +15,8 @@
         "didResolutionMetadata": {},
         "didDocument": {
           "id": "did:web:example.com"
-        }
+        },
+        "didDocumentMetadata": {}
       }
     },
     {
@@ -32,7 +33,8 @@
         "didResolutionMetadata": {},
         "didDocument": {
           "id": "did:web:w3c-ccg.github.io:user:alice"
-        }
+        },
+        "didDocumentMetadata": {}
       }
     },
     {
@@ -49,7 +51,8 @@
         "didResolutionMetadata": {},
         "didDocument": {
           "id": "did:web:example.com%3A3000:user:alice"
-        }
+        },
+        "didDocumentMetadata": {}
       }
     },
     {
@@ -60,7 +63,8 @@
       "output": {
         "didResolutionMetadata": {
           "error": "methodNotSupported"
-        }
+        },
+        "didDocumentMetadata": {}
       },
       "errors": true
     },
@@ -72,7 +76,8 @@
       "output": {
         "didResolutionMetadata": {
           "error": "notFound"
-        }
+        },
+        "didDocumentMetadata": {}
       },
       "errors": true
     },
@@ -84,7 +89,8 @@
       "output": {
         "didResolutionMetadata": {
           "error": "invalidDid"
-        }
+        },
+        "didDocumentMetadata": {}
       },
       "errors": true
     }
