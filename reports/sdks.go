@@ -29,6 +29,22 @@ var (
 			VectorRegex:  regexp.MustCompile(`(\w+)\(\)`),
 			VectorPath:   "test-vectors",
 		},
+		{
+			Name:         "tbdex-js",
+			Repo:         "TBD54566975/tbdex-js",
+			ArtifactName: "junit-results",
+			FeatureRegex: regexp.MustCompile(`TbdexTestVectors(\w+)`),
+			VectorRegex:  regexp.MustCompile(`\w+ \w+ (\w+)`),
+			VectorPath:   "test-vectors",
+		},
+		{
+			Name:         "tbdex-kt",
+			Repo:         "TBD54566975/tbdex-kt",
+			ArtifactName: "test-results",
+			FeatureRegex: regexp.MustCompile(`web5\.sdk\.\w+.TbdexTestVectors(\w+)`),
+			VectorRegex:  regexp.MustCompile(`(\w+)\(\)`),
+			VectorPath:   "test-vectors",
+		},
 	}
 )
 
