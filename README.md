@@ -369,12 +369,13 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 ### [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model)
 
-| Feature             | Typescript | Kotlin | Rust | Swift |
-| ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ✅         | ✅     | ❌   | ❌    |
-| Signing as `vc-jwt` | ✅         | ✅     | ❌   | ❌    |
-| Verification        | ✅         | ✅     | ❌   | ❌    |
-| Validation          | ✅         | ✅     | ❌   | ❌    |
+| Feature                              | Typescript | Kotlin | Rust | Swift |
+| ------------------------------------ | ---------- | ------ | ---- | ----- |
+| Creation                             | ✅         | ✅     | ❌   | ❌    |
+| Signing as `vc-jwt`                  | ✅         | ✅     | ❌   | ❌    |
+| Verification                         | ✅         | ✅     | ❌   | ❌    |
+| Validation                           | ✅         | ✅     | ❌   | ❌    |
+| Verifiable Presentations as `vp-jwt` | ⚠️          | ⚠️      | ❌   | ❌    |
 
 ### [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/)
 
@@ -412,8 +413,12 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 ### [Presentation Exchange V2](https://identity.foundation/presentation-exchange/spec/v2.0.0/)
 
-| Feature               | Typescript | Kotlin | Rust | Swift |
-| --------------------- | ---------- | ------ | ---- | ----- |
-| Concrete Type         | ✅         | ✅     | ❌   | ❌    |
-| Validation            | ✅         | ⚠️      | ❌   | ❌    |
-| Credential Evaluation | ✅         | ⚠️      | ❌   | ❌    |
+| Feature                | Typescript | Kotlin | Rust | Swift |
+| ---------------------- | ---------- | ------ | ---- | ----- |
+| Concrete Type          | ✅         | ✅     | ❌   | ❌    |
+| Validation             | ✅         | ✅     | ❌   | ❌    |
+| Credential Evaluation  | ✅         | ✅     | ❌   | ❌    |
+| [Predicates](https://identity.foundation/presentation-exchange/spec/v2.0.0/#predicate-feature)                           | ✅         | ✅     | ❌   | ❌    |
+| [Relational Constraints](https://identity.foundation/presentation-exchange/spec/v2.0.0/#relational-constraint-feature)   | ✅         | ❌     | ❌   | ❌    |
+| [Credential Status](https://identity.foundation/presentation-exchange/spec/v2.0.0/#credential-status-constraint-feature) | ❌         | ❌     | ❌   | ❌    |
+
