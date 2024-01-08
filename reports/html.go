@@ -17,8 +17,9 @@ func sanatizeHTML(dirty error) string {
 }
 
 type htmlTemplateInput struct {
-	Reports []Report
-	Tests   map[string][]string
+	Reports    []Report
+	Web5Tests  map[string][]string
+	TbdexTests map[string][]string
 }
 
 func WriteHTML(reports []Report, filename string) error {
@@ -38,13 +39,14 @@ func WriteHTML(reports []Report, filename string) error {
 	}
 
 	templateInput := htmlTemplateInput{
-		Reports: reports,
-		Tests:   make(map[string][]string),
+		Reports:    reports,
+		Web5Tests:  make(map[string][]string),
+		TbdexTests: make(map[string][]string),
 	}
 
 	for category, tests := range testmap {
 		for test := range tests {
-			templateInput.Tests[category] = append(templateInput.Tests[category], test)
+			templateInput.Web5Tests[category] = append(templateInput.Web5Tests[category], test)
 		}
 	}
 

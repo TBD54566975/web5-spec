@@ -41,7 +41,7 @@ var (
 			Name:         "tbdex-kt",
 			Repo:         "TBD54566975/tbdex-kt",
 			ArtifactName: "test-results",
-			FeatureRegex: regexp.MustCompile(`web5\.sdk\.\w+.TbdexTestVectors(\w+)`),
+			FeatureRegex: regexp.MustCompile(`tbdex\.sdk\.\w+.TbdexTestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`(\w+)\(\)`),
 			VectorPath:   "test-vectors",
 		},
