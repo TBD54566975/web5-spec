@@ -200,6 +200,9 @@ func ConfigureGitAuth() error {
 	}
 	gitCredentialStoreFile = f.Name()
 
+	if ghTransport == nil {
+		panic("syncing vecotrs with a PAT not supported. See reports/README.md for instructions to create a GitHub app.")
+	}
 	authToken, err := ghTransport.Token(context.Background())
 	if err != nil {
 		slog.Error("error getting github auth token")
