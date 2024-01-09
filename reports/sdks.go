@@ -20,6 +20,7 @@ var (
 			FeatureRegex: regexp.MustCompile(`Web5TestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`\w+ \w+ (\w+)`),
 			VectorPath:   "test-vectors",
+			Type:         "web5",
 		},
 		{
 			Name:         "web5-kt",
@@ -28,6 +29,7 @@ var (
 			FeatureRegex: regexp.MustCompile(`web5\.sdk\.\w+.Web5TestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`(\w+)\(\)`),
 			VectorPath:   "test-vectors",
+			Type:         "web5",
 		},
 		{
 			Name:         "tbdex-js",
@@ -36,6 +38,7 @@ var (
 			FeatureRegex: regexp.MustCompile(`TbdexTestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`\w+ \w+ (\w+)`),
 			VectorPath:   "test-vectors",
+			Type:         "tbdex",
 		},
 		{
 			Name:         "tbdex-kt",
@@ -44,6 +47,7 @@ var (
 			FeatureRegex: regexp.MustCompile(`tbdex\.sdk\.\w+.TbdexTestVectors(\w+)`),
 			VectorRegex:  regexp.MustCompile(`(\w+)\(\)`),
 			VectorPath:   "test-vectors",
+			Type:         "tbdex",
 		},
 	}
 )

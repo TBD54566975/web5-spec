@@ -11,7 +11,7 @@
     <main>
       <h1>web5 spec compliance report</h1>
 
-      {{ range $category, $tests := .Tests }}
+      {{ range $category, $tests := .Web5Tests }}
       <h2 id="{{ $category }}_table-caption">{{ $category }}</h2>
       <table aria-labelledby="{{ $category }}_table-caption">
         <colgroup>
@@ -56,7 +56,7 @@
 
       <h1>tbdex spec compliance report</h1>
 
-      {{ range $category, $tests := .Tests }}
+      {{ range $category, $tests := .TbdexTests }}
       <h2 id="{{ $category }}_table-caption">{{ $category }}</h2>
       <table aria-labelledby="{{ $category }}_table-caption">
         <colgroup>
