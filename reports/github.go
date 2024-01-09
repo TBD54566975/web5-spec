@@ -18,6 +18,8 @@ var (
 	ghAppIDString             = os.Getenv("CICD_ROBOT_GITHUB_APP_ID")
 	ghAppInstallationIDString = os.Getenv("CICD_ROBOT_GITHUB_APP_INSTALLATION_ID")
 
+	ghToken = os.Getenv("GITHUB_TOKEN")
+
 	gh          *github.Client
 	ghTransport *ghinstallation.Transport
 
@@ -25,6 +27,12 @@ var (
 )
 
 func init() {
+	if ghToken != "" {
+		slog.Info("using GITHUB_TOKEN for auth")
+		gh = github.NewTokenClient(context.Background(), ghToken)
+		return
+	}
+
 	ghAppID, err := strconv.ParseInt(ghAppIDString, 10, 32)
 	if err != nil {
 		slog.Error("invalid or unset app ID. Please set environment variable CICD_ROBOT_GITHUB_APP_ID to a valid integer")
