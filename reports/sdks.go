@@ -18,7 +18,7 @@ var (
 			Repo:         "TBD54566975/web5-js",
 			ArtifactName: "junit-results",
 			FeatureRegex: regexp.MustCompile(`Web5TestVectors(\w+)`),
-			VectorRegex:  regexp.MustCompile(`\w+ \w+ (\w+)`),
+			VectorRegex:  regexp.MustCompile(`.* Web5TestVectors\w+ (\w+)`),
 			VectorPath:   "test-vectors",
 		},
 		{
