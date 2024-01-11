@@ -102,9 +102,12 @@ func downloadArtifact(ctx context.Context, sdk SDKMeta) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	bearer, err := ghTransport.Token(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("error getting github token: %v", err)
+	bearer := ghToken
+	if ghToken == "" {
+		bearer, err = ghTransport.Token(ctx)
+		if err != nil {
+			return nil, fmt.Errorf("error getting github token: %v", err)
+		}
 	}
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", bearer))
 	resp, err := http.DefaultClient.Do(req)
