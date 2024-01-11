@@ -421,4 +421,3 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 | [Predicates](https://identity.foundation/presentation-exchange/spec/v2.0.0/#predicate-feature)                           | ✅         | ✅     | ❌   | ❌    |
 | [Relational Constraints](https://identity.foundation/presentation-exchange/spec/v2.0.0/#relational-constraint-feature)   | ✅         | ❌     | ❌   | ❌    |
 | [Credential Status](https://identity.foundation/presentation-exchange/spec/v2.0.0/#credential-status-constraint-feature) | ❌         | ❌     | ❌   | ❌    |
-
