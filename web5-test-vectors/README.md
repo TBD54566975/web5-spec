@@ -7,7 +7,7 @@ This directory contains test vectors for all features we intend to support accro
 ```text
 web5-test-vectors
 ├── README.md
-├── did-jwk <--- feature
+├── did_jwk <--- feature
 │   └── resolve.json <--- sub-feature
 ├── index.html
 └── vectors.schema.json
@@ -65,7 +65,7 @@ Should `errors` be set to `true`, the `output` field may optionally be used to i
       "description": "this is an example",
       "input": "hello world",
       "output": "hello world",
-      "errors" : false
+      "errors": false
     }
   ]
 }
