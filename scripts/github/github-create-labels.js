@@ -30,7 +30,8 @@ const labelsToCreate = [
   { "name": "tbdex-orderstatus", "color": "D68910", "description": "tbDEX Order-Status Message" },
   { "name": "tbdex-close", "color": "34495E", "description": "tbDEX Close Message" },
   { "name": "tbdex-server", "color": "3498DB", "description": "HTTP server for tbDEX PFIs " },
-  { "name": "tbdex-client", "color": "E74C3C", "description": "HTTP client for tbDEX wallets" }
+  { "name": "tbdex-client", "color": "E74C3C", "description": "HTTP client for tbDEX wallets" },
+  { "name": "cicd", "color": "94D114", "description": "CI/CD and Automation" },
 ];
 
 async function fetchExistingLabels() {
