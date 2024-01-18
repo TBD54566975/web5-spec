@@ -207,118 +207,111 @@ Each SDK will use Github Actions for CI/CD and other automations
 
 ### CI/CD Statuses Dashboard
 
-| SDK                             | CI Status                                                 | License                                                                                                                                           | License & Security Scanning                                   | OSSF Score                                        | SAST/Lint    | Unit Tests                                              | E2E Tests    | Release                                                                                                                     | API Reference Docs                                                                                                                                                                                                  | SBOMs        | Artifacts    |
-| ------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------- | ------------ | ------------------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------ |
-| [@web5/common] ![js-icon]       | [![@web5/common:ci-img]][@web5/common:ci-url]             | [![@web5/common:ghlicense-img]][@web5/common:ghlicense-url] [![@web5/common:pkglicense-img]][@web5/common:pkglicense-url]                         | [![@web5/common:scan-img]][@web5/common:scan-url]             | [![@web5/common:ossf-img]][@web5/common:ossf-url] | ![todo-icon] | [![@web5/common:codecov-img]][@web5/common:codecov-url] | ![todo-icon] | [![@web5/common:ghtag-img]][@web5/common:ghtag-url] [![@web5/common:pkg-img]][@web5/common:pkg-url]                         | ![todo-icon]                                                                                                                                                                                                        | ![todo-icon] | ![todo-icon] |
-| [@web5/crypto] ![js-icon]       | [![@web5/crypto:ci-img]][@web5/crypto:ci-url]             | [![@web5/crypto:ghlicense-img]][@web5/crypto:ghlicense-url] [![@web5/crypto:pkglicense-img]][@web5/crypto:pkglicense-url]                         | [![@web5/crypto:scan-img]][@web5/crypto:scan-url]             | [![@web5/crypto:ossf-img]][@web5/crypto:ossf-url] | ![todo-icon] | [![@web5/crypto:codecov-img]][@web5/crypto:codecov-url] | ![todo-icon] | [![@web5/crypto:ghtag-img]][@web5/crypto:ghtag-url] [![@web5/crypto:pkg-img]][@web5/crypto:pkg-url]                         | ![todo-icon]                                                                                                                                                                                                        | ![todo-icon] | ![todo-icon] |
-| [@web5/dids] ![js-icon]         | [![@web5/dids:ci-img]][@web5/dids:ci-url]                 | [![@web5/dids:ghlicense-img]][@web5/dids:ghlicense-url] [![@web5/dids:pkglicense-img]][@web5/dids:pkglicense-url]                                 | [![@web5/dids:scan-img]][@web5/dids:scan-url]                 | [![@web5/dids:ossf-img]][@web5/dids:ossf-url]     | ![todo-icon] | [![@web5/dids:codecov-img]][@web5/dids:codecov-url]     | ![todo-icon] | [![@web5/dids:ghtag-img]][@web5/dids:ghtag-url] [![@web5/dids:pkg-img]][@web5/dids:pkg-url]                                 | ![todo-icon]                                                                                                                                                                                                        | ![todo-icon] | ![todo-icon] |
-| [@tbdex/http-client] ![js-icon] | [![@tbdex/http-client:ci-img]][@tbdex/http-client:ci-url] | [![@tbdex/http-client:ghlicense-img]][@tbdex/http-client:ghlicense-url] [![@tbdex/http-client:pkglicense-img]][@tbdex/http-client:pkglicense-url] | [![@tbdex/http-client:scan-img]][@tbdex/http-client:scan-url] | ![todo-icon]                                      | ![todo-icon] | ![todo-icon]                                            | ![todo-icon] | [![@tbdex/http-client:ghtag-img]][@tbdex/http-client:ghtag-url] [![@tbdex/http-client:pkg-img]][@tbdex/http-client:pkg-url] | [![@tbdex/http-client:apidocsci-img]][@tbdex/http-client:apidocsci-url] [![@tbdex/http-client:apidocscd-img]][@tbdex/http-client:apidocscd-url] [![@tbdex/http-client:apidocs-img]][@tbdex/http-client:apidocs-url] | ![todo-icon] | ![todo-icon] |
-| [@tbdex/http-server] ![js-icon] | [![@tbdex/http-server:ci-img]][@tbdex/http-server:ci-url] | [![@tbdex/http-server:ghlicense-img]][@tbdex/http-server:ghlicense-url] [![@tbdex/http-server:pkglicense-img]][@tbdex/http-server:pkglicense-url] | [![@tbdex/http-server:scan-img]][@tbdex/http-server:scan-url] | ![todo-icon]                                      | ![todo-icon] | ![todo-icon]                                            | ![todo-icon] | [![@tbdex/http-server:ghtag-img]][@tbdex/http-server:ghtag-url] [![@tbdex/http-server:pkg-img]][@tbdex/http-server:pkg-url] | [![@tbdex/http-server:apidocsci-img]][@tbdex/http-server:apidocsci-url] [![@tbdex/http-server:apidocscd-img]][@tbdex/http-server:apidocscd-url] [![@tbdex/http-server:apidocs-img]][@tbdex/http-server:apidocs-url] | ![todo-icon] | ![todo-icon] |
-| [@tbdex/protocol] ![js-icon]    | [![@tbdex/protocol:ci-img]][@tbdex/protocol:ci-url]       | [![@tbdex/protocol:ghlicense-img]][@tbdex/protocol:ghlicense-url] [![@tbdex/protocol:pkglicense-img]][@tbdex/protocol:pkglicense-url]             | [![@tbdex/protocol:scan-img]][@tbdex/protocol:scan-url]       | ![todo-icon]                                      | ![todo-icon] | ![todo-icon]                                            | ![todo-icon] | [![@tbdex/protocol:ghtag-img]][@tbdex/protocol:ghtag-url] [![@tbdex/protocol:pkg-img]][@tbdex/protocol:pkg-url]             | [![@tbdex/protocol:apidocsci-img]][@tbdex/protocol:apidocsci-url] [![@tbdex/protocol:apidocscd-img]][@tbdex/protocol:apidocscd-url] [![@tbdex/protocol:apidocs-img]][@tbdex/protocol:apidocs-url]                   | ![todo-icon] | ![todo-icon] |
-| [tbdex-kt] ![kt-icon]           | [![tbdex-kt:ci-img]][tbdex-kt:ci-url]                     | [![tbdex-kt:ghlicense-img]][tbdex-kt:ghlicense-url] ![tbdex-kt:pkglicense-img]                                                                    | [![tbdex-kt:scan-img]][tbdex-kt:scan-url]                     | ![todo-icon]                                      | ![todo-icon] | [![tbdex-kt:codecov-img]][tbdex-kt:codecov-url]         | ![todo-icon] | [![tbdex-kt:ghtag-img]][tbdex-kt:ghtag-url] [![tbdex-kt:pkg-img]][tbdex-kt:pkg-url]                                         | [![tbdex-kt:apidocsci-img]][tbdex-kt:apidocsci-url] [![tbdex-kt:apidocscd-img]][tbdex-kt:apidocscd-url] [![tbdex-kt:apidocs-img]][tbdex-kt:apidocs-url]                                                             | ![todo-icon] | ![todo-icon] |
+| SDK                             | CI Status                                                 | License                                                                                                                                           | License & Security Scanning                                                                                                   | OSSF Score                                        | SAST/Lint    | Unit Tests                                                           | Acceptance Tests | Release                                                                                                                                               | API Reference Docs                                                                                                                                                                                                  |
+| ------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ------------ | -------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![js-icon] [@web5/common]       | [![@web5/common:ci-img]][@web5/common:ci-url]             | [![@web5/common:ghlicense-img]][@web5/common:ghlicense-url] [![@web5/common:pkglicense-img]][@web5/common:pkglicense-url]                         | [![@web5/common:scan-img]][@web5/common:scan-url] [![@web5/common:fossa-img]][@web5/common:fossa-url]                         | [![@web5/common:ossf-img]][@web5/common:ossf-url] | ![todo-sast] | ![todo-unit] [![@web5/common:codecov-img]][@web5/common:codecov-url] | ![todo-e2e]      | [![@web5/common:ghtag-img]][@web5/common:ghtag-url] [![@web5/common:pkg-img]][@web5/common:pkg-url] ![todo-spdx] ![todo-cydx]                         | ![todo-docsci] ![todo-docscd]                                                                                                                                                                                       |
+| ![js-icon] [@web5/crypto]       | [![@web5/crypto:ci-img]][@web5/crypto:ci-url]             | [![@web5/crypto:ghlicense-img]][@web5/crypto:ghlicense-url] [![@web5/crypto:pkglicense-img]][@web5/crypto:pkglicense-url]                         | [![@web5/crypto:scan-img]][@web5/crypto:scan-url] [![@web5/crypto:fossa-img]][@web5/crypto:fossa-url]                         | [![@web5/crypto:ossf-img]][@web5/crypto:ossf-url] | ![todo-sast] | ![todo-unit] [![@web5/crypto:codecov-img]][@web5/crypto:codecov-url] | ![todo-e2e]      | [![@web5/crypto:ghtag-img]][@web5/crypto:ghtag-url] [![@web5/crypto:pkg-img]][@web5/crypto:pkg-url] ![todo-spdx] ![todo-cydx]                         | ![todo-docsci] ![todo-docscd]                                                                                                                                                                                       |
+| ![js-icon] [@web5/dids]         | [![@web5/dids:ci-img]][@web5/dids:ci-url]                 | [![@web5/dids:ghlicense-img]][@web5/dids:ghlicense-url] [![@web5/dids:pkglicense-img]][@web5/dids:pkglicense-url]                                 | [![@web5/dids:scan-img]][@web5/dids:scan-url] [![@web5/dids:fossa-img]][@web5/dids:fossa-url]                                 | [![@web5/dids:ossf-img]][@web5/dids:ossf-url]     | ![todo-sast] | ![todo-unit] [![@web5/dids:codecov-img]][@web5/dids:codecov-url]     | ![todo-e2e]      | [![@web5/dids:ghtag-img]][@web5/dids:ghtag-url] [![@web5/dids:pkg-img]][@web5/dids:pkg-url] ![todo-spdx] ![todo-cydx]                                 | ![todo-docsci] ![todo-docscd]                                                                                                                                                                                       |
+| ![js-icon] [@tbdex/http-client] | [![@tbdex/http-client:ci-img]][@tbdex/http-client:ci-url] | [![@tbdex/http-client:ghlicense-img]][@tbdex/http-client:ghlicense-url] [![@tbdex/http-client:pkglicense-img]][@tbdex/http-client:pkglicense-url] | [![@tbdex/http-client:scan-img]][@tbdex/http-client:scan-url] [![@tbdex/http-client:fossa-img]][@tbdex/http-client:fossa-url] | ![todo-ossf]                                      | ![todo-sast] | ![todo-unit] ![todo-codecov]                                         | ![todo-e2e]      | [![@tbdex/http-client:ghtag-img]][@tbdex/http-client:ghtag-url] [![@tbdex/http-client:pkg-img]][@tbdex/http-client:pkg-url] ![todo-spdx] ![todo-cydx] | [![@tbdex/http-client:apidocsci-img]][@tbdex/http-client:apidocsci-url] [![@tbdex/http-client:apidocscd-img]][@tbdex/http-client:apidocscd-url] [![@tbdex/http-client:apidocs-img]][@tbdex/http-client:apidocs-url] |
+| ![js-icon] [@tbdex/http-server] | [![@tbdex/http-server:ci-img]][@tbdex/http-server:ci-url] | [![@tbdex/http-server:ghlicense-img]][@tbdex/http-server:ghlicense-url] [![@tbdex/http-server:pkglicense-img]][@tbdex/http-server:pkglicense-url] | [![@tbdex/http-server:scan-img]][@tbdex/http-server:scan-url] [![@tbdex/http-server:fossa-img]][@tbdex/http-server:fossa-url] | ![todo-ossf]                                      | ![todo-sast] | ![todo-unit] ![todo-codecov]                                         | ![todo-e2e]      | [![@tbdex/http-server:ghtag-img]][@tbdex/http-server:ghtag-url] [![@tbdex/http-server:pkg-img]][@tbdex/http-server:pkg-url] ![todo-spdx] ![todo-cydx] | [![@tbdex/http-server:apidocsci-img]][@tbdex/http-server:apidocsci-url] [![@tbdex/http-server:apidocscd-img]][@tbdex/http-server:apidocscd-url] [![@tbdex/http-server:apidocs-img]][@tbdex/http-server:apidocs-url] |
+| ![js-icon] [@tbdex/protocol]    | [![@tbdex/protocol:ci-img]][@tbdex/protocol:ci-url]       | [![@tbdex/protocol:ghlicense-img]][@tbdex/protocol:ghlicense-url] [![@tbdex/protocol:pkglicense-img]][@tbdex/protocol:pkglicense-url]             | [![@tbdex/protocol:scan-img]][@tbdex/protocol:scan-url] [![@tbdex/protocol:fossa-img]][@tbdex/protocol:fossa-url]             | ![todo-ossf]                                      | ![todo-sast] | ![todo-unit] ![todo-codecov]                                         | ![todo-e2e]      | [![@tbdex/protocol:ghtag-img]][@tbdex/protocol:ghtag-url] [![@tbdex/protocol:pkg-img]][@tbdex/protocol:pkg-url] ![todo-spdx] ![todo-cydx]             | [![@tbdex/protocol:apidocsci-img]][@tbdex/protocol:apidocsci-url] [![@tbdex/protocol:apidocscd-img]][@tbdex/protocol:apidocscd-url] [![@tbdex/protocol:apidocs-img]][@tbdex/protocol:apidocs-url]                   |
+| ![kt-icon] [tbdex-kt]           | [![tbdex-kt:ci-img]][tbdex-kt:ci-url]                     | [![tbdex-kt:ghlicense-img]][tbdex-kt:ghlicense-url] ![tbdex-kt:pkglicense-img]                                                                    | [![tbdex-kt:scan-img]][tbdex-kt:scan-url] [![tbdex-kt:fossa-img]][tbdex-kt:fossa-url]                                         | ![todo-ossf]                                      | ![todo-sast] | ![todo-unit] [![tbdex-kt:codecov-img]][tbdex-kt:codecov-url]         | ![todo-e2e]      | [![tbdex-kt:ghtag-img]][tbdex-kt:ghtag-url] [![tbdex-kt:pkg-img]][tbdex-kt:pkg-url] ![todo-spdx] ![todo-cydx]                                         | [![tbdex-kt:apidocsci-img]][tbdex-kt:apidocsci-url] [![tbdex-kt:apidocscd-img]][tbdex-kt:apidocscd-url] [![tbdex-kt:apidocs-img]][tbdex-kt:apidocs-url]                                                             |
 
 <!-- MISC BADGES -->
 
 [js-icon]: https://img.shields.io/badge/-js-F7DF1E?style=flat-square
 [kt-icon]: https://img.shields.io/badge/-kt-7F52FF?style=flat-square
-[todo-icon]: https://img.shields.io/badge/todo-indigo
-
-<!-- @web5/api -->
-
-[@web5/api]: https://github.com/TBD54566975/web5-js/tree/main/packages/api
-[@web5/api:ci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/web5-js/tests-ci.yml?branch=main&logo=github&label=ci&logoColor=FFFFFF&style=flat-square
-[@web5/api:ci-url]: https://github.com/TBD54566975/web5-js/actions/workflows/tests-ci.yml
-[@web5/api:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/web5-js?style=flat-square&logo=github&color=4c1
-[@web5/api:ghlicense-url]: https://github.com/TBD54566975/web5-js/blob/main/LICENSE
-[@web5/api:scan-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/web5-js/security.yml?branch=main&logo=github&label=scan&logoColor=FFFFFF&style=flat-square
-[@web5/api:scan-url]: https://github.com/TBD54566975/web5-js/actions/workflows/security.yml
-[@web5/api:ossf-img]: https://img.shields.io/ossf-scorecard/github.com/TBD54566975/web5-js?label=ossf
-[@web5/api:ossf-url]: https://securityscorecards.dev/viewer/?uri=github.com/TBD54566975/web5-js
-[@web5/api:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/web5-js/main?logo=codecov&logoColor=FFFFFF&style=flat-square&token=YI87CKF1LI
-[@web5/api:codecov-url]: https://codecov.io/github/TBD54566975/web5-js
-[@web5/api:ghtag-img]: https://img.shields.io/github/v/release/TBD54566975/web5-js?logo=github&label=tag&style=flat-square&color=4c1
-[@web5/api:ghtag-url]: https://github.com/TBD54566975/web5-js/releases
-[@web5/api:pkg-img]: https://img.shields.io/npm/v/@web5/api.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true
-[@web5/api:pkg-url]: https://www.npmjs.com/package/@web5/api
-[@web5/api:pkglicense-img]: https://img.shields.io/npm/l/@web5/api.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true
-[@web5/api:pkglicense-url]: https://www.npmjs.com/package/@web5/api
+[todo-ossf]: https://img.shields.io/badge/ossf-todo-indigo?style=flat-square
+[todo-unit]: https://img.shields.io/badge/unit-todo-indigo?style=flat-square
+[todo-codecov]: https://img.shields.io/badge/codecov-todo-indigo?style=flat-square
+[todo-sast]: https://img.shields.io/badge/sast-todo-indigo?style=flat-square
+[todo-lint]: https://img.shields.io/badge/lint-todo-indigo?style=flat-square
+[todo-docsci]: https://img.shields.io/badge/docs%20ci-todo-indigo?style=flat-square
+[todo-docscd]: https://img.shields.io/badge/docs%20publish-todo-indigo?style=flat-square
+[todo-spdx]: https://img.shields.io/badge/spdx-todo-indigo?style=flat-square
+[todo-cydx]: https://img.shields.io/badge/cydx-todo-indigo?style=flat-square
+[todo-e2e]: https://img.shields.io/badge/e2e-todo-indigo?style=flat-square
 
 <!-- @web5/common -->
 
 [@web5/common]: https://github.com/TBD54566975/web5-js/tree/main/packages/common
 [@web5/common:ci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/web5-js/tests-ci.yml?branch=main&logo=github&label=ci&logoColor=FFFFFF&style=flat-square
 [@web5/common:ci-url]: https://github.com/TBD54566975/web5-js/actions/workflows/tests-ci.yml
-[@web5/common:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/web5-js?style=flat-square&logo=github&color=4c1
+[@web5/common:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/web5-js?style=flat-square&logo=github&color=4c1&label=gh
 [@web5/common:ghlicense-url]: https://github.com/TBD54566975/web5-js/blob/main/LICENSE
 [@web5/common:scan-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/web5-js/security.yml?branch=main&logo=github&label=scan&logoColor=FFFFFF&style=flat-square
 [@web5/common:scan-url]: https://github.com/TBD54566975/web5-js/actions/workflows/security.yml
-[@web5/common:ossf-img]: https://img.shields.io/ossf-scorecard/github.com/TBD54566975/web5-js?label=ossf
+[@web5/common:ossf-img]: https://img.shields.io/ossf-scorecard/github.com/TBD54566975/web5-js?label=ossf&style=flat-square
 [@web5/common:ossf-url]: https://securityscorecards.dev/viewer/?uri=github.com/TBD54566975/web5-js
-[@web5/common:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/web5-js/main?logo=codecov&logoColor=FFFFFF&style=flat-square&token=YI87CKF1LI
+[@web5/common:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/web5-js/main?label=codecov&style=flat-square&token=YI87CKF1LI
 [@web5/common:codecov-url]: https://codecov.io/github/TBD54566975/web5-js
 [@web5/common:ghtag-img]: https://img.shields.io/github/v/release/TBD54566975/web5-js?logo=github&label=tag&style=flat-square&color=4c1
 [@web5/common:ghtag-url]: https://github.com/TBD54566975/web5-js/releases
 [@web5/common:pkg-img]: https://img.shields.io/npm/v/@web5/common.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true
 [@web5/common:pkg-url]: https://www.npmjs.com/package/@web5/common
-[@web5/common:pkglicense-img]: https://img.shields.io/npm/l/@web5/common.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true
+[@web5/common:pkglicense-img]: https://img.shields.io/npm/l/@web5/common.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true&label=npm
 [@web5/common:pkglicense-url]: https://www.npmjs.com/package/@web5/common
+[@web5/common:fossa-img]: https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Fweb5-js.svg?type=small
+[@web5/common:fossa-url]: https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Fweb5-js?ref=badge_small
 
 <!-- @web5/crypto -->
 
 [@web5/crypto]: https://github.com/TBD54566975/web5-js/tree/main/packages/crypto
 [@web5/crypto:ci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/web5-js/tests-ci.yml?branch=main&logo=github&label=ci&logoColor=FFFFFF&style=flat-square
 [@web5/crypto:ci-url]: https://github.com/TBD54566975/web5-js/actions/workflows/tests-ci.yml
-[@web5/crypto:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/web5-js?style=flat-square&logo=github&color=4c1
+[@web5/crypto:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/web5-js?style=flat-square&logo=github&color=4c1&label=gh
 [@web5/crypto:ghlicense-url]: https://github.com/TBD54566975/web5-js/blob/main/LICENSE
 [@web5/crypto:scan-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/web5-js/security.yml?branch=main&logo=github&label=scan&logoColor=FFFFFF&style=flat-square
 [@web5/crypto:scan-url]: https://github.com/TBD54566975/web5-js/actions/workflows/security.yml
-[@web5/crypto:ossf-img]: https://img.shields.io/ossf-scorecard/github.com/TBD54566975/web5-js?label=ossf
+[@web5/crypto:ossf-img]: https://img.shields.io/ossf-scorecard/github.com/TBD54566975/web5-js?label=ossf&style=flat-square
 [@web5/crypto:ossf-url]: https://securityscorecards.dev/viewer/?uri=github.com/TBD54566975/web5-js
-[@web5/crypto:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/web5-js/main?logo=codecov&logoColor=FFFFFF&style=flat-square&token=YI87CKF1LI
+[@web5/crypto:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/web5-js/main?label=codecov&style=flat-square&token=YI87CKF1LI
 [@web5/crypto:codecov-url]: https://codecov.io/github/TBD54566975/web5-js
 [@web5/crypto:ghtag-img]: https://img.shields.io/github/v/release/TBD54566975/web5-js?logo=github&label=tag&style=flat-square&color=4c1
 [@web5/crypto:ghtag-url]: https://github.com/TBD54566975/web5-js/releases
 [@web5/crypto:pkg-img]: https://img.shields.io/npm/v/@web5/crypto.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true
 [@web5/crypto:pkg-url]: https://www.npmjs.com/package/@web5/crypto
-[@web5/crypto:pkglicense-img]: https://img.shields.io/npm/l/@web5/crypto.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true
+[@web5/crypto:pkglicense-img]: https://img.shields.io/npm/l/@web5/crypto.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true&label=npm
 [@web5/crypto:pkglicense-url]: https://www.npmjs.com/package/@web5/crypto
+[@web5/crypto:fossa-img]: https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Fweb5-js.svg?type=small
+[@web5/crypto:fossa-url]: https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Fweb5-js?ref=badge_small
 
 <!-- @web5/dids -->
 
 [@web5/dids]: https://github.com/TBD54566975/web5-js/tree/main/packages/dids
 [@web5/dids:ci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/web5-js/tests-ci.yml?branch=main&logo=github&label=ci&logoColor=FFFFFF&style=flat-square
 [@web5/dids:ci-url]: https://github.com/TBD54566975/web5-js/actions/workflows/tests-ci.yml
-[@web5/dids:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/web5-js?style=flat-square&logo=github&color=4c1
+[@web5/dids:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/web5-js?style=flat-square&logo=github&color=4c1&label=gh
 [@web5/dids:ghlicense-url]: https://github.com/TBD54566975/web5-js/blob/main/LICENSE
 [@web5/dids:scan-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/web5-js/security.yml?branch=main&logo=github&label=scan&logoColor=FFFFFF&style=flat-square
 [@web5/dids:scan-url]: https://github.com/TBD54566975/web5-js/actions/workflows/security.yml
-[@web5/dids:ossf-img]: https://img.shields.io/ossf-scorecard/github.com/TBD54566975/web5-js?label=ossf
+[@web5/dids:ossf-img]: https://img.shields.io/ossf-scorecard/github.com/TBD54566975/web5-js?label=ossf&style=flat-square
 [@web5/dids:ossf-url]: https://securityscorecards.dev/viewer/?uri=github.com/TBD54566975/web5-js
-[@web5/dids:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/web5-js/main?logo=codecov&logoColor=FFFFFF&style=flat-square&token=YI87CKF1LI
+[@web5/dids:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/web5-js/main?label=codecov&style=flat-square&token=YI87CKF1LI
 [@web5/dids:codecov-url]: https://codecov.io/github/TBD54566975/web5-js
 [@web5/dids:ghtag-img]: https://img.shields.io/github/v/release/TBD54566975/web5-js?logo=github&label=tag&style=flat-square&color=4c1
 [@web5/dids:ghtag-url]: https://github.com/TBD54566975/web5-js/releases
 [@web5/dids:pkg-img]: https://img.shields.io/npm/v/@web5/dids.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true
 [@web5/dids:pkg-url]: https://www.npmjs.com/package/@web5/dids
-[@web5/dids:pkglicense-img]: https://img.shields.io/npm/l/@web5/dids.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true
+[@web5/dids:pkglicense-img]: https://img.shields.io/npm/l/@web5/dids.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true&label=npm
 [@web5/dids:pkglicense-url]: https://www.npmjs.com/package/@web5/dids
+[@web5/dids:fossa-img]: https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Fweb5-js.svg?type=small
+[@web5/dids:fossa-url]: https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Fweb5-js?ref=badge_small
 
 <!-- @tbdex/protocol -->
 
 [@tbdex/protocol]: https://github.com/TBD54566975/tbdex-js/tree/main/packages/protocol
 [@tbdex/protocol:ci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/integrity-check.yml?branch=main&logo=github&label=ci&logoColor=FFFFFF&style=flat-square
 [@tbdex/protocol:ci-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/integrity-check.yml
-[@tbdex/protocol:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/tbdex-js?style=flat-square&logo=github&color=4c1
+[@tbdex/protocol:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/tbdex-js?style=flat-square&logo=github&color=4c1&label=gh
 [@tbdex/protocol:ghlicense-url]: https://github.com/TBD54566975/tbdex-js/blob/main/LICENSE
 [@tbdex/protocol:scan-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/security.yml?branch=main&logo=github&label=scan&logoColor=FFFFFF&style=flat-square
 [@tbdex/protocol:scan-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/security.yml
-[@tbdex/protocol:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/tbdex-js/main?logo=codecov&logoColor=FFFFFF&style=flat-square&token=YI87CKF1LI
-[@tbdex/protocol:codecov-url]: https://codecov.io/github/TBD54566975/tbdex-js
 [@tbdex/protocol:ghtag-img]: https://img.shields.io/github/v/release/TBD54566975/tbdex-js?logo=github&label=tag&style=flat-square&color=4c1
 [@tbdex/protocol:ghtag-url]: https://github.com/TBD54566975/tbdex-js/releases
 [@tbdex/protocol:pkg-img]: https://img.shields.io/npm/v/@tbdex/protocol.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true
 [@tbdex/protocol:pkg-url]: https://www.npmjs.com/package/@tbdex/protocol
-[@tbdex/protocol:pkglicense-img]: https://img.shields.io/npm/l/@tbdex/protocol.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true
+[@tbdex/protocol:pkglicense-img]: https://img.shields.io/npm/l/@tbdex/protocol.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true&label=npm
 [@tbdex/protocol:pkglicense-url]: https://www.npmjs.com/package/@tbdex/protocol
 [@tbdex/protocol:apidocsci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/docs-ci.yml?branch=main&logo=github&label=docs%20ci&logoColor=FFFFFF&style=flat-square
 [@tbdex/protocol:apidocsci-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/docs-ci.yml
@@ -326,13 +319,15 @@ Each SDK will use Github Actions for CI/CD and other automations
 [@tbdex/protocol:apidocscd-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/docs-publish.yml
 [@tbdex/protocol:apidocs-img]: https://img.shields.io/badge/reference_docs-7F52FF?style=flat-square
 [@tbdex/protocol:apidocs-url]: https://tbd54566975.github.io/tbdex-js/modules/_tbdex_protocol.html
+[@tbdex/protocol:fossa-img]: https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Ftbdex-js.svg?type=small
+[@tbdex/protocol:fossa-url]: https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Ftbdex-js?ref=badge_small
 
 <!-- @tbdex/http-client -->
 
 [@tbdex/http-client]: https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-client
 [@tbdex/http-client:ci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/integrity-check.yml?branch=main&logo=github&label=ci&logoColor=FFFFFF&style=flat-square
 [@tbdex/http-client:ci-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/integrity-check.yml
-[@tbdex/http-client:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/tbdex-js?style=flat-square&logo=github&color=4c1
+[@tbdex/http-client:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/tbdex-js?style=flat-square&logo=github&color=4c1&label=gh
 [@tbdex/http-client:ghlicense-url]: https://github.com/TBD54566975/tbdex-js/blob/main/LICENSE
 [@tbdex/http-client:scan-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/security.yml?branch=main&logo=github&label=scan&logoColor=FFFFFF&style=flat-square
 [@tbdex/http-client:scan-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/security.yml
@@ -340,7 +335,7 @@ Each SDK will use Github Actions for CI/CD and other automations
 [@tbdex/http-client:ghtag-url]: https://github.com/TBD54566975/tbdex-js/releases
 [@tbdex/http-client:pkg-img]: https://img.shields.io/npm/v/@tbdex/http-client.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true
 [@tbdex/http-client:pkg-url]: https://www.npmjs.com/package/@tbdex/http-client
-[@tbdex/http-client:pkglicense-img]: https://img.shields.io/npm/l/@tbdex/http-client.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true
+[@tbdex/http-client:pkglicense-img]: https://img.shields.io/npm/l/@tbdex/http-client.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true&label=npm
 [@tbdex/http-client:pkglicense-url]: https://www.npmjs.com/package/@tbdex/http-client
 [@tbdex/http-client:apidocsci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/docs-ci.yml?branch=main&logo=github&label=docs%20ci&logoColor=FFFFFF&style=flat-square
 [@tbdex/http-client:apidocsci-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/docs-ci.yml
@@ -348,13 +343,15 @@ Each SDK will use Github Actions for CI/CD and other automations
 [@tbdex/http-client:apidocscd-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/docs-publish.yml
 [@tbdex/http-client:apidocs-img]: https://img.shields.io/badge/reference_docs-7F52FF?style=flat-square
 [@tbdex/http-client:apidocs-url]: https://tbd54566975.github.io/tbdex-js/modules/_tbdex_http_client.html
+[@tbdex/http-client:fossa-img]: https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Ftbdex-js.svg?type=small
+[@tbdex/http-client:fossa-url]: https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Ftbdex-js?ref=badge_small
 
 <!-- @tbdex/http-server -->
 
 [@tbdex/http-server]: https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-server
 [@tbdex/http-server:ci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/integrity-check.yml?branch=main&logo=github&label=ci&logoColor=FFFFFF&style=flat-square
 [@tbdex/http-server:ci-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/integrity-check.yml
-[@tbdex/http-server:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/tbdex-js?style=flat-square&logo=github&color=4c1
+[@tbdex/http-server:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/tbdex-js?style=flat-square&logo=github&color=4c1&label=gh
 [@tbdex/http-server:ghlicense-url]: https://github.com/TBD54566975/tbdex-js/blob/main/LICENSE
 [@tbdex/http-server:scan-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/security.yml?branch=main&logo=github&label=scan&logoColor=FFFFFF&style=flat-square
 [@tbdex/http-server:scan-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/security.yml
@@ -362,7 +359,7 @@ Each SDK will use Github Actions for CI/CD and other automations
 [@tbdex/http-server:ghtag-url]: https://github.com/TBD54566975/tbdex-js/releases
 [@tbdex/http-server:pkg-img]: https://img.shields.io/npm/v/@tbdex/http-server.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true
 [@tbdex/http-server:pkg-url]: https://www.npmjs.com/package/@tbdex/http-server
-[@tbdex/http-server:pkglicense-img]: https://img.shields.io/npm/l/@tbdex/http-server.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true
+[@tbdex/http-server:pkglicense-img]: https://img.shields.io/npm/l/@tbdex/http-server.svg?style=flat-square&color=F7DF1E&logo=npm&logoColor=FFFFFF&santize=true&label=npm
 [@tbdex/http-server:pkglicense-url]: https://www.npmjs.com/package/@tbdex/http-server
 [@tbdex/http-server:apidocsci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-js/docs-ci.yml?branch=main&logo=github&label=docs%20ci&logoColor=FFFFFF&style=flat-square
 [@tbdex/http-server:apidocsci-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/docs-ci.yml
@@ -370,29 +367,33 @@ Each SDK will use Github Actions for CI/CD and other automations
 [@tbdex/http-server:apidocscd-url]: https://github.com/TBD54566975/tbdex-js/actions/workflows/docs-publish.yml
 [@tbdex/http-server:apidocs-img]: https://img.shields.io/badge/reference_docs-7F52FF?style=flat-square
 [@tbdex/http-server:apidocs-url]: https://tbd54566975.github.io/tbdex-js/modules/_tbdex_http_server.html
+[@tbdex/http-server:fossa-img]: https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Ftbdex-js.svg?type=small
+[@tbdex/http-server:fossa-url]: https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Ftbdex-js?ref=badge_small
 
 <!-- tbdex-kt -->
 
 [tbdex-kt]: https://github.com/TBD54566975/tbdex-kt/tree/main/httpclient
 [tbdex-kt:ci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-kt/ci.yaml?branch=main&logo=github&label=ci&logoColor=FFFFFF&style=flat-square
 [tbdex-kt:ci-url]: https://github.com/TBD54566975/tbdex-kt/actions/workflows/ci.yaml
-[tbdex-kt:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/tbdex-kt?style=flat-square&logo=github&color=4c1
+[tbdex-kt:ghlicense-img]: https://img.shields.io/github/license/TBD54566975/tbdex-kt?style=flat-square&logo=github&color=4c1&label=gh
 [tbdex-kt:ghlicense-url]: https://github.com/TBD54566975/tbdex-kt/blob/main/LICENSE
 [tbdex-kt:scan-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-kt/security.yaml?branch=main&logo=github&label=scan&logoColor=FFFFFF&style=flat-square
 [tbdex-kt:scan-url]: https://github.com/TBD54566975/tbdex-kt/actions/workflows/security.yaml
-[tbdex-kt:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/tbdex-kt/main?logo=codecov&logoColor=FFFFFF&style=flat-square&token=YI87CKF1LI
+[tbdex-kt:codecov-img]: https://img.shields.io/codecov/c/gh/TBD54566975/tbdex-kt/main?label=codecov&style=flat-square&token=YI87CKF1LI
 [tbdex-kt:codecov-url]: https://codecov.io/github/TBD54566975/tbdex-kt
 [tbdex-kt:ghtag-img]: https://img.shields.io/github/v/release/TBD54566975/tbdex-kt?logo=github&label=tag&style=flat-square&color=4c1
 [tbdex-kt:ghtag-url]: https://github.com/TBD54566975/tbdex-kt/releases
 [tbdex-kt:pkg-img]: https://img.shields.io/jitpack/version/com.github.TBD54566975/tbdex-kt?style=flat-square&logo=jitpack
 [tbdex-kt:pkg-url]: https://jitpack.io/#TBD54566975/tbdex-kt
-[tbdex-kt:pkglicense-img]: https://img.shields.io/badge/maven-todo-indigo?style=flat-square&logo=apachemaven&logoColor=FFFFFF&santize=true
+[tbdex-kt:pkglicense-img]: https://img.shields.io/badge/mvn-todo-indigo?style=flat-square&logo=apachemaven&logoColor=FFFFFF&santize=true
 [tbdex-kt:apidocsci-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-kt/ci.yaml?branch=main&logo=github&label=docs%20ci&logoColor=FFFFFF&style=flat-square
 [tbdex-kt:apidocsci-url]: https://github.com/TBD54566975/tbdex-kt/actions/workflows/ci.yaml
 [tbdex-kt:apidocscd-img]: https://img.shields.io/github/actions/workflow/status/TBD54566975/tbdex-kt/docs.yaml?branch=main&logo=github&label=docs%20publish&logoColor=FFFFFF&style=flat-square
 [tbdex-kt:apidocscd-url]: https://github.com/TBD54566975/tbdex-kt/actions/workflows/docs.yaml
 [tbdex-kt:apidocs-img]: https://img.shields.io/badge/reference_docs-7F52FF?style=flat-square
 [tbdex-kt:apidocs-url]: https://tbd54566975.github.io/tbdex-kt/index.html
+[tbdex-kt:fossa-img]: https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Ftbdex-kt.svg?type=small
+[tbdex-kt:fossa-url]: https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2Ftbdex-kt?ref=badge_small
 
 ### Publishing Artifacts
 
