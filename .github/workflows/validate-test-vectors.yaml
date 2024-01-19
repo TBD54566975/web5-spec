@@ -3,7 +3,7 @@ name: Validate Test Vectors
 on:
   push:
     paths:
-      - 'web5-test-vectors/**'
+      - 'test-vectors/**'
       - 'scripts/test-vector-validation/**'
 
 jobs:
