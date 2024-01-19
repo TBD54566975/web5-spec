@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const vectorsDir = `${__dirname}/../../web5-test-vectors`
+const vectorsDir = `${__dirname}/../../test-vectors`
 
 let vectorsSchema = fs.readFileSync(`${vectorsDir}/vectors.schema.json`, 'utf8')
 vectorsSchema = JSON.parse(vectorsSchema)
