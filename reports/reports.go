@@ -37,6 +37,7 @@ type SDKMeta struct {
 	FeatureRegex *regexp.Regexp
 	VectorRegex  *regexp.Regexp
 	VectorPath   string
+	Type         string
 }
 
 type Report struct {
