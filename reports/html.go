@@ -17,34 +17,51 @@ func sanatizeHTML(dirty error) string {
 }
 
 type htmlTemplateInput struct {
-	Reports []Report
-	Tests   map[string][]string
+	Reports    []Report
+	Web5Tests  map[string][]string
+	TbDEXTests map[string][]string
 }
 
 func WriteHTML(reports []Report, filename string) error {
 	slog.Info("writing html report", "reports", len(reports))
 
 	testmap := make(map[string]map[string]bool)
+	tbdexTestMap := make(map[string]map[string]bool)
 	for _, report := range reports {
 		for category, tests := range report.Results {
 			if _, ok := tests[category]; !ok {
-				testmap[category] = map[string]bool{}
+				if report.SDK.Type == "web5" {
+					testmap[category] = map[string]bool{}
+				} else {
+					tbdexTestMap[category] = map[string]bool{}
+				}
 			}
 
 			for test := range tests {
-				testmap[category][test] = true
+				if report.SDK.Type == "web5" {
+					testmap[category][test] = true
+				} else {
+					tbdexTestMap[category][test] = true
+				}
 			}
 		}
 	}
 
 	templateInput := htmlTemplateInput{
-		Reports: reports,
-		Tests:   make(map[string][]string),
+		Reports:    reports,
+		Web5Tests:  make(map[string][]string),
+		TbDEXTests: make(map[string][]string),
 	}
 
 	for category, tests := range testmap {
 		for test := range tests {
-			templateInput.Tests[category] = append(templateInput.Tests[category], test)
+			templateInput.Web5Tests[category] = append(templateInput.Web5Tests[category], test)
+		}
+	}
+
+	for category, tests := range tbdexTestMap {
+		for test := range tests {
+			templateInput.TbDEXTests[category] = append(templateInput.TbDEXTests[category], test)
 		}
 	}
 
