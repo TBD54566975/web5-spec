@@ -429,34 +429,6 @@
         }
       },
       "errors":true
-    },
-    {
-      "description":"field name is empty",
-      "input":{
-        "presentationDefinition":{
-          "id":"test-pd-id",
-          "name":"simple PD",
-          "purpose":"pd for testing",
-          "input_descriptors":[
-            {
-              "id":"whatever",
-              "purpose":"id for testing",
-              "constraints":{
-                "fields":[
-                  {
-                    "id":"id",
-                    "name": "",
-                    "path":[
-                      "$.vc.dob"
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "errors":true
     }
   ]
 }

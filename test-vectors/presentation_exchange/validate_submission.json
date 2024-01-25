@@ -46,6 +46,28 @@
       "errors":false
     },
     {
+      "description":"valid submission with multiple descriptor map objects",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            },
+            {
+              "id":"descriptor-map-id-2",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        }
+      },
+      "errors":false
+    },
+    {
       "description":"empty pres submission id",
       "input":{
         "presentationSubmission":{
@@ -189,6 +211,28 @@
                   "path": "$.store.book[(@.price == 10]"
                 }
               }
+            }
+          ]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"multiple descriptor map objects have same duplicate id",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            },
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
             }
           ]
         }
