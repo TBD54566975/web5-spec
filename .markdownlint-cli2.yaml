@@ -1,4 +1,0 @@
-config:
-  line-length: false
-  no-duplicate-heading:
-    siblings_only: true

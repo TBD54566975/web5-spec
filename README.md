@@ -1,11 +1,8 @@
-# SDK Development <!-- omit in toc -->
+# Web5-Spec <!-- omit in toc -->
 
 - [Purpose](#purpose)
-- [Known Unknowns](#known-unknowns)
 - [Requirements](#requirements)
   - [Feature Tracking](#feature-tracking)
-    - [Labels](#labels)
-    - [Milestones](#milestones)
   - [Feature Acceptance](#feature-acceptance)
   - [Work Prioritization](#work-prioritization)
   - [Implementation Criteria](#implementation-criteria)
@@ -16,10 +13,8 @@
   - [Publishing API Reference Documentation](#publishing-api-reference-documentation)
   - [Example Feature Usage](#example-feature-usage)
 - [Test Vectors](#test-vectors)
-  - [Usage](#usage)
-    - [Local Dev](#local-dev)
-    - [Adding/Updating Vectors](#addingupdating-vectors)
-    - [Feature Completeness By SDK](#feature-completeness-by-sdk)
+  - [Adding/Updating Vectors](#addingupdating-vectors)
+  - [Feature Completeness By SDK](#feature-completeness-by-sdk)
 - [Web5 SDK Features](#web5-sdk-features)
   - [Cryptographic Digital Signature Algorithms (DSA)](#cryptographic-digital-signature-algorithms-dsa)
   - [Key Management](#key-management)
@@ -38,28 +33,14 @@
 
 ## Purpose
 
-This repo sets forth the development process and requirements for the following SDKs:
-
-- [tbdex-js](https://github.com/TBD54566975/tbdex-js)
-- [tbdex-kt](https://github.com/TBD54566975/tbdex-kt)
-- [tbdex-rs](https://github.com/TBD54566975/tbdex-rs)
-- [web5-js](https://github.com/TBD54566975/web5-js)
-- [web5-kt](https://github.com/TBD54566975/web5-kt)
-- [web5-rs](https://github.com/TBD54566975/web5-rs)
-
-It contains the desired feature set for:
+This repo sets forth the development process, requirements, and the desired feature for the following SDKs:
 
 - [web5-js](https://github.com/TBD54566975/web5-js)
 - [web5-kt](https://github.com/TBD54566975/web5-kt)
+- [web5-go](https://github.com/TBD54566975/web5-go)
 - [web5-rs](https://github.com/TBD54566975/web5-rs)
+- [web5-swift](https://github.com/TBD54566975/web5-swift)
 
-Github Issues and PRs created in this repo address topics that impact / span all SDKs we have in development. See section on [Feature Acceptance](#feature-acceptance) for information on submitting proposals for new features across all of our SDKs (e.g. implement Presentation Exchange v9)
-
-## Known Unknowns
-
-- We don't yet have a cemented path for supporting Android. It could either be through our pre-existing Kotlin SDK or bindings exposed via Rust
-
-- We're not yet in a place where we can confidently state that a rust core can support a broad surface area of target languages. We're confident in pursuing rust development for the purposes of surfacing swift bindings.
 
 ## Requirements
 
@@ -67,85 +48,14 @@ Github Issues and PRs created in this repo address topics that impact / span all
 
 Feature tracking will take place entirely on GitHub through Github Issues and the [SDK development Github project](https://github.com/orgs/TBD54566975/projects/29).
 
----
-
-Work items that impact all SDKs should be created as issues in _this_ Github Repo. e.g. "produce test vectors for `did:web`
-
----
-
-Work items that are specific to an individual SDK should be created as an issue in the respective sdk's Github Repo
-
-> [!IMPORTANT]
-> Each individual SDK's DRI will be responsible for creating all of the relevant github issues in their respective repo by using the tables below. After all issues are created for a given feature, create a PR for this repo to delete the relevant table.
-
----
-
-All relevant Github Issues will be tracked in the [SDK Development](https://github.com/orgs/TBD54566975/projects/29) Project. Issues can be associated to the project through the sidebar on an individual issue page. If a new issue is created in any of the SDK repos with one of the below feature labels, it will _automatically_ be added to the project board via GH project workflows. _New_ features lables should be added to the [workflows](https://github.com/orgs/TBD54566975/projects/29/workflows).
-
----
-
-Work item progress is tracked using the `Status` attribute on a GH issue. This should automatically be reflected on the kanban view on the GH project. PRs should be linked to their respective issue via the PR description.
-
----
-
-#### Labels
-
-> [!IMPORTANT]
-> A label should be created for each feature, in each respective repo.
-
-The following labels should exist in all relevant repos
-
-| Label                | Color Hex | Description                                |
-| -------------------- | --------- | ------------------------------------------ |
-| `dsa`                | `#7FDBFF` | Cryptographic Digital Signature Algorithms |
-| `key-mgmt`           | `#0074D9` | Key Management                             |
-| `did:web`            | `#2ECC40` | did:web                                    |
-| `did:jwk`            | `#FFDC00` | did:jwk                                    |
-| `did:dht`            | `#FF851B` | did:dht                                    |
-| `did:key`            | `#F012BE` | did:key                                    |
-| `did:ion`            | `#B10DC9` | did:ion                                    |
-| `did-doc-validation` | `#3D9970` | DID Document & Resolution Validation       |
-| `w3c-vc-dm-1.1`      | `#39CCCC` | W3C Verifiable Credential Data Model 1.1   |
-| `w3c-vc-dm-2.0`      | `#01FF70` | W3C Verifiable Credential Data Model 2.0   |
-| `sd-jwt`             | `#85144B` | SD-JWT / SD-JWT-VC                         |
-| `pd-v2`              | `#F9A602` | Presentation Definition V2                 |
-| `vc-json-schema`     | `#C86F42` | VC JSON Schema                             |
-| `tbdex-message`      | `#70DB93` | tbDEX Message                              |
-| `tbdex-resource`     | `#5B2C6F` | tbDEX Resource                             |
-| `tbdex-offering`     | `#E59866` | tbDEX Offering Resource                    |
-| `tbdex-rfq`          | `#1F618D` | tbDEX RFQ Message                          |
-| `tbdex-quote`        | `#186A3B` | tbDEX Quote Message                        |
-| `tbdex-order`        | `#28B463` | tbDEX Order Message                        |
-| `tbdex-orderstatus`  | `#D68910` | tbDEX Order-Status Message                 |
-| `tbdex-close`        | `#34495E` | tbDEX Close Message                        |
-| `tbdex-server`       | `#3498DB` | HTTP server for tbDEX PFIs                 |
-| `tbdex-client`       | `#E74C3C` | HTTP client for tbDEX wallets              |
-
-> [!NOTE]
-> This list will change over time as features are added or removed
-
----
-
-#### Milestones
-
-Github Repo Milestones will be used to track work for specific codenamed projects (e.g. Eagle, Pigeon, Black Swan, etc.).
-
-The following milestones should exist in all relevant repos
-
-| Milestone |
-| --------- |
-| `Eagle`   |
-| `ABC`     |
-
-> [!NOTE]
-> This list will change over time as projects are added
-
 ### Feature Acceptance
 
 Proposing new features that impact all SDKs will occur by creating a Github Issue in this repo. The Issue should include motivation or rationale in addition to any relevant reading material. New features will be discussed and decided upon during weekly syncs
 
 > [!IMPORTANT]
 > Language agnostic test vectors **must** be produced _prior_ to commencing implementation beyond the first SDK
+
+Test vectors are in the test-vector directory. More info on test vectors can be found there.
 
 ### Work Prioritization
 
@@ -182,17 +92,17 @@ Each SDK will use Github Actions for CI/CD and other automations
 
 | Feature                       | Typescript | Kotlin | Rust | Swift |
 | ----------------------------- | ---------- | ------ | ---- | ----- |
-| OSS License Check             | ❌          | ❌      | ✅    | ❌     |
-| Security Scanning             | ❌          | ❌      | ⛔️    | ❌     |
-| Static Analysis Linting/Style | ❌          | ❌      | ✅    | ❌     |
+| OSS License Check             | ✅          | ✅      | ✅    | ❌     |
+| Security Scanning             | ✅          | ✅      | ⛔️    | ❌     |
+| Static Analysis Linting/Style | ✅          | ✅      | ✅    | ❌     |
 | Running Unit Tests            | ✅          | ✅      | ✅    | ❌     |
-| Publishing Tests Reports      | ❌          | ❌      | ❌    | ❌     |
-| Code Coverage (CodeCov)       | ❌          | ❌      | ❌    | ❌     |
-| Publishing Artifacts          | ❓          | ❌      | ❌    | ❌     |
+| Publishing Tests Reports      | ✅          | ✅      | ❌    | ❌     |
+| Code Coverage (CodeCov)       | ✅          | ✅      | ❌    | ❌     |
+| Publishing Artifacts          | ✅          | ✅      | ❌    | ❌     |
 | Release Template Checklist    | ❌          | ❌      | ❌    | ❌     |
 | Automated GH Release Tag      | ❌          | ❌      | ❌    | ❌     |
-| Publishing API Reference Docs | ❌          | ✅      | ❌    | ❌     |
-| Publish Example Feature Usage | ❌          | ✅      | ❌    | ❌     |
+| Publishing API Reference Docs | ✅          | ✅      | ❌    | ❌     |
+| Publish Example Feature Usage | ✅          | ✅      | ❌    | ❌     |
 
 > [!CAUTION]
 > Security scanning via Snyk is currently not supported in Rust
@@ -215,6 +125,7 @@ Each SDK will be published to the most widely adopted registry/repository for th
 | Kotlin     | maven central       |
 | Rust       | crates.io           |
 | Swift      | swift package index |
+| Go         | tbd                 |
 
 ### Publishing API Reference Documentation
 
@@ -233,6 +144,7 @@ Each SDK will auto generate API reference documentation using the respective lan
 | Kotlin     | KDoc                   | Dokka          |
 | Rust       | Documentation comments | rustdoc        |
 | Swift      | Swift Markup           | DocC           |
+| Go         | tbd                    | tbd            |
 
 > [!IMPORTANT]
 > Producing API reference documentation is the responsibility of an _implementer_
@@ -245,39 +157,19 @@ Each SDK will **publish** example usage for _each_ implemented feature. This can
 
 Test vectors ensure interoporability of features across SDKs and language implementations by providing common test cases with an input and expected output pair. They include both success and failure cases that can be vectorized.
 
-This repo serves as the home for all web5 feature related vectors. They are available in the [web5-test-vectors](./web5-test-vectors/) directory and hosted on [Github Pages](https://tbd54566975.github.io/sdk-development/web5-test-vectors).
+This repo serves as the home for all web5 feature related vectors. They are available in the [test-vectors](./test-vectors/) directory
 
-The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory and hosted on [Github Pages](https://tbdex.dev/).
+The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory
 
-### Usage
+The `sdk-report-runner` repo consumes the output tests for these test vectors in each repo and generates a report - [report-runner](https://github.com/TBD54566975/sdk-report-runner)
 
-#### Local Dev
+### Adding/Updating Vectors
 
-SDK implementers should import vectors in order to test their implementation. The recommended pathway to consume them is as follows:
+New test vectors should follow the standard [vector structure](./test-vectors/). Vectors are automatically validated against the JSON schema via CI.
 
-Fetch the vector and read it into a data model representing the vector structure or a JSON object like so:
+Create a PR in this repo for adding / updating web5 test vectors
 
-```kt
-// for web5 vectors
-val stream = URL("https://tbd54566975.github.io/sdk-development/web5-test-vectors/did-jwk/resolve.json").openStream()
-val vectorsJson = BufferedReader(InputStreamReader(stream)).readText()
-return Json.jsonMapper.readTree(vectorsJson)
-
-// for tbdex vectors
-val stream = URL("https://tbdex.dev/test-vectors/resources/marshal.json").openStream()
-val vectorsJson = BufferedReader(InputStreamReader(stream)).readText()
-return Json.jsonMapper.readTree(vectorsJson)
-```
-
-The data model or JSON object can then be used in the implementer's unit testing framework of choice.
-
-#### Adding/Updating Vectors
-
-New test vectors should follow the standard [vector structure](./web5-test-vectors/vectors.schema.json). Vectors are automatically validated against the JSON schema via CI.
-
-Create a PR in this repo for web5 vectors, or in [`tbdex`](https://github.com/TBD54566975/tbdex) for tbdex vectors with the proposed changes or additions.
-
-#### Feature Completeness By SDK
+### Feature Completeness By SDK
 
 Test vectors are also used to determine feature completeness via our [test harness](./test-harness/README.md). Results of test harness runs can be found [here](https://tbd54566975.github.io/sdk-development/).
 
