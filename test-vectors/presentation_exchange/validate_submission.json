@@ -1,0 +1,243 @@
+{
+  "description":"Validate submission",
+  "vectors":[
+    {
+      "description":"valid simple presentation submission",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        }
+      },
+      "errors":false
+    },
+    {
+      "description":"valid presentation submission with path nested",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]",
+              "path_nested" : {
+                "id":"descriptor-map-id",
+                "format":"jwt_vc",
+                "path": "$.verifiableCredential[0]",
+                "path_nested" :             {
+                  "id":"descriptor-map-id",
+                  "format":"jwt_vc",
+                  "path": "$.verifiableCredential[0]"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "errors":false
+    },
+    {
+      "description":"valid submission with multiple descriptor map objects",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            },
+            {
+              "id":"descriptor-map-id-2",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        }
+      },
+      "errors":false
+    },
+    {
+      "description":"empty pres submission id",
+      "input":{
+        "presentationSubmission":{
+          "id":"",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"definition id is empty",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"empty descriptor map",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"descriptor map has empty id",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"descriptor map has empty format",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"descriptor map has empty path",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": ""
+            }
+          ]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"path nested has different id",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]",
+              "path_nested" : {
+                "id":"descriptor-map-id",
+                "format":"jwt_vc",
+                "path": "$.verifiableCredential[0]",
+                "path_nested" :             {
+                  "id":"different-id",
+                  "format":"jwt_vc",
+                  "path": "$.verifiableCredential[0]"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"path nested has invliad path",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]",
+              "path_nested" : {
+                "id":"descriptor-map-id",
+                "format":"jwt_vc",
+                "path": "$.verifiableCredential[0]",
+                "path_nested" :             {
+                  "id":"descriptor-map-id",
+                  "format":"jwt_vc",
+                  "path": "$.store.book[(@.price == 10]"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "errors":true
+    },
+    {
+      "description":"multiple descriptor map objects have same duplicate id",
+      "input":{
+        "presentationSubmission":{
+          "id":"test-submission-id",
+          "definition_id":"test-definition-id",
+          "descriptor_map":[
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            },
+            {
+              "id":"descriptor-map-id",
+              "format":"jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        }
+      },
+      "errors":true
+    }
+  ]
+}
