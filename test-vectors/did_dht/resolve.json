@@ -26,9 +26,21 @@
       "errors": true
     },
     {
-      "description": "invalidDid error returned for suffix with invalid character",
+      "description": "invalidPublicKey error returned for suffix with invalid character",
       "input": {
         "didUri": "did:dht:cyuoqaf7itop8ohww4yn5ojg13qaq83r9zihgqntc5i9zwrfdfov"
+      },
+      "output": {
+        "didResolutionMetadata": {
+          "error": "invalidPublicKey"
+        }
+      },
+      "errors": true
+    },
+    {
+      "description": "invalidDid error returned for invalid did",
+      "input": {
+        "didUri": "invalid-did"
       },
       "output": {
         "didResolutionMetadata": {
