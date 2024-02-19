@@ -63,7 +63,7 @@
         "signature": "efcd2eb0df4137bf3993149b8dc0956aea9858c83c270ea0fcbf6fb8da77573d1e49798da017740b5e948a099cdc2abcda43421bc872c4ae1370de4661f9d879"
       },
       "output": false,
-      "errors": false
+      "errors": true
     },
     {
       "description": "verification fails if the signature was tampered with",
@@ -79,7 +79,7 @@
         "signature": "3ce28829b29db2fce5ab3fbc1dd6822dc29787e806573ded683003a80e4bca85221b4c5e39c43117bbadb63dccd3649223729c5b5847f74935cfd6d810584de6"
       },
       "output": false,
-      "errors": false
+      "errors": true
     },
     {
       "description": "verification fails if the public key is not associated with the signing key",
@@ -95,7 +95,7 @@
         "signature": "006b365af98e60c9dd89884391bc2d41aa078586a899e7fff07104683a3195ec323589cf5050a4d485a2e6c281561f378dd0a9663954236b5d20fd64519bcbe7"
       },
       "output": false,
-      "errors": false
+      "errors": true
     },
     {
       "description": "error when given a private key",
