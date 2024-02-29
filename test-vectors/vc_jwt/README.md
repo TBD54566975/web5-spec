@@ -1,6 +1,6 @@
-# `JWT` Test Vectors
+# `VC JWT` Test Vectors
 
-This directory contains test vectors for the jwt functionality
+This directory contains test vectors for the vc jwt functionality
 [JWT](https://datatracker.ietf.org/doc/html/rfc7519).
 
 ## `verify`
