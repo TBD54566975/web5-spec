@@ -1,0 +1,46 @@
+{
+    "description":"vc jwt decode",
+    "vectors":[
+       {
+          "description":"fail to decode jwt",
+          "input":"doodoo",
+          "errors":true,
+          "errorMessage":{
+             "web5-js":"Verification failed: Malformed JWT",
+             "web5-kt":"JWT decoding failure"
+          }
+       },
+       {
+          "description":"no claims",
+          "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpqd2s6ZXlKamNuWWlPaUpGWkRJMU5URTVJaXdpYTNSNUlqb2lUMHRRSWl3aWVDSTZJbE5SVG5CMVprSXlSSFpYTW5OQk5EbFJWVlJMUkcwM2IzVkVRbTlWUldKNllrZzVOR1JXU0RseVYxa2lMQ0pyYVdRaU9pSjNVRWhMZEdFMlNIQlVja0pvZVRORlRXeHVSM05sZVdsNVdIcHhhMU01VldScWFrNVVZVTk2WmpZNElpd2lZV3huSWpvaVJXUkVVMEVpZlEjMCJ9.e30.U6oA2wKv20RL3yhO81AuMtNqZ3-Ak9zMkoS-r52zYTJa_udzdUiI753ljU86RCmy1mLMVYLQX2wwgZ8XwqWEDQ",
+          "errors":true,
+          "errorMessage":{
+             "web5-js":"Jwt payload missing vc property",
+             "web5-kt":"JWT contains no claims"
+          }
+       },
+       {
+          "description":"no vc claim",
+          "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpqd2s6ZXlKamNuWWlPaUpGWkRJMU5URTVJaXdpYTNSNUlqb2lUMHRRSWl3aWVDSTZJa0ZqYlZneWVGWldaV1pUVVZFNVMxVmFUR2hUVms4dGVqWjZjWGxXWjBaUFJqRlVNM1pMT1cxT1dqUWlMQ0pyYVdRaU9pSnlkRk5RU0ZaSWFXTnBiMnhtY0c0MmRIaDVWemx1YjJKRGNVNTVWMnhWYTBWV0xWODFabEl3V1dwQklpd2lZV3huSWpvaVJXUkVVMEVpZlEjMCJ9.eyJoZWhlIjoiaGkifQ.RODqHX31e0yP2BEqhnBy8qr7u-7-ryCM4qCBHDiy5e3bDxM5RctLDAX93fZAZd0VZko4HTvgTiab99SOKBU8CQ",
+          "errors":true,
+          "errorMessage":{
+             "web5-js":"Jwt payload missing vc property",
+             "web5-kt":"The vc claim is missing"
+          }
+       },
+       {
+          "description":"vc claim wrong type",
+          "input":"eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJbTVUVHpOalMydFJkelpCWWs5dGEyazNZa1ZPYVZGeVRXc3lkVE0xT0hSSGQxcHFaRFpSTm5CeVUyOGlmUSMwIiwidHlwIjoiSldUIn0.eyJleHAiOjM2MDEyOTM0MzEsImlzcyI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJbTVUVHpOalMydFJkelpCWWs5dGEyazNZa1ZPYVZGeVRXc3lkVE0xT0hSSGQxcHFaRFpSTm5CeVUyOGlmUSIsImp0aSI6ImFiY2QxMjMiLCJuYmYiOjE3MDkxMzM0MzEsInN1YiI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJa1JIUm1KRWVVVXpZalJHYUZwNVpXNWtlV3h2TTBwbWRsUnVaMkZWV0Y5b1ltWm9lR2szV1RSNmJYY2lmUSIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOm51bGwsImlzc3VlciI6IiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImZpcnN0TmFtZSI6IlJhbmR5IiwibGFzdE5hbWUiOiJNY1JhbmRvIn0sImlzc3VhbmNlRGF0ZSI6IiJ9fQ.yrvOZc58oFqEXpMs6rk4E0QDLv28gjjunNFSafx0yV6tmn0nYO2btJnawPusrTcHt0tTjxB5SMUEyo6m7kWsAw",
+          "errors":true,
+          "errorMessage":{
+             "web5-js":"type is missing default",
+             "web5-kt":"Incorrect type for vc claim"
+          }
+       },
+       {
+          "description":"legit",
+          "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3MyMjNwUVd5TTc5ZGVkTEtYdkJLQ3RKUUJWQzdXdDFzeXVtOHlxZmV1THd6I3o2TWtzMjIzcFFXeU03OWRlZExLWHZCS0N0SlFCVkM3V3Qxc3l1bTh5cWZldUx3eiJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiVEJEZXZlbG9wZXJDcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6Njk1OGYwM2ItZjhiNy00OGM2LTkxYjUtODQ4YjIyZTMyMDBhIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rczIyM3BRV3lNNzlkZWRMS1h2QktDdEpRQlZDN1d0MXN5dW04eXFmZXVMd3oiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTI4VDE3OjUyOjM4WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rczIyM3BRV3lNNzlkZWRMS1h2QktDdEpRQlZDN1d0MXN5dW04eXFmZXVMd3oiLCJ1c2VybmFtZSI6Im5pdHJvIn19LCJuYmYiOjE3MDkxNDI3NTgsImp0aSI6InVybjp1dWlkOjY5NThmMDNiLWY4YjctNDhjNi05MWI1LTg0OGIyMmUzMjAwYSIsImlzcyI6ImRpZDprZXk6ejZNa3MyMjNwUVd5TTc5ZGVkTEtYdkJLQ3RKUUJWQzdXdDFzeXVtOHlxZmV1THd6Iiwic3ViIjoiZGlkOmtleTp6Nk1rczIyM3BRV3lNNzlkZWRMS1h2QktDdEpRQlZDN1d0MXN5dW04eXFmZXVMd3oiLCJpYXQiOjE3MDkxNDI3NTh9.KiUUJ77TKjIIDmeeqh34m-xiIPozNna58qI68a5oVlEENJQS3C3xvSyoJVtGmJBcvtmaVD7VB6V9sMFZxBC6BQ",
+          "errors":false
+       }
+    ]
+ }
