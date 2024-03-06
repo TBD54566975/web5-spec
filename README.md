@@ -70,7 +70,7 @@ An individual SDK will consider a feature implemented once the following require
 
 ### Review Criteria
 
-- Propose API surface design _prior_ to implementation. This can be done by creating a draft PR for a respective feature and providing prototypal code or proposing the design in the comments.
+- Propose API surface design _prior_ to implementation. This can be done by opening a feature request Issue and fostering a discussion around the proposed design. This can be followed by a corresponding draft PR and providing prototypal code.
 
 - Approval Required from a minimum of 2 people.
 
