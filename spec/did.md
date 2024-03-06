@@ -16,7 +16,7 @@ Following from [this data model](https://www.w3.org/TR/did-core/#core-properties
 | `alsoKnownAs`        | Array of strings | No   | Depends on the DID method. Strings must be URIs. |
 | `verificationMethod` | Array of [Verification Methods](#verification-method-data-model) | Yes | There must be at least one Verification Method in each DID Document. |
 | `authentication`     | Array of strings | No   | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
-| `assertion`          | Array of strings | No   | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
+| `assertionMethod`          | Array of strings | No   | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
 | `keyAgreement`       | Array of strings | No   | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
 | `capabilityInvocation` | Array of strings | No | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
 | `capabilityDelegation` | Array of strings | No | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
