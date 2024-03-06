@@ -1,0 +1,91 @@
+{
+   "description":"vc jwt verify",
+   "vectors":[
+      {
+         "description":"no typ header",
+         "input":"eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJa1JXZDFwWmFWY3lTalZETkc1cmQyRkdRV0pKVUY5MlIzTnJTamhKT1VKRk5IcE9RVGgxUkdZMVZsVWlmUSMwIn0.eyJleHAiOjI2NTUyMTM3MDQsImlzcyI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJa1JXZDFwWmFWY3lTalZETkc1cmQyRkdRV0pKVUY5MlIzTnJTamhKT1VKRk5IcE9RVGgxUkdZMVZsVWlmUSIsImp0aSI6ImFiY2QxMjMiLCJuYmYiOjE3MDkxMzM3MDQsInN1YiI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJbWRpZVhwcGNuTmthekpOVW14WVV5MWtURkU0TkZWbVRrRlZjbUp5T0hZd2FESkViblZVTUdSV1kxRWlmUSIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiXSwiaXNzdWVyIjoiIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiZmlyc3ROYW1lIjoiUmFuZHkiLCJsYXN0TmFtZSI6Ik1jUmFuZG8ifSwiaXNzdWFuY2VEYXRlIjoiIn19.7trsEIJxKlQhvCH3F-w4ZTessbGaCG6X_6di8sl3qTRdEk8QFyv7xvFSFXBcX4XC6i_DfWndlhj1cdEtL9B1CA",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"Verification failed: Expected JWT header to contain typ property set to JWT",
+            "web5-go":"no typ header"
+         }
+      },
+      {
+         "description":"invalid typ header",
+         "input":"eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJbmxXTFhvMGNqZGlNMmRtZEV0U016ZEpNR3N3VVhsSk0yZHBTa0Z3ZFhsU1FtMXpZVXBSWjI0eWVUUWlmUSMwIiwidHlwIjoiS2FrYW1pbWkifQ.eyJleHAiOjI2NTUyMTM3ODMsImlzcyI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJbmxXTFhvMGNqZGlNMmRtZEV0U016ZEpNR3N3VVhsSk0yZHBTa0Z3ZFhsU1FtMXpZVXBSWjI0eWVUUWlmUSIsImp0aSI6ImFiY2QxMjMiLCJuYmYiOjE3MDkxMzM3ODMsInN1YiI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJbmRuTTFGUVJsSmplUzAxVXpaNlNqZEVWMmx4U0Vwd1RHTlJaRmhVVWsxWk1td3hhRTEyWm1reFVXTWlmUSIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiXSwiaXNzdWVyIjoiIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiZmlyc3ROYW1lIjoiUmFuZHkiLCJsYXN0TmFtZSI6Ik1jUmFuZG8ifSwiaXNzdWFuY2VEYXRlIjoiIn19.fE58Vtqg5-oOQKvRCiJHCspZaqmGOtEIlUTf8TqWpviWGndpZWj1XofcUfcNFLWTHnk6H-2ku9FA7x_t4ymgAA",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"Verification failed: Expected JWT header to contain typ property set to JWT",
+            "web5-go":"invalid typ header"
+         }
+      },
+      {
+         "description":"empty issuer",
+         "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2t3V215WHhGRkI3VlczWWNSYzQ0NTlZSFZkZ2RCTXNiTmlzWFYxS2lyTUtZI3o2TWtrd1dteVh4RkZCN1ZXM1ljUmM0NDU5WUhWZGdkQk1zYk5pc1hWMUtpck1LWSJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiVEJEZXZlbG9wZXJDcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MWEzNWJhZjctOTJlMC00YjVkLTkxYmYtMDAyMjU5Y2RlZmY0IiwiaXNzdWFuY2VEYXRlIjoiMjAyNC0wMi0yOVQxODo0MjoxNloiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDprZXk6ejZNa29ZOFNyUnNOZ2ZncXdIRkN5WVZmR0ZVVFNZUmR4WkxmbVlLVU1yOGFHNXJFIiwidXNlcm5hbWUiOiJuaXRybyJ9fSwibmJmIjoxNzA5MjMyMTM2LCJqdGkiOiJ1cm46dXVpZDoxYTM1YmFmNy05MmUwLTRiNWQtOTFiZi0wMDIyNTljZGVmZjQiLCJpc3MiOiJkaWQ6a2V5Ono2TWtrd1dteVh4RkZCN1ZXM1ljUmM0NDU5WUhWZGdkQk1zYk5pc1hWMUtpck1LWSIsInN1YiI6ImRpZDprZXk6ejZNa29ZOFNyUnNOZ2ZncXdIRkN5WVZmR0ZVVFNZUmR4WkxmbVlLVU1yOGFHNXJFIiwiaWF0IjoxNzA5MjMyMTM2LCJleHAiOjI2OTc4MjE3NjN9.H6rJDO6iVN0KBsKeiDo6BP5heKgBWghJ36G0EfrNNd6w4k1DGG8cgJQanUZ4tIrRSFtNuTEzSbDx_ZDDY5r0DQ",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"Verification failed: iss claim does not match expected issuer",
+            "web5-go":"no id"
+         }
+      },
+      {
+         "description":"issuance date in future",
+         "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3B0anZzanphOTZUejNFeHJYYVQyYkZSeXZUZTlZYXAyVUo1Tk5EdjVuRzlNI3o2TWtwdGp2c2p6YTk2VHozRXhyWGFUMmJGUnl2VGU5WWFwMlVKNU5ORHY1bkc5TSJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiVEJEZXZlbG9wZXJDcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6NzdkYzI1YjgtOGM5Yi00M2UyLTkyN2UtMWVkNzhhNjVlNmMwIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rcHRqdnNqemE5NlR6M0V4clhhVDJiRlJ5dlRlOVlhcDJVSjVOTkR2NW5HOU0iLCJpc3N1YW5jZURhdGUiOiIyMTA5LTA4LTI3VDEzOjM3OjIzWiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rbjU3RTZpR1BLSGl5TXZYc21vcnBtbXRSTXRRS0RiTVRrVlVUcTdSTTZDa2giLCJ1c2VybmFtZSI6Im5pdHJvIn19LCJuYmYiOjQ0MDcwNTM4NDMsImp0aSI6InVybjp1dWlkOjc3ZGMyNWI4LThjOWItNDNlMi05MjdlLTFlZDc4YTY1ZTZjMCIsImlzcyI6ImRpZDprZXk6ejZNa3B0anZzanphOTZUejNFeHJYYVQyYkZSeXZUZTlZYXAyVUo1Tk5EdjVuRzlNIiwic3ViIjoiZGlkOmtleTp6Nk1rbjU3RTZpR1BLSGl5TXZYc21vcnBtbXRSTXRRS0RiTVRrVlVUcTdSTTZDa2giLCJpYXQiOjQ0MDcwNTM4NDMsImV4cCI6MjY5NzgyMTc2M30.DRPjURxt0OCzOeXd9NZx--y_5AGQ3dzX0dspN-oFbreiytLZkmnHz6C2qUfaZV6QG7dzk15NQQhZZ8zZqSYeAg",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"Verification failed: nbf claim is in the future",
+            "web5-go":"issuance date in future"
+         }
+      },
+      {
+         "description":"no context",
+         "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3RKTFpKU2JVeW5hY2gyZzR6em5LM1plVlZEZDlMc1Q1cWpCcm9tZ0M0TkdFI3o2TWt0SkxaSlNiVXluYWNoMmc0enpuSzNaZVZWRGQ5THNUNXFqQnJvbWdDNE5HRSJ9.eyJ2YyI6eyJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiVEJEZXZlbG9wZXJDcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MDVlYzg3MGQtMDYzOC00ZjdjLTlkMGMtMmM1ODJiNzM4NzlkIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rdEpMWkpTYlV5bmFjaDJnNHp6bkszWmVWVkRkOUxzVDVxakJyb21nQzROR0UiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTI5VDE4OjM5OjMzWiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rbkFGWkt1aG8yTkhTYTN1MTNqZGRZdDdpQTdFc2FaakxINFBhS3FuR1BVcHYiLCJ1c2VybmFtZSI6Im5pdHJvIn19LCJuYmYiOjE3MDkyMzE5NzMsImp0aSI6InVybjp1dWlkOjA1ZWM4NzBkLTA2MzgtNGY3Yy05ZDBjLTJjNTgyYjczODc5ZCIsImlzcyI6ImRpZDprZXk6ejZNa3RKTFpKU2JVeW5hY2gyZzR6em5LM1plVlZEZDlMc1Q1cWpCcm9tZ0M0TkdFIiwic3ViIjoiZGlkOmtleTp6Nk1rbkFGWkt1aG8yTkhTYTN1MTNqZGRZdDdpQTdFc2FaakxINFBhS3FuR1BVcHYiLCJpYXQiOjE3MDkyMzE5NzMsImV4cCI6MjY5NzgyMTc2M30.uegrsxyLsteVNX4Adjbsrya-IDiSMYTDQYXnBs0tbidbirKip_IYodCU__atyuJxdq6APtGiaY1hzoy38MHlAA",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"@context is missing default context",
+            "web5-go":"no context"
+         }
+      },
+      {
+         "description":"missing base context",
+         "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3VqYVdBdFpxSk5pdnFzaWpNMVNaaWRZQkdLazI4ZFVaRW5BbnNzVDdoaDdhI3o2TWt1amFXQXRacUpOaXZxc2lqTTFTWmlkWUJHS2syOGRVWkVuQW5zc1Q3aGg3YSJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJ3cm9uZy1jb250ZXh0Il0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJUQkRldmVsb3BlckNyZWRlbnRpYWwiXSwiaWQiOiJ1cm46dXVpZDpiMWRiMTQwMC00YTE2LTQwN2QtOGMxOC02MWNlODUwZTQzMDciLCJpc3N1ZXIiOiJkaWQ6a2V5Ono2TWt1amFXQXRacUpOaXZxc2lqTTFTWmlkWUJHS2syOGRVWkVuQW5zc1Q3aGg3YSIsImlzc3VhbmNlRGF0ZSI6IjIwMjQtMDItMjlUMTg6Mzk6MDdaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6a2V5Ono2TWtvUkVnczVIbXk1Nmo3cDhZb0J1RlhFUzJaZXB4a2JpQWExUGRDUURvQjE3aCIsInVzZXJuYW1lIjoibml0cm8ifX0sIm5iZiI6MTcwOTIzMTk0NywianRpIjoidXJuOnV1aWQ6YjFkYjE0MDAtNGExNi00MDdkLThjMTgtNjFjZTg1MGU0MzA3IiwiaXNzIjoiZGlkOmtleTp6Nk1rdWphV0F0WnFKTml2cXNpak0xU1ppZFlCR0trMjhkVVpFbkFuc3NUN2hoN2EiLCJzdWIiOiJkaWQ6a2V5Ono2TWtvUkVnczVIbXk1Nmo3cDhZb0J1RlhFUzJaZXB4a2JpQWExUGRDUURvQjE3aCIsImlhdCI6MTcwOTIzMTk0NywiZXhwIjoyNjk3ODIxNzYzfQ.kDbWpA-lEw8vyNmN_6EOq5QQGN3aDnnoWA6KvaOdcoZsusZCvPwWtf03WkXSDq4hv-g0AxBafwG19gsToTLXAg",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"@context is missing default context",
+            "web5-go":"missing base context"
+         }
+      },
+      {
+         "description":"no type",
+         "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2tmS0M2Z0RGdE5MR21KTlNkc2ZEQmdHdjUyekdkYmRCMk1GcVVvcXZ3ZjRqI3o2TWtrZktDNmdERnROTEdtSk5TZHNmREJnR3Y1MnpHZGJkQjJNRnFVb3F2d2Y0aiJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJpZCI6InVybjp1dWlkOjg1NmJiNGQ2LTEwODItNGFmNS05MmQ4LWFiMjgyYmRkNmY0ZiIsImlzc3VlciI6ImRpZDprZXk6ejZNa2tmS0M2Z0RGdE5MR21KTlNkc2ZEQmdHdjUyekdkYmRCMk1GcVVvcXZ3ZjRqIiwiaXNzdWFuY2VEYXRlIjoiMjAyNC0wMi0yOVQxODozODozMVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDprZXk6ejZNa3Z5dzNZc1poaVlFSjdna293NHJWYXB3V1VrNVFCVUNMTjFwR1prWVZHZjdKIiwidXNlcm5hbWUiOiJuaXRybyJ9fSwibmJmIjoxNzA5MjMxOTExLCJqdGkiOiJ1cm46dXVpZDo4NTZiYjRkNi0xMDgyLTRhZjUtOTJkOC1hYjI4MmJkZDZmNGYiLCJpc3MiOiJkaWQ6a2V5Ono2TWtrZktDNmdERnROTEdtSk5TZHNmREJnR3Y1MnpHZGJkQjJNRnFVb3F2d2Y0aiIsInN1YiI6ImRpZDprZXk6ejZNa3Z5dzNZc1poaVlFSjdna293NHJWYXB3V1VrNVFCVUNMTjFwR1prWVZHZjdKIiwiaWF0IjoxNzA5MjMxOTExLCJleHAiOjI2OTc4MjE3NjN9.w5knx7h_kVoMZCyp5rXQ141MzbZ6Dt4Q_QofHfmN-zRnACnWAw3L2t9zs8w0d-igBagZaSM29UUNS6d_W4J7BQ",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"type is missing default",
+            "web5-go":"no type"
+         }
+      },
+      {
+         "description":"missing base type",
+         "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa20zYVlNam52VUhXRDliVnplUFk2VFJuM1lpQmV6NWJNQWE0OVR1dk5udGQ0I3o2TWttM2FZTWpudlVIV0Q5YlZ6ZVBZNlRSbjNZaUJlejViTUFhNDlUdXZObnRkNCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlRCRGV2ZWxvcGVyQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOmVlNjQ4MmY0LTAxOTMtNDIzZC1hODIzLTVmZTU5MjQxMThmZCIsImlzc3VlciI6ImRpZDprZXk6ejZNa20zYVlNam52VUhXRDliVnplUFk2VFJuM1lpQmV6NWJNQWE0OVR1dk5udGQ0IiwiaXNzdWFuY2VEYXRlIjoiMjAyNC0wMi0yOVQxODozNzo0M1oiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDprZXk6ejZNa21GMnlVdmF6NWRHdFM5d1g5YzQya1o5ZlFpTlpkTXQ5azNIVUs3WGloS3hhIiwidXNlcm5hbWUiOiJuaXRybyJ9fSwibmJmIjoxNzA5MjMxODYzLCJqdGkiOiJ1cm46dXVpZDplZTY0ODJmNC0wMTkzLTQyM2QtYTgyMy01ZmU1OTI0MTE4ZmQiLCJpc3MiOiJkaWQ6a2V5Ono2TWttM2FZTWpudlVIV0Q5YlZ6ZVBZNlRSbjNZaUJlejViTUFhNDlUdXZObnRkNCIsInN1YiI6ImRpZDprZXk6ejZNa21GMnlVdmF6NWRHdFM5d1g5YzQya1o5ZlFpTlpkTXQ5azNIVUs3WGloS3hhIiwiaWF0IjoxNzA5MjMxODYzLCJleHAiOjI2OTc4MjE3NjN9.FutMFx9sCEJWTIXAqwkEpoZ5mMtH6VdkQ0TQ75UJlF-Yz3EVE_wU0sxXyrQwNkyOOu5BCAjGCwKrtAY3b3DqDg",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"type is missing default",
+            "web5-go":"missing base type"
+         }
+      },
+      {
+         "description":"jti does not match id",
+         "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2Y4YjFSVTdhajM5dFozSnVCUXQ3QTJxdDY2NWRFNGdpbktyUTVuaFhOeTVEI3o2TWtmOGIxUlU3YWozOXRaM0p1QlF0N0EycXQ2NjVkRTRnaW5LclE1bmhYTnk1RCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiVEJEZXZlbG9wZXJDcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MzhmODI2N2ItZGIxMC00ZmRjLTlkNzAtZGNmYTU2ZDFlZGQwIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rZjhiMVJVN2FqMzl0WjNKdUJRdDdBMnF0NjY1ZEU0Z2luS3JRNW5oWE55NUQiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTI5VDE4OjA4OjM1WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rbnpHcEhINkU5U3N5ZG9YbVJHb2ljVFZlOUpzZVo3c21KeloxVXhrQW5QTnciLCJ1c2VybmFtZSI6Im5pdHJvIn19LCJuYmYiOjE3MDkyMzAxMTUsImp0aSI6InVybjp1dWlkOm90aGVyLWlkIiwiaXNzIjoiZGlkOmtleTp6Nk1rZjhiMVJVN2FqMzl0WjNKdUJRdDdBMnF0NjY1ZEU0Z2luS3JRNW5oWE55NUQiLCJzdWIiOiJkaWQ6a2V5Ono2TWtuekdwSEg2RTlTc3lkb1htUkdvaWNUVmU5SnNlWjdzbUp6WjFVeGtBblBOdyJ9.QmOD0QKiszYgda6mE73YDBVX9CIat1OBS10f3p24ao34-ml08tiiFPNQGMdHM3zUMN7Ya3ZdLu9Ytosx9advAA",
+         "errors":true,
+         "errorMessage":{
+            "web5-js":"Verification failed: jti claim does not match id",
+            "web5-go":"missing base type"
+         }
+      },
+      {
+         "description":"valid jwt",
+         "input":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa21rWnhpQlp4ZEN3S3RjRDFobnBLdllvdThIcFY4SjJ4MUwxeTlIZUduUEpKI3o2TWtta1p4aUJaeGRDd0t0Y0QxaG5wS3ZZb3U4SHBWOEoyeDFMMXk5SGVHblBKSiJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiVEJEZXZlbG9wZXJDcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MmZjZjRkMzQtZTc5Ny00MWJlLWFiZTctYTAxZGY5MjgzNzQ4IiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rbWtaeGlCWnhkQ3dLdGNEMWhucEt2WW91OEhwVjhKMngxTDF5OUhlR25QSkoiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTI5VDE4OjE2OjE0WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rdXFHVDI5Q0x0WXdlZWZyTmVVOFk4cnZ6bXBpTWk3d3AyTWlCQW9SQmtiZmsiLCJ1c2VybmFtZSI6Im5pdHJvIn19LCJuYmYiOjE3MDkyMzA1NzQsImp0aSI6InVybjp1dWlkOjJmY2Y0ZDM0LWU3OTctNDFiZS1hYmU3LWEwMWRmOTI4Mzc0OCIsImlzcyI6ImRpZDprZXk6ejZNa21rWnhpQlp4ZEN3S3RjRDFobnBLdllvdThIcFY4SjJ4MUwxeTlIZUduUEpKIiwic3ViIjoiZGlkOmtleTp6Nk1rdXFHVDI5Q0x0WXdlZWZyTmVVOFk4cnZ6bXBpTWk3d3AyTWlCQW9SQmtiZmsiLCJpYXQiOjE3MDkyMzA1NzQsImV4cCI6MjY5NzgyMTc2M30.fKHojEqulH8uHXxNuXzn-CtwIjjFHg-wGoH9TcCDebLfZrzVoOGVRouWXZogMxWhHIPcYXY5gyGpzJ6cbYEXBQ",
+         "errors":false
+      }
+   ]
+}
