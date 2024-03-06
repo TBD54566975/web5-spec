@@ -7,7 +7,9 @@
       "output": {
         "@context": "https://w3id.org/did-resolution/v1",
         "didDocument": {
-          "@context": "https://www.w3.org/ns/did/v1",
+          "@context": [
+            "https://www.w3.org/ns/did/v1"
+          ],
           "id": "did:jwk:eyJrdHkiOiJFQyIsInVzZSI6InNpZyIsImNydiI6InNlY3AyNTZrMSIsImtpZCI6ImkzU1BSQnRKS292SEZzQmFxTTkydGk2eFFDSkxYM0U3WUNld2lIVjJDU2ciLCJ4IjoidmRyYnoyRU96dmJMRFZfLWtMNGVKdDdWSS04VEZaTm1BOVlnV3p2aGg3VSIsInkiOiJWTEZxUU1aUF9Bc3B1Y1hvV1gyLWJHWHBBTzFmUTVMbjE5VjVSQXhyZ3ZVIiwiYWxnIjoiRVMyNTZLIn0",
           "verificationMethod": [
             {
@@ -49,7 +51,9 @@
       "output": {
         "@context": "https://w3id.org/did-resolution/v1",
         "didDocument": {
-          "@context": "https://www.w3.org/ns/did/v1",
+          "@context": [
+            "https://www.w3.org/ns/did/v1"
+          ],
           "id": "did:jwk:eyJrdHkiOiJPS1AiLCJ1c2UiOiJzaWciLCJjcnYiOiJFZDI1NTE5Iiwia2lkIjoiVnRTSFhQbEtEdzFFRW9PajVYTjNYV2hqU1BZVk52WC1lNHZqUk8weVlKQSIsIngiOiJpejcwc3ZTTHhOWmhzRHhlSlFfam5PVmJYM0tGTmtjQmNNaldqWm1YRXNBIiwiYWxnIjoiRWREU0EifQ",
           "verificationMethod": [
             {
