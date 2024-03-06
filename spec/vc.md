@@ -28,6 +28,7 @@ Following from [this data model](https://www.w3.org/TR/vc-data-model/#basic-conc
 - Embedded proofs, using the `proof` property must not be present.
 - The `type` property may only contain `VerifiableCredential` or the URI of a JSON Schema, if one is used for the credential.
 - We do not support multiple credential subjects.
+- Verifiable Credentials must be secured as JWTs according to the [rules laid out in the specification](https://www.w3.org/TR/vc-data-model/#json-web-token).
 
 ### Credential Status Data Model
 
@@ -62,7 +63,18 @@ Following from [this data model](https://w3c.github.io/vc-json-schema/#jsonschem
 
 Following from [this guidance](https://www.w3.org/TR/vc-data-model/#presentations-0), which extends on the data model above.
 
+| Property      | JSON Representation | Required | Notes          |
+| ------------- | ------------------- | -------- | -------------- |
+| `@context`    | Array of strings    | Yes      | Contexts defining the meaning of terms within the presentation. Must include at least `"https://www.w3.org/2018/credentials/v1"`. |
+| `id`          | String              | Yes      | A URI representing a unique identifier for the presentation. Recommended to be of form `urn:uuid:3978344f-8596-4c3a-a978-8fcaba3903c5`. |
+| `type`        | Array of strings    | Yes      | Type(s) of the presentation. Must include `VerifiablePresentation`. |
+| `holder`      | String              | Yes      | A DID representing a unique identifier for the entity that created the presentation. |
+| `issuanceDate`| String              | Yes      | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value for when the presentation was created. |
+| `expirationDate` | String           | No       | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value after which the presentation is no longer valid. |
+| `verifiableCredentials` | Array of strings | Yes    | An array with at least one value, containing the JWT representation of [Verifiable Credential](#verifiable-credential-data-model) objects. |
+
 **Additional Notes:**
 - No [JSON-LD processing](https://www.w3.org/TR/vc-data-model/#json-ld) is performed.
 - Embedded proofs, using the `proof` property must not be present.
 - The `type` property may only contain `VerifiablePresentation` or the URI of a JSON Schema, if one is used for the presentation.
+- Verifiable Presentations must be secured as JWTs according to the [rules laid out in the specification](https://www.w3.org/TR/vc-data-model/#json-web-token).
