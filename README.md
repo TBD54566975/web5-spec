@@ -18,18 +18,15 @@
 - [Web5 SDK Features](#web5-sdk-features)
   - [Cryptographic Digital Signature Algorithms (DSA)](#cryptographic-digital-signature-algorithms-dsa)
   - [Key Management](#key-management)
-  - [`did:web`](#didweb)
-  - [`did:jwk`](#didjwk)
-  - [`did:dht`](#diddht)
-  - [`did:key`](#didkey)
-  - [`did:ion`](#didion)
-  - [DID Document \& Resolution Validation](#did-document--resolution-validation)
-  - [W3C Verifiable Credential Data Model 1.1](#w3c-verifiable-credential-data-model-11)
-  - [W3C Verifiable Credential Data Model 2.0](#w3c-verifiable-credential-data-model-20)
-  - [SD-JWT / SD-JWT-VC](#sd-jwt--sd-jwt-vc)
-  - [Bitstring Status List](#bitstring-status-list)
-  - [VC JSON Schema](#vc-json-schema)
-  - [Presentation Exchange V2](#presentation-exchange-v2)
+  - [Decentralized Identifiers](#decentralized-identifiers)
+  - [Verifiable Credentials](#verifiable-credentials)
+    - [W3C Verifiable Credentials v1.1](#w3c-verifiable-credential-data-model-11)
+    - [W3C Verifiable Credentials v2.0](#w3c-verifiable-credential-data-model-20)
+    - [SD-JWT](#sd-jwt)
+    - [Status List 2021](#status-list-2021)
+    - [Bitstring Status List](#bitstring-status-list)
+    - [VC JSON Schema](#vc-json-schema)
+    - [Presentation Exchange V2](#presentation-exchange-v2)
 
 ## Purpose
 
@@ -186,50 +183,49 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 > Consumers of our SDKs should be able to provide their own `KeyManager` implementations if desired
 <!-- markdownlint-disable-next-line -->
 
-### Identifiers
+### Decentralized Identifiers
 
-#### [DID Document](https://www.w3.org/TR/did-core/) & [Resolution Validation](https://w3c-ccg.github.io/did-resolution/)
+#### [DID Documents](https://www.w3.org/TR/did-core/) & [DID Resolution](https://w3c-ccg.github.io/did-resolution/)
 
 Independent of DID Methods, we support DID Documents according to [DID Core v1.0](https://www.w3.org/TR/2022/REC-did-core-20220719/).
 
 #### DID Methods
 
-| Method   | Creation | Resolution | Note |
-| -------- | -------- | ---------- | ---- |
-| [`did:web`](https://w3c-ccg.github.io/did-method-web/) | ❌ | ✅ | - |
-| [`did:jwk`](https://github.com/quartzjer/did-jwk/blob/main/spec.md) | ✅ | ✅ | - |
-| [`did:dht`](https://did-dht.com) | ✅ | ✅ | This is our default method. |
-| [`did:key`](https://w3c-ccg.github.io/did-method-key/) | ⚠️ | ⚠️ | It has been implemented in both Kotlin and Typescript, no plans to support in other languages. |
-| [`did:ion`](https://identity.foundation/sidetree/spec) | ⚠️ | ⚠️ | Support for `did:ion` has been deprecated. |
+| Method                                                 | Creation   | Resolution | Note |
+| ------------------------------------------------------ | ---------- | ---------- | ---- |
+| [`did:web`](https://w3c-ccg.github.io/did-method-web/) | ❌         | ✅         | -   |
+| [`did:jwk`](https://github.com/quartzjer/did-jwk/blob/main/spec.md) | ✅         | ✅  | - |
+| [`did:dht`](https://did-dht.com)                       | ✅         | ✅         | This is our default method. |
+| [`did:key`](https://w3c-ccg.github.io/did-method-key/) | ⚠️         | ⚠️         | Has been implemented in both Kotlin and Typescript, no plans for support in other languages. |
+| [`did:ion`](https://identity.foundation/sidetree/spec) | ⚠️         | ⚠️         | Support for `did:ion` has been deprecated. |
 
 ### Verifiable Credentials
 
 #### [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model)
 
-| Feature                              |
-| ------------------------------------ |
-| Data Model                           |
-| Validation (data model, JSON Schema, status) |
-| Signing and verification of Verifiable Credentials as `vc-jwt` |
+| Feature                                                          |
+| ---------------------------------------------------------------- |
+| Data model                                                       |
+| Validation (data model, JSON Schema, status)                     |
+| Signing and verification of Verifiable Credentials as `vc-jwt`   |
 | Signing and verification of Verifiable Presentations as `vp-jwt` |
 
 #### [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/)
 
-| Feature                              |
-| ------------------------------------ |
-| Data Model                           |
-| Validation (data model, JSON Schema, status) |
+| Feature                                                                  |
+| ------------------------------------------------------------------------ |
+| Data model                                                               |
+| Validation (data model, JSON Schema, status)                             |
 | Signing and verification of Verifiable Credentials with `vc-jose-cose`.  |
 | Signing and verification of Verifiable Presentations with `vc-jose-cose` |
 
 
 #### [SD-JWT](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/)
 
-| Feature             |
-| ------------------- |
-| Data Model          | 
-| Signing             | 
-| Verification        |
+| Feature                  |
+| ------------------------ |
+| Data model               | 
+| Signing and verification | 
 
 #### [Status List 2021](https://www.w3.org/community/reports/credentials/CG-FINAL-vc-status-list-2021-20230102/)
 
@@ -242,7 +238,7 @@ For usage with the [W3C Verifiable Credential Data Model 1.1](https://www.w3.org
 | Status setting                         |
 | Signing and verification with `vc-jwt` |
 
-#### [Bitstring Status List 2021](https://www.w3.org/TR/vc-bitstring-status-list/)
+#### [Bitstring Status List](https://www.w3.org/TR/vc-bitstring-status-list/)
 
 For usage with the [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/).
 
@@ -264,7 +260,7 @@ For usage with both the [W3C Verifiable Credential Data Model 1.1](https://www.w
 | Creation and validation of `JsonSchemaCredential` using `vc-jwt` with the VCDM v1.1 |
 | Creation and validation of `JsonSchemaCredential` using `vc-jose-cose` with the VCDM v2.0 |
 
-#### [Presentation Exchange V2](https://identity.foundation/presentation-exchange/spec/v2.0.0/)
+#### [Presentation Exchange v2.0](https://identity.foundation/presentation-exchange/spec/v2.0.0/)
 
 | Feature                | 
 | ---------------------- | 
