@@ -189,7 +189,17 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 
 #### [DID Documents](https://www.w3.org/TR/did-core/) & [DID Resolution](https://w3c-ccg.github.io/did-resolution/)
 
-Independent of DID Methods, we support DID Documents according to [DID Core v1.0](https://www.w3.org/TR/2022/REC-did-core-20220719/).
+Independent of DID Methods, we support DID Documents according to [DID Core v1.0](https://www.w3.org/TR/2022/REC-did-core-20220719/) and the following specification.
+
+The DID Core data model provides optionality for many of its properties, as it is designed as an [abstract data model](https://www.w3.org/TR/did-core/#representations). This means that many properties can be represented in different ways while still being spec conformant, properties can take on multiple concrete types (i.e. sometimes a string, sometimes an array), and documents can be extended to include additional properties either through the [DID Specification Registry](https://www.w3.org/TR/did-spec-registries/) or via usage of [JSON-LD](https://www.w3.org/TR/json-ld11/).
+
+This optionality can be difficult to implement consistently across languages. As a consequence, this specification defines a strict subset of the DID Core v1.0 data model represented by the following table. As a utility JSON Schemas for [DID Documents](spec/did-document.json), [DID Resolution Metadata](spec/did-resolution.json), and [DID Document Metadata](spec/did-metadata.json) are provided to aid in the validation of conformant documents.
+
+**DID Document Data Model**
+
+**DID Resolution Metadata Data Model**
+
+**DID Document Metadata Data Model**
 
 #### DID Methods
 
@@ -204,6 +214,14 @@ Independent of DID Methods, we support DID Documents according to [DID Core v1.0
 ### Verifiable Credentials
 
 #### [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model)
+
+**Data Model**
+
+The VC Data Model provides optionality for many of its properties. This means they can take on multiple concrete types, for example an [`issuer` property](https://www.w3.org/TR/vc-data-model/#issuer) can either be repreesnted as a JSON string representing a URI or a JSON object that must contain an `id` property. Additionally, the data model follows an [open world](https://www.w3.org/TR/vc-data-model/#extensibility) model for extensibility via the usage of [JSON-LD](https://www.w3.org/TR/json-ld11/). As a consequence, conformant Verifiable Credentials may contain properties that are not defined by the specification itself, but by [JSON-LD Contexts](https://www.w3.org/TR/json-ld11/#the-context).
+
+This optionality can be difficult to implement consistently across languages. As a consequence, this specification defines a strict subset of the VC Data Model v1.1 represented by the following table. As a utility JSON Schemas for [Verifiable Credentials](spec/vc-11.json) and [Verifiable Presentations](spec/vp-11.json) are provided to aid in the validation of conformant documents.
+
+**Features** 
 
 | Feature                                                          |
 | ---------------------------------------------------------------- |
@@ -220,7 +238,6 @@ Independent of DID Methods, we support DID Documents according to [DID Core v1.0
 | Validation (data model, JSON Schema, status)                             |
 | Signing and verification of Verifiable Credentials with `vc-jose-cose`.  |
 | Signing and verification of Verifiable Presentations with `vc-jose-cose` |
-
 
 #### [SD-JWT](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/)
 
