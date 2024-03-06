@@ -13,12 +13,14 @@
   - [Publishing API Reference Documentation](#publishing-api-reference-documentation)
   - [Example Feature Usage](#example-feature-usage)
 - [Test Vectors](#test-vectors)
-  - [Adding/Updating Vectors](#addingupdating-vectors)
+  - [Adding & Updating Vectors](#adding--updating-test-vectors)
   - [Feature Completeness By SDK](#feature-completeness-by-sdk)
 - [Web5 SDK Features](#web5-sdk-features)
   - [Cryptographic Digital Signature Algorithms (DSA)](#cryptographic-digital-signature-algorithms-dsa)
   - [Key Management](#key-management)
   - [Decentralized Identifiers](#decentralized-identifiers)
+    - [DID Documents & Resolution](#did-documents--did-resolution)
+    - [DID Methods](#did-methods)
   - [Verifiable Credentials](#verifiable-credentials)
     - [W3C Verifiable Credentials v1.1](#w3c-verifiable-credential-data-model-11)
     - [W3C Verifiable Credentials v2.0](#w3c-verifiable-credential-data-model-20)
@@ -136,11 +138,11 @@ The `tbdex` repo houses tbdex feature related vectors. They are available in the
 
 The `sdk-report-runner` repo consumes the output tests for these test vectors in each repo and generates a report - [report-runner](https://github.com/TBD54566975/sdk-report-runner).
 
-### Adding/Updating Vectors
+### Adding & Updating Test Vectors
 
-New test vectors should follow the standard [vector structure](./test-vectors/). Vectors are automatically validated against the [JSON Schema](https://json-schema.org/) via CI.
+New test vectors should follow the standard [vector structure](./test-vectors/). Vectors are automatically validated against their [JSON Schema](https://json-schema.org/) via CI.
 
-Create a PR in this repo for adding / updating web5 test vectors.
+Create a PR in this repo for adding / updating Web5 test vectors.
 
 ### Feature Completeness By SDK
 
@@ -150,13 +152,13 @@ Test vectors are used to determine feature completeness via our [test harness](.
 
 ### Cryptographic Digital Signature Algorithms (DSA)
 
-| Algorithm       | 
-| --------------- |
-| `ES256K`        | 
-| `EdDSA:Ed25519` |
+| Key Type                                          | Algorithm                                                             | Type                     |
+| ------------------------------------------------- | --------------------------------------------------------------------- | ------------------------ |
+| [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) | [`ES256K`](https://datatracker.ietf.org/doc/html/rfc8812#section-3.1) | Signing and Verification |
+| [Ed25519](https://ed25519.cr.yp.to/)              | [`EdDSA`](https://datatracker.ietf.org/doc/html/rfc8032)              | Signing and Verification |
 
 > [!IMPORTANT]
-> In-memory signing using Secp256k1 **MUST** produce k-deterministic low-s signatures. Verification **must not require** low-s signatures
+> In-memory signing using secp256k1 **MUST** produce k-deterministic low-s signatures with [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as per [RFC6979](https://www.rfc-editor.org/rfc/rfc6979). Verification **must not require** low-s signatures.
 
 ### Key Management
 
