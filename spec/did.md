@@ -15,11 +15,11 @@ Following from [this data model](https://www.w3.org/TR/did-core/#core-properties
 | `controller`  | Array of strings    | No       | Depends on the DID method. Strings must be URIs. |
 | `alsoKnownAs`        | Array of strings | No   | Depends on the DID method. Strings must be URIs. |
 | `verificationMethod` | Array of [Verification Methods](#verification-method-data-model) | Yes | There must be at least one Verification Method in each DID Document. |
-| `authentication`     | Array of strings | No   | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
-| `assertionMethod`          | Array of strings | No   | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
-| `keyAgreement`       | Array of strings | No   | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
-| `capabilityInvocation` | Array of strings | No | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
-| `capabilityDelegation` | Array of strings | No | String values are recommended to be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
+| `authentication`     | Array of strings | No   | String values must be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
+| `assertionMethod`    | Array of strings | No   | String values must be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
+| `keyAgreement`       | Array of strings | No   | String values must be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
+| `capabilityInvocation` | Array of strings | No | String values must be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
+| `capabilityDelegation` | Array of strings | No | String values must be fully qualified DID URIs (e.g. `did:example:abcd#key-1` over `#key-1`). |
 | `service`            | Array of [Services](#service-data-model) | No | - |
 
 **Additional Notes:**
@@ -32,7 +32,7 @@ Following form [this data model](https://www.w3.org/TR/did-core/#verification-me
 
 | Property      | JSON Representation | Required | Notes          |
 | ------------- | ------------------- | -------- | -------------- |
-| `id`          | String              | Yes      | Recommended to be a fully qualified DID URI (e.g. `did:example:abcd#key-1`). |
+| `id`          | String              | Yes      | Must be a fully qualified DID URI (e.g. `did:example:abcd#key-1`). |
 | `type`        | String              | Yes      | Must be a URI. |
 | `controller`  | String              | Yes      | Must be a URI. |
 | `publicKeyJwk`        | Object      | No       | Preferred. Represents a [JWK](https://www.w3.org/TR/did-core/#bib-rfc7517). Either this or `publicKeyMultibase` must be present. |
@@ -44,7 +44,7 @@ Following from [this data model](https://www.w3.org/TR/did-core/#services).
 
 | Property          | JSON Representation | Required | Notes          |
 | ----------------- | ------------------- | -------- | -------------- |
-| `id`              | String              | Yes      | Recommended to be a fully qualified DID URI (e.g. `did:example:abcd#service-1`). |
+| `id`              | String              | Yes      | Must be a fully qualified DID URI (e.g. `did:example:abcd#service-1`). |
 | `type`            | String              | Yes      | Must be a type defined in the [service registry](https://www.w3.org/TR/did-spec-registries/#service-types). |
 | `serviceEndpoint` | Array of Strings    | Yes      | String values must be URIs. |
 | `sig`             | Array of Strings    | No       | -                           |
@@ -58,7 +58,6 @@ Following from [this data model](https://www.w3.org/TR/did-core/#did-resolution-
 
 | Property      | JSON Representation | Required | Notes          |
 | ------------- | ------------------- | -------- | -------------- |
-| `contentType` | String              | No       | Media type of the DID Document. |
 | `error`       |  String             | No       | Required if there was an error during resolution. One of [`invalidDid`, `notFound`, `representationNotSupported`]. |
 
 
