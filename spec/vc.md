@@ -17,7 +17,7 @@ Following from [this data model](https://www.w3.org/TR/vc-data-model/#basic-conc
 | `issuanceDate`| String              | Yes      | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value for when the credential was issued. |
 | `expirationDate` | String           | No       | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value after which the credential is no longer valid. |
 | `credentialSubject` | Object        | Yes      | Data about the subject of the credential. Can be any JSON object. |
-| `credentialSubject.id` | Object     | Yes      | A DID representing a unique identifier for whom the credential's claims are made. |
+| `credentialSubject.id` | String     | Yes      | A DID representing a unique identifier for whom the credential's claims are made. |
 | `credentialStatus` | Object defined by [Credential Status](#credential-status) | No | Only to be used with [Status List 2021](https://www.w3.org/community/reports/credentials/CG-FINAL-vc-status-list-2021-20230102/). |
 | `credentialSchema` | Object defined by [Credential Schema](#credential-schema) | No | Recommended. Only to be used with the type [`JsonSchema`](https://w3c.github.io/vc-json-schema/#jsonschema). |
 | `evidence`    | Object              | No       | Any JSON object as per [Evidence](https://www.w3.org/TR/vc-data-model/#evidence). |
