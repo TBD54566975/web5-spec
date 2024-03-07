@@ -57,7 +57,7 @@ Following from [this data model](https://w3c.github.io/vc-json-schema/#jsonschem
 | `type`          | String              | Yes      | Must be set to `JsonSchema`. |
 
 **Additional Notes:**
-- Though [the referenced spec](https://w3c.github.io/vc-json-schema/) is designed for v2 of the VC Data Model, we are using it anyway since there is no standard way to use the `credentialSchema` property in v1.1 of the data model.
+- Although [the referenced spec](https://w3c.github.io/vc-json-schema/) is designed for v2 of the VC Data Model, we apply it to v1.1 as a standard means to implement the `credentialSchema`.
 
 ## Verifiable Presentation Data Model
 
