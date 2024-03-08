@@ -221,7 +221,7 @@ We support Verifiable Credentials according to the [Verifiable Credentials Data 
 | Data model                                                               |
 | Validation (data model, JSON Schema, status)                             |
 | Signing and verification of Verifiable Credentials with `vc-jose-cose`.  |
-| Signing and verification of Verifiable Presentations with `vc-jose-cose` |
+| Signing and verification of Verifiable Presentations with `vp-jose-cose` |
 
 #### [SD-JWT](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/)
 
