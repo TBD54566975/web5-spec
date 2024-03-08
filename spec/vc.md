@@ -71,7 +71,7 @@ Following from [this guidance](https://www.w3.org/TR/vc-data-model/#presentation
 | `holder`      | String              | Yes      | A DID representing a unique identifier for the entity that created the presentation. |
 | `issuanceDate`| String              | Yes      | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value for when the presentation was created. |
 | `expirationDate` | String           | No       | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value after which the presentation is no longer valid. |
-| `verifiableCredentials` | Array of strings | Yes    | An array with at least one value, containing the JWT representation of [Verifiable Credential](#verifiable-credential-data-model) objects. |
+| `verifiableCredential` | Array of strings | Yes    | An array with at least one value, containing the JWT representation of [Verifiable Credential](#verifiable-credential-data-model) objects. |
 
 **Additional Notes:**
 - No [JSON-LD processing](https://www.w3.org/TR/vc-data-model/#json-ld) is performed.
