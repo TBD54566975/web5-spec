@@ -35,8 +35,7 @@ Following form [this data model](https://www.w3.org/TR/did-core/#verification-me
 | `id`          | String              | Yes      | Must be a fully qualified DID URI (e.g. `did:example:abcd#key-1`). |
 | `type`        | String              | Yes      | Must be a URI. |
 | `controller`  | String              | Yes      | Must be a URI. |
-| `publicKeyJwk`        | Object      | No       | Preferred. Represents a [JWK](https://www.w3.org/TR/did-core/#bib-rfc7517). Either this or `publicKeyMultibase` must be present. |
-| `publicKeyMultibase`  | String      | No       | Not preferred. Either this or `publicKeyJwk` must be present. |
+| `publicKeyJwk` | Object             | Yes      | Represents a [JWK](https://www.w3.org/TR/did-core/#bib-rfc7517). |
 
 ### Service Data Model
 
@@ -52,18 +51,32 @@ Following from [this data model](https://www.w3.org/TR/did-core/#services).
 
 ## DID Resolution Metadata Data Model
 
-DID Resolution Metadata is _always optional_.
+DID Resolution Metadata is _always optional_. This means that conformant implementations need not support the metadata, though it may be returned when interacting with DID resolvers.
 
 Following from [this data model](https://www.w3.org/TR/did-core/#did-resolution-metadata).
 
 | Property      | JSON Representation | Required | Notes          |
 | ------------- | ------------------- | -------- | -------------- |
-| `error`       |  String             | No       | Required if there was an error during resolution. One of [`invalidDid`, `notFound`, `representationNotSupported`]. |
+| `error`       |  String             | No       | Required if there was an error during resolution. One of the defined [error types](#did-resolution-metadata-error-types). |
+
+### DID Resolution Metadata Error Types
+
+Error types supported following from [this data model](https://www.w3.org/TR/did-core/#did-resolution-metadata).
+
+| Type          | Description         |
+| ------------- | ------------------- |
+| `invalidDid`  | The requested DID was not valid and resolution could not proceed. |
+| `notFound`    | The requested DID was not found. |
+| `representationNotSupported` | The requested representation of the DID payload is not supported by the resolver. |
+| `methodNotSupported` | The requested DID method is not supported by the resolver. |
+| `invalidDidDocument` | The DID Document was found but did not represent a conformant document. |
+| `invalidDidDocumentLength` | The size of the DID Document was not within the method's acceptable limit. |
+| `internalError` | Something went wrong during DID resolution. |
 
 
 ## DID Document Metadata Data Model
 
-DID Document Metadata is _always optional_.
+DID Document Metadata is _always optional_. This means that conformant implementations need not support the metadata, though it may be returned when interacting with DID resolvers.
 
 Following from [this data model](https://www.w3.org/TR/did-core/#did-document-metadata).
 
@@ -75,5 +88,5 @@ Following from [this data model](https://www.w3.org/TR/did-core/#did-document-me
 | `nextUpdate`  | String            | No       | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value for when the next update of the DID. |
 | `versionId`   | String            | No       | Represents the version of the last update operation. |
 | `nextversionId`| String           | No       | Represents the version of the next update operation. |
-| `equivalentId` | Array of Strings | No       | A stronger form of the `alsoKnownAs` property, guaranteed by the DID method. |
-| `canonicalId`  | String           | No       | Similar to `equivalentId`, though always a single value, never a set. |
+| `equivalentId` | Array of Strings | No       | A stronger form of the `alsoKnownAs` property, guaranteed by the DID method. See [this spec text](https://www.w3.org/TR/did-core/#h-note-10) for more information. |
+| `canonicalId`  | String           | No       | Similar to `equivalentId`, though always a single value, never a set. See [this spec text](https://www.w3.org/TR/did-core/#dfn-canonicalid) for more information. |

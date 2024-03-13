@@ -164,13 +164,13 @@ Test vectors are used to determine feature completeness via our [test harness](.
 
 Each SDK will implement a consistent and extensible _public interface_ for key management minimally providing concrete implementations of:
 
-| Feature               |
-| --------------------- |
-| Key Manager Interface | 
-| In-Memory Key Manager |
-| AWS KMS               |
-| Device Enclave        |
-| Keychain              |
+| Feature                 |
+| ----------------------- |
+| Key Manager Interface   | 
+| In-Memory Key Manager   |
+| AWS KMS                 |
+| Device Enclave (Mobile) |
+| Keychain (Mobile)       |
 
 Further, the key manager interface **must** be passed as an argument to _all_ public API methods that require key material. e.g.
 
