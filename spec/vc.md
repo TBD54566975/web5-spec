@@ -13,22 +13,24 @@ Following from [this data model](https://www.w3.org/TR/vc-data-model/#basic-conc
 | `@context`    | Array of strings    | Yes      | Contexts defining the meaning of terms within the credential. Must include at least `"https://www.w3.org/2018/credentials/v1"`. |
 | `id`          | String              | Yes      | A URI representing a unique identifier for the credential. Recommended to be of form `urn:uuid:3978344f-8596-4c3a-a978-8fcaba3903c5`. |
 | `type`        | Array of strings    | Yes      | Type(s) of the credential. Must include `VerifiableCredential`. |
-| `issuer`      | String              | Yes      | A DID representing a unique identifier for the entity that issued the credential. |
+| `issuer`      | String OR Object    | Yes      | Recommended to be a string; a DID representing a unique identifier for the entity that issued the credential. We also need to support the case where `issuer` is a JSON Object with an `id` propertery (following prior guidance) and a `name` property representing the Issuer's name. |
 | `issuanceDate`| String              | Yes      | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value for when the credential was issued. |
 | `expirationDate` | String           | No       | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value after which the credential is no longer valid. |
 | `credentialSubject` | Object        | Yes      | Data about the subject of the credential. Can be any JSON object. |
 | `credentialSubject.id` | String     | Yes      | A DID representing a unique identifier for whom the credential's claims are made. |
 | `credentialStatus` | Object defined by [Credential Status](#credential-status) | No | Only to be used with [Status List 2021](https://www.w3.org/community/reports/credentials/CG-FINAL-vc-status-list-2021-20230102/). |
 | `credentialSchema` | Object defined by [Credential Schema](#credential-schema) | No | Recommended. Only to be used with the type [`JsonSchema`](https://w3c.github.io/vc-json-schema/#jsonschema). |
-| `evidence`    | Object              | No       | Any JSON object as per [Evidence](https://www.w3.org/TR/vc-data-model/#evidence). |
+| `evidence`    | Array of objects    | No       | An array of JSON objects as per [Evidence](https://www.w3.org/TR/vc-data-model/#evidence). |
 
 **Additional Notes:**
 - The `credentialSubject` property can be any JSON object. It is recommended that this object is defined by an associated `credentialSchema`.
 - No [JSON-LD processing](https://www.w3.org/TR/vc-data-model/#json-ld) is performed.
-- Embedded proofs, using the `proof` property must not be present.
+- Embedded proofs, using the `proof` property must not be present. JWTs with the `proof` property present must not be processed.
 - The `type` property must always contain `VerifiableCredential` but may also contain the URI(s) of a JSON Schema, if one is used for the credential.
 - We do not support multiple credential subjects.
 - Verifiable Credentials must be secured as JWTs according to the [rules laid out in the specification](https://www.w3.org/TR/vc-data-model/#json-web-token).
+- XML Datetime values may be represented by conforming to [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) or [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) formats, as they are subsets of XML Datetime.
+- For the `evidence` property no further implementation is needed until we are able to specify an evidence [type](https://www.w3.org/TR/vc-data-model/#dfn-type), such as those provided by [this registry](https://w3c.github.io/vc-specs-dir/#evidence).
 
 ### Credential Status Data Model
 
@@ -76,5 +78,6 @@ Following from [this guidance](https://www.w3.org/TR/vc-data-model/#presentation
 **Additional Notes:**
 - No [JSON-LD processing](https://www.w3.org/TR/vc-data-model/#json-ld) is performed.
 - Embedded proofs, using the `proof` property must not be present.
-- The `type` property may only contain `VerifiablePresentation` or the URI of a JSON Schema, if one is used for the presentation.
+- The `type` property must always contain `VerifiablePresentation` but may also contain the URI(s) of a JSON Schema, if one is used for the presentation.
 - Verifiable Presentations must be secured as JWTs according to the [rules laid out in the specification](https://www.w3.org/TR/vc-data-model/#json-web-token).
+- XML Datetime values may be represented by conforming to [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) or [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) formats, as they are subsets of XML Datetime.
