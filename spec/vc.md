@@ -26,7 +26,7 @@ Following from [this data model](https://www.w3.org/TR/vc-data-model/#basic-conc
 - The `credentialSubject` property can be any JSON object. It is recommended that this object is defined by an associated `credentialSchema`.
 - No [JSON-LD processing](https://www.w3.org/TR/vc-data-model/#json-ld) is performed.
 - Embedded proofs, using the `proof` property must not be present. JWTs with the `proof` property present must not be processed.
-- The `type` property may only contain `VerifiableCredential` and optionally the URI of a JSON Schema, if one is used for the credential.
+- The `type` property must always contain `VerifiableCredential` but may also contain the URI(s) of a JSON Schema, if one is used for the credential.
 - We do not support multiple credential subjects.
 - Verifiable Credentials must be secured as JWTs according to the [rules laid out in the specification](https://www.w3.org/TR/vc-data-model/#json-web-token).
 - XML Datetime values may be represented by conforming to [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) or [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) formats, as they are subsets of XML Datetime.
@@ -78,6 +78,6 @@ Following from [this guidance](https://www.w3.org/TR/vc-data-model/#presentation
 **Additional Notes:**
 - No [JSON-LD processing](https://www.w3.org/TR/vc-data-model/#json-ld) is performed.
 - Embedded proofs, using the `proof` property must not be present.
-- The `type` property may only contain `VerifiablePresentation` and optionally the URI of a JSON Schema, if one is used for the presentation.
+- The `type` property must always contain `VerifiablePresentation` but may also contain the URI(s) of a JSON Schema, if one is used for the presentation.
 - Verifiable Presentations must be secured as JWTs according to the [rules laid out in the specification](https://www.w3.org/TR/vc-data-model/#json-web-token).
 - XML Datetime values may be represented by conforming to [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) or [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) formats, as they are subsets of XML Datetime.
