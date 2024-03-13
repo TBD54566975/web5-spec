@@ -26,7 +26,7 @@ Following from [this data model](https://www.w3.org/TR/vc-data-model/#basic-conc
 - The `credentialSubject` property can be any JSON object. It is recommended that this object is defined by an associated `credentialSchema`.
 - No [JSON-LD processing](https://www.w3.org/TR/vc-data-model/#json-ld) is performed.
 - Embedded proofs, using the `proof` property must not be present.
-- The `type` property may only contain `VerifiableCredential` or the URI of a JSON Schema, if one is used for the credential.
+- The `type` property must always contain `VerifiableCredential` but may also contain the URI(s) of a JSON Schema, if one is used for the credential.
 - We do not support multiple credential subjects.
 - Verifiable Credentials must be secured as JWTs according to the [rules laid out in the specification](https://www.w3.org/TR/vc-data-model/#json-web-token).
 
