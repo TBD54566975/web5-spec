@@ -207,10 +207,14 @@ Independent of DID Methods, we support DID Documents according to [DID Core v1.0
 
 We support Verifiable Credentials according to the [Verifiable Credentials Data Model 1.1](https://www.w3.org/TR/vc-data-model) with the adjustments specified in [this corresponding document](spec/vc.md).
 
+> [!IMPORTANT]
+> Credential validation will soon be [specified more clearly](https://github.com/TBD54566975/web5-spec/issues/123).
+<!-- markdownlint-disable-next-line -->
+
 | Feature                                                          |
 | ---------------------------------------------------------------- |
 | Data model                                                       |
-| Validation (data model, JSON Schema, status)                     |
+| Validation (data model, JSON Schema, status, more to come.)      |
 | Signing and verification of Verifiable Credentials as `vc-jwt`   |
 | Signing and verification of Verifiable Presentations as `vp-jwt` |
 
@@ -237,7 +241,7 @@ For usage with the [W3C Verifiable Credential Data Model 1.1](https://www.w3.org
 | Feature                                | 
 | -------------------------------------- | 
 | Data model                             |
-| Status checking                        |
+| Status checking (supporting at least `Revocation` and `Suspension` statuses) |
 | Status setting                         |
 | Signing and verification with `vc-jwt` |
 
@@ -248,7 +252,7 @@ For usage with the [W3C Verifiable Credential Data Model 2.0](https://www.w3.org
 | Feature                                      | 
 | -------------------------------------------- | 
 | Data model                                   |
-| Status checking                              |
+| Status checking (supporting at least `Revocation` and `Suspension` statuses) |
 | Status setting                               |
 | Signing and verification with `vc-jose-cose` |
 
