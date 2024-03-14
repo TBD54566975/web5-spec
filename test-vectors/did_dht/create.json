@@ -88,7 +88,9 @@
       },
       "output": {
         "id": "did:dht:cyuoqaf7itop8ohww4yn5ojg13qaq83r9zihgqntc5i9zwrfdfoo",
-        "controller": "did:example:abcd",
+        "controller": [
+          "did:example:abcd"
+        ],
         "alsoKnownAs": [
           "did:example:efgh",
           "did:example:ijkl"

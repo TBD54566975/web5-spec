@@ -13,23 +13,22 @@
   - [Publishing API Reference Documentation](#publishing-api-reference-documentation)
   - [Example Feature Usage](#example-feature-usage)
 - [Test Vectors](#test-vectors)
-  - [Adding/Updating Vectors](#addingupdating-vectors)
+  - [Adding & Updating Vectors](#adding--updating-test-vectors)
   - [Feature Completeness By SDK](#feature-completeness-by-sdk)
 - [Web5 SDK Features](#web5-sdk-features)
   - [Cryptographic Digital Signature Algorithms (DSA)](#cryptographic-digital-signature-algorithms-dsa)
   - [Key Management](#key-management)
-  - [`did:web`](#didweb)
-  - [`did:jwk`](#didjwk)
-  - [`did:dht`](#diddht)
-  - [`did:key`](#didkey)
-  - [`did:ion`](#didion)
-  - [DID Document \& Resolution Validation](#did-document--resolution-validation)
-  - [W3C Verifiable Credential Data Model 1.1](#w3c-verifiable-credential-data-model-11)
-  - [W3C Verifiable Credential Data Model 2.0](#w3c-verifiable-credential-data-model-20)
-  - [SD-JWT / SD-JWT-VC](#sd-jwt--sd-jwt-vc)
-  - [Bitstring Status List](#bitstring-status-list)
-  - [VC JSON Schema](#vc-json-schema)
-  - [Presentation Exchange V2](#presentation-exchange-v2)
+  - [Decentralized Identifiers](#decentralized-identifiers)
+    - [DID Documents & Resolution](#did-documents--did-resolution)
+    - [DID Methods](#did-methods)
+  - [Verifiable Credentials](#verifiable-credentials)
+    - [W3C Verifiable Credentials v1.1](#w3c-verifiable-credential-data-model-11)
+    - [W3C Verifiable Credentials v2.0](#w3c-verifiable-credential-data-model-20)
+    - [SD-JWT](#sd-jwt)
+    - [Status List 2021](#status-list-2021)
+    - [Bitstring Status List](#bitstring-status-list)
+    - [VC JSON Schema](#vc-json-schema)
+    - [Presentation Exchange V2](#presentation-exchange-v2)
 
 ## Purpose
 
@@ -40,7 +39,6 @@ This repo sets forth the development process, requirements, and the desired feat
 - [web5-go](https://github.com/TBD54566975/web5-go)
 - [web5-rs](https://github.com/TBD54566975/web5-rs)
 - [web5-swift](https://github.com/TBD54566975/web5-swift)
-
 
 ## Requirements
 
@@ -72,12 +70,12 @@ An individual SDK will consider a feature implemented once the following require
 
 ### Review Criteria
 
-- Propose API surface design _prior_ to implementation. This can be done by creating a draft PR for a respective feature and providing prototypal code or proposing the design in the comments
+- Propose API surface design _prior_ to implementation. This can be done by opening a feature request Issue and fostering a discussion around the proposed design. This can be followed by a corresponding draft PR and providing prototypal code.
 
-- Approval Required from a minimum of 2 people
+- Approval Required from a minimum of 2 people.
 
 > [!NOTE]
-> requiring two reviewers will likely slow things down at the benefit of ensuring there's a sufficient amount of visibility on the changes being made. It also prevents bottlenecks from forming. Many people on our team should be able to speak to the features landing in our SDKs
+> Requiring two reviewers will likely slow things down at the benefit of ensuring there's a sufficient amount of visibility on the changes being made. It also prevents bottlenecks from forming. Many people on our team should be able to speak to the features landing in our SDKs.
 
 ### Release Criteria
 
@@ -88,32 +86,9 @@ An individual SDK will consider a feature implemented once the following require
 
 ### CI / CD
 
-Each SDK will use Github Actions for CI/CD and other automations
+Each SDK will use GitHub Actions for CI/CD and other automations.
 
-| Feature                       | Typescript | Kotlin | Rust | Swift |
-| ----------------------------- | ---------- | ------ | ---- | ----- |
-| OSS License Check             | ✅          | ✅      | ✅    | ❌     |
-| Security Scanning             | ✅          | ✅      | ⛔️    | ❌     |
-| Static Analysis Linting/Style | ✅          | ✅      | ✅    | ❌     |
-| Running Unit Tests            | ✅          | ✅      | ✅    | ❌     |
-| Publishing Tests Reports      | ✅          | ✅      | ❌    | ❌     |
-| Code Coverage (CodeCov)       | ✅          | ✅      | ❌    | ❌     |
-| Publishing Artifacts          | ✅          | ✅      | ❌    | ❌     |
-| Release Template Checklist    | ❌          | ❌      | ❌    | ❌     |
-| Automated GH Release Tag      | ❌          | ❌      | ❌    | ❌     |
-| Publishing API Reference Docs | ✅          | ✅      | ❌    | ❌     |
-| Publish Example Feature Usage | ✅          | ✅      | ❌    | ❌     |
-
-> [!CAUTION]
-> Security scanning via Snyk is currently not supported in Rust
-
-- GitHub Actions should run in secured runners
-  - A secure, authoritative build environment ensures software is compiled and packaged in a controlled, tamper-resistant setting.
-  - This mitigates the risk of introducing vulnerabilities or malicious code during the build process, whether through external attacks or compromised internal components.
-  - These runners are going to be TBD-owned and self hosted
-- Ideally the above table should be represented by a "Software Catalog" with all of our SDK statuses in real time.
-  - The dashboard would be consuming the data sources (GitHub, CodeCov, Snyk, Npm and other registries etc.)
-  - Tools like Grafana, Backstage, or even Jenkins (weather flag) could aggregate them
+Find the latest [Projects Health Dashboard here](https://developer.tbd.website/open-source/projects-dashboard/). 
 
 ### Publishing Artifacts
 
@@ -134,7 +109,7 @@ Each SDK will auto generate API reference documentation using the respective lan
 ---
 
 > [!IMPORTANT]
-> At a _minimum_, API reference documentation will be published to the respective sdk repository's Github Pages. e.g. `https://tbd54566975.github.io/tbdex-kt/`
+> At a _minimum_, API reference documentation will be published to the respective sdk repository's Github Pages. e.g. `https://tbd54566975.github.io/tbdex-kt/`.
 
 ---
 
@@ -147,55 +122,55 @@ Each SDK will auto generate API reference documentation using the respective lan
 | Go         | tbd                    | tbd            |
 
 > [!IMPORTANT]
-> Producing API reference documentation is the responsibility of an _implementer_
+> Producing API reference documentation is the responsibility of an _implementer_.
 
 ### Example Feature Usage
 
-Each SDK will **publish** example usage for _each_ implemented feature. This can either be included as a part of API reference documentation _or_ published separately
+Each SDK will **publish** example usage for _each_ implemented feature. This can either be included as a part of API reference documentation _or_ published separately.
 
 ## Test Vectors
 
 Test vectors ensure interoporability of features across SDKs and language implementations by providing common test cases with an input and expected output pair. They include both success and failure cases that can be vectorized.
 
-This repo serves as the home for all web5 feature related vectors. They are available in the [test-vectors](./test-vectors/) directory
+This repo serves as the home for all web5 feature related vectors. They are available in the [test-vectors](./test-vectors/) directory.
 
-The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory
+The `tbdex` repo houses tbdex feature related vectors. They are available in the [test-vectors](https://github.com/TBD54566975/tbdex/test-vectors) directory.
 
-The `sdk-report-runner` repo consumes the output tests for these test vectors in each repo and generates a report - [report-runner](https://github.com/TBD54566975/sdk-report-runner)
+The `sdk-report-runner` repo consumes the output tests for these test vectors in each repo and generates a report - [report-runner](https://github.com/TBD54566975/sdk-report-runner).
 
-### Adding/Updating Vectors
+### Adding & Updating Test Vectors
 
-New test vectors should follow the standard [vector structure](./test-vectors/). Vectors are automatically validated against the JSON schema via CI.
+New test vectors should follow the standard [vector structure](./test-vectors/). Vectors are automatically validated against their [JSON Schema](https://json-schema.org/) via CI.
 
-Create a PR in this repo for adding / updating web5 test vectors
+Create a PR in this repo for adding / updating Web5 test vectors.
 
 ### Feature Completeness By SDK
 
-Test vectors are also used to determine feature completeness via our [test harness](./test-harness/README.md). Results of test harness runs can be found [here](https://tbd54566975.github.io/sdk-development/).
-
 ## Web5 SDK Features
+
+Test vectors are used to determine feature completeness via our [test harness](./test-harness/README.md). Results of test harness runs can be found [here](https://tbd54566975.github.io/sdk-development/).
 
 ### Cryptographic Digital Signature Algorithms (DSA)
 
-| Algorithm       | Typescript | Kotlin | Rust | Swift |
-| --------------- | ---------- | ------ | ---- | ----- |
-| `ES256K`        | ✅          | ✅      | ✅    | ❌     |
-| `EdDSA:Ed25519` | ✅          | ✅      | ✅    | ❌     |
+| Key Type                                          | Algorithm                                                             | Type                     |
+| ------------------------------------------------- | --------------------------------------------------------------------- | ------------------------ |
+| [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) | [`ES256K`](https://datatracker.ietf.org/doc/html/rfc8812#section-3.1) | Signing and Verification |
+| [Ed25519](https://ed25519.cr.yp.to/)              | [`EdDSA`](https://datatracker.ietf.org/doc/html/rfc8032)              | Signing and Verification |
 
 > [!IMPORTANT]
-> In-memory signing using Secp256k1 **MUST** produce k-deterministic low-s signatures. Verification **must not require** low-s signatures
+> In-memory signing using secp256k1 **MUST** produce k-deterministic low-s signatures with [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as per [RFC6979](https://www.rfc-editor.org/rfc/rfc6979). Verification **must not require** low-s signatures.
 
 ### Key Management
 
 Each SDK will implement a consistent and extensible _public interface_ for key management minimally providing concrete implementations of:
 
-| Feature               | Typescript | Kotlin | Rust | Swift |
-| --------------------- | ---------- | ------ | ---- | ----- |
-| Key Manager Interface | ❌          | ✅      | ✅    | ❌     |
-| In-Memory Key Manager | ❌          | ✅      | ✅    | ❌     |
-| AWS KMS               | ❌          | ✅      | N/A  | N/A   |
-| Device Enclave        | N/A        | ❌      | N/A  | ❌     |
-| Keychain              | N/A        | ❌      | N/A  | ❌     |
+| Feature                 |
+| ----------------------- |
+| Key Manager Interface   | 
+| In-Memory Key Manager   |
+| AWS KMS                 |
+| Device Enclave (Mobile) |
+| Keychain (Mobile)       |
 
 Further, the key manager interface **must** be passed as an argument to _all_ public API methods that require key material. e.g.
 
@@ -210,106 +185,95 @@ Further, the key manager interface **must** be passed as an argument to _all_ pu
 > Consumers of our SDKs should be able to provide their own `KeyManager` implementations if desired
 <!-- markdownlint-disable-next-line -->
 
-> [!NOTE]
-> ⚠️ = implemented but no test vectors present
+### Decentralized Identifiers
 
-### [`did:web`](https://w3c-ccg.github.io/did-method-web/)
+#### [DID Documents](https://www.w3.org/TR/did-core/) & [DID Resolution](https://w3c-ccg.github.io/did-resolution/)
 
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| `Resolution` | ❌          | ❌      | ⚠️    | ❌     |
+Independent of DID Methods, we support DID Documents according to [DID Core v1.0](https://www.w3.org/TR/2022/REC-did-core-20220719/) with the adjustments specified in [this corresponding document](spec/did.md).
 
-### [`did:jwk`](https://github.com/quartzjer/did-jwk/blob/main/spec.md)
+#### DID Methods
 
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ❌          | ❌      | ⚠️    | ❌     |
-| `Resolution` | ❌          | ❌      | ⚠️    | ❌     |
+| Method                                                 | Creation   | Resolution | Note |
+| ------------------------------------------------------ | ---------- | ---------- | ---- |
+| [`did:web`](https://w3c-ccg.github.io/did-method-web/) | ❌         | ✅         | -   |
+| [`did:jwk`](https://github.com/quartzjer/did-jwk/blob/main/spec.md) | ✅         | ✅  | - |
+| [`did:dht`](https://did-dht.com)                       | ✅         | ✅         | This is our default method. |
+| [`did:key`](https://w3c-ccg.github.io/did-method-key/) | ⚠️         | ⚠️         | Has been implemented in both Kotlin and Typescript, no plans for support in other languages. |
+| [`did:ion`](https://identity.foundation/sidetree/spec) | ⚠️         | ⚠️         | Support for `did:ion` has been deprecated. |
 
-### [`did:dht`](https://tbd54566975.github.io/did-dht-method/)
+### Verifiable Credentials
 
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
+#### [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model)
 
-### [`did:key`](https://w3c-ccg.github.io/did-method-key/)
-
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ⚠️    | ❌   |
-| `Resolution` | ⚠️          | ⚠️      | ⚠️    | ❌   |
+We support Verifiable Credentials according to the [Verifiable Credentials Data Model 1.1](https://www.w3.org/TR/vc-data-model) with the adjustments specified in [this corresponding document](spec/vc.md).
 
 > [!IMPORTANT]
-> `did:key` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
+> Credential validation will soon be [specified more clearly](https://github.com/TBD54566975/web5-spec/issues/123).
+<!-- markdownlint-disable-next-line -->
 
-### [`did:ion`](https://identity.foundation/sidetree/spec)
+| Feature                                                          |
+| ---------------------------------------------------------------- |
+| Data model                                                       |
+| Validation (data model, JSON Schema, status, more to come.)      |
+| Signing and verification of Verifiable Credentials as `vc-jwt`   |
+| Signing and verification of Verifiable Presentations as `vp-jwt` |
 
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| `Creation`   | ⚠️          | ⚠️      | ❌    | ❌   |
-| `Resolution` | ⚠️          | ⚠️      | ❌    | ❌   |
+#### [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/)
 
-> [!IMPORTANT]
-> `did:ion` is included because it has been implemented in both Kotlin and Typescript. I'll be creating a Github issue soon to discuss when we think it makes sense to remove ION support from both SDKs
+| Feature                                                                  |
+| ------------------------------------------------------------------------ |
+| Data model                                                               |
+| Validation (data model, JSON Schema, status)                             |
+| Signing and verification of Verifiable Credentials with `vc-jose-cose`.  |
+| Signing and verification of Verifiable Presentations with `vp-jose-cose` |
 
-### [DID Document](https://www.w3.org/TR/did-core/) & [Resolution Validation](https://w3c-ccg.github.io/did-resolution/)
+#### [SD-JWT](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/)
 
-| Feature      | Typescript | Kotlin | Rust | Swift |
-| ------------ | ---------- | ------ | ---- | ----- |
-| Common Error | ❌         | ❌     | ❌    | ❌   |
+| Feature                  |
+| ------------------------ |
+| Data model               | 
+| Signing and verification | 
 
-### [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model)
+#### [Status List 2021](https://www.w3.org/community/reports/credentials/CG-FINAL-vc-status-list-2021-20230102/)
 
-| Feature                              | Typescript | Kotlin | Rust | Swift |
-| ------------------------------------ | ---------- | ------ | ---- | ----- |
-| Creation                             | ✅         | ✅     | ❌   | ❌    |
-| Signing as `vc-jwt`                  | ✅         | ✅     | ❌   | ❌    |
-| Verification                         | ✅         | ✅     | ❌   | ❌    |
-| Validation                           | ✅         | ✅     | ❌   | ❌    |
-| Verifiable Presentations as `vp-jwt` | ⚠️          | ⚠️      | ❌   | ❌    |
+For usage with the [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model).
 
-### [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/)
+| Feature                                | 
+| -------------------------------------- | 
+| Data model                             |
+| Status checking (supporting at least `Revocation` and `Suspension` statuses) |
+| Status setting                         |
+| Signing and verification with `vc-jwt` |
 
-| Feature                   | Typescript | Kotlin | Rust | Swift |
-| ------------------------- | ---------- | ------ | ---- | ----- |
-| Creation                  | ❌         | ❌     | ❌   | ❌    |
-| Signing as `vc-jose-cose` | ❌         | ❌     | ❌   | ❌    |
-| Verification              | ❌         | ❌     | ❌   | ❌    |
-| Validation                | ❌         | ❌     | ❌   | ❌    |
+#### [Bitstring Status List](https://www.w3.org/TR/vc-bitstring-status-list/)
 
-### [SD-JWT](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) / [SD-JWT-VC](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/)
+For usage with the [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/).
 
-| Feature             | Typescript | Kotlin | Rust | Swift |
-| ------------------- | ---------- | ------ | ---- | ----- |
-| Creation            | ❌         | ❌     | ❌   | ❌    |
-| Signing             | ❌         | ❌     | ❌   | ❌    |
-| Verification        | ❌         | ❌     | ❌   | ❌    |
-| Validation          | ❌         | ❌     | ❌   | ❌    |
+| Feature                                      | 
+| -------------------------------------------- | 
+| Data model                                   |
+| Status checking (supporting at least `Revocation` and `Suspension` statuses) |
+| Status setting                               |
+| Signing and verification with `vc-jose-cose` |
 
-### [Bitstring Status List](https://w3c.github.io/vc-bitstring-status-list/)
 
-| Feature                           | Typescript | Kotlin | Rust | Swift |
-| --------------------------------- | ---------- | ------ | ---- | ----- |
-| Creation using `vc-jwt`           | ❌         | ❌     | ❌   | ❌   |
-| Validation using `vc-jwt`         | ❌         | ❌     | ❌   | ❌   |
+#### [VC JSON Schema](https://www.w3.org/TR/vc-json-schema/)
 
-### [VC JSON Schema](https://www.w3.org/TR/vc-json-schema/)
+For usage with both the [W3C Verifiable Credential Data Model 1.1](https://www.w3.org/TR/vc-data-model) and the [W3C Verifiable Credential Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/).
 
-| Feature                           | Typescript | Kotlin | Rust | Swift |
-| --------------------------------- | ---------- | ------ | ---- | ----- |
-| Creation `JsonSchema`             | ❌         | ❌     | ❌   | ❌   |
-| Creation `JsonSchemaCredential`   | ❌         | ❌     | ❌   | ❌   |
-| Validation `JsonSchema`           | ❌         | ❌     | ❌   | ❌   |
-| Validation `JsonSchemaCredential` | ❌         | ❌     | ❌   | ❌   |
+| Feature                                 |
+| --------------------------------------- | 
+| Creation and validation of `JsonSchema` |
+| Creation and validation of `JsonSchemaCredential` using `vc-jwt` with the VCDM v1.1 |
+| Creation and validation of `JsonSchemaCredential` using `vc-jose-cose` with the VCDM v2.0 |
 
-### [Presentation Exchange V2](https://identity.foundation/presentation-exchange/spec/v2.0.0/)
+#### [Presentation Exchange v2.0](https://identity.foundation/presentation-exchange/spec/v2.0.0/)
 
-| Feature                | Typescript | Kotlin | Rust | Swift |
-| ---------------------- | ---------- | ------ | ---- | ----- |
-| Concrete Type          | ✅         | ✅     | ❌   | ❌    |
-| Validation             | ✅         | ✅     | ❌   | ❌    |
-| Credential Evaluation  | ✅         | ✅     | ❌   | ❌    |
-| [Predicates](https://identity.foundation/presentation-exchange/spec/v2.0.0/#predicate-feature)                           | ✅         | ✅     | ❌   | ❌    |
-| [Relational Constraints](https://identity.foundation/presentation-exchange/spec/v2.0.0/#relational-constraint-feature)   | ✅         | ❌     | ❌   | ❌    |
-| [Credential Status](https://identity.foundation/presentation-exchange/spec/v2.0.0/#credential-status-constraint-feature) | ❌         | ❌     | ❌   | ❌    |
+| Feature                | 
+| ---------------------- | 
+| Data model             | 
+| Validation             |
+| Credential Evaluation using the VCDM v1.1 (both `vc-jwt` and `vp-jwt`), the VCDM v2.0 using `vc-jose-cose`, and SD-JWT   |
+| [Predicates](https://identity.foundation/presentation-exchange/spec/v2.0.0/#predicate-feature)                           |
+| [Relational Constraints](https://identity.foundation/presentation-exchange/spec/v2.0.0/#relational-constraint-feature)   |
+| [Credential Status](https://identity.foundation/presentation-exchange/spec/v2.0.0/#credential-status-constraint-feature) |
