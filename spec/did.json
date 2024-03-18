@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-2020-12/schema#",
+  "definitions": {
+    "verificationMethod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "controller": {
+          "type": "string"
+        },
+        "publicKeyJwk": {
+          "type": "object"
+        }
+      },
+      "required": ["id", "type", "controller", "publicKeyJwk"]
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "serviceEndpoint": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sig": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["id", "type", "serviceEndpoint"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "@context": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "controller": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alsoKnownAs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verificationMethod": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/verificationMethod"
+      },
+      "minItems": 1
+    },
+    "authentication": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assertionMethod": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "keyAgreement": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "capabilityInvocation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "capabilityDelegation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "service": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/service"
+      }
+    }
+  },
+  "required": ["id", "verificationMethod"]
+}
