@@ -30,6 +30,13 @@
               "type": "boolean",
               "default": false,
               "description": "Indicates whether the test vector is expected to produce an error. Defaults to false if not present."
+            },
+            "errorMessage": {
+              "type": "object",
+              "description": "A dictionary object that maps the sdk error message to the expected error message.",
+              "additionalProperties": {
+                "type": "string"
+              }
             }
           },
           "additionalProperties": false
