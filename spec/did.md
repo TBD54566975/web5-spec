@@ -87,6 +87,6 @@ Following from [this data model](https://www.w3.org/TR/did-core/#did-document-me
 | `deactivated` | Boolean           | No       | Required to be `true` if the DID is deactivated. |
 | `nextUpdate`  | String            | No       | [XML Datetime](https://www.w3.org/TR/xmlschema11-2/#dateTime) value for when the next update of the DID. |
 | `versionId`   | String            | No       | Represents the version of the last update operation. |
-| `nextversionId`| String           | No       | Represents the version of the next update operation. |
+| `nextVersionId`| String           | No       | Represents the version of the next update operation. |
 | `equivalentId` | Array of Strings | No       | A stronger form of the `alsoKnownAs` property, guaranteed by the DID method. See [this spec text](https://www.w3.org/TR/did-core/#h-note-10) for more information. |
 | `canonicalId`  | String           | No       | Similar to `equivalentId`, though always a single value, never a set. See [this spec text](https://www.w3.org/TR/did-core/#dfn-canonicalid) for more information. |
