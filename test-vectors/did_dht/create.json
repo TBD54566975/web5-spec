@@ -8,8 +8,7 @@
           "kty": "OKP",
           "crv": "Ed25519",
           "x": "YCcHYL2sYNPDlKaALcEmll2HHyT968M4UWbr-9CFGWE",
-          "alg": "EdDSA",
-          "kid": "0"
+          "alg": "EdDSA"
         }
       },
       "output": {
@@ -23,9 +22,7 @@
               "kty": "OKP",
               "crv": "Ed25519",
               "x": "YCcHYL2sYNPDlKaALcEmll2HHyT968M4UWbr-9CFGWE",
-              "alg": "EdDSA",
-              "kid": "0",
-              "use": "sig"
+              "alg": "EdDSA"
             }
           }
         ],
@@ -50,8 +47,7 @@
           "kty": "OKP",
           "crv": "Ed25519",
           "x": "YCcHYL2sYNPDlKaALcEmll2HHyT968M4UWbr-9CFGWE",
-          "alg": "EdDSA",
-          "kid": "0"
+          "alg": "EdDSA"
         },
         "services": [
           {
@@ -70,9 +66,7 @@
               "crv": "secp256k1",
               "x": "1_o0IKHGNamet8-3VYNUTiKlhVK-LilcKrhJSPHSNP0",
               "y": "qzU8qqh0wKB6JC_9HCu8pHE-ZPkDpw4AdJ-MsV2InVY",
-              "alg": "ES256K",
-              "kid": "0GkvkdCGu3DL7Mkv0W1DhTMCBT9-z0CkFqZoJQtw7vw",
-              "use": "sig"
+              "alg": "ES256K"
             },
             "purposes": [
               "assertionMethod",
@@ -106,9 +100,7 @@
               "kty": "OKP",
               "crv": "Ed25519",
               "x": "YCcHYL2sYNPDlKaALcEmll2HHyT968M4UWbr-9CFGWE",
-              "alg": "EdDSA",
-              "kid": "0",
-              "use": "sig"
+              "alg": "EdDSA"
             }
           },
           {
@@ -120,9 +112,7 @@
               "crv": "secp256k1",
               "x": "1_o0IKHGNamet8-3VYNUTiKlhVK-LilcKrhJSPHSNP0",
               "y": "qzU8qqh0wKB6JC_9HCu8pHE-ZPkDpw4AdJ-MsV2InVY",
-              "alg": "ES256K",
-              "kid": "0GkvkdCGu3DL7Mkv0W1DhTMCBT9-z0CkFqZoJQtw7vw",
-              "use": "sig"
+              "alg": "ES256K"
             }
           }
         ],
