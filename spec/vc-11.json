@@ -3,24 +3,24 @@
   "type": "object",
   "definitions": {
     "credentialStatus": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "type": "string" },
-            "statusPurpose": { "type": "string" },
-            "statusListIndex": { "type": "string" },
-            "statusListCredential": { "type": "string" }
-          },
-          "required": ["id", "type", "statusPurpose", "statusListIndex", "statusListCredential"]
-        },
-        "credentialSchema": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "type": "string" }
-          },
-          "required": ["id", "type"]
-        }
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "statusPurpose": { "type": "string" },
+        "statusListIndex": { "type": "string" },
+        "statusListCredential": { "type": "string" }
+      },
+      "required": ["id", "type", "statusPurpose", "statusListIndex", "statusListCredential"]
+    },
+    "credentialSchema": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" }
+      },
+      "required": ["id", "type"]
+    }
   },
   "properties": {
     "@context": {
