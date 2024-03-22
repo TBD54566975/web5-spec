@@ -16,7 +16,7 @@
     {
       "description": "notFound error returned when not published",
       "input": {
-        "didUri": "did:dht:cyuoqaf7itop8ohww4yn5ojg13qaq83r9zihgqntc5i9zwrfdfoz"
+        "didUri": "did:dht:uqaj3fcr9db6jg6o9pjs53iuftyj45r46aubogfaceqjbo6pp9sy"
       },
       "output": {
         "didResolutionMetadata": {
@@ -33,6 +33,18 @@
       "output": {
         "didResolutionMetadata": {
           "error": "invalidPublicKey"
+        }
+      },
+      "errors": true
+    },
+    {
+      "description": "invalidDid error returned for invalid did",
+      "input": {
+        "didUri": "invalid-did"
+      },
+      "output": {
+        "didResolutionMetadata": {
+          "error": "invalidDid"
         }
       },
       "errors": true
