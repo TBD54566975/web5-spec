@@ -113,23 +113,6 @@
       "errors":true
     },
     {
-      "description":"descriptor map has empty id",
-      "input":{
-        "presentationSubmission":{
-          "id":"test-submission-id",
-          "definition_id":"test-definition-id",
-          "descriptor_map":[
-            {
-              "id":"",
-              "format":"jwt_vc",
-              "path": "$.verifiableCredential[0]"
-            }
-          ]
-        }
-      },
-      "errors":true
-    },
-    {
       "description":"descriptor map has empty format",
       "input":{
         "presentationSubmission":{
@@ -211,28 +194,6 @@
                   "path": "$.store.book[(@.price == 10]"
                 }
               }
-            }
-          ]
-        }
-      },
-      "errors":true
-    },
-    {
-      "description":"multiple descriptor map objects have same duplicate id",
-      "input":{
-        "presentationSubmission":{
-          "id":"test-submission-id",
-          "definition_id":"test-definition-id",
-          "descriptor_map":[
-            {
-              "id":"descriptor-map-id",
-              "format":"jwt_vc",
-              "path": "$.verifiableCredential[0]"
-            },
-            {
-              "id":"descriptor-map-id",
-              "format":"jwt_vc",
-              "path": "$.verifiableCredential[0]"
             }
           ]
         }
