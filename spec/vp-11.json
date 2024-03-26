@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-2020-12/schema#",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "holder": {
+      "type": "string",
+      "format": "uri"
+    },
+    "issuanceDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verifiableCredential": {
+      "type": "array",
+      "items": {
+        "$ref": "vc-11.json"
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["@context", "id", "type", "holder", "issuanceDate", "verifiableCredential"]
+}

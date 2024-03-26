@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-2020-12/schema#",
+  "type": "object",
+  "definitions": {
+    "credentialStatus": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "statusPurpose": { "type": "string" },
+        "statusListIndex": { "type": "string" },
+        "statusListCredential": { "type": "string" }
+      },
+      "required": ["id", "type", "statusPurpose", "statusListIndex", "statusListCredential"]
+    },
+    "credentialSchema": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" }
+      },
+      "required": ["id", "type"]
+    }
+  },
+  "properties": {
+    "@context": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "issuer": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" }
+          },
+          "required": ["id"]
+        }
+      ]
+    },
+    "issuanceDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" }
+      },
+      "required": ["id"]
+    },
+    "credentialStatus": { "$ref": "#/definitions/credentialStatus" },
+    "credentialSchema": { "$ref": "#/definitions/credentialSchema" },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  },
+  "required": ["@context", "id", "type", "issuer", "issuanceDate", "credentialSubject"]
+}

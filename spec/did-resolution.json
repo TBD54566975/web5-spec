@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-2020-12/schema#",
+  "definitions": {
+    "errorType": {
+      "type": "string",
+      "enum": ["invalidDid", "notFound", "representationNotSupported", "methodNotSupported", "invalidDidDocument", "invalidDidDocumentLength", "internalError"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "error": {
+      "$ref": "#/definitions/errorType"
+    }
+  }
+}

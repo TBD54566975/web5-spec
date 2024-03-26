@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-2020-12/schema#",
+  "type": "object",
+  "properties": {
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deactivated": {
+      "type": "boolean"
+    },
+    "nextUpdate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "versionId": {
+      "type": "string"
+    },
+    "nextversionId": {
+      "type": "string"
+    },
+    "equivalentId": {
+      "type": "array",
+      "items": {
+        "type": "string",
+      }
+    },
+    "canonicalId": {
+      "type": "string"
+    }
+  }
+}
