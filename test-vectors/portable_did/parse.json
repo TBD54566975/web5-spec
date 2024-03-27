@@ -1,0 +1,167 @@
+{
+  "description": "PortableDid resolution",
+  "vectors": [
+    {
+      "description": "Can be successfully parsed in as PortableDid",
+      "input": {
+        "uri": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+        "privateKeys": [
+          {
+            "kty": "OKP",
+            "crv": "Ed25519",
+            "use": "sig",
+            "alg": "EdDSA",
+            "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+            "d": "8L5Y7M4ZNc9Jy5IooJNFaRGatXHZzRRXxGsVidrAsfE",
+            "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
+          }
+        ],
+        "document": {
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+          "verificationMethod": [
+            {
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ#0",
+              "type": "JsonWebKey",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+              "publicKeyJwk": {
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "use": "sig",
+                "alg": "EdDSA",
+                "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+                "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "foo": "bar"
+        }
+      },
+      "errors": false
+    },
+    {
+      "description": "Bad PortabieDid - missing uri",
+      "input": {
+        "privateKeys": [
+          {
+            "kty": "OKP",
+            "crv": "Ed25519",
+            "use": "sig",
+            "alg": "EdDSA",
+            "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+            "d": "8L5Y7M4ZNc9Jy5IooJNFaRGatXHZzRRXxGsVidrAsfE",
+            "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
+          }
+        ],
+        "document": {
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+          "verificationMethod": [
+            {
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ#0",
+              "type": "JsonWebKey",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+              "publicKeyJwk": {
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "use": "sig",
+                "alg": "EdDSA",
+                "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+                "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "foo": "bar"
+        }
+      },
+      "errors": true
+    },
+    {
+      "description": "Bad PortableDid - missing privateKeys",
+      "input": {
+        "uri": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+        "document": {
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+          "verificationMethod": [
+            {
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ#0",
+              "type": "JsonWebKey",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+              "publicKeyJwk": {
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "use": "sig",
+                "alg": "EdDSA",
+                "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+                "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "foo": "bar"
+        }
+      },
+      "errors": true
+    },
+    {
+      "description": "Bad PortableDid - missing document",
+      "input": {
+        "uri": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+        "privateKeys": [
+          {
+            "kty": "OKP",
+            "crv": "Ed25519",
+            "use": "sig",
+            "alg": "EdDSA",
+            "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+            "d": "8L5Y7M4ZNc9Jy5IooJNFaRGatXHZzRRXxGsVidrAsfE",
+            "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
+          }
+        ],
+        "metadata": {
+          "foo": "bar"
+        }
+      },
+      "errors": true
+    },
+    {
+      "description": "Bad PortableDid - missing metadata",
+      "input": {
+        "uri": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+        "privateKeys": [
+          {
+            "kty": "OKP",
+            "crv": "Ed25519",
+            "use": "sig",
+            "alg": "EdDSA",
+            "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+            "d": "8L5Y7M4ZNc9Jy5IooJNFaRGatXHZzRRXxGsVidrAsfE",
+            "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
+          }
+        ],
+        "document": {
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+          "verificationMethod": [
+            {
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ#0",
+              "type": "JsonWebKey",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
+              "publicKeyJwk": {
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "use": "sig",
+                "alg": "EdDSA",
+                "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+                "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
+              }
+            }
+          ]
+        }
+      },
+      "errors": true
+    }
+  ]
+}
