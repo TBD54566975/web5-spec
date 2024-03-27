@@ -12,12 +12,10 @@ Create test vectors are available in the [json file](./create.json), which conta
 
 The value of `input` is an object with the following properties.
 
-| Property      | Description                                                                                                              |
-|---------------|--------------------------------------------------------------------------------------------------------------------------|
-| `uri`         | the Did uri that will be used to sign the verifiable credential created.                                                 |
-| `privateKeys` | the private keys that will be used to sign the verifiable credential created.                                            |
-| `document`    | the DidDocument whose verificationMethod will be used to sign the verifiable credential created.                         |
-| `credential`  | A JSON object that represents a Verifiable Credential 1.1 according to the [spec](https://www.w3.org/TR/vc-data-model/). |
+| Property            | Description                                                                                                                                                          |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `signerPortableDid` | The PortableDid that can be imported into a BearerDid to sign the verifiable credential created. Contains Did uri, DidDocument, a list of privateKeys, and metadata. |
+| `credential`        | A JSON object that represents a Verifiable Credential 1.1 according to the [spec](https://www.w3.org/TR/vc-data-model/).                                             |
 
 ### Output
 
