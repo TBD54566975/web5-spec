@@ -4,32 +4,32 @@
     {
       "description": "Can be successfully parsed in as PortableDid",
       "input": {
-        "uri": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+        "uri": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
         "privateKeys": [
           {
             "kty": "OKP",
             "crv": "Ed25519",
             "use": "sig",
             "alg": "EdDSA",
-            "kid": "c4IOrQdnehPwQZ6SyNLp9J942VCXrxgWw4zUxAHQXQE",
-            "d": "txnECNDxFc0gnD303qLJ6VfWJS8DkgpbxVbOkzzp_M4",
-            "x": "DzpSEyU0w1Myn3lA_piHAI6OrFAnZuEsTwMUPCTwMc8"
+            "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+            "d": "8L5Y7M4ZNc9Jy5IooJNFaRGatXHZzRRXxGsVidrAsfE",
+            "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
           }
         ],
         "document": {
-          "id": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
           "verificationMethod": [
             {
-              "id": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY#z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
-              "type": "JsonWebKey2020",
-              "controller": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ#0",
+              "type": "JsonWebKey",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
               "publicKeyJwk": {
                 "kty": "OKP",
                 "crv": "Ed25519",
                 "use": "sig",
                 "alg": "EdDSA",
-                "kid": "c4IOrQdnehPwQZ6SyNLp9J942VCXrxgWw4zUxAHQXQE",
-                "x": "DzpSEyU0w1Myn3lA_piHAI6OrFAnZuEsTwMUPCTwMc8"
+                "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+                "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
               }
             }
           ]
@@ -49,25 +49,25 @@
             "crv": "Ed25519",
             "use": "sig",
             "alg": "EdDSA",
-            "kid": "c4IOrQdnehPwQZ6SyNLp9J942VCXrxgWw4zUxAHQXQE",
-            "d": "txnECNDxFc0gnD303qLJ6VfWJS8DkgpbxVbOkzzp_M4",
-            "x": "DzpSEyU0w1Myn3lA_piHAI6OrFAnZuEsTwMUPCTwMc8"
+            "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+            "d": "8L5Y7M4ZNc9Jy5IooJNFaRGatXHZzRRXxGsVidrAsfE",
+            "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
           }
         ],
         "document": {
-          "id": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
           "verificationMethod": [
             {
-              "id": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY#z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
-              "type": "JsonWebKey2020",
-              "controller": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ#0",
+              "type": "JsonWebKey",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
               "publicKeyJwk": {
                 "kty": "OKP",
                 "crv": "Ed25519",
                 "use": "sig",
                 "alg": "EdDSA",
-                "kid": "c4IOrQdnehPwQZ6SyNLp9J942VCXrxgWw4zUxAHQXQE",
-                "x": "DzpSEyU0w1Myn3lA_piHAI6OrFAnZuEsTwMUPCTwMc8"
+                "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+                "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
               }
             }
           ]
@@ -81,21 +81,21 @@
     {
       "description": "Bad PortableDid - missing privateKeys",
       "input": {
-        "uri": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+        "uri": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
         "document": {
-          "id": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
           "verificationMethod": [
             {
-              "id": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY#z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
-              "type": "JsonWebKey2020",
-              "controller": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ#0",
+              "type": "JsonWebKey",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
               "publicKeyJwk": {
                 "kty": "OKP",
                 "crv": "Ed25519",
                 "use": "sig",
                 "alg": "EdDSA",
-                "kid": "c4IOrQdnehPwQZ6SyNLp9J942VCXrxgWw4zUxAHQXQE",
-                "x": "DzpSEyU0w1Myn3lA_piHAI6OrFAnZuEsTwMUPCTwMc8"
+                "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+                "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
               }
             }
           ]
@@ -109,16 +109,16 @@
     {
       "description": "Bad PortableDid - missing document",
       "input": {
-        "uri": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+        "uri": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
         "privateKeys": [
           {
             "kty": "OKP",
             "crv": "Ed25519",
             "use": "sig",
             "alg": "EdDSA",
-            "kid": "c4IOrQdnehPwQZ6SyNLp9J942VCXrxgWw4zUxAHQXQE",
-            "d": "txnECNDxFc0gnD303qLJ6VfWJS8DkgpbxVbOkzzp_M4",
-            "x": "DzpSEyU0w1Myn3lA_piHAI6OrFAnZuEsTwMUPCTwMc8"
+            "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+            "d": "8L5Y7M4ZNc9Jy5IooJNFaRGatXHZzRRXxGsVidrAsfE",
+            "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
           }
         ],
         "metadata": {
@@ -130,32 +130,32 @@
     {
       "description": "Bad PortableDid - missing metadata",
       "input": {
-        "uri": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+        "uri": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
         "privateKeys": [
           {
             "kty": "OKP",
             "crv": "Ed25519",
             "use": "sig",
             "alg": "EdDSA",
-            "kid": "c4IOrQdnehPwQZ6SyNLp9J942VCXrxgWw4zUxAHQXQE",
-            "d": "txnECNDxFc0gnD303qLJ6VfWJS8DkgpbxVbOkzzp_M4",
-            "x": "DzpSEyU0w1Myn3lA_piHAI6OrFAnZuEsTwMUPCTwMc8"
+            "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+            "d": "8L5Y7M4ZNc9Jy5IooJNFaRGatXHZzRRXxGsVidrAsfE",
+            "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
           }
         ],
         "document": {
-          "id": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
           "verificationMethod": [
             {
-              "id": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY#z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
-              "type": "JsonWebKey2020",
-              "controller": "did:key:z6MkfUhjsZUJkzioGDULpcqxXFSNs6McMJo31txYnEaqn9dY",
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ#0",
+              "type": "JsonWebKey",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwidXNlIjoic2lnIiwiYWxnIjoiRWREU0EiLCJraWQiOiJKUVYzQ0VaQ3BWWnBCWmQ0N0EzLWllTUM1T1BvOHJ5QlQ5cHdLX3NDLUtBIiwieCI6IlUzWXNDNjFJZnBxRjlqUHNRX01UMDBFTTRBQXVHYms0SDN1VVZRczBFelEifQ",
               "publicKeyJwk": {
                 "kty": "OKP",
                 "crv": "Ed25519",
                 "use": "sig",
                 "alg": "EdDSA",
-                "kid": "c4IOrQdnehPwQZ6SyNLp9J942VCXrxgWw4zUxAHQXQE",
-                "x": "DzpSEyU0w1Myn3lA_piHAI6OrFAnZuEsTwMUPCTwMc8"
+                "kid": "JQV3CEZCpVZpBZd47A3-ieMC5OPo8ryBT9pwK_sC-KA",
+                "x": "U3YsC61IfpqF9jPsQ_MT00EM4AAuGbk4H3uUVQs0EzQ"
               }
             }
           ]
