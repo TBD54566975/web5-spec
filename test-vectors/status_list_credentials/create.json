@@ -1,0 +1,36 @@
+{
+    "description":"status list credential verifiable credential 1.1 creation",
+    "vectors":[
+       {
+          "description":"credential with credential status",
+          "input":{
+             "credential":{
+                "type":"SimpleCred",
+                "issuer":"did:example:issuer",
+                "subject":"did:example:subject",
+                "credentialSubject":{
+                   "legit":true
+                },
+                "credentialStatus":{
+                   "id":"cred-with-status-id",
+                   "type":"StatusList2021Entry",
+                   "statusPurpose":"revocation",
+                   "statusListIndex":"94567",
+                   "statusListCredential":"https://statuslistcred.com/123"
+                }
+             },
+             "statusListCredential":{
+                "statusListCredentialId":"https://statuslistcred.com/123",
+                "issuer":"issuerDid.uri",
+                "statusPurpose":"revocation",
+                "issuedCredentials":[
+                   "credWithCredStatus"
+                ]
+             }
+          },
+          "output":{
+             "encodedList":"H4sIAAAAAAAAA+3OMQ0AAAgDsOHfNBp2kZBWQRMAAAAAAAAAAAAAAL6Z6wAAAAAAtQVQdb5gAEAAAA=="
+          }
+       }
+    ]
+ }
