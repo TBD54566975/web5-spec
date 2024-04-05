@@ -1,5 +1,5 @@
 {
-    "description":"status list credential verifiable credential 1.1 creation",
+    "description":"status list credential creation",
     "vectors":[
        {
           "description":"credential with credential status",
