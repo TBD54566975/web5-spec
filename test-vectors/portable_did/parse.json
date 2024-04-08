@@ -161,7 +161,7 @@
           ]
         }
       },
-      "errors": true
+      "errors": false
     }
   ]
 }
