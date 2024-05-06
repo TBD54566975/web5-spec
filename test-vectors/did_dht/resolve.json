@@ -16,15 +16,7 @@
     {
       "description": "notFound error returned when not published",
       "input": {
-        "didUri": "did:dht:uqaj3fcr9db6jg6o9pjs53iuftyj45r46aubogfaceqjbo6pp9sy",
-        "mockResponse": {
-          "ok": false,
-          "status": 404,
-          "statusText": "Not Found",
-          "body": {
-            "message": "Not Found"
-          }
-        }
+        "didUri": "did:dht:uqaj3fcr9db6jg6o9pjs53iuftyj45r46aubogfaceqjbo6pp9sy"
       },
       "output": {
         "didResolutionMetadata": {
