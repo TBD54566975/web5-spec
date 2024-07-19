@@ -29,7 +29,7 @@ Web5 Specification v1.0
 
 ## Abstract
 
-Web5 is a decentralized web platform that empowers users with control over their data and identity. Built on open standards and protocols, Web5 enables the integration of decentralized identity into applications, allowing developers to create user-centric experiences while ensuring individual ownership and control over personal information. This specification selects standards from the digital identity and implemenets sensible constraints to enable functional, practicle, and interoperable implementations of these standards. Following this ethos, the Web5 Specification defines the core components, protocols, and APIs that constitute the Web5 ecosystem, enabling interoperable and privacy-preserving decentralized applications.
+Web5 is a decentralized web platform that empowers users with control over their data and identity. Built on open standards and protocols, Web5 enables the integration of decentralized identity into applications, allowing developers to create user-centric experiences while ensuring individual ownership and control over personal information. This specification selects standards from the digital identity and implemenets sensible constraints to enable functional, practical, and interoperable implementations of these standards. Following this ethos, the Web5 Specification defines the core components, protocols, and APIs that constitute the Web5 ecosystem, enabling interoperable and privacy-preserving decentralized applications.
 
 ## Introduction
 
@@ -44,8 +44,6 @@ The evolution of the World Wide Web has been marked by significant shifts in how
 
 Web5 addresses the limitations of previous web iterations by prioritizing user sovereignty and data portability while maintaining the ease of use and developer-friendliness of Web2. It combines the best aspects of Web2 and Web3 to create a truly decentralized and user-centric internet experience.
 
-### Goals
-
 The primary goals of Web5 are:
 
 1. To provide users with complete control over their digital identities
@@ -56,12 +54,12 @@ The primary goals of Web5 are:
 
 ### Scope
 
-This specification covers the following key aspects of Web5:
+This specification covers the following key aspects of Web5 and its specifics to aid in building consistent conformant implementations:
 
-1. Decentralized Identifiers (DIDs) and DID methods
-2. Verifiable Credentials and Presentations
-3. Cryptographic algorithms and key management
-4. Web5 SDK features and APIs
+1. Cryptographic primitives and key management
+2. Decentralized Identifiers (DIDs) and DID methods
+3. Verifiable Credentials and Presentations and accompanying functionality
+4. Protocols for making use of Decentralized Identifiers and Verifiable Credentials
 
 ::: note
 At present, [Decentralized Web Nodes](https://identity.foundation/decentralized-web-node/spec/), and other forms of decentralized storage, are out of scope of this specification.
@@ -90,21 +88,15 @@ This specification uses the following terms:
 Expand the terminology section with additional Web5-specific terms and concepts.
 :::
 
-## Web5 Architecture
-
-::: todo
-Provide a high-level overview of the Web5 architecture, including its main components and how they interact.
-:::
-
 ## Web5 SDK Features
 
-The Web5 SDK provides a comprehensive set of features for building decentralized applications. This section outlines the core features and their implementation status across different programming languages.
+The Web5 SDK provides a comprehensive set of features for building decentralized protocols and applications. This section outlines the core features and their implementation status across different programming languages.
 
-## Decentralized Identifiers (DIDs)
+### Decentralized Identifiers (DIDs)
 
-Web5 uses [[spec:Decentralized Identifiers]] (DIDs) as the foundation for user identity and authentication. This specification adopts a subset of the [[ref:DID-CORE]] specification with some adjustments to ensure consistency across implementations.
+Web5 uses [[def:Decentralized Identifiers]] (DIDs) as the foundation for user identity and authentication. This specification adopts a subset of the [[ref:DID-CORE]] specification with some adjustments to ensure consistency across implementations.
 
-### 5.1 DID Document Data Model
+#### DID Document Data Model
 
 The following table defines the properties of a DID Document in Web5:
 
@@ -122,7 +114,7 @@ The following table defines the properties of a DID Document in Web5:
 | `capabilityDelegation` | Array of strings | No | String values must be fully qualified DID URIs. |
 | `service` | Array of [Services](#53-service-data-model) | No | - |
 
-### 5.2 Verification Method Data Model
+#### Verification Method Data Model
 
 | Property | JSON Representation | Required | Notes |
 |----------|---------------------|----------|-------|
@@ -131,7 +123,7 @@ The following table defines the properties of a DID Document in Web5:
 | `controller` | String | Yes | Must be a URI. |
 | `publicKeyJwk` | Object | Yes | Represents a [[RFC7517]] JWK. |
 
-### 5.3 Service Data Model
+#### Service Data Model
 
 | Property | JSON Representation | Required | Notes |
 |----------|---------------------|----------|-------|
@@ -141,7 +133,7 @@ The following table defines the properties of a DID Document in Web5:
 | `sig` | Array of Strings | No | - |
 | `enc` | Array of Strings | No | - |
 
-### 5.4 DID Methods
+### DID Methods
 
 Web5 supports the following DID methods:
 
@@ -197,6 +189,10 @@ Provide examples of Verifiable Credentials in Web5 and guidance on their usage.
 Provide examples of Verifiable Presentations in Web5 and guidance on their usage.
 :::
 
+### JSON Schema
+
+### Credential Status
+
 ## Cryptographic Algorithms
 
 Web5 supports the following cryptographic digital signature algorithms:
@@ -207,7 +203,7 @@ Web5 supports the following cryptographic digital signature algorithms:
 | [Ed25519](https://ed25519.cr.yp.to/) | [`EdDSA`](https://datatracker.ietf.org/doc/html/rfc8032) | Signing and Verification |
 
 ::: note
-In-memory signing using secp256k1 **MUST** produce k-deterministic low-s signatures with [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as per [[RFC6979]]. Verification **must not require** low-s signatures.
+In-memory signing using secp256k1 **MUST** produce k-deterministic low-s signatures with [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as per [[spec:RFC6979]]. Verification **must not require** low-s signatures.
 :::
 
 ## Key Management
@@ -270,9 +266,9 @@ Provide guidelines for implementing Web5 applications, including:
 | Component | Version | Status | Notes |
 |-----------|---------|--------|-------|
 | Web5 Specification | 1.0 | Draft | This document |
-| DID Core | 1.0 | [[DID-CORE]] | With adjustments as specified in [Section 5](#5-decentralized-identifiers-dids) |
-| Verifiable Credentials Data Model | 1.1 | [[VC-DATA-MODEL]] | With adjustments as specified in [Section 6](#6-verifiable-credentials) |
-| Cryptographic Algorithms | - | - | As specified in [Section 7](#7-cryptographic-algorithms) |
+| DID Core | 1.0 | [[def:DID-CORE]] | With adjustments as specified in [the following section](#decentralized-identifiers-dids.) |
+| Verifiable Credentials Data Model | 1.1 | [[ref:VC-DATA-MODEL-1.0]] | With adjustments as specified in [the following section](#verifiable-credentials). |
+| Cryptographic Algorithms | - | - | As specified in [the following section](#cryptographic-algorithms). |
 
 ::: todo
 Provide guidance on versioning strategy and backward compatibility considerations for future Web5 specification updates.
@@ -284,7 +280,7 @@ Provide guidance on versioning strategy and backward compatibility consideration
 ~ [Decentralized Identifiers (DIDs) v1.0](https://www.w3.org/TR/did-core/). W3C Recommendation, 19 July 2022. M. Sporny, A. Guy, M. Sabadello, D. Reed.
 
 [[def:VC-DATA-MODEL-1.1]]
-~ [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/vc-data-model/). W3C Recommendation, 03 March 2022. M. Sprony, G. Noble, D. Longley, D. Burnett, B. Zundel, K. D. Hartog. [W3C]()
+~ [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/vc-data-model/). W3C Recommendation, 03 March 2022. M. Sprony, G. Noble, D. Longley, D. Burnett, B. Zundel, K. D. Hartog. [W3C](https://www.w3.org/).
 
 [[def:VC-JOSE-COSE]]
 ~ [Securing Verifiable Credentials using JOSE and COSE](https://www.w3.org/TR/vc-jose-cose/). O. Steele, M. Jones,
