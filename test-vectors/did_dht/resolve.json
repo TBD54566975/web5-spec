@@ -2,6 +2,36 @@
   "description": "did:dht resolution",
   "vectors": [
     {
+      "description": "resolves successfully",
+      "input": {
+        "didUri": "did:dht:diyiiuks5k1iiep5pjwqfheg47fo9r9iz66agct7qjjxbqw8nxmy"
+      },
+      "output": {
+        "document": {
+          "id": "did:dht:diyiiuks5k1iiep5pjwqfheg47fo9r9iz66agct7qjjxbqw8nxmy",
+          "authentication": [],
+          "assertionMethod": [],
+          "capabilityDelegation": [],
+          "capabilityInvocation": [],
+          "verificationMethod": [
+            {
+              "id": "did:dht:diyiiuks5k1iiep5pjwqfheg47fo9r9iz66agct7qjjxbqw8nxmy#0",
+              "type": "JsonWebKey",
+              "controller": "did:dht:diyiiuks5k1iiep5pjwqfheg47fo9r9iz66agct7qjjxbqw8nxmy",
+              "publicKeyJwk": {
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "x": "HUFazVbapVqhu2po4vEG10sPk_W_vYMyPXJS8LqHE9Y",
+                "kid": "eyQ-YzdtG9pk-9m0cvjLsavFXY1765OOHQxCDxz5Mdo",
+                "alg": "EdDSA"
+              }
+            }
+          ]
+        }
+      },
+      "errors": false
+    },
+    {
       "description": "methodNotSupported error returned when did method is not dht",
       "input": {
         "didUri": "did:web:example.com"
