@@ -3,7 +3,7 @@ Web5 Specification v1.0
 
 **Specification Status**: Draft
 
-**Latest Draft**: https://TODO
+**Latest Draft**: https://github.com/TBD54566975/web5-spec
 
 **Draft Created**: October 12, 2023
 
@@ -90,21 +90,11 @@ This specification uses the following terms:
 [[def:DID Resolver, DID Resolvers, DID Resolution]]
 ~ A DID Resolver is a software service designed to perform resolution of a [[ref:DID Document]], which is the process of obtaining a [[ref:DID Document]] for a given [[ref:DID]]. See [[ref:DID-IDENTIFIER-RESOLUTION]].
 
-## Web5 SDK Features
+## Web5 Core Features
 
-The Web5 SDK provides a comprehensive set of features for building decentralized protocols and applications. The following sections outline the core features required to build a conformant [[ref:Web5 SDK]].
+The Web5 SDK provides a comprehensive set of features for building decentralized protocols and applications. The following section outline the core features required to build a conformant [[ref:Web5 SDK]].
 
-## JSON Schema
-
-[[ref:JSON-SCHEMA]] support is ****REQUIRED**** for multiple features throughout [[ref:Web5 SDKs]], including, but not limited to support with [[ref:verifiable credentials]], [VC JSON Schemas](#vc-json-schema), and for use in validating the data models this specification has defined.
-
-Conformant implementations of [[ref:Web5 SDKs]] ****MUST**** support at least [[ref:JSON-SCHEMA-DRAFT-7]] and [[ref:JSON-SCHEMA-2020-12]].
-
-:::todo
-Elaborate on required features for JSON Schema support such as constructing and validating JSON Schemas. Provide guidance on caching and offline resolution.
-:::
-
-## Cryptographic Primitives
+### Cryptographic Primitives
 
 Web5 supports the following cryptographic key types for use with the noted corresponding digital signature algorithms:
 
@@ -117,7 +107,7 @@ Web5 supports the following cryptographic key types for use with the noted corre
 In-memory signing using [[ref:secp256k1]] ****MUST**** produce k-deterministic low-s signatures with [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as per [[spec:RFC6979]]. Verification ****MUST NOT**** require low-s signatures.
 :::
 
-## Key Management
+### Key Management
 
 Web5 implementations ****MUST**** provide a consistent and extensible _public_ interface for key management, with the following minimum concrete implementations:
 
@@ -141,15 +131,184 @@ Further, the key manager interface ****MUST**** be passed as an argument to all 
 
 Consumers of conformant [[ref:Web5 SDKs]] ****SHOULD**** be able to provide their own `KeyManager` impelementations, if desired.
 
-## W3C Decentralized Identifiers (DIDs)
+### JSON Schema
 
-Web5 uses [[def:Decentralized Identifiers]] (DIDs) as the foundation for user identity and authentication. This specification adopts a subset of the [[ref:DID-CORE]] specification with some adjustments to ensure consistency across implementations.
+[[ref:JSON-SCHEMA]] support is ****REQUIRED**** for multiple features throughout [[ref:Web5 SDKs]], including, but not limited to support with [[ref:verifiable credentials]], [VC JSON Schemas](#vc-json-schema), and for use in validating the data models this specification has defined.
+
+Conformant implementations of [[ref:Web5 SDKs]] ****MUST**** support at least [[ref:JSON-SCHEMA-DRAFT-7]] and [[ref:JSON-SCHEMA-2020-12]].
+
+:::todo
+Elaborate on required features for JSON Schema support such as constructing and validating JSON Schemas. Provide guidance on caching and offline resolution.
+:::
+
+### Decentralized Identifiers (DIDs)
+
+Decentralized Identifiers (DIDs) are a core component of Web5, providing a foundation for self-sovereign identity and decentralized authentication, authorization, and discovery of services. Web5 implements a subset of the [[ref:DID-CORE]] specification to ensure consistency and interoperability across implementations. More detail can be found in the [section on the DID Document Data Model](#did-document-data-model).
+
+DIDs in Web5 are globally unique identifiers that enable verifiable, decentralized digital identity. They are designed to be independent of centralized registries, identity providers, or certificate authorities. Key features of [[ref:DIDs] in Web5 include:
+
+1. **Decentralization**: [[ref:DIDs]] can be created and managed without needing to rely on centralized authorities.
+2. **Control**: The controller has full say over their [[ref:DID]] and associated [[ref:DID Document]].
+3. **Persistence**: [[ref:DIDs]] are persistent identifiers that do not require the continued operation of an underlying organization.
+4. **Resolvability**: [[ref:DIDs]] can be resolved to retrieve associated [[ref:DID Documents]] containing cryptographic material, service endpoints, and other data.
+4. **Cryptographic Verifiability**: [[ref:DIDs]] enable cryptographic verification of claims and interactions.
+
+#### Supported DID Methods
+
+Web5 supports the following DID methods:
+
+| Method | Creation | Resolution | Note |
+|--------|----------|------------|------|
+| [[ref:did:web]] | ❌ | ✅ | - |
+| [[ref:did:jwk]] | ✅ | ✅ | - |
+| [[ref:did:dht]] | ✅ | ✅ | This is the "default" method for [[ref:Web5 SDKs]]. |
+| [[ref:did:key]] | ⚠️ | ⚠️ | This method has been implemented in both Kotlin and TypeScript, with no plans for support in other languages. |
+
+#### DID Features
+
+**DID Operations**:
+
+Conformant [[ref:Web5 SDKs]] ****MUST**** support the following DID operations:
+
+1. **Creation**: Generate new DIDs using supported methods.
+2. **Resolution**: Resolve DIDs to retrieve their associated DID Documents.
+3. **Update**: Modify DID Documents for methods that support updates.
+3. **Deactivation**: Deactivate DIDs when they are no longer needed or compromised.
+
+**DID Document Management**:
+
+Conformant [[ref:Web5 SDKs]] ****MUST**** provide functionality to:
+
+1. Create and validate DID Documents according to the specified data model.
+2. Manage verification methods and services associated with DIDs.
+3. Handle DID Document metadata and resolution metadata.
+
+::: todo
+Provide more detailed information on the implementation and use of each supported DID method.
+:::
+
+### Verifiable Credentials (VCs)
+
+Verifiable Credentials (VCs) are another cornerstone of Web5, providing a standard way to express and verify claims about entities. Web5 implements a subset of the [[ref:VC-DATA-MODEL-1.1]] specification to ensure consistency and interoperability.
+
+[[ref:VCs]] in Web5 are cryptographically secure, privacy-respecting, and machine-verifiable digital credentials. They enable the assertion and verification of claims about subjects in a decentralized manner. Key features of VCs in Web5 include:
+
+1. **Cryptographic Security**: VCs are digitally signed, ensuring their integrity and authenticity.
+2. **Privacy Preservation**: VCs enable user-control with features like selective disclosure.
+3. **Standardization**: VCs follow standardized data models, promoting interoperability across industries.
+4. **Flexibility**: VCs can represent a wide range of credentials and attributes.
+5. **Verifiability**: Claims in VCs can be independently verified by relying parties.
+
+::: note
+Future versions of this specification may adopt other models of [[ref:verifiable credentials]], such as [ISO mDLs](https://www.iso.org/standard/69084.html), [SD-JWT-based Verifiable Credentials](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/), or [W3C Verifiable Credentials v2.0](https://www.w3.org/TR/vc-data-model-2.0/).
+:::
+
+#### Supported Credential Types
+
+Web5 primarily supports the W3C Verifiable Credentials Data Model v1.1 [[ref:VC-DATA-MODEL-1.1]], with the following features:
+
+1. **Basic Credentials**: Standard Verifiable Credentials containing claims about a subject.
+2. **[[ref:Verifiable Presentations]]**: Holder signed VCs that can be shared with verifiers.
+3. **JSON Schema**: VCs that use [[ref:VC-JSON-SCHEMA]] for claim validation.
+4. **Status List Credentials**: VCs that support revocation and suspension using [[ref:STATUS-LIST-2021]].
+
+#### VC Features
+
+Conformant [[ref:Web5 SDKs]] ****MUST**** support the following [[ref:Verifiable Credential]] operations:
+
+1. **Issuance**: Create and sign [[ref:Verifiable Credentials]] using the `vc-jwt` format.
+2. **Verification**: Verify the integrity, authenticity, and status of [[ref:Verifiable Credentials]] as `vc-jwt`.
+3. **Presentation Creation**: Generate [[ref:Verifiable Presentations]] from one or more [[ref:VCs]] as `vp-jwt`.
+4. **Presentation Verification**: Verify the integrity and authenticity of [[ref:Verifiable Presentations]] as `vp-jwt`.
+5. **Status**: Manage the status of issued credentials using [[ref:STATUS-LIST-2021]].
+
+:::todo
+[](https://github.com/TBD54566975/web5-spec/issues/12) Specify credential validation in more detail.
+:::
+
+#### VC Formats
+
+Web5 supports the following credential formats:
+
+1. **JWT**: Verifiable Credentials and Presentations secured as JSON Web Tokens (JWTs) [[spec:RFC7519]] using the `vc-jwt` and `vp-jwt` types.
+2. **JSON-LD**: Support for [[ref:JSON-LD]] context in VCs, although [[ref:JSON-LD]] processing is not performed.
+
+#### Credential Status
+
+Conformant [[ref:Web5 SDKs]] ****MUST**** support Credential Status as specified by [[ref:STATUS-LIST-2021]] for usage with the W3C Verifiable Credential Data Model 1.1 [[ref:VC-DATA-MODEL-1.1]].
+
+The following operations ****MUST**** be supported:
+
+1. **Issuance**: Create and sign [[ref:Verifiable Credentials]] representing [[ref:STATUS-LIST-2021]] VCs as `vc-jwt`.
+2. **Verification**: Verify the integrity and authenticity of [[ref:STATUS-LIST-2021]] VCs as `vc-jwt`.
+3. **Status Setting**: Support setting multiple statuses including `Revoked` and `Suspended`.
+4. **Status Checking**: Functionality to determine whether a credential has a given status.
+
+:::note
+A new version of this status list, under development as [[ref:BITSTRING-STATUS-LIST]], is under consideration for adoption in a future version of this specification.
+:::
+
+:::todo
+Add more detail on expected features and data model constraints.
+:::
+
+#### Credential Schema
+
+Conformant [[ref:Web5 SDKs]] ****MUST**** support [[ref:VC-JSON-SCHEMA]] for usage with the W3C Verifiable Credential Data Model 1.1 [[ref:VC-DATA-MODEL-1.1]].
+
+The following operations ****MUST**** be supported:
+1. **Creation**: The ability to construct a [[ref:VC-JSON-SCHEMA]] of type `JsonSchema`.
+2. **Resolution**: The ability to resolve a JSON Schema from a web resource given its `id`.
+3. **Validation**: Functionality to validate a given [[ref:Verifiable Credential]] against a [[ref:VC-JSON-SCHEMA]].
+
+:::todo
+Add more detail on expected features and data model constraints.
+:::
+
+### Presentation Exchange
+
+Web5 incorporates Presentation Exchange v2.0 [[ref:PRESENTATION-EXCHANGE]] as a crucial component for facilitating the exchange of Verifiable Credentials between parties. This feature enables standardized request and submission of credentials. Presentation Exchange provides a mechanism for one party to request specific credentials or claims from another party, and for the responding party to present those credentials in a standardized format. This enables dynamic, privacy-preserving, and minimal disclosure of information.
+
+#### Presentation Exchnage Features
+
+Conformant [[ref:Web5 SDKs]] ****MUST**** support the following [[ref:PRESENTATION-EXCHANGE]] features:
+
+1. **Data Model**: Implementation of the Presentation Exchange data model, including Presentation Definition, Presentation Submission, and related structures.
+2. **Validation**: Ability to validate Presentation Definitions and Presentation Submissions against the Presentation Exchange schema.
+3. **Credential Evaluation**: Support for evaluating credentials across multiple formats (`vc-jwt` and `vp-jwt` using [[ref:VC-DATA-MODEL-1.1]].
+4. **Predicates**: Support for predicate-based claims, allowing for filtering of claims against [[ref:JSON-SCHEMA]] values.
+5. **Relational Constraints**: Ability to express and evaluate constraints such as `subjet_is_issuer`, `same_subject`, or `is_holder`.
+6. **Credential Status**: Support for including and evaluating credential status (see: [Credential Status](#credential-status)) information as part of the presentation exchange process.
+
+#### Presentation Exchange Operations
+
+Conformant [[ref:Web5 SDKs]] ****MUST**** support the following operations in processing Presentation Exchange data objects:
+
+1. **Presentation Request Creation**: Generate Presentation Definitions specifying the required credentials and claims, signed as a `vc-jwt`.
+2. **Presentation Request Parsing**: Verify the signature, validate the data, and interpret received Presentation Definitions.
+3. **Presentation Submission Generation**: Create Presentation Submissions that satisfy the requirements of a Presentation Definition. Support signing and verification using `vc-jwt`.
+4. **Presentation Submission Verification**: Verify that a Presentation Submission meets the criteria specified in a Presentation Definition.
+	* Evaluate predicates.
+	* Evaluate relational constraints.
+	* Evaluate credential status.
+
+::: note
+Implementers should refer to the [[ref:PRESENTATION-EXCHANGE]] specification for detailed requirements and guidelines on implementing these features.
+:::
+
+::: todo
+Add specific examples of how Presentation Exchange is used in common Web5 scenarios, such as authentication workflows or sharing of user attributes.
+:::
+
+## Data Models
+
+This section provides guidance for implementers of [[ref:Web5 SDKs]] [core features](#web5-sdk-core-features).
+
+### DID Document Data Model
 
 [[ref:DID-CORE]] provides optionality for many of its properties, as it is designed as an [abstract data model](https://www.w3.org/TR/did-core/#representations). This means that many properties can be represented in different ways while still being spec conformant, properties can take on multiple concrete types (i.e. sometimes a string, sometimes an array), and documents can be extended to include additional properties either through the [DID Specification Registry](https://www.w3.org/TR/did-spec-registries/) or via usage of [JSON-LD](https://www.w3.org/TR/json-ld11/).
 
 This optionality can be difficult to implement consistently across languages. As a consequence, this specification defines a strict subset of the DID Core v1.0 data model represented by the following table. As a utility JSON Schemas for [DID Documents](did-document.json), [DID Resolution Metadata](did-resolution.json), and [DID Document Metadata](did-metadata.json) are provided to aid in the validation of conformant documents.
-
-### DID Document Data Model
 
 Following from [this data model](https://www.w3.org/TR/did-core/#core-properties).
 
@@ -235,49 +394,12 @@ Following from [this data model](https://www.w3.org/TR/did-core/#did-document-me
 | `equivalentId` | Array of Strings | No       | A stronger form of the `alsoKnownAs` property, guaranteed by the DID method. See [this spec text](https://www.w3.org/TR/did-core/#h-note-10) for more information. |
 | `canonicalId`  | String           | No       | Similar to `equivalentId`, though always a single value, never a set. See [this spec text](https://www.w3.org/TR/did-core/#dfn-canonicalid) for more information. |
 
-## DID Methods
 
-Web5 supports the following DID methods:
-
-| Method | Creation | Resolution | Note |
-|--------|----------|------------|------|
-| [[ref:`did:web`]] | ❌ | ✅ | - |
-| [[ref:`did:jwk`]] | ✅ | ✅ | - |
-| [[ref:`did:dht`]] | ✅ | ✅ | This is the "default" method for [[ref:Web5 SDKs]]. |
-| [[ref:`did:key`]] | ⚠️ | ⚠️ | This method has been implemented in both Kotlin and TypeScript, with no plans for support in other languages. |
-
-::: todo
-Provide more detailed information on the implementation and use of each supported DID method.
-:::
-
-## Verifiable Credentials
-
-Web5 implements a subset of the [[ref:VC-DATA-MODEL-1.1]] specification to ensure consistency across implementations. This section defines the data models for Verifiable Credentials and Verifiable Presentations in Web5.
-
-::: note
-Future versions of this specification may adopt other models of [[ref:verifiable credentials]], such as [ISO mDLs](https://www.iso.org/standard/69084.html), [SD-JWT-based Verifiable Credentials](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/), or [W3C Verifiable Credentials v2.0](https://www.w3.org/TR/vc-data-model-2.0/).
-:::
-
-### Features
-
-| Feature                                                          |
-| ---------------------------------------------------------------- |
-| Data model                                                       |
-| Validation (data model, JSON Schema, status, more to come.)      |
-| Signing and verification of Verifiable Credentials as `vc-jwt`   |
-| Signing and verification of Verifiable Presentations as `vp-jwt` |
-
-:::todo
-[](https://github.com/TBD54566975/web5-spec/issues/12) Specify credential validation in more detail.
-:::
-
-### W3C Verifiable Credentials v1.1
+### Verifiable Credentials v1.1 Data Model
 
 The [[ref:VC Data Model]] provides optionality for many of its properties. This means they can take on multiple concrete types, for example an [`issuer` property](https://www.w3.org/TR/vc-data-model/#issuer) can either be repreesnted as a JSON string representing a URI or a JSON object that must contain an `id` property. Additionally, the data model follows an [open world](https://www.w3.org/TR/vc-data-model/#extensibility) model for extensibility via the usage of [[ref:JSON-LD]]. As a consequence, conformant Verifiable Credentials may contain properties that are not defined by the specification itself, but by [JSON-LD Contexts](https://www.w3.org/TR/json-ld11/#the-context).
 
 This optionality can be difficult to implement consistently across languages. As a consequence, this specification defines a strict subset of the VC Data Model v1.1 that supports the [plain JSON syntax](https://www.w3.org/TR/vc-data-model/#json), represented by the following table. As a utility JSON Schemas for [Verifiable Credentials](vc-11.json) and [Verifiable Presentations](vp-11.json) are provided to aid in the validation of conformant documents.
-
-#### Verifiable Credential Data Model
 
 Following from [this data model](https://www.w3.org/TR/vc-data-model/#basic-concepts).
 
@@ -337,7 +459,7 @@ Following from [this data model](https://www.w3.org/TR/vc-json-schema/#jsonschem
 Although [the referenced spec](https://w3c.org/TR/vc-json-schema/) is designed for v2 of the VC Data Model, we apply it to v1.1 as a standard means to implement the `credentialSchema`.
 :::
 
-### W3C Verifiable Presentation Data Model v1.1
+### Verifiable Presentation v1.1 Data Model
 
 Following from [this guidance](https://www.w3.org/TR/vc-data-model/#presentations-0), which extends on the [Verifiable Credentials Data Model](#w3c-verifiable-credentials-v11) above.
 
@@ -358,43 +480,10 @@ Following from [this guidance](https://www.w3.org/TR/vc-data-model/#presentation
 - Verifiable Presentations ****MUST**** be secured as JWTs [[spec:RFC7519]] according to the [rules laid out in the specification](https://www.w3.org/TR/vc-data-model/#json-web-token).
 - [[ref:XML Datetime]] values ****MAY*** be represented by conforming to [[ref:ISO8601]] or [[spec:RFC3339]] formats, as they are subsets of XML Datetime.
 
-### VC JSON Schema
-
-[[ref:VC-JSON-SCHEMA]] support is ****REQUIRED**** for usage with the W3C Verifiable Credential Data Model 1.1 [[ref:VC-DATA-MODEL-1.1]].
-
-| Feature                                 |
-| --------------------------------------- | 
-| Creation and validation of `JsonSchema` |
-| Creation and validation of `JsonSchemaCredential` using `vc-jwt` with the VCDM v1.1 |
-
-### Credential Status
-
-Credential Status is provided by [[ref:STATUS-LIST-2021]] for usage with the W3C Verifiable Credential Data Model 1.1 [[ref:VC-DATA-MODEL-1.1]].
-
-| Feature                                | 
-| -------------------------------------- | 
-| Data model                             |
-| Status checking (supporting at least `Revocation` and `Suspension` statuses) |
-| Status setting                         |
-| Signing and verification with `vc-jwt` |
-
-:::note
-A new version of this status list, under development as [[ref:BITSTRING-STATUS-LIST]], is under consideration for adoption in a future version of this specification.
-:::
-
-:::todo
-Add more detail on expected features and data model constraints.
-:::
-
 ## Additional Features
 
 ::: todo
-Provide detailed specifications for the following features:
-- SD-JWT
-- Status List 2021
-- Bitstring Status List
-- VC JSON Schema
-- Presentation Exchange V2
+Note additional features of Web5 SDKs, if any.
 :::
 
 ## Security Considerations
@@ -419,6 +508,8 @@ Discuss privacy considerations specific to Web5, including:
 
 ## Implementation Guidelines
 
+Find the latest [Projects Health Dashboard here](https://developer.tbd.website/open-source/projects-dashboard/).
+
 ::: todo
 Provide guidelines for implementing Web5 applications, including:
 - Best practices for using Web5 SDKs
@@ -432,9 +523,10 @@ Provide guidelines for implementing Web5 applications, including:
 | Component | Version | Status | Notes |
 |-----------|---------|--------|-------|
 | Web5 Specification | 1.0 | Draft | This document |
-| DID Core | 1.0 | [[def:DID-CORE]] | With adjustments as specified in [the following section](#decentralized-identifiers-dids). |
-| Verifiable Credentials Data Model | 1.1 | [[ref:VC-DATA-MODEL-1.1]] | With adjustments as specified in [the following section](#verifiable-credentials). |
-| Cryptographic Algorithms | - | - | As specified in [the following section](#cryptographic-algorithms). |
+| DID Core | 1.0 | [[def:DID-CORE]] | With adjustments as specified in [this section](#did-document-data-model). |
+| Verifiable Credentials Data Model | 1.1 | [[ref:VC-DATA-MODEL-1.1]] | With adjustments as specified in [this section](#verifiable-credentials-v11-data-model). |
+| Presentation Exchange | 2.1.1 | [[ref:PRESENTATION-EXCHANGE]] | With adjustments as specified in [this section](#presentation-exchange). | 
+| Cryptographic Algorithms | - | - | As specified in [the following section](#cryptographic-primitives). |
 
 ::: todo
 Provide guidance on versioning strategy and backward compatibility considerations for future Web5 specification updates.
@@ -450,10 +542,6 @@ Provide guidance on versioning strategy and backward compatibility consideration
 
 [[def:VC-DATA-MODEL-1.1, VC Data Model]]
 ~ [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/vc-data-model/). W3C Recommendation, 03 March 2022. M. Sprony, G. Noble, D. Longley, D. Burnett, B. Zundel, K. D. Hartog. [W3C](https://www.w3.org/).
-
-[[def:VC-JOSE-COSE]]
-~ [Securing Verifiable Credentials using JOSE and COSE](https://www.w3.org/TR/vc-jose-cose/). O. Steele, M. Jones,
-M. Prorock, G. Cohen; 25 April 2024. [W3C](https://www.w3.org/).
 
 [[def:VC-JSON-SCHEMA]]
 ~ [Verifiable Credentials JSON Schema Specification](https://www.w3.org/TR/vc-json-schema/). G. Cohen, M. Prorock, A. Uribe; 18 December 2023. [W3C](https://www.w3.org/).
@@ -476,23 +564,26 @@ M. Prorock, G. Cohen; 25 April 2024. [W3C](https://www.w3.org/).
 [[def:VC-SPECIFICATIONS-DIRECTORY]]
 ~ [VC Specifications Directory](https://www.w3.org/TR/vc-specs-dir/). M. Sporny. W3C Group Note. 01 June 2024. [W3C](https://www.w3.org/).
 
-[[def:DID JWK, `did:jwk`]]
+[[def:DID JWK, did:jwk]]
 ~ [did:jwk](https://github.com/quartzjer/did-jwk/blob/main/spec.md). did:jwk is a deterministic transformation of a
 JWK into a DID Document. J. Miller.
 
-[[def:DID Web, `did:web`]]
+[[def:DID Web, did:web]]
 ~ [did:web Method Specification](https://w3c-ccg.github.io/did-method-web/). C. Gribneau, M. Prorock, O. Steele,
 O. Terbu, M. Xu, D. Zagidulin; 06 May 2023. [W3C](https://www.w3.org/).
 
-[[def:DID DHT, `did:dht`]]
+[[def:DID DHT, did:dht]]
 ~ [did:dht](https://did-dht.com/). G. Cohen, D. Buchner. Implementers Draft. July 25, 2024. [TBD](https://tbd.website/).
 
-[[def:DID Key, `did:key`]]
+[[def:DID Key, did:key]]
 ~ [The did:key Method v0.7](https://w3c-ccg.github.io/did-method-key/). A DID Method for Static Cryptographic Keys.
 D. Longley, D. Zagidulin, M. Sporny. [W3C CCG](https://w3c-ccg.github.io/).
 
 [[def:JSON-LD]]
 ~ [JSON-LD 1.1]. A JSON-based Serialization for Linked Data. W3C Recommendation. G. Kellogg, P. A. Champin, D. Longley. 16 July 2020. [W3C](https://www.w3.org/).
+
+[[def:PRESENTATION-EXCHANGE]]
+~ [Presentation Exchange 2.1.1](https://identity.foundation/presentation-exchange/spec/v2.1.1/). D. Buchner, B. Zundel, M. Riedel, K. Hamilton Duffy; DIF Ratified Specification. June 30, 2024. [DIF](https://www.identity.foundation).
 
 [[def:Ed25519]]
 ~ [Ed25519](https://ed25519.cr.yp.to/). D. J. Bernstein, N. Duif, T. Lange, P. Schwabe, B.-Y. Yang; 26 September 2011.
