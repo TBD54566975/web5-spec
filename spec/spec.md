@@ -29,7 +29,7 @@ Web5 Specification v1.0
 
 ## Abstract
 
-Web5 is a decentralized web platform that empowers users with control over their data and identity. Built on open standards and protocols, Web5 enables the integration of decentralized identity into applications, allowing developers to create user-centric experiences while ensuring individual ownership and control over personal information. This specification selects standards from the digital identity and implemenets sensible constraints to enable functional, practical, and interoperable implementations of these standards. Following this ethos, the Web5 Specification defines the core components, protocols, and APIs that constitute the Web5 ecosystem, enabling interoperable and privacy-preserving decentralized applications.
+Web5 is a decentralized web platform that empowers users with control over their data and identity. Built on open standards and protocols, Web5 enables the integration of decentralized identity into applications, allowing developers to create user-centric experiences while ensuring individual ownership and control over personal information. This specification selects standards from the digital identity and implements sensible constraints to enable functional, practical, and interoperable implementations of these standards. Following this ethos, the Web5 Specification defines the core components, protocols, and APIs that constitute the Web5 ecosystem, enabling interoperable and privacy-preserving decentralized applications.
 
 ## Introduction
 
