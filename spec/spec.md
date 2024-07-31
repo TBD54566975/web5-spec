@@ -133,7 +133,7 @@ Consumers of conformant [[ref:Web5 SDKs]] ****SHOULD**** be able to provide thei
 
 ### JSON Schema
 
-[[ref:JSON-SCHEMA]] support is ****REQUIRED**** for multiple features throughout [[ref:Web5 SDKs]], including, but not limited to support with [[ref:verifiable credentials]], [VC JSON Schemas](#vc-json-schema), and for use in validating the data models this specification has defined.
+[[ref:JSON-SCHEMA]] support is ****REQUIRED**** for multiple features throughout [[ref:Web5 SDKs]], including, but not limited to support with [[ref:Verifiable Credentials]], [VC JSON Schemas](#vc-json-schema), and for use in validating the data models this specification has defined.
 
 Conformant implementations of [[ref:Web5 SDKs]] ****MUST**** support at least [[ref:JSON-SCHEMA-DRAFT-7]] and [[ref:JSON-SCHEMA-2020-12]].
 
