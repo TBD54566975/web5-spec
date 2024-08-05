@@ -7,7 +7,7 @@ Web5 Specification v1.0
 
 **Draft Created**: October 12, 2023
 
-**Last Updated**: July 30, 2024
+**Last Updated**: August 5, 2024
 
 **Editors**:
 ~ [Frank Hinek](https://github.com/frankhinek)
@@ -101,7 +101,9 @@ Web5 supports the following cryptographic key types for use with the noted corre
 | Key Type | Algorithm | Function |
 |----------|-----------|----------|
 | [[ref:secp256k1]] | `ES256K` [[spec:RFC8812]] | Signing and Verification |
-| [[ref:Ed25519]] | `EdDSA` [[spec:RFC8032]] | Signing and Verification |
+| [[ref:Ed25519]]   | `EdDSA` [[spec:RFC8032]] | Signing and Verification |
+| [secp256r1](https://neuromancer.sk/std/secg/secp256r1) / [P-256](https://neuromancer.sk/std/nist/P-256) | `ES256` [[spec:RFC7518]] | Signing and Verification |
+| [X25519](https://www.rfc-editor.org/rfc/rfc7748) [[spec:RFC7748]] | [ECDH-ES+A256KW](https://datatracker.ietf.org/doc/html/rfc7518#section-4.6) [[spec:RFC7518]] | Key Agreement |
 
 ::: note
 In-memory signing using [[ref:secp256k1]] ****MUST**** produce k-deterministic low-s signatures with [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) as per [[spec:RFC6979]]. Verification ****MUST NOT**** require low-s signatures.
@@ -109,19 +111,13 @@ In-memory signing using [[ref:secp256k1]] ****MUST**** produce k-deterministic l
 
 ### Key Management
 
-Web5 implementations ****MUST**** provide a consistent and extensible _public_ interface for key management, with the following minimum concrete implementations:
-
-1. Key Manager Interface
-2. In-Memory Key Manager
-3. AWS KMS
-4. Device Enclave (Mobile)
-5. Keychain (Mobile)
+Web5 implementations ****MUST**** provide a consistent and extensible _public_ interface for key management, with a concrete implementation of a **Key Manager Interface** which facilitates ****AT LEAST**** an _In-Memory Key Manager_, with support for additional key managers, such as those that interface with common cloud providers.
 
 ::: todo
 Provide detailed specifications for each key management implementation, including APIs and usage guidelines.
 :::
 
-Further, the key manager interface ****MUST**** be passed as an argument to all public API methods that require key material such as:
+Further, the **Key Manager Interface** ****MUST**** be passed as an argument to all public API methods that require key material such as:
 * DID Creation
 * Data Signing
 
@@ -157,12 +153,11 @@ DIDs in Web5 are globally unique identifiers that enable verifiable, decentraliz
 
 Web5 supports the following DID methods:
 
-| Method | Creation | Resolution | Note |
-|--------|----------|------------|------|
-| [[ref:did:web]] | ❌ | ✅ | - |
-| [[ref:did:jwk]] | ✅ | ✅ | - |
-| [[ref:did:dht]] | ✅ | ✅ | This is the "default" method for [[ref:Web5 SDKs]]. |
-| [[ref:did:key]] | ⚠️ | ⚠️ | This method has been implemented in both Kotlin and TypeScript, with no plans for support in other languages. |
+| Method          | Creation | Modification | Registration | Resolution | Note |
+|-----------------|----------|--------------|--------------|------------|------|
+| [[ref:did:jwk]] | ✅       | ❌           | ❌          | ✅         | This method only suppoort creation and offline resolution. |
+| [[ref:did:web]] | ✅       | ✅           | ❌          | ✅         | Registration or "publishing" can only be done through control of the domain associated with the DID. |
+| [[ref:did:dht]] | ✅       | ✅           | ✅          | ✅         |  This is the "default" method for [[ref:Web5 SDKs]]. |
 
 #### DID Features
 
@@ -170,10 +165,10 @@ Web5 supports the following DID methods:
 
 Conformant [[ref:Web5 SDKs]] ****MUST**** support the following DID operations:
 
-1. **Creation**: Generate new DIDs using supported methods.
-2. **Resolution**: Resolve DIDs to retrieve their associated DID Documents.
-3. **Update**: Modify DID Documents for methods that support updates.
-3. **Deactivation**: Deactivate DIDs when they are no longer needed or compromised.
+1. **Creation**: Generate new DIDs using supported methods. This is an offline process.
+2. **Modification**: Modify DID Documents for methods that support updates, such as adding or removing vefication methods or services.
+3. **Registration**: Publication or registration of a DID Document with a network resource such as a web server or DHT.
+4. **Resolution**: Resolve DIDs to retrieve their associated DID Documents.
 
 **DID Document Management**:
 
