@@ -218,7 +218,7 @@ Conformant [[ref:Web5 SDKs]] ****MUST**** support the following [[ref:Verifiable
 5. **Status**: Manage the status of issued credentials using [[ref:STATUS-LIST-2021]].
 
 :::todo
-[](https://github.com/TBD54566975/web5-spec/issues/12) Specify credential validation in more detail.
+[](https://github.com/TBD54566975/web5-spec/issues/134) Specify credential validation in more detail.
 :::
 
 #### VC Formats
