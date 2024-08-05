@@ -200,7 +200,7 @@ Future versions of this specification may adopt other models of [[ref:verifiable
 
 #### Supported Credential Types
 
-Web5 primarily supports the W3C Verifiable Credentials Data Model v1.1 [[ref:VC-DATA-MODEL-1.1]], with the following features:
+This version of Web5 supports the W3C Verifiable Credentials Data Model v1.1 [[ref:VC-DATA-MODEL-1.1]], with the following features:
 
 1. **Basic Credentials**: Standard Verifiable Credentials containing claims about a subject.
 2. **[[ref:Verifiable Presentations]]**: Holder signed VCs that can be shared with verifiers.
@@ -211,10 +211,10 @@ Web5 primarily supports the W3C Verifiable Credentials Data Model v1.1 [[ref:VC-
 
 Conformant [[ref:Web5 SDKs]] ****MUST**** support the following [[ref:Verifiable Credential]] operations:
 
-1. **Issuance**: Create and sign [[ref:Verifiable Credentials]] using the `vc-jwt` format.
-2. **Verification**: Verify the integrity, authenticity, and status of [[ref:Verifiable Credentials]] as `vc-jwt`.
-3. **Presentation Creation**: Generate [[ref:Verifiable Presentations]] from one or more [[ref:VCs]] as `vp-jwt`.
-4. **Presentation Verification**: Verify the integrity and authenticity of [[ref:Verifiable Presentations]] as `vp-jwt`.
+1. **Issuance**: Create and sign [[ref:Verifiable Credentials]] using the [`vc-jwt` format](https://www.w3.org/TR/vc-data-model/#json-web-token).
+2. **Verification**: Verify the integrity, authenticity, and status of [[ref:Verifiable Credentials]] as [`vc-jwt`](https://www.w3.org/TR/vc-data-model/#json-web-token).
+3. **Presentation Creation**: Generate [[ref:Verifiable Presentations]] from one or more [[ref:VCs]] as [`vp-jwt`](https://www.w3.org/TR/vc-data-model/#json-web-token).
+4. **Presentation Verification**: Verify the integrity and authenticity of [[ref:Verifiable Presentations]] as [`vp-jwt`](https://www.w3.org/TR/vc-data-model/#json-web-token).
 5. **Status**: Manage the status of issued credentials using [[ref:STATUS-LIST-2021]].
 
 :::todo
