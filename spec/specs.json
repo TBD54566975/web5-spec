@@ -1,0 +1,16 @@
+{
+  "specs": [
+    {
+      "title": "Web5 Specification",
+      "spec_directory": ".",
+      "output_path": "./build",
+      "logo": "https://avatars.githubusercontent.com/u/94492651",
+      "logo_link": "https://tbd.website",
+      "source": {
+        "host": "github",
+        "account": "tbd54566975",
+        "repo": "web5-spec"
+      }
+    }
+  ]
+}
