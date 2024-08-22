@@ -1,2 +1,6 @@
 _site
 .idea
+node_modules
+.DS_Store
+build/index.html
+build
