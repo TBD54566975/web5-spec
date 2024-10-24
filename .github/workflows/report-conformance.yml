@@ -28,8 +28,8 @@ jobs:
             SPEC_TAG=${{ github.ref_name }}
           fi
 
-          # validate the tag is semver with optional patch suffix eg: v1.0.0 or v1.0 are valid
-          if [[ ! "${SPEC_TAG}" =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+          # validate the tag is semver with optional patch suffix eg: v1.0.0 or v1.0 are valid or v1.0-beta.1
+          if [[ ! "${SPEC_TAG}" =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)?(-[a-zA-Z0-9]+)?$ ]]; then
             echo "Invalid tag: ${SPEC_TAG}"
             exit 1
           fi
