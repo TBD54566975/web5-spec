@@ -6,8 +6,6 @@ on:
         type: string
         description: The tag to report conformance for
   push:
-    branches:
-      - "leordev/*"
     tags:
       - "v*"
 
@@ -57,5 +55,6 @@ jobs:
           github_token: ${{ steps.app-token.outputs.token }}
           workflow_file_name: build-conformance-table.yaml
           wait_interval: 10
-          propagate_failure: false
+          propagate_failure: true
+          wait_workflow: true
           client_payload: '{"specTag": "${{ steps.spec-tag.outputs.SPEC_TAG }}", "specRepo": "web5-spec"}'
