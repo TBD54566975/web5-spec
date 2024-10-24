@@ -6,6 +6,8 @@ on:
         type: string
         description: The tag to report conformance for
   push:
+    branches:
+      - "leordev/*"
     tags:
       - "v*"
 
